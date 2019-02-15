@@ -21,3 +21,7 @@ Run `maven install` ([Intellij](https://www.jetbrains.com/help/idea/2016.3/getti
 
 **Checkstyle**:  
 Run `maven site`
+
+Ioana Paula Iacoban
+
+![](https://www.facebook.com/photo.php?fbid=1847882911908887&set=a.176514569045738&type=3&theater)
