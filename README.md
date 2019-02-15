@@ -95,6 +95,20 @@ comfortable with the amount of time and energy put into learning how to program.
 Currently I'm just using the project as a crutch to grow further. I can use stackoverflow and teammates 
 to learn more. I'm also very excited to learn more ways to improve my programming. The only thing in my way 
 is practice and time.
-=======
+
+
+Ioana Paula Iacoban netid: iiacoban  ![](https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/29572487_1847882911908887_8646102070807169018_n.jpg?_nc_cat=110&_nc_ht=scontent-ams3-1.xx&oh=46cecc04d8bc8730128ad8119a73ac0f&oe=5CDE73F5)
+
+Goal:  Improve organization, teamwork skills and work flexibility 
+
+Strong points: motivated, excited  
+
+Weaker points: impatient, disorganized 
+
+I see this project as a great opportunity to improve the skills I developed so far and become a better programmer by doing lots of research, 
+experiment and exchange ideas with the team. So far, my experience with programming is mainly based on what I have learned during the first semester. 
+After the project, I want to know how the whole process of implementing an application looks like and what are the required steps. 
+Furthermore, acquiring more knowledge of java and developing a programmer's perspective on problem solving is also on my list. 
+Moreover, I plan to improve my teamwork and social skills by working with my team mates, discuss all sorts of aspects and find solutions together.
 
 
