@@ -1,3 +1,1 @@
-Rico van Leeuwen
-![](./profile/ricovanleeuwen.jpg) 
----
+Rico van Leeuwen ![](profile/ricovanleeuwen.jpg) 
