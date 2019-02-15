@@ -48,11 +48,22 @@ possible about java and the other programs we need to work with.During this proj
 how to test efficiently and what does it mean to be a responsible programmer.I believe that in order to complete the project 
 each one of us will have to work on their teamwork and programming skills.
 
-Ioanna Nika
 
-![picture](https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/36393997_1688414251271780_20125387820367872_n.jpg?_nc_cat=103&_nc_ht=scontent-amt2-1.xx&oh=0f9dbd4dbb11678d72b6e498ffff6671&oe=5CFDD261)
-=======
-Eliott Afriat  ![alt text](profile/Eliott.jpg) 
+Eliott Afriat  eafriat ![alt text](profile/Eliott.jpg) 
+I would Lioke to work on my comunication skills. 
+Issues:
+    I am bad at replying to messages on whatsap and such.
+    I speak to fast / dont articulate
+    I cut people off
+    I dont express my thoughts clearly
+Being better at comunicationg would be very important in day to day life, but also in my future career, 
+Being good at comunicating what you are thinking is a important quality in an engeneer, and is probably what I am strugeling most with.
+To accomplish this I will need to be more alert with messages, reponding promptly whene relevant.
+And durring team meating I will need to pay special attention to making sure I am being understood and that I am helping other thoughts from my own being heard.
+
+
+
+
 
 Rico van Leeuwen ![](profile/ricovanleeuwen.jpg) 
 
