@@ -1,4 +1,3 @@
-
 # CSE1105 Template Repository
 
 This a template repository to help you get started on making the best project possible!
@@ -15,7 +14,7 @@ Eclipse:
 Intellij:  
 [https://www.jetbrains.com/help/idea/2016.2/importing-project-from-maven-model.html](https://www.jetbrains.com/help/idea/2016.2/importing-project-from-maven-model.html)
 =======
-Eliott Afriat  ![alt text](profile/Eliott.jpg) 
+Eliott Afriat  4789393![alt text](profile/Eliott.jpg) 
 
 Alessandra Santi
 netid: asanti
@@ -33,7 +32,6 @@ My goal for this project is not only to be a better programmer, but to be a bett
 
 Paula Iacoban
 
-<<<<<<< README.md
 inika (Ioanna Nika)
 
 ![picture](https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/36393997_1688414251271780_20125387820367872_n.jpg?_nc_cat=103&_nc_ht=scontent-amt2-1.xx&oh=0f9dbd4dbb11678d72b6e498ffff6671&oe=5CFDD261)
