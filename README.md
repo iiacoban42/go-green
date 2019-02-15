@@ -1,5 +1,5 @@
 Eliott Afriat  ![alt text](profile/Eliott.jpg) 
-<<<<<<< README.md
+
 Alessandra Santi
 netid: asanti
 Strong points:
