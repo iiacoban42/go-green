@@ -63,7 +63,7 @@ To accomplish this I will need to be more alert with messages, reponding promptl
 And durring team meating I will need to pay special attention to making sure I am being understood and that I am helping other thoughts from my own being heard.
 
 
-
+Rayan Rakibuzzaman ![alt text](profile/Rayan.jpeg)
 
 
 Rico van Leeuwen ![](profile/ricovanleeuwen.jpg) 
