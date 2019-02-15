@@ -27,9 +27,6 @@ Weak points:
 My goal for this project is not only to be a better programmer, but to be a better computer scientist. Aiming to be responsible for my ideas and respectful of others'. My reality starts from very poor backgroud in progrommaning but I am motivated to be the best version of me in relation to the project and my teammates. I strongly believe that working with people with different mindset and backgrounds will be an incredible opportunity to achieve my, and hopefully, everyone's goal. I am willing to listen and pay attention to make sure I learn everything I can.
 The most concrete observation I can make about how I am going to reach my goal is definatly relying upond planning and commitment. I believe that sticking to a pre-made schedule is not only going to allow us to stay on track but it will give me time to dig deeper in the matter treated.
 ![](https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/16388395_1103798423064963_2695095194197448980_n.jpg?_nc_cat=106&_nc_ht=scontent-amt2-1.xx&oh=f6ac17d26b3f40e61805548e3ac12b04&oe=5CECA3C0)
-=======
-
-Paula Iacoban
 
 inika (Ioanna Nika)
 
@@ -53,12 +50,21 @@ how to test efficiently and what does it mean to be a responsible programmer.I b
 each one of us will have to work on their teamwork and programming skills.
 
 
-Eliott Afriat  ![alt text](profile/Eliott.jpg) 
+Eliott Afriat  eafriat ![alt text](profile/Eliott.jpg) 
+I would Lioke to work on my comunication skills. 
+Issues:
+    I am bad at replying to messages on whatsap and such.
+    I speak to fast / dont articulate
+    I cut people off
+    I dont express my thoughts clearly
+Being better at comunicationg would be very important in day to day life, but also in my future career, 
+Being good at comunicating what you are thinking is a important quality in an engeneer, and is probably what I am strugeling most with.
+To accomplish this I will need to be more alert with messages, reponding promptly whene relevant.
+And durring team meating I will need to pay special attention to making sure I am being understood and that I am helping other thoughts from my own being heard.
 
-Ioanna Nika
 
-![picture](https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/36393997_1688414251271780_20125387820367872_n.jpg?_nc_cat=103&_nc_ht=scontent-amt2-1.xx&oh=0f9dbd4dbb11678d72b6e498ffff6671&oe=5CFDD261)
-=======
+
+
 
 Rico van Leeuwen ![](profile/ricovanleeuwen.jpg) 
 
