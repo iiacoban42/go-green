@@ -24,4 +24,4 @@ Run `maven site`
 
 Ioana Paula Iacoban
 
-![](https://www.facebook.com/photo.php?fbid=1847882911908887&set=a.176514569045738&type=3&theater)
+![](https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/29572487_1847882911908887_8646102070807169018_n.jpg?_nc_cat=110&_nc_ht=scontent-amt2-1.xx&oh=54fa407cb6d0883de0873478ca265e70&oe=5CDE73F5)
