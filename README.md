@@ -66,7 +66,9 @@ And durring team meating I will need to pay special attention to making sure I a
 Rayan Rakibuzzaman ![alt text](profile/Rayan.jpeg)
 
 
-Rico van Leeuwen ![](profile/ricovanleeuwen.jpg) 
+Rico van Leeuwen 
+  netid: ricovanleeuwen
+  ![](profile/ricovanleeuwen.jpg)
 During this project, my main learning goal is improving my communication skills.
 Communication is not only an important part of this project, but also for my future carreer and during all kind of other events during my life.
 Currently, I have trouble expressing my thoughts clearly, wich leads to my just giving up on trying to explain it and going with something else. 
