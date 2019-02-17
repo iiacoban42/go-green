@@ -70,6 +70,7 @@ Rayan Rakibuzzaman netid :rrakibuzzaman
 Weak points
 •	Procrastinates a lot
 •	Slow learner
+
 Strong Points
 •	Likes to finish what’s started
 •	Patient
