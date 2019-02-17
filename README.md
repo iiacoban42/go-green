@@ -50,13 +50,18 @@ how to test efficiently and what does it mean to be a responsible programmer.I b
 each one of us will have to work on their teamwork and programming skills.
 
 
-Eliott Afriat  eafriat ![alt text](profile/Eliott.jpg) 
+Eliott Afriat  eafriat
+
+![alt text](profile/Eliott.jpg) 
+
 I would Lioke to work on my comunication skills. 
 Issues:
+
     I am bad at replying to messages on whatsap and such.
     I speak to fast / dont articulate
     I cut people off
     I dont express my thoughts clearly
+    
 Being better at comunicationg would be very important in day to day life, but also in my future career, 
 Being good at comunicating what you are thinking is a important quality in an engeneer, and is probably what I am strugeling most with.
 To accomplish this I will need to be more alert with messages, reponding promptly whene relevant.
@@ -83,15 +88,20 @@ like to learn how to test better(and efficiently) an actual working program that
 
 
 Rico van Leeuwen 
-  netid: ricovanleeuwen
-  ![](profile/ricovanleeuwen.jpg)
+
+netid: ricovanleeuwen
+
+![](profile/ricovanleeuwen.jpg)
+
 During this project, my main learning goal is improving my communication skills.
 Communication is not only an important part of this project, but also for my future carreer and during all kind of other events during my life.
 Currently, I have trouble expressing my thoughts clearly, wich leads to my just giving up on trying to explain it and going with something else. 
 I also hold off asking something I am not sure about or don't know to someone else and instead waste a lot of time figuring it out on my own. 
 I plan on improving this by asking help from my teammates earlier when I notice I waste too much time on something and by not giving up so early on expressing my thoughts.
 
-Anoek Winkelman ![alt text](profile/OOPP-Anoek.PNG) 
+Anoek Winkelman 
+
+![alt text](profile/OOPP-Anoek.PNG) 
 
 Develop a goal:
 + I think I can either lead a team or follow depending on what a team needs.
@@ -120,7 +130,9 @@ to learn more. I'm also very excited to learn more ways to improve my programmin
 is practice and time.
 
 
-Ioana Paula Iacoban netid: iiacoban  ![](https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/29572487_1847882911908887_8646102070807169018_n.jpg?_nc_cat=110&_nc_ht=scontent-ams3-1.xx&oh=46cecc04d8bc8730128ad8119a73ac0f&oe=5CDE73F5)
+Ioana Paula Iacoban netid: iiacoban 
+
+![](https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/29572487_1847882911908887_8646102070807169018_n.jpg?_nc_cat=110&_nc_ht=scontent-ams3-1.xx&oh=46cecc04d8bc8730128ad8119a73ac0f&oe=5CDE73F5)
 
 Goal:  Improve organization, teamwork skills and work flexibility 
 
