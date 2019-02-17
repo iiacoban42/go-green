@@ -17,6 +17,7 @@ Intellij:
 
 Alessandra Santi
 netid: asanti
+
 Strong points:
 - Orgazination and planning skills
 - Motivation
