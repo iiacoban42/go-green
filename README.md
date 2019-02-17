@@ -100,7 +100,7 @@ Currently, I have trouble expressing my thoughts clearly, wich leads to my just 
 I also hold off asking something I am not sure about or don't know to someone else and instead waste a lot of time figuring it out on my own. 
 I plan on improving this by asking help from my teammates earlier when I notice I waste too much time on something and by not giving up so early on expressing my thoughts.
 
-Anoek Winkelman 
+Anoek Winkelman  netid: Anoekwinkelman
 
 ![alt text](profile/OOPP-Anoek.PNG) 
 
