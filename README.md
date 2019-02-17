@@ -63,7 +63,22 @@ To accomplish this I will need to be more alert with messages, reponding promptl
 And durring team meating I will need to pay special attention to making sure I am being understood and that I am helping other thoughts from my own being heard.
 
 
-Rayan Rakibuzzaman ![alt text](profile/Rayan.jpeg)
+Rayan Rakibuzzaman netid :rrakibuzzaman
+
+![alt text](profile/Rayan.jpeg)
+
+Weak points
+•	Procrastinates a lot
+•	Slow learner
+Strong Points
+•	Likes to finish what’s started
+•	Patient
+
+I would like to learn several things from this project including learning to work in a team, being more responsible 
+(as others depend on my feedback), doing some actual work to achieve a goal.On the academic side, I would like to
+learn to program better(Java), solving complex layered problems and gain insight on programs like Git. I would also
+like to learn how to test better(and efficiently) an actual working program that other people might use.
+
 
 
 Rico van Leeuwen 
