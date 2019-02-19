@@ -22,7 +22,8 @@ public class App {
         jerseyServlet.setInitOrder(0);
 
         // Tells the Jersey Servlet which REST service/class to load.
-        jerseyServlet.setInitParameter("jersey.config.server.provider.packages",
+        jerseyServlet.setInitParameter(
+                "jersey.config.server.provider.packages",
                 "server.resources");
 
         try {
