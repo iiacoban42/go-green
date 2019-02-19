@@ -5,9 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="user")
-public class Task {
+public class User {
     @Id
     @Column(name="username")
     private String username;
@@ -15,7 +16,7 @@ public class Task {
     @Column(name="hash_password")
     private String hashPassword;
 
-    Public User(String username, String hashPassword){
+    public User(String username, String hashPassword){
         this.username = username;
         this.hashPassword = hashPassword;
     }
