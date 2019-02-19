@@ -20,6 +20,7 @@ public class App {
         finally {
             server.destroy();
         }
+        System.out.println("hello world");
     }
 
 }

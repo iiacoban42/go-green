@@ -7,6 +7,10 @@
     <artifactId>gg-server</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <jetty.version>9.4.14.v20181114</jetty.version>
+    </properties>
+
     <parent>
         <groupId>group-template</groupId>
         <artifactId>OOP-Project</artifactId>
@@ -14,16 +18,17 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+
     <dependencies>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>9.4.14.v20181114</version>
+            <version>${jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>9.4.14.v20181114</version>
+            <version>${jetty.version}</version>
         </dependency>
     </dependencies>
 
@@ -32,12 +37,12 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.1</version>
+                <version>1.6.0</version>
                 <executions>
                     <execution><goals><goal>java</goal></goals></execution>
                 </executions>
                 <configuration>
-                    <mainClass>org.example.HelloWorld</mainClass>
+                    <mainClass>server.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>
