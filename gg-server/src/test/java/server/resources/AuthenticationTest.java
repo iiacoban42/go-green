@@ -29,8 +29,8 @@ public class AuthenticationTest {
                 .buildPost(Entity.form(form)).submit(String.class);
 
         try {
-            assertTrue("test", true);
-            //System.out.println(response.get());
+            assertTrue(response.get(), true);
+            System.out.println(response.get());
         }
         catch (Exception e) {
 
