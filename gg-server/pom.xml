@@ -69,7 +69,7 @@
                     <execution><goals><goal>java</goal></goals></execution>
                 </executions>
                 <configuration>
-                    <mainClass>server.App</mainClass>
+                    <mainClass>server.Application</mainClass>
                 </configuration>
             </plugin>
         </plugins>
