@@ -1,5 +1,3 @@
-package com.hib.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,6 +19,9 @@ public class User {
         this.hashPassword = hashPassword;
     }
 
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }
@@ -36,4 +37,5 @@ public class User {
     public void setHashPassword(String hashPassword) {
         this.hashPassword = hashPassword;
     }
+
 }

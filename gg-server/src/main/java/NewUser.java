@@ -1,8 +1,6 @@
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.hib.entities.User;
-import com.hib.init.HibernateUtil;
 
 public class NewUser {
 
