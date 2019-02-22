@@ -79,6 +79,22 @@
             <version>1.0.2</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- JSON Web Token library-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+
+        <!-- Jackson core; needed for Web Token-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.8</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -91,7 +107,7 @@
                     <execution><goals><goal>java</goal></goals></execution>
                 </executions>
                 <configuration>
-                    <mainClass>server.App</mainClass>
+                    <mainClass>server.Application</mainClass>
                 </configuration>
             </plugin>
         </plugins>

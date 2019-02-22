@@ -9,7 +9,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class App {
+public class Application {
 
     public static void main(String [] args)  {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
@@ -31,7 +31,7 @@ public class App {
             server.join();
         }
         catch (Exception e) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, e);
         }
         finally {
             server.destroy();

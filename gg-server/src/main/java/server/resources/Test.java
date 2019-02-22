@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 public class Test {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String test() {
         return "Test";
     }
