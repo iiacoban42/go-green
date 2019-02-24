@@ -10,5 +10,6 @@
 ## Adjustments for next sprint 
 1. Increase Testing effort
 2. Better use of Git
+3. Redivide workload and assign issues
 
 
