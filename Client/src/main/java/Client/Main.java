@@ -7,9 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
 
 import java.util.Scanner;
-import org.slf4j.Logger;
+
 
 
 @SpringBootApplication
@@ -24,13 +25,13 @@ public class Main {
     }
 
     @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder RTBuilder) throws Exception{
-        return RTBuilder.build();
+    public RestTemplate restTemplate(RestTemplateBuilder RtBuilder) throws Exception {
+        return RtBuilder.build();
     }
 
 
     @Bean
-    public CommandLineRunner run(RestTemplate restTemplate)throws Exception{
+    public CommandLineRunner run(RestTemplate restTemplate)throws Exception {
 
         System.out.println("Introduce yourself to the server.. ");
         Scanner sc = new Scanner(System.in);
@@ -39,7 +40,7 @@ public class Main {
         String  text = new String();
 
 
-        while(!msg.equalsIgnoreCase("stop")){
+        while(!msg.equalsIgnoreCase("stop")) {
 
             String resourceURL = "http://localhost:8080/" + msg;
 

@@ -1,8 +1,9 @@
 package Client;
 
-public class ControllerHTTP {
+public class ControllerHttp {
     private String message;
-    public ControllerHTTP(){}
+
+    public ControllerHttp(){}
 
     public String getMessage() {
         return message;
@@ -13,7 +14,7 @@ public class ControllerHTTP {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return message;
     }
 }
