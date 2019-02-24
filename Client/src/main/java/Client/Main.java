@@ -41,7 +41,7 @@ public class Main {
 
         while(!msg.equalsIgnoreCase("stop")){
 
-            String resourceURL = "http://localhost:8090/" + msg;
+            String resourceURL = "http://localhost:8080/" + msg;
 
             text = restTemplate.getForObject(resourceURL , String.class);
             System.out.println(text);
