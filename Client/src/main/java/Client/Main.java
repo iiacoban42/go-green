@@ -1,6 +1,5 @@
-package client;
+package Client;
 
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
 
 import java.util.Scanner;
 
@@ -25,35 +25,38 @@ public class Main {
     }
 
     @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder templateBuilder) {
-        return templateBuilder.build();
+    public RestTemplate restTemplate(RestTemplateBuilder RtBuilder) throws Exception {
+        return RtBuilder.build();
     }
 
-    /**
-     * Loop that gets user input via the command line and sends it to the server.
-     * @param restTemplate idk
-     * @return CommandlineRunner
-     */
+
     @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) {
+    public CommandLineRunner run(RestTemplate restTemplate)throws Exception {
 
         System.out.println("Introduce yourself to the server.. ");
         Scanner sc = new Scanner(System.in);
         String msg = sc.nextLine();
 
-        while (!msg.equalsIgnoreCase("stop")) {
+        String  text = new String();
 
-            String resourceUrl = "http://localhost:8080/api" + msg;
 
-            String text = restTemplate.getForObject(resourceUrl , String.class);
+        while(!msg.equalsIgnoreCase("stop")) {
+
+            String resourceURL = "http://localhost:8080/" + msg;
+
+            text = restTemplate.getForObject(resourceURL , String.class);
             System.out.println(text);
 
             System.out.println("Say something to the server...");
             msg = sc.nextLine();
+
         }
 
         String lastMessage = "It didnt crashed , it just stopped ";
         return args -> logger.info(lastMessage);
+
+
+
     }
 
 

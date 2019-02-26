@@ -14,4 +14,3 @@ buildNumber.properties
 
 # Exclude intellij files
 .idea/
-*.iml
