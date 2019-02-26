@@ -1,10 +1,16 @@
 package Client;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import org.slf4j.Logger;
@@ -14,50 +20,31 @@ import java.util.Scanner;
 
 
 @SpringBootApplication
-public class Main {
+public class Main extends Application {
 
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
-
+private ConfigurableApplicationContext springContext;
+private Parent root;
 
     public static void main(String[] args) {
 
-        SpringApplication.run(Main.class);
+       Application.launch(args);
     }
 
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder RtBuilder) throws Exception {
-        return RtBuilder.build();
+    @Override
+    public void init() throws  Exception{
+        springContext = SpringApplication.run(Main.class);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/login.fxml"));
+        root = fxmlLoader.load();
+    }
+    @Override
+    public void start(Stage stage) throws Exception {
+             stage.setScene(new Scene(root));
+             stage.show();
     }
 
-
-    @Bean
-    public CommandLineRunner run(RestTemplate restTemplate)throws Exception {
-
-        System.out.println("Introduce yourself to the server.. ");
-        Scanner sc = new Scanner(System.in);
-        String msg = sc.nextLine();
-
-        String  text = new String();
-
-
-        while(!msg.equalsIgnoreCase("stop")) {
-
-            String resourceURL = "http://localhost:8080/" + msg;
-
-            text = restTemplate.getForObject(resourceURL , String.class);
-            System.out.println(text);
-
-            System.out.println("Say something to the server...");
-            msg = sc.nextLine();
-
-        }
-
-        String lastMessage = "It didnt crashed , it just stopped ";
-        return args -> logger.info(lastMessage);
-
-
-
+    @Override
+    public void stop() {
+        springContext.stop();
     }
-
-
 }
+
