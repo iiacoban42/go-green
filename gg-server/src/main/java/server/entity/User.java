@@ -1,4 +1,4 @@
-package Server.Entity;
+package server.entity;
 
 public class User {
 
