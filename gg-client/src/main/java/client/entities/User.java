@@ -7,14 +7,20 @@ public class User {
     private String email;
 
 
-    public  User(String username , String password ,  String email){
+    /**
+     * Constructs user.
+     * @param username of user
+     * @param password of user
+     * @param email of user
+     */
+    public User(String username , String password ,  String email) {
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
 
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -22,16 +28,19 @@ public class User {
         this.password = password;
     }
 
-    public void setEmail(String email){this.email = email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getUsername(){
+    public String getUsername() {
         return this.username;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return this.password;
     }
-    public String getEmail(){return this.email; }
 
-
-
+    public String getEmail() {
+        return this.email;
+    }
 }

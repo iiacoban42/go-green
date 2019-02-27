@@ -1,24 +1,19 @@
 package client.controllers;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Component
 public class ControllerLogin  {
@@ -42,18 +37,16 @@ public class ControllerLogin  {
     private String password;
 
     /**
-     *
-     * @param event
-     * When the login Button is fired if password and username are valid it closes the window.Otherwise an error message appears.
-     *
+     * When the login Button is fired if password and username are valid it closes the window.
+     * Otherwise an error message appears.
+     * @param event created by button interaction
      */
 
-    public void loginButtonPressed (ActionEvent event ) {
+    public void loginButtonPressed(ActionEvent event ) {
 
         if (!valid(username) || !valid(password)) {
             errorMessage.setVisible(true);
-            return;
-        } else if(valid(username) && valid(password)){
+        } else if (valid(username) && valid(password)) {
             errorMessage.setVisible(false);
             loginButton.getScene().getWindow().hide();
         }
@@ -61,58 +54,47 @@ public class ControllerLogin  {
     }
 
     /**
-     *
-     * @param event
      * When the register button is fired , a new window with the registration form appears.
-     *
+     * @param event created by button interaction
      */
-    public void registerButtonPressed (ActionEvent event){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/register.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("GoGreen");
-            stage.setScene(new Scene(root1));
-            stage.show();
+    public void registerButtonPressed(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/register.fxml"));
+        Parent root1 = fxmlLoader.load();
 
-
-        }
-        catch(Exception e){}
-
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("GoGreen");
+        stage.setScene(new Scene(root1));
+        stage.show();
     }
 
     /**
-     *
-     * @param event
      * Takes the username from the corresponding Textfield.
-     *
+     * @param event created by textfield interaction
      */
-    public void usernameEntered (ActionEvent event){
+    public void usernameEntered(ActionEvent event) {
         username = usernameTextField.getText();
         System.out.println(username );
 
     }
-    /*
-     * @param event
-     *  Takes password from the corresponding TextField.
-     *
+
+    /**
+     * Takes password from the corresponding TextField.
+     * @param event created by textfield interaction
      */
-    public void passwordEntered(ActionEvent event){
+    public void passwordEntered(ActionEvent event) {
         password = passwordTextField.getText();
         System.out.println(password);
     }
 
-    /*
-     * @param text
+    /**
+     * Checks if input is valid.
+     * @param text with string of textfield
      * @return true if input string is not empty or null. Otherwise it returns false.
      */
-    public static boolean valid(String text) {
-        if (text != null && !text.isEmpty())
-            return true;
-        else
-            return false;
+    private static boolean valid(String text) {
+        return text != null && !text.isEmpty();
     }
 
 
