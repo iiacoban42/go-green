@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="558.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="client.controllers.ControllerLogin">
+    <AnchorPane prefHeight="334.0" prefWidth="559.0">
+        <Pane prefHeight="362.0" prefWidth="559.0" style="-fx-background-color: #FFFFFF;">
+            <Button fx:id="loginButton" layoutX="333.0" layoutY="263.0" mnemonicParsing="false"
+                    onAction="#loginButtonPressed" prefHeight="44.0" prefWidth="95.0"
+                    style="-fx-background-color: #6bb300;" text="Login" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font name="Calibri" size="24.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </Button>
+            <Button fx:id="registerButton" layoutX="66.0" layoutY="263.0" mnemonicParsing="false"
+                    onAction="#registerButtonPressed" prefHeight="44.0" prefWidth="129.0"
+                    style="-fx-background-color: #6bb300;" text="Register" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font name="Calibri" size="24.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </Button>
+            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="306.0" layoutY="118.0"
+                       onAction="#usernameEntered" promptText="username"/>
+            <PasswordField fx:id="passwordTextField" alignment="CENTER" layoutX="306.0" layoutY="169.0"
+                           onAction="#passwordEntered" promptText="password"/>
+            <Label layoutX="70.0" layoutY="235.0" text="Don't have an account?"/>
+            <ImageView fitHeight="234.0" fitWidth="255.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@images/logo.PNG"/>
+            </ImageView>
+            <Label layoutX="293.0" layoutY="41.0" prefHeight="46.0" prefWidth="175.0" text="Log in here"
+                   textAlignment="CENTER">
+                <font>
+                    <Font name="Calibri" size="36.0"/>
+                </font>
+            </Label>
+            <Label fx:id="errorMessage" layoutX="306.0" layoutY="235.0" prefHeight="17.0" prefWidth="129.0"
+                   text="** Fill in  all the fields" textFill="#e13e3e" visible="false">
+                <font>
+                    <Font name="Calibri Light" size="14.0"/>
+                </font>
+            </Label>
+        </Pane>
+    </AnchorPane>
+</VBox>
