@@ -1,27 +1,86 @@
 package Features;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Main {
+
+public class Main extends Application {
+    private Stage window;
+    private Scene game;
+
     public static void main(String[] args) throws IOException {
 
-        Card bike = new Card("take the bike", 20, ImageIO.read(new File("src\\main\\java\\Features\\cards\\bike.jpg")));
-        Card bus = new Card("take public transportation", 10, ImageIO.read(new File("src\\main\\java\\Features\\cards\\bus.jpg")));
-        Card localProduce = new Card("buy local produce", 15, ImageIO.read(new File("src\\main\\java\\Features\\cards\\local.jpg")));
-        Card veggieMeal = new Card("vegetarian meal", 15, ImageIO.read(new File("src\\main\\java\\Features\\cards\\veggie.jpg")));
-        Card solar = new Card("solar panel", 50, ImageIO.read(new File("src\\main\\java\\Features\\cards\\solar.jpg")));
-        Card temp = new Card("temperature", 25, ImageIO.read(new File("src\\main\\java\\Features\\cards\\temp.jpg")));
+
+        launch(args);
+
+    }
+
+    public void start(Stage primaryStage) throws Exception {
+
+        FileInputStream pathBike = new FileInputStream("src\\main\\java\\Features\\cards\\bike.jpg");
+        ImageView iBike =new ImageView( new Image(pathBike));
+        iBike.setPreserveRatio(true);
+        iBike.setFitHeight(300);
+
+        FileInputStream pathBus = new FileInputStream("src\\main\\java\\Features\\cards\\bus.jpg");
+        ImageView iBus =new ImageView( new Image(pathBus));
+        iBus.setPreserveRatio(true);
+        iBus.setFitHeight(300);
+
+        FileInputStream pathLocalProduce = new FileInputStream("src\\main\\java\\Features\\cards\\local.jpg");
+        ImageView iLocal =new ImageView( new Image(pathLocalProduce));
+        iLocal.setPreserveRatio(true);
+        iLocal.setFitHeight(300);
+
+        FileInputStream pathVeggieMeal = new FileInputStream("src\\main\\java\\Features\\cards\\veggie.jpg");
+        ImageView iVeggie =new ImageView( new Image(pathVeggieMeal));
+        iVeggie.setPreserveRatio(true);
+        iVeggie.setFitHeight(300);
+
+        FileInputStream pathSolar = new FileInputStream("src\\main\\java\\Features\\cards\\solar.jpg");
+        ImageView iSolar =new ImageView( new Image(pathSolar));
+        iSolar.setPreserveRatio(true);
+        iSolar.setFitHeight(300);
+
+        FileInputStream pathTemp = new FileInputStream("src\\main\\java\\Features\\cards\\temp.jpg");
+        ImageView iTemp =new ImageView( new Image(pathTemp));
+        iTemp.setPreserveRatio(true);
+        iTemp.setFitHeight(300);
 
 
-        System.out.println(solar.toString());
-        System.out.println(temp.toString());
-        System.out.println(veggieMeal.toString());
-        System.out.println(bike.toString());
-        System.out.println(bus.toString());
-        System.out.println(localProduce.toString());
+        Card bike = new Card("take the bike", 20, ImageIO.read(pathBike));
+        Card bus = new Card("take public transportation", 10, ImageIO.read(pathBus));
+        Card localProduce = new Card("buy local produce", 15, ImageIO.read(pathLocalProduce));
+        Card veggieMeal = new Card("vegetarian meal", 15, ImageIO.read(pathVeggieMeal));
+        Card solar = new Card("solar panel", 50, ImageIO.read(pathSolar));
+        Card temp = new Card("temperature", 25, ImageIO.read(pathTemp));
+
+        window = primaryStage;
+        window.setTitle("goGreen");
+
+
+        FileInputStream input = new FileInputStream("src\\main\\java\\Features\\cards\\bike.jpg");
+        HBox layout = new HBox(20);
+
+
+        Label gg = new Label("GoGreen");
+        layout.getChildren().addAll(gg, iBike,iBus,iLocal,iSolar,iTemp,iVeggie);
+
+        game = new Scene(layout);
+        window.setScene(game);
+        window.show();
+
+        window.show();
+
 
     }
 }
