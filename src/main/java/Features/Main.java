@@ -26,6 +26,8 @@ public class Main extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
+        // Create images + set paths
+
         FileInputStream pathBike = new FileInputStream("src\\main\\java\\Features\\cards\\bike.jpg");
         ImageView iBike =new ImageView( new Image(pathBike));
         iBike.setPreserveRatio(true);
@@ -56,6 +58,7 @@ public class Main extends Application {
         iTemp.setPreserveRatio(true);
         iTemp.setFitHeight(300);
 
+        // Create card objects
 
         Card bike = new Card("take the bike", 20, ImageIO.read(pathBike));
         Card bus = new Card("take public transportation", 10, ImageIO.read(pathBus));
@@ -67,11 +70,10 @@ public class Main extends Application {
         window = primaryStage;
         window.setTitle("goGreen");
 
+        // Layout
 
         FileInputStream input = new FileInputStream("src\\main\\java\\Features\\cards\\bike.jpg");
         HBox layout = new HBox(20);
-
-
         Label gg = new Label("GoGreen");
         layout.getChildren().addAll(gg, iBike,iBus,iLocal,iSolar,iTemp,iVeggie);
 
@@ -79,7 +81,38 @@ public class Main extends Application {
         window.setScene(game);
         window.show();
 
-        window.show();
+        Deck deck = new Deck();
+        //Events
+        iBike.setOnMouseClicked(e -> {
+            deck.add(bike);
+            System.out.println(deck.toString());
+        });
+
+        iBus.setOnMouseClicked(e -> {
+            deck.add(bus);
+            System.out.println(deck.toString());
+        });
+
+        iSolar.setOnMouseClicked(e -> {
+            deck.add(solar);
+            System.out.println(deck.toString());
+        });
+
+        iVeggie.setOnMouseClicked(e -> {
+            deck.add(veggieMeal);
+            System.out.println(deck.toString());
+        });
+
+        iLocal.setOnMouseClicked(e -> {
+            deck.add(localProduce);
+            System.out.println(deck.toString());
+        });
+        iTemp.setOnMouseClicked(e -> {
+            deck.add(temp);
+            System.out.println(deck.toString());
+        });
+
+
 
 
     }

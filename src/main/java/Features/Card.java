@@ -27,7 +27,7 @@ public class Card {
     }
 
     public String toString() {
-        return "card: " + name + "\n" + "number of points: " + value;
+        return "card: " + name ;
     }
 
 
