@@ -5,6 +5,10 @@ public class RegisterCredentials {
     private String username;
     private String password;
 
+    RegisterCredentials() {
+        super();
+    }
+
     RegisterCredentials(String email, String username, String password) {
         this.email = email;
         this.password = password;
