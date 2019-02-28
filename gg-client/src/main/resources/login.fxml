@@ -12,7 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="558.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="client.controllers.ControllerLogin">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0"
+      prefWidth="558.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="client.controllers.ControllerLogin">
     <AnchorPane prefHeight="334.0" prefWidth="559.0">
         <Pane prefHeight="362.0" prefWidth="559.0" style="-fx-background-color: #FFFFFF;">
             <Button fx:id="loginButton" layoutX="333.0" layoutY="263.0" mnemonicParsing="false"
@@ -27,7 +29,8 @@
             </Button>
             <Button fx:id="registerButton" layoutX="66.0" layoutY="263.0" mnemonicParsing="false"
                     onAction="#registerButtonPressed" prefHeight="44.0" prefWidth="129.0"
-                    style="-fx-background-color: #6bb300;" text="Register" textAlignment="CENTER" textFill="WHITE">
+                    style="-fx-background-color: #6bb300;" text="Register" textAlignment="CENTER"
+                    textFill="WHITE">
                 <font>
                     <Font name="Calibri" size="24.0"/>
                 </font>
