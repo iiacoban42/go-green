@@ -1,0 +1,21 @@
+image: maven:latest
+
+stages:
+  - checkstyle
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - mvn compile
+
+test:
+  stage: test
+  script:
+    - mvn test
+
+checkstyle:
+  stage: checkstyle
+  script:
+    - mvn checkstyle:checkstyle
