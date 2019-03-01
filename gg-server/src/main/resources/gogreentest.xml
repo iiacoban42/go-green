@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <!--GoGreen Table -->
+    <gogreen username = "sae" hash_password = "des" email = "deaav" total_co2_scor = "213"/>
+</dataset>
