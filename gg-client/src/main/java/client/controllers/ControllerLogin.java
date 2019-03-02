@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
+import static client.ServerControllers.LoginRequests.sendCredentials;
+
 
 @Component
 public class ControllerLogin  {
@@ -42,11 +46,12 @@ public class ControllerLogin  {
      * @param event created by button interaction
      */
 
-    public void loginButtonPressed(ActionEvent event ) {
+    public void loginButtonPressed(ActionEvent event ) throws IOException {
 
         if (!valid(username) || !valid(password)) {
             errorMessage.setVisible(true);
         } else if (valid(username) && valid(password)) {
+            sendCredentials(username , password);
             errorMessage.setVisible(false);
             loginButton.getScene().getWindow().hide();
         }
