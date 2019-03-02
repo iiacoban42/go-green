@@ -1,20 +1,11 @@
 package client.ServerControllers;
 
 import client.entities.LoginCredentials;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.minidev.json.JSONObject;
-import org.apache.juli.logging.Log;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
+
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -42,7 +33,8 @@ public class LoginRequests {
         ResponseEntity response = restTemplate.exchange(URL_Login, HttpMethod.POST, entity, ResponseEntity.class);
 
         if (response.getStatusCode() == HttpStatus.OK) {
-            System.out.println("login successful");
+            System.out.println("Register successful");
+
         }
 
 

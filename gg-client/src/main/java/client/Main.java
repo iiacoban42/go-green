@@ -12,7 +12,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Main extends Application {
-    // private ConfigurableApplicationContext springContext;
     private Parent root;
 
     public static void main(String[] args) {
@@ -21,7 +20,6 @@ public class Main extends Application {
 
     @Override
     public void init() throws Exception {
-        // springContext = SpringApplication.run(Main.class);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/login.fxml"));
         root = fxmlLoader.load();
     }
@@ -32,9 +30,5 @@ public class Main extends Application {
         stage.show();
     }
 }
-//    @Override
-//    public void stop() {
-//        springContext.stop();
-//    }
-//}
+
 

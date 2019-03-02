@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 import static client.ServerControllers.LoginRequests.sendLoginCredentials;
-import static client.ServerControllers.LoginRequests.sendLoginCredentials;
-
 
 @Component
 public class ControllerLogin  {
@@ -43,7 +41,7 @@ public class ControllerLogin  {
 
     /**
      * When the login Button is fired if password and username are valid it closes the window.
-     * Otherwise an error message appears.
+     * Otherwise an error message appears. Sends credentials to the server.
      * @param event created by button interaction
      */
 
@@ -52,6 +50,7 @@ public class ControllerLogin  {
         if (!valid(username) || !valid(password)) {
             errorMessage.setVisible(true);
         } else if (valid(username) && valid(password)) {
+
 
             try {
                 sendLoginCredentials(username, password);

@@ -1,13 +1,16 @@
 package client.controllers;
 
 
-//import Client.entities.User;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import static client.ServerControllers.RegisterRequests.sendRegisterCredentials;
 
 
 public class ControllerRegister {
@@ -37,13 +40,13 @@ public class ControllerRegister {
      * @param event created by button interaction
      */
 
-    public void submitButtonPressed(ActionEvent event) {
+    public void submitButtonPressed(ActionEvent event) throws JsonProcessingException {
 
         if (!valid(username) || !valid(email) || !valid(password)) {
             errorMessage.setVisible(true);
         } else if (valid(username) && valid(email) && valid(password)) {
             errorMessage.setVisible(false);
-            //User user = new User(username , password , email);
+            sendRegisterCredentials(username , password , email);
             submitButton.getScene().getWindow().hide();
         }
 
