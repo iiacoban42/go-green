@@ -20,28 +20,33 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 public class LoginRequests {
 
-    public static void sendCredentials(String username , String password) throws IOException {
+    public static void sendLoginCredentials(String username, String password) throws IOException {
 
 
+        String URL_Login = "http://localhost:8080/api/authentication/login";
 
-           String URL_Login = "http://localhost:8080/authentication/login";
+        LoginCredentials credentials = new LoginCredentials(username, password);
 
-           LoginCredentials credentials = new LoginCredentials(username , password);
+        ObjectMapper objectMapper = new ObjectMapper();
 
-           ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(credentials);
 
-           String json = objectMapper.writeValueAsString(credentials);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-           HttpHeaders headers = new HttpHeaders();
-           headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-
-           HttpEntity<String> entity = new HttpEntity<String>(json, headers);
+        HttpEntity<String> entity = new HttpEntity<String>(json, headers);
 
 
-           RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
 
-           restTemplate.exchange(URL_Login , HttpMethod.POST , entity , String.class);
+        ResponseEntity response = restTemplate.exchange(URL_Login, HttpMethod.POST, entity, ResponseEntity.class);
 
+        if (response.getStatusCode() == HttpStatus.OK) {
+            System.out.println("login successful");
         }
-      }
+
+
+    }
+
+}
 

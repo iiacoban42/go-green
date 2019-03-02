@@ -16,7 +16,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-import static client.ServerControllers.LoginRequests.sendCredentials;
+import static client.ServerControllers.LoginRequests.sendLoginCredentials;
+import static client.ServerControllers.LoginRequests.sendLoginCredentials;
 
 
 @Component
@@ -51,7 +52,13 @@ public class ControllerLogin  {
         if (!valid(username) || !valid(password)) {
             errorMessage.setVisible(true);
         } else if (valid(username) && valid(password)) {
-            sendCredentials(username , password);
+
+            try {
+                sendLoginCredentials(username, password);
+            } catch(Exception e){
+                System.out.println("Wrong credentials");
+            }
+
             errorMessage.setVisible(false);
             loginButton.getScene().getWindow().hide();
         }
