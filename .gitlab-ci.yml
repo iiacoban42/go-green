@@ -18,4 +18,4 @@ test:
 checkstyle:
   stage: checkstyle
   script:
-    - mvn checkstyle:checkstyle
+    - mvn checkstyle:check

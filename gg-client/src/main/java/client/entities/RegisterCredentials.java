@@ -9,6 +9,12 @@ public class RegisterCredentials {
         super();
     }
 
+    /**
+     * Create user with given mail, username and password.
+     * @param email of client
+     * @param username of client
+     * @param password of client
+     */
     public RegisterCredentials(String email, String username, String password) {
         this.email = email;
         this.password = password;

@@ -1,6 +1,6 @@
 package client.controllers;
 
-
+import static client.requests.RegisterRequests.sendRegisterCredentials;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.event.ActionEvent;
@@ -9,9 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import static client.ServerControllers.RegisterRequests.sendRegisterCredentials;
-
 
 public class ControllerRegister {
 

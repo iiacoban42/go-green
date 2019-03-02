@@ -1,5 +1,7 @@
 package client.controllers;
 
+import static client.requests.LoginRequests.sendLoginCredentials;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +17,6 @@ import javafx.stage.StageStyle;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-
-import static client.ServerControllers.LoginRequests.sendLoginCredentials;
 
 @Component
 public class ControllerLogin  {
@@ -45,7 +45,7 @@ public class ControllerLogin  {
      * @param event created by button interaction
      */
 
-    public void loginButtonPressed(ActionEvent event ) throws IOException {
+    public void loginButtonPressed(ActionEvent event ) {
 
         if (!valid(username) || !valid(password)) {
             errorMessage.setVisible(true);
@@ -54,7 +54,7 @@ public class ControllerLogin  {
 
             try {
                 sendLoginCredentials(username, password);
-            } catch(Exception e){
+            } catch (IOException e) {
                 System.out.println("Wrong credentials");
             }
 
