@@ -50,6 +50,7 @@ public class ControllerRegister {
             } catch (Exception e) {
                 System.out.println("Something went wrong");
             }
+
             submitButton.getScene().getWindow().hide();
         }
 
