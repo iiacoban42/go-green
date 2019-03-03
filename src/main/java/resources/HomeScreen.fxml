@@ -85,7 +85,7 @@
         </Label>
             <ImageView onMousePressed="#addBike" id="bike" fitHeight="117.0" fitWidth="80.0" layoutX="135.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" >
                <image>
-                  <Image url="@bike.jpg" />
+                  <Image url="@bike.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -94,7 +94,7 @@
             </ImageView>
             <ImageView onMousePressed="#addBus" id="bus" fitHeight="117.0" fitWidth="80.0" layoutX="297.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@bus.jpg" />
+                  <Image url="@bus.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -102,7 +102,7 @@
             </ImageView>
             <ImageView onMousePressed="#addLocal" id="local" fitHeight="117.0" fitWidth="80.0" layoutX="452.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@local.jpg" />
+                  <Image url="@local.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -110,7 +110,7 @@
             </ImageView>
             <ImageView onMousePressed="#addSolar" id="solar" fitHeight="117.0" fitWidth="80.0" layoutX="135.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@solar.jpg" />
+                  <Image url="@solar.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -118,7 +118,7 @@
             </ImageView>
             <ImageView onMousePressed="#addTemp" id="temo" fitHeight="117.0" fitWidth="80.0" layoutX="295.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@temp.jpg" />
+                  <Image url="@temp.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -126,7 +126,7 @@
             </ImageView>
             <ImageView onMousePressed="#addVeggie" id="veggie" fitHeight="117.0" fitWidth="80.0" layoutX="451.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@veggie.jpg" />
+                  <Image url="@veggie.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
