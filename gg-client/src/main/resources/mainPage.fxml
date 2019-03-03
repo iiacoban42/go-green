@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerMainPage">
    <children>
       <AnchorPane prefHeight="580.0" prefWidth="778.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Button alignment="BASELINE_LEFT" layoutX="30.0" layoutY="412.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="148.0" style="-fx-background-color: #ffffff;" text="ACHIEVEMENTS">
+            <Button fx:id="achievementsButton" alignment="BASELINE_LEFT" layoutX="30.0" layoutY="412.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="148.0" style="-fx-background-color: #ffffff;" text="ACHIEVEMENTS">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
@@ -22,27 +22,27 @@
                   <Font name="Calibri" size="23.0" />
                </font>
             </Text>
-            <Button layoutX="406.0" layoutY="477.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Local Produce" textFill="WHITE">
+            <Button fx:id="localProduceButton" layoutX="406.0" layoutY="477.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Local Produce" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="243.0" layoutY="477.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Vegeterian Meal" textFill="WHITE">
+            <Button fx:id="vegieButton" layoutX="243.0" layoutY="477.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Vegeterian Meal" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="570.0" layoutY="255.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Public Transport" textFill="WHITE">
+            <Button fx:id="transportButton" layoutX="570.0" layoutY="255.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Public Transport" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="406.0" layoutY="255.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Solar Panels" textFill="WHITE">
+            <Button fx:id="solarButton" layoutX="406.0" layoutY="255.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Solar Panels" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="243.0" layoutY="255.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Home Tempereture" textFill="WHITE">
+            <Button fx:id="temperatureButton" layoutX="243.0" layoutY="255.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Home Temperature" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
@@ -73,27 +73,27 @@
                   <Image url="@images/bike.png" />
                </image>
             </ImageView>
-            <Button layoutX="575.0" layoutY="477.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
+            <Button fx:id="bikeButton" layoutX="575.0" layoutY="477.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="611.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Log out">
+            <Button fx:id="logoutButton" layoutX="611.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Log out">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="30.0" layoutY="154.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="148.0" style="-fx-background-color: #ffffff;" text="LEADER  BOARD">
+            <Button fx:id="leaderboardButton" alignment="BASELINE_LEFT" layoutX="30.0" layoutY="154.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="148.0" style="-fx-background-color: #ffffff;" text="LEADER  BOARD">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="30.0" layoutY="238.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" style="-fx-background-color: #ffffff;" text="SAVED CO2">
+            <Button fx:id="savedcoButton" alignment="BASELINE_LEFT" layoutX="30.0" layoutY="238.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" style="-fx-background-color: #ffffff;" text="SAVED CO2">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
             </Button>
-            <Button alignment="BOTTOM_LEFT" layoutX="30.0" layoutY="327.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="148.0" style="-fx-background-color: #ffffff;" text="FRIENDS">
+            <Button fx:id="friendsButton" alignment="BOTTOM_LEFT" layoutX="30.0" layoutY="327.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="148.0" style="-fx-background-color: #ffffff;" text="FRIENDS">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
