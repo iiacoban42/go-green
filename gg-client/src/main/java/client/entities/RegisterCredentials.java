@@ -5,9 +5,6 @@ public class RegisterCredentials {
     private String username;
     private String password;
 
-    RegisterCredentials() {
-        super();
-    }
 
     /**
      * Create user with given mail, username and password.

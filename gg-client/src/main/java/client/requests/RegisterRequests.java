@@ -20,7 +20,7 @@ public class RegisterRequests {
      * @param email of client
      * @throws JsonProcessingException if something went wrong
      */
-    public static void sendRegisterCredentials(
+    public static String sendRegisterCredentials(
         String username,
         String password,
         String email
@@ -51,7 +51,6 @@ public class RegisterRequests {
             System.out.println("Register successful");
 
         }
-
-
+        return response.getStatusCode().toString();
     }
 }

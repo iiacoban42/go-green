@@ -21,8 +21,7 @@ public class LoginRequests {
      * @param password of client
      * @throws IOException if something went wrong
      */
-    public static void sendLoginCredentials(String username, String password) throws IOException {
-
+    public static String sendLoginCredentials(String username, String password) throws IOException {
 
         String urlLogin = "http://localhost:8080/api/authentication/login";
 
@@ -51,6 +50,7 @@ public class LoginRequests {
             System.out.println("Register successful");
 
         }
+        return response.getStatusCode().toString();
     }
 
 }

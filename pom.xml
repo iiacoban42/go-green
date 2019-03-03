@@ -92,6 +92,7 @@
                 <configuration>
                     <excludes>
                         <exclude>server.Main</exclude>
+                        <exclude>client.Main</exclude>
                     </excludes>
                 </configuration>
                 <executions>
