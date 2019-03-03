@@ -2,7 +2,6 @@ package client.controllers;
 
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,13 +39,17 @@ public class ControllerRegister {
      * @param event created by button interaction
      */
 
-    public void submitButtonPressed(ActionEvent event) throws JsonProcessingException {
+    public void submitButtonPressed(ActionEvent event)  {
 
         if (!valid(username) || !valid(email) || !valid(password)) {
             errorMessage.setVisible(true);
         } else if (valid(username) && valid(email) && valid(password)) {
             errorMessage.setVisible(false);
-            sendRegisterCredentials(username , password , email);
+            try {
+                sendRegisterCredentials(username , password , email);
+            } catch (Exception e) {
+                System.out.println("Something went wrong");
+            }
             submitButton.getScene().getWindow().hide();
         }
 

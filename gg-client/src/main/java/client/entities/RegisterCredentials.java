@@ -5,9 +5,6 @@ public class RegisterCredentials {
     private String username;
     private String password;
 
-    RegisterCredentials() {
-        super();
-    }
 
     public RegisterCredentials(String email, String username, String password) {
         this.email = email;

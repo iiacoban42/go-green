@@ -6,12 +6,9 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
 public class LoginRequests {
 
-    public static void sendLoginCredentials(String username, String password) throws IOException {
+    public static String sendLoginCredentials(String username, String password) throws IOException {
 
 
         String URL_Login = "http://localhost:8080/api/authentication/login";
@@ -34,10 +31,10 @@ public class LoginRequests {
 
         if (response.getStatusCode() == HttpStatus.OK) {
             System.out.println("Register successful");
-
         }
 
-
+        System.out.println(response.getStatusCode().toString());
+        return response.getStatusCode().toString();
     }
 
 }

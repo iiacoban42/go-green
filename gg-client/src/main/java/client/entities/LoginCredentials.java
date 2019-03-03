@@ -4,10 +4,6 @@ public class LoginCredentials {
     private String username;
     private String password;
 
-    LoginCredentials() {
-        super();
-    }
-
     public LoginCredentials(String username, String password) {
         this.username = username;
         this.password = password;

@@ -1,19 +1,19 @@
 package client.ServerControllers;
 
-import client.entities.LoginCredentials;
 import client.entities.RegisterCredentials;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+@Configuration
 public class RegisterRequests {
 
 
-    public static void sendRegisterCredentials(String username, String password, String email) throws JsonProcessingException {
+    public static String sendRegisterCredentials(String username, String password, String email) throws Exception {
         String URL_Register = "http://localhost:8080/api/authentication/register";
 
-        RegisterCredentials credentials = new RegisterCredentials(username, password, email);
+        RegisterCredentials credentials = new RegisterCredentials(email , username, password);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -32,6 +32,9 @@ public class RegisterRequests {
             System.out.println("Register successful");
 
         }
+
+        System.out.println(response.getStatusCode().toString());
+         return  response.getStatusCode().toString();
 
 
     }
