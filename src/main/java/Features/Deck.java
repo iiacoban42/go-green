@@ -26,11 +26,11 @@ public class Deck {
     }
 
     public String toString() {
-        String string = "cards:"+ "\n";
+        String string = "cards:" + "\n";
         for (Card card : deck) {
             string = string + card.getName() + "\n";
         }
-           return string = string + "\n" + "total points: " + totalScore()+"\n";
+        return string = string + "\n" + "total points: " + totalScore() + "\n";
 
 
     }
