@@ -76,6 +76,7 @@ public class ControllerLogin  {
                 stage.setTitle("GoGreen");
                 stage.setScene(new Scene(root2));
                 stage.show();
+                stage.setResizable(false);
 
             }
             else{errorCredentials.setVisible(true);}
@@ -97,7 +98,8 @@ public class ControllerLogin  {
         stage.setTitle("GoGreen");
         stage.setScene(new Scene(root1));
         stage.show();
-    }
+        stage.setResizable(false);
+     }
 
     /**
      * Takes the username from the corresponding Textfield.
