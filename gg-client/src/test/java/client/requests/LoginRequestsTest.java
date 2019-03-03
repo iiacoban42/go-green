@@ -17,6 +17,7 @@ public class LoginRequestsTest {
     @Test(expected = Exception.class)
     public void loginTest_unsuccessful() throws Exception {
         String response = LoginRequests.sendLoginCredentials("user" , "pass");
+        assertEquals("401 UNAUTHORIZED", response);
     }
 
 }

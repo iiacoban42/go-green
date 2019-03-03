@@ -12,14 +12,15 @@ public class RegisterRequestsTest {
     @Test
     public void loginTest_successful() throws Exception {
 
-        String response = RegisterRequests.sendRegisterCredentials("user" , "pass" , "email");
+        String response = RegisterRequests.sendRegisterCredentials("email", "user" , "pass");
         assertEquals("200 OK" , response);
     }
 
     @Test(expected = Exception.class)
     public void loginTest_unsuccessful() throws Exception {
 
-        String response = RegisterRequests.sendRegisterCredentials("admin" , "pass" , "email");
+        String response = RegisterRequests.sendRegisterCredentials("email", "admin" , "pass");
+        assertEquals("401 UNAUTHORIZED", response);
     }
 }
 
