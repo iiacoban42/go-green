@@ -20,7 +20,9 @@ public class RegisterRequestsTest {
     @Test(expected = Exception.class)
     public void loginTest_unsuccessful() throws Exception {
 
-        String response = RegisterRequests.sendRegisterCredentials("admin" , "pass" , "email");
+        RegisterRequests.sendRegisterCredentials("admin" , "pass" , "email");
     }
+
+
 }
 

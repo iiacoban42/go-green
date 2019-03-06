@@ -54,7 +54,7 @@ public class ControllerLogin  {
             errorMessage.setVisible(true);
         } else if (valid(username) && valid(password)) {
 
-            String ans =  new String();
+            String ans = "";
 
             try {
               ans =  sendLoginCredentials(username, password);

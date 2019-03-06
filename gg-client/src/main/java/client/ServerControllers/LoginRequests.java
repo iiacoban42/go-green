@@ -6,7 +6,9 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 
+
 public class LoginRequests {
+
 
     public static String sendLoginCredentials(String username, String password) throws IOException {
 
