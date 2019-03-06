@@ -19,7 +19,11 @@ public class Demo1 {
         Session session = sessionFactory.openSession();
 
         Transaction tx = session.beginTransaction();
-        User user = new User("wxs", "123");
+        User user = new User();
+        user.setEmail("elfjwcho@fvkjrbw.net");
+        user.setFreind("Jcbkva");
+        user.setHashPassword("jkgvi");
+        user.setUsername("lvberhkb");
         session.save(user);
         tx.commit();
         session.close();
