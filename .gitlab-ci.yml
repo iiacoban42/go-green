@@ -19,7 +19,11 @@ run:
     - cd gg-server
     - mvn package
     - cd target
-    - java -jar server-0.1-SNAPSHOT.jar
+    - java -jar server-0.1-SNAPSHOT.jar & echo hello
+    - sleep 5
+    - cd ../../gg-client
+    - mvn test
+    - pkill -9 -f server-0.1-SNAPSHOT
 
 test:
   stage: test
