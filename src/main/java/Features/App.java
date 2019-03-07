@@ -12,6 +12,8 @@ public class App {
         veg.get(5).setSelected(true);
         System.out.println(veg.calculator());
         System.out.println(veg.toString());
+        veg.setVeggieMeal("beans",10000);
+        System.out.println(veg.toString());
 
     }
 }

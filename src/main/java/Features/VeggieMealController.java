@@ -1,5 +1,8 @@
+
+import Features.VeggieMeal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -65,7 +68,34 @@ public class VeggieMealController {
 
     @FXML
     void sendVeggieMeal(ActionEvent event) {
+        VeggieMeal veggieMeal = new VeggieMeal();
 
+        for (Node node : textFields.getChildren()) {
+            if (node instanceof TextField) {
+
+                String quantity = ((TextField) node).getText();
+                if(valid(quantity)&&quantity!=null) {
+                    double quantityDouble = Double.parseDouble(quantity);
+                    String ingredient = node.getId();
+                    veggieMeal.setVeggieMeal(ingredient, quantityDouble);
+                    System.out.println(quantity + " " + ingredient);
+                }
+
+                ((TextField) node).setText("");
+            }
+        }
+        System.out.println(veggieMeal.toString());
+
+    }
+
+    public boolean valid(String message) {
+        try {
+            double number = Double.parseDouble(message);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + message + "is NAN");
+            return false;
+        }
     }
 
 }

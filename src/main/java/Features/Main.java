@@ -27,6 +27,8 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("../veggie_meal.fxml"));
         window.setScene(new Scene(root));
+        VeggieMeal veg = new VeggieMeal();
+
 
 
         window.show();
