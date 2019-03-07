@@ -1,5 +1,5 @@
+package Features;
 
-import Features.VeggieMeal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -74,14 +74,16 @@ public class VeggieMealController {
             if (node instanceof TextField) {
 
                 String quantity = ((TextField) node).getText();
-                if(valid(quantity)&&quantity!=null) {
-                    double quantityDouble = Double.parseDouble(quantity);
-                    String ingredient = node.getId();
-                    veggieMeal.setVeggieMeal(ingredient, quantityDouble);
-                    System.out.println(quantity + " " + ingredient);
-                }
+                if(!quantity.isEmpty()) {
+                    if (valid(quantity)) {
+                        double quantityDouble = Double.parseDouble(quantity);
+                        String ingredient = node.getId();
+                        veggieMeal.setVeggieMeal(ingredient, quantityDouble);
+                        System.out.println(quantity + " " + ingredient);
+                    }
 
-                ((TextField) node).setText("");
+                    ((TextField) node).setText("");
+                }
             }
         }
         System.out.println(veggieMeal.toString());
