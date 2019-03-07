@@ -5,10 +5,20 @@ stages:
   - build
   - test
 
+
+
 build:
   stage: build
   script:
     - mvn compile
+
+run:
+  stage: run
+  script:
+    - cd gg-server
+    - mvn package
+    - cd target
+    - java -jar server-0.1-SNAPSHOT.jar
 
 test:
   stage: test
