@@ -25,7 +25,7 @@ public class Main extends Application {
         window = primaryStage;
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("../HomeScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../veggie_meal.fxml"));
         window.setScene(new Scene(root));
 
 

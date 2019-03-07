@@ -30,6 +30,10 @@ public class VeggieMeal {
         return veggieMeal.get(i);
     }
 
+    public void add(double quantity) {
+
+    }
+
     public double calculator() {
         double calculator = 0;
         for (Meal meal : veggieMeal) {
@@ -47,7 +51,7 @@ public class VeggieMeal {
                 string += meal.getProduct() + " ";
         }
 
-        return string +=  "\ntotal Co2: " + calculator();
+        return string += "\ntotal Co2: " + calculator();
     }
 
 

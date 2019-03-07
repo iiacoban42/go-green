@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VeggieMealController">
+   <children>
+      <Label layoutX="77.0" layoutY="40.0" text="Choose ingredients" />
+      <Label layoutX="460.0" layoutY="40.0" text="Choose quantity (grams) " />
+      <Button fx:id="submit" layoutX="510.0" layoutY="717.0" mnemonicParsing="false" onAction="#sendVeggieMeal" text="Submit" />
+      <VBox layoutX="77.0" layoutY="72.0" prefHeight="612.0" prefWidth="249.0">
+         <children>
+            <Label text="Beans">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Veggie burger">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Veggie burger with cheese">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Quorn">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Nuts">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Tofu">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Egg">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Beef croquette">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Chicken">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Pork">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Steak">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Lamb">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Hamburger">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Minced meat">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Mixed minced meat">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Insects">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+            <Label text="Cheese">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+      <VBox fx:id="textFields" layoutX="460.0" layoutY="72.0" prefHeight="612.0" prefWidth="149.0">
+         <children>
+            <TextField fx:id="beans" layoutX="10.0" layoutY="10.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="veggieBurger" layoutX="10.0" layoutY="10.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="veggieBurgerCheese" prefHeight="7.0" prefWidth="169.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="quorn" layoutX="10.0" layoutY="10.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="nuts" layoutX="10.0" layoutY="103.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="tofu" layoutX="10.0" layoutY="72.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="egg" layoutX="10.0" layoutY="41.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="beefCroquette" layoutX="10.0" layoutY="103.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="chicken" layoutX="10.0" layoutY="103.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="pork" layoutX="10.0" layoutY="134.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="steak" layoutX="10.0" layoutY="41.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="lamb" layoutX="10.0" layoutY="103.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="hamburger" layoutX="10.0" layoutY="72.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="mincedMeat" layoutX="10.0" layoutY="72.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="mixedMincedMeat" layoutX="10.0" layoutY="72.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="insects" layoutX="10.0" layoutY="103.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="cheese" layoutX="10.0" layoutY="134.0">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </TextField>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
