@@ -1,9 +1,10 @@
 image: maven:latest
 
 stages:
-  - checkstyle
+  - run
   - build
   - test
+  - checkstyle
 
 
 
