@@ -74,7 +74,7 @@ public class VeggieMealController {
             if (node instanceof TextField) {
 
                 String quantity = ((TextField) node).getText();
-                if(!quantity.isEmpty()) {
+                if (!quantity.isEmpty()) {
                     if (valid(quantity)) {
                         double quantityDouble = Double.parseDouble(quantity);
                         String ingredient = node.getId();

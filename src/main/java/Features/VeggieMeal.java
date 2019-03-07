@@ -41,7 +41,6 @@ public class VeggieMeal {
         }
     }
 
-
     public double calculator() {
         double calculator = 0;
         for (Meal meal : veggieMeal) {

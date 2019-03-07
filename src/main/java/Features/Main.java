@@ -14,23 +14,15 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
 
-
         launch(args);
 
     }
 
     public void start(Stage primaryStage) throws Exception {
 
-
         window = primaryStage;
-
-
         Parent root = FXMLLoader.load(getClass().getResource("../veggie_meal.fxml"));
         window.setScene(new Scene(root));
-        VeggieMeal veg = new VeggieMeal();
-
-
-
         window.show();
 
 
