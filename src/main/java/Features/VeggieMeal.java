@@ -1,9 +1,10 @@
 package Features;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class VeggieMeal {
-    private ArrayList<Meal> veggieMeal;
+    private static ArrayList<Meal> veggieMeal;
 
     public VeggieMeal() {
         veggieMeal = new ArrayList<Meal>();
@@ -26,11 +27,20 @@ public class VeggieMeal {
         veggieMeal.add(new Meal("lamb", 0.0510, 0, false));
     }
 
-    public Meal get(int i) {
-        return veggieMeal.get(i);
+    public static Meal get(int i) {
+        try {
+            if (i > veggieMeal.size()) {
+                throw new IOException();
+            }
+            return veggieMeal.get(i);
+        } catch (IOException e) {
+            System.out.println("To be retrieved item cannot have an index int bigger or equal to the size of the ArrayList Veggiemeal");
+            return null;
+        }
+
     }
 
-    public double calculator() {
+    public static double calculator() {
         double calculator = 0;
         for (Meal meal : veggieMeal) {
             if (meal.isSelected()) {
