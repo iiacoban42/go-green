@@ -87,7 +87,9 @@ public class VeggieMealController {
             }
         }
         System.out.println(veggieMeal.toString());
-
+        if (veggieMeal.isVegetarian()) {
+            System.out.println("Well done you had a vegetarian meal!");
+        }
     }
 
     public boolean valid(String message) {
@@ -95,7 +97,7 @@ public class VeggieMealController {
             double number = Double.parseDouble(message);
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("Error: " + message + "is NAN");
+            System.out.println("Error: " + message + " is NAN");
             return false;
         }
     }
