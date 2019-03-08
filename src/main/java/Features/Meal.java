@@ -1,15 +1,17 @@
 package Features;
 
 public class Meal {
-    private String product;
-    private double co2;
-    private double quantity;
+    private final String product;
+    private final double co2;
+    private  double quantity;
+    private final boolean vegetarian;
     private boolean selected;
 
-    public Meal(String product, double co2, double quantity, boolean selected) {
+    public Meal(String product, double co2, double quantity, boolean vegetarian, boolean selected) {
         this.product = product;
         this.co2 = co2;
         this.quantity = quantity;
+        this.vegetarian = vegetarian;
         this.selected = selected;
     }
 
@@ -17,24 +19,20 @@ public class Meal {
         return product;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 
     public double getCo2() {
         return co2;
     }
 
-    public void setCo2(double co2) {
-        this.co2 = co2;
-    }
-
     public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public boolean isVegetarian() {
+        return vegetarian;
     }
 
     public boolean isSelected() {
