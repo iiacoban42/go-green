@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -20,6 +21,9 @@ import java.io.IOException;
 
 @Component
 public class ControllerLogin  {
+
+    @FXML
+    Text errorCredentials;
 
     @FXML
     TextField usernameTextField;
@@ -45,21 +49,39 @@ public class ControllerLogin  {
      * @param event created by button interaction
      */
 
-    public void loginButtonPressed(ActionEvent event ) {
+    public void loginButtonPressed( ActionEvent event ) throws Exception {
 
         if (!valid(username) || !valid(password)) {
             errorMessage.setVisible(true);
         } else if (valid(username) && valid(password)) {
 
+            String ans = "";
 
             try {
-                sendLoginCredentials(username, password);
+                ans =  sendLoginCredentials(username, password);
             } catch (IOException e) {
                 System.out.println("Wrong credentials");
             }
 
             errorMessage.setVisible(false);
-            loginButton.getScene().getWindow().hide();
+
+            if  (ans.equals("200 OK")) {
+
+                errorCredentials.setVisible(false);
+                loginButton.getScene().getWindow().hide();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mainPage.fxml"));
+                Parent root2 = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.DECORATED);
+                stage.setTitle("GoGreen");
+                stage.setScene(new Scene(root2));
+                stage.show();
+                stage.setResizable(false);
+
+            } else {
+                errorCredentials.setVisible(true);
+            }
         }
 
     }
@@ -78,6 +100,7 @@ public class ControllerLogin  {
         stage.setTitle("GoGreen");
         stage.setScene(new Scene(root1));
         stage.show();
+        stage.setResizable(false);
     }
 
     /**
