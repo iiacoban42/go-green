@@ -1,8 +1,7 @@
-package Features;
+package client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -68,28 +67,28 @@ public class VeggieMealController {
 
     @FXML
     void sendVeggieMeal(ActionEvent event) {
-        VeggieMeal veggieMeal = new VeggieMeal();
-
-        for (Node node : textFields.getChildren()) {
-            if (node instanceof TextField) {
-
-                String quantity = ((TextField) node).getText();
-                if (!quantity.isEmpty()) {
-                    if (valid(quantity)) {
-                        double quantityDouble = Double.parseDouble(quantity);
-                        String ingredient = node.getId();
-                        veggieMeal.setVeggieMeal(ingredient, quantityDouble);
-                        System.out.println(quantity + " " + ingredient);
-                    }
-
-                    ((TextField) node).setText("");
-                }
-            }
-        }
-        System.out.println(veggieMeal.toString());
-        if (veggieMeal.isVegetarian()) {
-            System.out.println("Well done you had a vegetarian meal!");
-        }
+//        VeggieMeal veggieMeal = new VeggieMeal();
+//
+//        for (Node node : textFields.getChildren()) {
+//            if (node instanceof TextField) {
+//
+//                String quantity = ((TextField) node).getText();
+//                if (!quantity.isEmpty()) {
+//                    if (valid(quantity)) {
+//                        double quantityDouble = Double.parseDouble(quantity);
+//                        String ingredient = node.getId();
+//                        veggieMeal.setVeggieMeal(ingredient, quantityDouble);
+//                        System.out.println(quantity + " " + ingredient);
+//                    }
+//
+//                    ((TextField) node).setText("");
+//                }
+//            }
+//        }
+//        System.out.println(veggieMeal.toString());
+//        if (veggieMeal.isVegetarian()) {
+//            System.out.println("Well done you had a vegetarian meal!");
+//        }
     }
 
     public boolean valid(String message) {
