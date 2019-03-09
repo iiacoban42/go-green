@@ -1,4 +1,4 @@
-package Features;
+package features;
 
 import java.util.ArrayList;
 
@@ -17,14 +17,22 @@ public class Deck {
         deck.remove(card);
     }
 
+    /**
+     * Sums the total score of the deck.
+     * @return the card score.
+     */
     public int totalScore() {
-        int s = 0;
+        int score = 0;
         for (Card card : deck) {
-            s = s + card.getValue();
+            score = score + card.getValue();
         }
-        return s;
+        return score;
     }
 
+    /**
+     * Create string representation.
+     * @return the string representation of the deck.
+     */
     public String toString() {
         String string = "cards:" + "\n";
         for (Card card : deck) {

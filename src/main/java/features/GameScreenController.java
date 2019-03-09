@@ -1,4 +1,4 @@
-package Features;
+package features;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

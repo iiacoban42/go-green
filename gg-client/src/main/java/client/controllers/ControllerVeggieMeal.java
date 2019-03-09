@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class VeggieMealController {
+public class ControllerVeggieMeal {
 
     @FXML
     private Button submit;

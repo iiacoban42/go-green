@@ -1,9 +1,14 @@
-package Features;
+package features;
 
 import java.util.ArrayList;
 
 public class VeggieMeal {
     private ArrayList<Meal> veggieMeal;
+    private final double averageCo2 = 1;
+
+    /**
+     * Constructor of the menu containing all the options a user can select.
+     */
 
     public VeggieMeal() {
         veggieMeal = new ArrayList<Meal>();
@@ -26,10 +31,20 @@ public class VeggieMeal {
         veggieMeal.add(new Meal("lamb", 0.0510, 0, false, false));
     }
 
-    public Meal get(int i) {
-        return veggieMeal.get(i);
+    /**
+     * Return a meal at a given index.
+     * @param index inside the veggieMeal.
+     * @return meal at the given index.
+     */
+    public Meal get(int index) {
+        return veggieMeal.get(index);
     }
 
+    /**
+     * Sets a the quantity of a product selected by the user.
+     * @param ingredient selected by user.
+     * @param quantity selected by user.
+     */
     public void setVeggieMeal(String ingredient, double quantity) {
         for (Meal meal : veggieMeal) {
             if (meal.getProduct().equals(ingredient)) {
@@ -40,6 +55,10 @@ public class VeggieMeal {
         }
     }
 
+    /**
+     * Calculate total amount of Co2 per meal.
+     * @return Co2 consumed by the meal.
+     */
     public double calculator() {
         double calculator = 0;
         for (Meal meal : veggieMeal) {
@@ -50,6 +69,10 @@ public class VeggieMeal {
         return calculator;
     }
 
+    /**
+     * Checks if the user had a vegetarian meal.
+     * @return true if the meal selected by the user is vegetarian.
+     */
     public boolean isVegetarian() {
         boolean result = true;
         for (Meal meal : veggieMeal) {
@@ -60,7 +83,10 @@ public class VeggieMeal {
         return result;
     }
 
-
+    /**
+     * String representation of the meal the user selected.
+     * @return ingredients of the meal and total Co2 consumed.
+     */
     public String toString() {
         String string = "meal ingredients: ";
         for (Meal meal : veggieMeal) {
@@ -68,7 +94,6 @@ public class VeggieMeal {
                 string += meal.getProduct() + " ";
             }
         }
-
-        return string += "\ntotal Co2: " + calculator();
+        return string += "\ntotal Co2: " + calculator() + " g";
     }
 }

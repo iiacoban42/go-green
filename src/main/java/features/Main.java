@@ -1,4 +1,4 @@
-package Features;
+package features;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class Main extends Application {
     private Stage window;
+
 
     public static void main(String[] args) throws IOException {
 
