@@ -16,7 +16,7 @@
         <property name="connection.pool_size">1</property>
 
 
-        <mapping class="server.User"></mapping>
+        <mapping class="server.entity.User"></mapping>
 
     </session-factory>
 </hibernate-configuration>
