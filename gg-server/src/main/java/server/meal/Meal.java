@@ -1,11 +1,10 @@
-package features;
+package server.meal;
 
 public class Meal {
     private final String product;
     private final double co2;
     private double quantity;
     private final boolean vegetarian;
-    private boolean selected;
 
     /**
      * Constructor of the Meal object.
@@ -20,7 +19,6 @@ public class Meal {
         this.co2 = co2;
         this.quantity = quantity;
         this.vegetarian = vegetarian;
-        this.selected = selected;
     }
 
     public String getProduct() {
@@ -41,13 +39,5 @@ public class Meal {
 
     public boolean isVegetarian() {
         return vegetarian;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
     }
 }
