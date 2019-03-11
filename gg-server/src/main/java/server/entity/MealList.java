@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MealList {
     private List<server.entity.Meal> meals;
@@ -49,6 +50,7 @@ public class MealList {
         return result;
     }
 
+
     /**
      * Parses json strings into a MealList.
      * @param json string translated into a list of meals
@@ -67,22 +69,5 @@ public class MealList {
 
     }
 
-    public static void main(String[] args) {
-        String string = "[  \n" +
-                "   {  \n" +
-                "      \"product\":\"lamb\",\n" +
-                "      \"quantity\":300\n" +
-                "   },\n" +
-                "   {  \n" +
-                "      \"product\":\"beans\",\n" +
-                "      \"quantity\":150\n" +
-                "   }\n" +
-                "]";
-        MealList mealList = new MealList();
-        mealList.jsonConverter(string);
-        System.out.println( mealList.toString());
-
-
-    }
 
 }
