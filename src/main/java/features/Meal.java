@@ -2,8 +2,8 @@ package features;
 
 public class Meal {
     private final String product;
-    private final double co2;
-    private double quantity;
+    private final Double co2;
+    private Double quantity;
     private final boolean vegetarian;
     private boolean selected;
 
@@ -27,16 +27,16 @@ public class Meal {
         return product;
     }
 
+    public double getQuantity() {
+        return quantity;
+    }
+
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
     public double getCo2() {
         return co2;
-    }
-
-    public double getQuantity() {
-        return quantity;
     }
 
     public boolean isVegetarian() {
@@ -50,4 +50,43 @@ public class Meal {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+
+//    @Override
+//    public String toString() {
+//        String toString = this.product;
+//          toString += "-" + String.format(Locale.US, "%.3f", this.co2) + "-" + this.quantity;
+//
+//        if (this.isVegetarian()) {
+//            toString += "-vegetarian";
+//        } else {
+//            toString += "-not-vegetarian";
+//        }
+//
+//        if (this.isSelected()) {
+//            toString += "-is-selected";
+//        } else {
+//            toString += "-not-selected";
+//        }
+//
+//        return toString;
+//    }
+//
+//    @Override
+//    public boolean equals(Object other) {
+//        if (other instanceof Meal) {
+//            Meal otherMeal = (Meal) other;
+//            if (otherMeal.product.equals(this.product)) {
+//                if (otherMeal.co2 == this.co2){
+//                    if (otherMeal.quantity ==  this.quantity) {
+//                        if(otherMeal.vegetarian == this.vegetarian) {
+//                            if (otherMeal.selected == this.selected) {
+//                                return true;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//  return false;
+//    }
 }
