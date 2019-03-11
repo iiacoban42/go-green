@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MealList {
     private List<server.entity.Meal> meals;
@@ -43,16 +42,23 @@ public class MealList {
         return meals.get(index);
     }
 
+    /**
+     * Creates a string representation of the object.
+     *
+     * @return string representation of the object
+     */
     public String toString() {
         String result = "meal: ";
-        for (Meal meal : meals)
+        for (Meal meal : meals) {
             result += meal.getProduct() + " " + meal.getQuantity() + "\n";
+        }
         return result;
     }
 
 
     /**
      * Parses json strings into a MealList.
+     *
      * @param json string translated into a list of meals
      * @throws IOException if something goes wrong
      */

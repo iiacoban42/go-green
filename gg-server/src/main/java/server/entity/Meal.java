@@ -29,7 +29,7 @@ public class Meal {
         this.quantity = quantity;
     }
 
-    public String toString(){
-        return product+" "+quantity;
+    public String toString() {
+        return product + " " + quantity;
     }
 }
