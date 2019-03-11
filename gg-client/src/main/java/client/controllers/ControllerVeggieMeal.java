@@ -9,9 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-
 import static client.requests.MealRequests.sendMealList;
 
 public class ControllerVeggieMeal {
@@ -120,7 +117,8 @@ public class ControllerVeggieMeal {
      * @param message to check if valid
      * @return boolean
      */
-    public boolean valid (String message){
+    public boolean valid(String message){
+
         try {
             double number = Double.parseDouble(message);
             return true;

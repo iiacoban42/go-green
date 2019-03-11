@@ -3,6 +3,7 @@ package client.entities;
 import java.util.Objects;
 
 public class Meal {
+
     private String product;
     private int quantity;
 
@@ -24,12 +25,18 @@ public class Meal {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Meal meal = (Meal) o;
-        return quantity == meal.quantity &&
-                Objects.equals(product, meal.product);
+    public boolean equals(Object object) {
+
+        if (this == object) {
+            return true; }
+
+        if (object == null || getClass() != object.getClass()) {
+            return false; }
+
+        Meal meal = (Meal) object;
+
+        return quantity == meal.quantity
+               && Objects.equals(product, meal.product);
     }
 
 

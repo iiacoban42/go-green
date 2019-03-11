@@ -47,7 +47,11 @@ public class ControllerMainPage {
     @FXML
     Button achievementsButton;
 
-
+    /**
+     * When the mealButton is pressed new window for meal feature appears
+     * @param event meal button is fired
+     * @throws IOException input output exception is thrown.
+     * */
     public void mealButtonPressed(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/veggie_meal.fxml"));
         Parent root = fxmlLoader.load();
