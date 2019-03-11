@@ -2,8 +2,11 @@ package client.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MealList {
+
+
     private List<Meal> meals;
 
     public MealList() {
@@ -30,4 +33,18 @@ public class MealList {
     public void setMeals(List<Meal> meals) {
         this.meals = meals;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MealList)) return false;
+        MealList mealList = (MealList) o;
+
+        for(int i=0; i<meals.size(); i++){
+            if(!mealList.getMeals().get(i).equals(this.meals.get(i)))
+                return false;
+        }
+        return true;
+    }
+
 }

@@ -9,6 +9,15 @@ import java.io.IOException;
 
 public class MealRequests {
 
+    /**
+     *
+     * @param mealList
+     * @return responseEntity message from the server
+     * @throws IOException
+     *
+     * Sends Meal List to the server.
+     *
+     */
     public static String sendMealList(MealList mealList) throws IOException {
     String urlLogin = "http://localhost:8080/api/action/meal";
 
