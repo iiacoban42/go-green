@@ -47,7 +47,7 @@ public class LoginRequests {
         );
 
         if (response.getStatusCode() == HttpStatus.OK) {
-            System.out.println("Register successful");
+            System.out.println("Login successful");
 
         }
         return response.getStatusCode().toString();

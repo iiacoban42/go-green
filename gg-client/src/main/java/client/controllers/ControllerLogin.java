@@ -59,7 +59,7 @@ public class ControllerLogin  {
 
             try {
                 ans =  sendLoginCredentials(username, password);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 System.out.println("Wrong credentials");
             }
 

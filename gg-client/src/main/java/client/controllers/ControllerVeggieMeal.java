@@ -1,7 +1,11 @@
+
 package client.controllers;
 
+import client.entities.Meal;
+import client.entities.MealList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -65,19 +69,28 @@ public class ControllerVeggieMeal {
     @FXML
     private TextField cheese;
 
+
     @FXML
     void sendVeggieMeal(ActionEvent event) {
-        /*VeggieMeal veggieMeal = new VeggieMeal();
+
+        MealList list = new MealList();
 
         for (Node node : textFields.getChildren()) {
+
             if (node instanceof TextField) {
 
                 String quantity = ((TextField) node).getText();
+
                 if (!quantity.isEmpty()) {
+
                     if (valid(quantity)) {
-                        double quantityDouble = Double.parseDouble(quantity);
+
+                        int quantityInt = Integer.parseInt(quantity);
                         String ingredient = node.getId();
-                        veggieMeal.setVeggieMeal(ingredient, quantityDouble);
+
+                        Meal meal = new Meal(ingredient , quantityInt);
+                        list.addMeal(meal);
+                        //for testing purposes
                         System.out.println(quantity + " " + ingredient);
                     }
 
@@ -85,18 +98,13 @@ public class ControllerVeggieMeal {
                 }
             }
         }
-        System.out.println(veggieMeal.toString());
-        if (veggieMeal.isVegetarian()) {
-            System.out.println("Well done you had a vegetarian meal!");
-        }*/
     }
-
     /**
      * Test if given message is valid.
      * @param message to check if valid
      * @return boolean
      */
-    public boolean valid(String message) {
+    public boolean valid (String message){
         try {
             double number = Double.parseDouble(message);
             return true;
