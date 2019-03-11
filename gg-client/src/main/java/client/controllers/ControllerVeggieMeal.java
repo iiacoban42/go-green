@@ -10,6 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+
+import static client.requests.MealRequests.sendMealList;
+
 public class ControllerVeggieMeal {
 
     @FXML
@@ -91,14 +95,26 @@ public class ControllerVeggieMeal {
                         Meal meal = new Meal(ingredient , quantityInt);
                         list.addMeal(meal);
                         //for testing purposes
-                        System.out.println(quantity + " " + ingredient);
+                        //System.out.println(quantity + " " + ingredient);
                     }
 
                     ((TextField) node).setText("");
                 }
             }
         }
+
+        try {
+            sendMealList(list);
+        } catch (Exception e) {
+
+            System.out.println("meal was not sent to the server");
+        }
+
+        submit.getScene().getWindow().hide();
+
     }
+
+
     /**
      * Test if given message is valid.
      * @param message to check if valid
