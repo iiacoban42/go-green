@@ -8,12 +8,15 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 
 public class MealListTest {
 
 
     private  Meal  meal = new Meal("beans" , 33);
+    private  Meal  meal2 = new Meal("chicken" , 33);
+
     private MealList mealList = new MealList();
 
 
@@ -80,7 +83,7 @@ public class MealListTest {
     }
 
     @Test
-    public void testEquals(){
+    public void testEquals_successful(){
         mealList.addMeal(meal);
         List<Meal> test = new ArrayList<Meal>();
         test.add(meal);
@@ -89,5 +92,31 @@ public class MealListTest {
         assertEquals(mealList2 , mealList);
 
 
+    }
+
+    @Test
+    public void testEquals_withNull(){
+
+        assertFalse(mealList.equals(null));
+
+    }
+
+    @Test
+    public void testEquals_withItself(){
+        assertTrue(mealList.equals(mealList));
+    }
+
+    @Test
+    public void testEquals_differentObjects(){
+
+        assertFalse(mealList.equals(meal));
+    }
+
+    @Test
+    public void testEquals_differentMeals(){
+        MealList mealList2  = new MealList();
+        mealList2.addMeal(meal2);
+        mealList.addMeal(meal);
+        assertFalse(mealList.equals(mealList2));
     }
 }
