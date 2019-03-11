@@ -5,11 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class VeggieMeal {
     private ArrayList<Meal> veggieMeal;
-    private final double averageCo2 = 1;
 
     /**
      * Constructor of the menu containing all the options a user can select.
@@ -63,6 +61,12 @@ public class VeggieMeal {
 
     }
 
+    /**
+     *
+     * @param json
+     * @return
+     * @throws IOException
+     */
     public double jsonConverter(String json) throws IOException {
         VeggieMeal newVM = new VeggieMeal();
 
@@ -159,40 +163,5 @@ public class VeggieMeal {
     return 0;
     }
 
-
-//    /**
-//     * String representation of the meal the user selected.
-//     * @return ingredients of the meal and total Co2 consumed.
-//     */
-
-//    @Override
-//    public String toString() {
-//        String string = "meal ingredients: ";
-//        for (Meal meal : this.veggieMeal) {
-//            if (meal.isSelected()) {
-//                string += meal.getProduct() + " ";
-//            }
-//        }
-//        string += "\ntotal Co2: " + calculator() + " g";
-//        return string;
-//    }
-//
-//    @Override
-//    public boolean equals(Object other) {
-//        boolean result= true;
-//        if (other instanceof VeggieMeal) {
-//            VeggieMeal otherVMeal = (VeggieMeal) other;
-//            if (this.getVeggieMeal().size() == otherVMeal.getVeggieMeal().size()) {
-//                for (int i = 0; i < otherVMeal.getVeggieMeal().size(); i++) {
-//                    if (!this.getVeggieMeal().contains(otherVMeal.get(i))) {
-//                        result = false;
-//                    }
-//                }
-//
-//                return result;
-//            }
-//        }
-//        return false;
-//    }
 
 }

@@ -4,6 +4,10 @@ public class Meal {
     private String product;
     private int quantity;
 
+    public Meal() {
+
+    }
+
     public Meal(String product, int quantity) {
         this.product = product;
         this.quantity = quantity;
@@ -23,5 +27,9 @@ public class Meal {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String toString(){
+        return product+" "+quantity;
     }
 }
