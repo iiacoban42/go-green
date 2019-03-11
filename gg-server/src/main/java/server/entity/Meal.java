@@ -2,9 +2,9 @@ package server.entity;
 
 public class Meal {
     private String product;
-    private float quantity;
+    private int quantity;
 
-    public Meal(String product, float quantity) {
+    public Meal(String product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }
@@ -17,11 +17,11 @@ public class Meal {
         this.product = product;
     }
 
-    public float getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(float quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 }

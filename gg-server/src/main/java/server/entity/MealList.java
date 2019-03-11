@@ -11,7 +11,7 @@ public class MealList {
     }
 
     public MealList(List<Meal> meals) {
-        this.meals = meals;
+        this.meals = new ArrayList<Meal>(meals);
     }
 
     public void addMeal(Meal meal) {

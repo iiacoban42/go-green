@@ -11,7 +11,7 @@ public class MealListTest {
 
     @Test
     public void testAddMeal() {
-        Meal meal = new Meal("pizza", 0.4f);
+        Meal meal = new Meal("pizza", 200);
         List<Meal> list = new ArrayList<>();
         list.add(meal);
 
@@ -21,19 +21,19 @@ public class MealListTest {
 
     @Test
     public void testRemoveMeal() {
-        Meal meal = new Meal("pizza", 0.4f);
+        Meal meal = new Meal("pizza", 200);
         List<Meal> list = new ArrayList<>();
         list.add(meal);
-        list.add(new Meal("burger", 0.12f));
+        list.add(new Meal("burger", 100));
 
         MealList mealList = new MealList(list);
-        mealList.removeMeal(new Meal("burger", 0.12f));
+        mealList.removeMeal(new Meal("burger", 100));
         assertEquals(mealList.getMeals(), list);
     }
 
     @Test
     public void testGetMeals() {
-        Meal meal = new Meal("pizza", 0.4f);
+        Meal meal = new Meal("pizza", 200);
         List<Meal> list = new ArrayList<>();
         list.add(meal);
 
@@ -43,7 +43,7 @@ public class MealListTest {
 
     @Test
     public void testSetMeals() {
-        Meal meal = new Meal("pizza", 0.4f);
+        Meal meal = new Meal("pizza", 200);
         List<Meal> list = new ArrayList<>();
         list.add(meal);
 
