@@ -1,9 +1,8 @@
 package server.entity;
 
+
 import org.junit.Test;
 
-import javax.validation.constraints.AssertTrue;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,11 +93,20 @@ public class MealListTest {
         assertEquals(string, mealList.toString());
     }
 
-    @Test(expected = IOException.class)
-    public void testExeptionJson() throws Exception {
-        MealList list=new MealList();
-        list.jsonConverter("");
+
+    @Test
+    public void throwsException() {
+        try {
+            MealList list=new MealList();
+            list.jsonConverter("");
+
+        } catch (Exception e) {
+            assertEquals("exception", e.getMessage());
+        }
     }
+
+
+
 
     @Test
     public void testGet() {

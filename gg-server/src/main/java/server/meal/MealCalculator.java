@@ -32,7 +32,7 @@ public class MealCalculator {
      */
     public static double getAmountCo2(MealList mealList) {
         double co2 = 0;
-        double averageDutchMeal = 100;
+        double averageDutchMeal = 25;
         double result;
 
         for (server.entity.Meal listMeal : mealList.getMeals()) {
