@@ -1,7 +1,9 @@
 package server;
 
+import org.junit.Assert;
 import org.junit.Test;
 import server.meal.Meal;
+import server.meal.MealCalculator;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -59,5 +61,10 @@ public class MealTest {
         server.meal.Meal meal1 = new Meal("beans", 0.001, 3, true);
         server.meal.Meal meal2 = new Meal("beans", 0.001, 0, true);
         assertNotEquals(meal1, meal2);
+    }
+
+    @Test
+    public void dutchAverageMeal() {
+        Assert.assertEquals(6, MealCalculator.dutchAverageMeal(), 0.01);
     }
 }
