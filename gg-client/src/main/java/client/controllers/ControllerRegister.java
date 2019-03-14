@@ -2,7 +2,6 @@ package client.controllers;
 
 import static client.requests.RegisterRequests.sendRegisterCredentials;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
