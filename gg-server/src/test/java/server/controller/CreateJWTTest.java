@@ -1,3 +1,5 @@
+package server.controller;
+
 import org.junit.Test;
 import server.controller.CreateJWT;
 

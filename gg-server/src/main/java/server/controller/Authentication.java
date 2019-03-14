@@ -22,8 +22,11 @@ public class Authentication {
     public ResponseEntity login(@RequestBody LoginCredentials credentials) {
         ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
 
-        if (credentials.getUsername().equals("admin")) {
-            response = new ResponseEntity(HttpStatus.OK);
+        if (database.manager.getUser(credentials.getUsername()) != null) {
+            if (database.manager.getUser(credentials.getUsername()).getHashPassword().equals(credentials.getPassword())) {
+                response = new ResponseEntity(HttpStatus.OK);
+                CreateJWT.createJWT(credentials.getUsername());
+            }
         }
 
         return response;
