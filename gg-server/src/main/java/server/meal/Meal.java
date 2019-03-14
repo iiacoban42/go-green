@@ -8,9 +8,10 @@ public class Meal {
 
     /**
      * Constructor of the Meal object.
-     * @param product contained in the meal.
-     * @param co2 of the product/g.
-     * @param quantity of the product in g
+     *
+     * @param product    contained in the meal.
+     * @param co2        of the product/g.
+     * @param quantity   of the product in g
      * @param vegetarian product or not.
      */
     public Meal(String product, double co2, int quantity, boolean vegetarian) {
