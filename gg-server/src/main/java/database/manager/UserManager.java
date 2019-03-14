@@ -1,29 +1,30 @@
-package server.controller;
+package database.manager;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import org.hibernate.query.Query;
-
-import server.entity.User;
+import server.controller.HibernateUtil;
 
 import java.util.List;
 
 public class UserManager {
     /**
      * Method to create a User in the database.
+     * @return the user that has been created,
+     *      null if add failed
      */
-    public static String addUser(
+    public static User addUser(
             final String username,
             final String password,
             final String email) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
+        User user = null;
 
         try {
             tx = session.beginTransaction();
-            User user = new User(username, password, email);
+            user = new User(username, password, email);
             session.save(user);
             tx.commit();
         } catch (HibernateException e) {
@@ -34,7 +35,7 @@ public class UserManager {
         } finally {
             session.close();
         }
-        return username;
+        return user;
     }
 
     /**
@@ -88,16 +89,14 @@ public class UserManager {
      * @param username a Sting representingthe username /primarykey of user
      * @return a List containing only the relevant user
      */
-    public static User getUsers(String username) {
+    public static User getUser(String username) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        List results = null;
+        User user = null;
 
         try {
             tx = session.beginTransaction();
-            String hql = "FROM User WHERE username = " + username;
-            Query query = session.createQuery(hql);
-            results = query.list();
+            user = (User)session.get(User.class, username);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -107,10 +106,35 @@ public class UserManager {
         } finally {
             session.close();
         }
-        if(results.size() == 1){
-            return (User) results.get(0);
-        }
-        throw new Error();
+        return user;
     }
+
+    /**
+     * Method to change user password.
+     * @param username primary key, String represents users username
+     * @param hashPassword String representing hashed password to be set
+     * @return User with updated hashPassword
+     */
+    public static User changePassword(String username, String hashPassword){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        User user = null;
+
+        try {
+            tx = session.beginTransaction();
+            user = (User)session.get(User.class, username);
+            user.setHashPassword(hashPassword);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return user;
+    }
+
 }
 

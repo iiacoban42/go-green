@@ -1,4 +1,4 @@
-package server.entity;
+package database.manager;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -98,7 +98,7 @@ public class User {
      *
      * @param email a String representing the email of the user
      */
-    public void setEmail(final String email) {
+    private void setEmail(final String email) {
         this.email = email;
     }
 
@@ -120,7 +120,6 @@ public class User {
         this.totalScore = totalScore;
     }
 
-
     /**
      * gets friend of the user.
      *
@@ -129,7 +128,6 @@ public class User {
     public String getFriend() {
         return friend;
     }
-
 
     /**
      * sets friend of user.

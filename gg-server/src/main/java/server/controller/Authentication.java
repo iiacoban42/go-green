@@ -1,14 +1,15 @@
 package server.controller;
 
+import database.manager.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class Authentication {
         Session session = sessionFactory.openSession();
 
 
-        List<server.entity.User> users = session.createQuery("from User").list();
+        List<User> users = session.createQuery("from User").list();
         RegisterCredentials register = new RegisterCredentials("mail", "user", "pass");
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
 
