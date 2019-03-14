@@ -18,7 +18,7 @@ public class MealCalculatorTest {
         };
         MealList mealList = new MealList(Arrays.asList(list));
 
-        assertEquals(MealCalculator.getAmountCo2(mealList), 25-(MealCalculator.Meal_Menu[0].getCo2() * 200 + MealCalculator.Meal_Menu[1].getCo2() * 100), 0.01);
+        assertEquals(MealCalculator.getAmountCo2(mealList), MealCalculator.dutchAverageMeal()-(MealCalculator.Meal_Menu[0].getCo2() * 200 + MealCalculator.Meal_Menu[1].getCo2() * 100), 0.01);
     }
     @Test
     public void testGetAmountCo2OverFlow() {
