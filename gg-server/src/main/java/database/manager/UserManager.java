@@ -1,10 +1,9 @@
 package database.manager;
 
+import database.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import server.controller.HibernateUtil;
 
 import java.util.List;
 
@@ -72,7 +71,7 @@ public class UserManager {
         try {
             tx = session.beginTransaction();
             User user = (User)session.get(User.class, username);
-            session.delete(username);
+            session.delete(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {

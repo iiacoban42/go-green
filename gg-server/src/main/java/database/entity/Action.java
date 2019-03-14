@@ -1,13 +1,9 @@
-package database.manager;
+package database.entity;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 
 /**
@@ -24,8 +20,9 @@ public class Action {
      * increments by one for each action performed
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     /**
      * A Date representing the time the action was performed.
@@ -73,7 +70,7 @@ public class Action {
         this.dateTime = new Date();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

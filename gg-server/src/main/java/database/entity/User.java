@@ -1,4 +1,4 @@
-package database.manager;
+package database.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

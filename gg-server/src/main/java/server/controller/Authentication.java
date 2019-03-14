@@ -1,6 +1,6 @@
 package server.controller;
 
-import database.manager.User;
+import database.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
