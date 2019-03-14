@@ -48,7 +48,7 @@ public class ControllerMainPage {
     Button achievementsButton;
 
     /**
-     * When the mealButton is pressed new window for meal feature appears
+     * When the mealButton is pressed new window for meal feature appears.
      * @param event meal button is fired
      * @throws IOException input output exception is thrown.
      * */

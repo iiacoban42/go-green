@@ -1,6 +1,8 @@
 
 package client.controllers;
 
+import static client.requests.MealRequests.sendMealList;
+
 import client.entities.Meal;
 import client.entities.MealList;
 import javafx.event.ActionEvent;
@@ -9,7 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import static client.requests.MealRequests.sendMealList;
+
+import java.io.IOException;
 
 public class ControllerVeggieMeal {
 
@@ -102,8 +105,7 @@ public class ControllerVeggieMeal {
 
         try {
             sendMealList(list);
-        } catch (Exception e) {
-
+        } catch (IOException e) {
             System.out.println("meal was not sent to the server");
         }
 
@@ -117,7 +119,7 @@ public class ControllerVeggieMeal {
      * @param message to check if valid
      * @return boolean
      */
-    public boolean valid(String message){
+    public boolean valid(String message) {
 
         try {
             double number = Double.parseDouble(message);

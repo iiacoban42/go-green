@@ -3,18 +3,17 @@ package client.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("CheckStyle")
 public class MealList {
 
 
     private List<Meal> meals;
 
     public MealList() {
-        this.meals = new ArrayList<Meal>();
+        this.meals = new ArrayList<>();
     }
 
     public MealList(List<Meal> meals) {
-        this.meals = new ArrayList<Meal>(meals);
+        this.meals = new ArrayList<>(meals);
     }
 
     public void addMeal(Meal meal) {
@@ -35,15 +34,19 @@ public class MealList {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object obj) {
 
-        if (this == o){return true;}
-        if (!(o instanceof MealList)) {return false;}
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof MealList)) {
+            return false;
+        }
 
-        MealList mealList = (MealList) o;
+        MealList mealList = (MealList) obj;
 
-        for(int i=0; i < meals.size(); i++){
-            if(!mealList.getMeals().get(i).equals(this.meals.get(i))) {
+        for (int i = 0; i < meals.size(); i++) {
+            if (!mealList.getMeals().get(i).equals(this.meals.get(i))) {
                 return false;
             }
         }
