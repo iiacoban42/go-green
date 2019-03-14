@@ -25,6 +25,10 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
+    /**
+     * Makes a running session.
+     * @return a running session.
+     */
     public static Session getHibernateSession() {
 
         final SessionFactory sf = new Configuration()

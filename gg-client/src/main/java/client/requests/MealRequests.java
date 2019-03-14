@@ -1,6 +1,6 @@
 package client.requests;
 
-import client.entities.LoginCredentials;
+import client.entities.MealList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -12,26 +12,24 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
-
-public class LoginRequests {
+public class MealRequests {
 
     /**
-     * Sends the username and password to the server in json format using a post request.
-     * @param username of client
-     * @param password of client
-     * @throws IOException if something went wrong
+     * Sends Meal List to the server.
+     * @param mealList list with meals
+     * @return responseEntity message from the server
+     * @throws IOException input output exception.
      */
-    public static String sendLoginCredentials(String username, String password) throws IOException {
+    public static String sendMealList(MealList mealList) throws IOException {
 
-        String urlLogin = "http://localhost:8080/api/authentication/login";
-
-        LoginCredentials credentials = new LoginCredentials(username, password);
+        String urlLogin = "http://localhost:8080/api/action/meal";
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        String json = objectMapper.writeValueAsString(credentials);
+        String json = objectMapper.writeValueAsString(mealList);
 
         HttpHeaders headers = new HttpHeaders();
+
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
@@ -40,18 +38,15 @@ public class LoginRequests {
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity response = restTemplate.exchange(
-            urlLogin,
-            HttpMethod.POST,
-            entity,
-            ResponseEntity.class
+                urlLogin,
+                HttpMethod.POST,
+                entity,
+                ResponseEntity.class
         );
 
         if (response.getStatusCode() == HttpStatus.OK) {
-            System.out.println("Login successful");
-
+            System.out.println("Meal send successfully");
         }
         return response.getStatusCode().toString();
     }
-
 }
-

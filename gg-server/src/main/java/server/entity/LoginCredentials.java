@@ -1,18 +1,16 @@
-package server.controller;
+package server.entity;
 
-public class RegisterCredentials {
-    private String email;
+public class LoginCredentials {
     private String username;
     private String password;
 
-    RegisterCredentials() {
+    LoginCredentials() {
         super();
     }
 
-    RegisterCredentials(String email, String username, String password) {
-        this.email = email;
-        this.password = password;
+    public LoginCredentials(String username, String password) {
         this.username = username;
+        this.password = password;
     }
 
     public void setUsername(String username) {
@@ -29,13 +27,5 @@ public class RegisterCredentials {
 
     public String getUsername() {
         return username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }
