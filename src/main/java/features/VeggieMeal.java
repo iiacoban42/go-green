@@ -144,7 +144,7 @@ public class VeggieMeal {
         double avgChicken = (20.7 + 20.8 + 21.5 + 21.6 + 22.5 + 22.5 + 22.1 + 22.0 + 22.3 + 22.5 + 22.1 + 22.2 + 22.1)*1000/(13*365);
         double avgCow = (15.9 + 16.1 + 16.1 + 16.1 + 16.3 + 16.2 + 15.9 + 15.7 + 15.6 + 15.5 + 15.4 + 15.4 + 15.4)*1000/(13*365);
         double avgLamb = (1.0 + 1.0 + 1.0 + 1.1 + 1.1 + 1.1 + 1.1 + 1.1 + 1.2 + 1.2 + 1.2 + 1.2 + 1.2)*1000/(13*365);
-        double avgCheese = 355 - (60/365);
+        double avgCheese = 355 - (60/365)*1000;
 
         averageDutchMeal.setVeggieMeal("beans", 4);
         averageDutchMeal.setVeggieMeal("nuts", 122);

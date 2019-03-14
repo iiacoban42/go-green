@@ -102,5 +102,10 @@ public class VeggieMealTest {
         newVM.setVeggieMeal("lamb", 250);
         assertFalse(newVM.isVegetarian());
     }
+
+    @Test
+    public void dutchAverageMeal() {
+        assertEquals(8.54, VeggieMeal.dutchAverageMeal(), 0.01);
+    }
 }
 
