@@ -19,14 +19,17 @@ public class ControllerCo2Saved {
     @FXML
     Label gramsLabel;
 
+
+
+    /**
+     * When show button is pressed  CO2 SAVED appears.
+     */
     @FXML
-    public void showButtonPressed(ActionEvent event){
+    public void showButtonPressed(ActionEvent event) {
 
         coSavedVariable.setText("Placeholder");
         gramsLabel.setVisible(true);
         ofcoLabel.setVisible(true);
-
-
 
     }
 }
