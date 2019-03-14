@@ -135,28 +135,27 @@ public class VeggieMeal {
      * https://www.rivm.nl/bibliotheek/rapporten/2016-0200.pdf
      * https://www.allesopeenrij.nl/cultuur-2/eten-drinken/hoeveel-en-wat-drinkt-de-nederlander-2/
      * http://library.wur.nl/WebQuery/wurpubs/fulltext/464580
-     * @return
+     * Calculates the amount/CO2 produced by the average dutch meal.
+     * @return CO2
      */
     public static double dutchAverageMeal() {
-        ArrayList<Meal> averageDutchMeal = new ArrayList();
-        averageDutchMeal.add(new Meal("beans", 0.001, 4, true, false));
-        averageDutchMeal.add(new Meal("veggieBurger", 0.0026, 0, true, false));
-        averageDutchMeal.add(new Meal("insects", 0.0027, 0, false, false));
-        averageDutchMeal.add(new Meal("quorn", 0.0027, 0, true, false));
-        averageDutchMeal.add(new Meal("nuts", 0.0032, 0, true, false));
-        averageDutchMeal.add(new Meal("tofu", 0.0035, 0, true, false));
-        averageDutchMeal.add(new Meal("egg", 0.0036, 12, true, false));
-        averageDutchMeal.add(new Meal("beefCroquette", 0.0052, 0, false, false));
-        averageDutchMeal.add(new Meal("veggieBurgerCheese", 0.0065, 0, true, false));
-        averageDutchMeal.add(new Meal("chicken", 0.0068, 0, false, false));
-        averageDutchMeal.add(new Meal("pork", 0.0070, 0, false, false));
-        averageDutchMeal.add(new Meal("cheese", 0.0100, 0, true, false));
-        averageDutchMeal.add(new Meal("mixedMincedMeat", 0.0133, 0, false, false));
-        averageDutchMeal.add(new Meal("hamburger", 0.0168, 0, false, false));
-        averageDutchMeal.add(new Meal("mincedMeat", 0.0194, 0, false, false));
-        averageDutchMeal.add(new Meal("steak", 0.0340, 0, false, false));
-        averageDutchMeal.add(new Meal("lamb", 0.0510, 0, false, false));
-    return 0;
+        VeggieMeal averageDutchMeal = new VeggieMeal();
+        double avgPork = (37.2 + 37.4 + 37.6 + 37.8 + 37.7 + 37.7 + 37.7 + 37.3 + 37.1 + 36.7 + 36.6 + 36.5 + 36.5)*1000/(13*365);
+        double avgChicken = (20.7 + 20.8 + 21.5 + 21.6 + 22.5 + 22.5 + 22.1 + 22.0 + 22.3 + 22.5 + 22.1 + 22.2 + 22.1)*1000/(13*365);
+        double avgCow = (15.9 + 16.1 + 16.1 + 16.1 + 16.3 + 16.2 + 15.9 + 15.7 + 15.6 + 15.5 + 15.4 + 15.4 + 15.4)*1000/(13*365);
+        double avgLamb = (1.0 + 1.0 + 1.0 + 1.1 + 1.1 + 1.1 + 1.1 + 1.1 + 1.2 + 1.2 + 1.2 + 1.2 + 1.2)*1000/(13*365);
+        double avgCheese = 355 - (60/365);
+
+        averageDutchMeal.setVeggieMeal("beans", 4);
+        averageDutchMeal.setVeggieMeal("nuts", 122);
+        averageDutchMeal.setVeggieMeal("egg", 12);
+        averageDutchMeal.setVeggieMeal("chicken", avgChicken);
+        averageDutchMeal.setVeggieMeal("pork", avgPork);
+        averageDutchMeal.setVeggieMeal("cheese", avgCheese);
+        averageDutchMeal.setVeggieMeal("hamburger", avgCow);
+        averageDutchMeal.setVeggieMeal("lamb", avgLamb);
+
+    return averageDutchMeal.calculator();
     }
 
 
