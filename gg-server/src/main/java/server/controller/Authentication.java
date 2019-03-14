@@ -20,8 +20,6 @@ public class Authentication {
      */
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginCredentials credentials) {
-        LoginCredentials login = new LoginCredentials("user", "pass");
-
         ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
 
         if (credentials.getUsername().equals("admin")) {
@@ -38,11 +36,7 @@ public class Authentication {
      */
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterCredentials credentials) {
-        RegisterCredentials register = new RegisterCredentials("mail", "user", "pass");
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
-
-        System.out.println("hello world!");
-        System.out.println(credentials.getUsername());
 
         if (credentials.getUsername().equals("admin")) {
             response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
