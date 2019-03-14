@@ -1,5 +1,6 @@
 package server.entity;
 
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -51,4 +52,74 @@ public class MealListTest {
         mealList.setMeals(list);
         assertEquals(mealList.getMeals(), list);
     }
+
+    @Test
+    public void testToString() {
+        String string = "meal: pizza 200\n";
+        Meal meal = new Meal("pizza", 200);
+        MealList mealList = new MealList();
+        mealList.addMeal(meal);
+        assertEquals(mealList.toString(), string);
+
+    }
+
+    @Test
+    public void testSize() {
+        String string = "meal: pizza 200\n";
+        Meal meal = new Meal("pizza", 200);
+        Meal meal2 = new Meal("burger", 100);
+        MealList mealList = new MealList();
+        mealList.addMeal(meal);
+        mealList.addMeal(meal2);
+        assertEquals(mealList.size(), 2);
+    }
+
+    @Test
+    public void testJsonConverter() {
+        String string = "meal: lamb 300\nbeans 150\n";
+
+        String json = "[  \n" +
+                "   {  \n" +
+                "      \"product\":\"lamb\",\n" +
+                "      \"quantity\":300\n" +
+                "   },\n" +
+                "   {  \n" +
+                "      \"product\":\"beans\",\n" +
+                "      \"quantity\":150\n" +
+                "   }\n" +
+                "]";
+        MealList mealList = new MealList();
+        mealList.jsonConverter(json);
+        assertEquals(string, mealList.toString());
+    }
+
+
+    @Test
+    public void throwsException() {
+        try {
+            MealList list=new MealList();
+            list.jsonConverter("");
+
+        } catch (Exception e) {
+            assertEquals("exception", e.getMessage());
+        }
+    }
+
+
+
+
+    @Test
+    public void testGet() {
+        String string = "burger 100";
+        String string2 = "pizza 200";
+        Meal meal = new Meal("pizza", 200);
+        Meal meal2 = new Meal("burger", 100);
+        MealList mealList = new MealList();
+        mealList.addMeal(meal);
+        mealList.addMeal(meal2);
+        assertEquals(mealList.get(0).toString(), string2);
+        assertEquals(mealList.get(1).toString(), string);
+    }
+
+
 }
