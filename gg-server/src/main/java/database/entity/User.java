@@ -1,4 +1,4 @@
-package server;
+package database.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,14 +36,14 @@ public class User {
     /**
      * an Integer representing the users total carbon emission saved.
      */
-    @Column (name = "total_co2_score")
+    @Column(name = "total_co2_score")
     private int totalScore;
 
     /**
-     *  a String representing the username of this users friend.
-     *  it links to the friends primary key
+     * a String representing the username of this users friend.
+     * it links to the friends primary key
      */
-    @Column (name = "friend")
+    @Column(name = "friend")
     private String friend;
 
     /**
@@ -54,7 +54,21 @@ public class User {
     }
 
     /**
+     * creates a user with a totalScore of 0 and all the atributes.
+     * @param username primary key, string represents Users username
+     * @param hashPassword string represents encoded password
+     * @param email stgring represents users email
+     */
+    public User(String username, String hashPassword, String email) {
+        this.username = username;
+        this.hashPassword = hashPassword;
+        this.email = email;
+        totalScore = 0;
+    }
+
+    /**
      * gets username of user.
+     *
      * @return a String representing the username of the User
      */
     public String getUsername() {
@@ -63,6 +77,7 @@ public class User {
 
     /**
      * gets hashed password of user.
+     *
      * @return a String representing the hashed password of the User
      */
     public String getHashPassword() {
@@ -71,6 +86,7 @@ public class User {
 
     /**
      * gets email of user.
+     *
      * @return a String representing the  email of user
      */
     public String getEmail() {
@@ -79,14 +95,16 @@ public class User {
 
     /**
      * sets email of user.
+     *
      * @param email a String representing the email of the user
      */
-    public void setEmail(final String email) {
+    private void setEmail(final String email) {
         this.email = email;
     }
 
     /**
      * gets total score of user.
+     *
      * @return a integer representing the score of the user
      */
     public int gettotalScore() {
@@ -95,24 +113,25 @@ public class User {
 
     /**
      * sets total score of user.
+     *
      * @param totalScore a integer representing the total score of the user
      */
     public void settotalScore(final int totalScore) {
         this.totalScore = totalScore;
     }
 
-
     /**
      * gets friend of the user.
+     *
      * @return a String representing the username--primarykey of the user's friend
      */
     public String getFriend() {
         return friend;
     }
 
-
     /**
      * sets friend of user.
+     *
      * @param friend a String representing the username--primarykey of the user's friend
      */
     public void setFriend(final String friend) {
@@ -121,6 +140,7 @@ public class User {
 
     /**
      * sets the users username.
+     *
      * @param username A String representing the user's username
      */
     public void setUsername(final String username) {
@@ -129,6 +149,7 @@ public class User {
 
     /**
      * sets the users password.
+     *
      * @param hashPassword A String representing the users hashed password
      */
     public void setHashPassword(final String hashPassword) {
