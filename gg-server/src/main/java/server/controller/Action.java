@@ -25,7 +25,7 @@ public class Action {
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
 
         int score = (int)MealCalculator.getAmountCo2(mealList);
-        UserManager.getUser("admin").settotalScore(score);
+        UserManager.addScore("admin", score);
 
         return response;
     }
