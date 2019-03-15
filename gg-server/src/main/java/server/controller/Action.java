@@ -3,9 +3,11 @@ package server.controller;
 import database.manager.UserManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import server.entity.MealList;
 import server.entity.Score;
@@ -21,7 +23,7 @@ public class Action {
      * @return true or false
      */
     @PostMapping("/meal")
-    public ResponseEntity login(@RequestBody MealList mealList) {
+    public ResponseEntity meal(@RequestBody MealList mealList) {
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
 
         int score = (int)MealCalculator.getAmountCo2(mealList);
@@ -34,7 +36,8 @@ public class Action {
      * Returns score of user to user.
      * @return score
      */
-    @PostMapping("/score")
+    @GetMapping("/score")
+    @ResponseBody
     public Score score() {
         Score score = new Score();
 
