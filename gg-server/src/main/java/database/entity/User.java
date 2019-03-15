@@ -178,4 +178,9 @@ public class User {
         this.token = token;
     }
 
+    public void addScore(int score) {
+        this.totalScore += score;
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package server;
+package server.database;
 
 import database.entity.Action;
 import database.manager.ActionManager;
