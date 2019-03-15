@@ -1,4 +1,4 @@
-package server;
+package server.database;
 
 import database.entity.Action;
 import database.manager.ActionManager;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class ActionManagerTest {
     @BeforeClass
     public static void addObjects() {
-         UserManager.addUser("1", "1", "1");
+        UserManager.addUser("1", "1", "1");
         UserManager.addUser("2", "2", "2");
     }
 
