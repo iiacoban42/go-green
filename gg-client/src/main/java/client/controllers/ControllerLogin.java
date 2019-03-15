@@ -5,6 +5,7 @@ import static client.requests.LoginRequests.sendLoginCredentials;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -51,38 +52,31 @@ public class ControllerLogin  {
      */
 
     public void loginButtonPressed( ActionEvent event ) throws Exception {
+        username = usernameTextField.getText();
+        password = passwordTextField.getText();
 
-        if (!valid(username) || !valid(password)) {
-            errorMessage.setVisible(true);
-        } else if (valid(username) && valid(password)) {
-
-            String ans = "";
+        if (valid(username) && valid(password)) {
+            String result = "";
 
             try {
-                ans =  sendLoginCredentials(username, password);
+                result =  sendLoginCredentials(username, password);
             } catch (IOException e) {
                 System.out.println("Wrong credentials");
             }
 
-            errorMessage.setVisible(false);
-
-            if  (ans.equals("200 OK")) {
-
+            if  (result.equals("200 OK")) {
                 errorCredentials.setVisible(false);
-                loginButton.getScene().getWindow().hide();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mainPage.fxml"));
-                Parent root2 = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.DECORATED);
-                stage.setTitle("GoGreen");
-                stage.setScene(new Scene(root2));
-                stage.show();
-                stage.setResizable(false);
+
+                Parent root2 = FXMLLoader.load(getClass().getResource("/mainPage.fxml"));
+                Stage app = (Stage)((Node) event.getSource()).getScene().getWindow();
+                app.setScene(new Scene(root2));
+                app.show();
 
             } else {
                 errorCredentials.setVisible(true);
             }
+        } else {
+            errorCredentials.setVisible(true);
         }
 
     }
@@ -111,7 +105,7 @@ public class ControllerLogin  {
     public void usernameEntered(ActionEvent event) {
         username = usernameTextField.getText();
         System.out.println(username );
-
+        passwordTextField.requestFocus();
     }
 
     /**
@@ -121,6 +115,7 @@ public class ControllerLogin  {
     public void passwordEntered(ActionEvent event) {
         password = passwordTextField.getText();
         System.out.println(password);
+        loginButton.fire();
     }
 
     /**
@@ -129,7 +124,7 @@ public class ControllerLogin  {
      * @return true if input string is not empty or null. Otherwise it returns false.
      */
     private static boolean valid(String text) {
-        return text != null && !text.isEmpty();
+        return text != null && !text.isEmpty() && (text.length() <= 20);
     }
 
 
