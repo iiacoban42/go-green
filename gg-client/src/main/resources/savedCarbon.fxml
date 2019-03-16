@@ -15,17 +15,17 @@
                   <Font name="Calibri" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="coSavedVariable" layoutX="34.0" layoutY="122.0" prefHeight="178.0" prefWidth="284.0" style="-fx-background-color: #ffffff;" textFill="#6bb300">
+            <Label fx:id="coSavedVariable" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="122.0" prefHeight="178.0" prefWidth="284.0" style="-fx-background-color: #ffffff;" textFill="#6bb300">
                <font>
-                  <Font name="Calibri" size="36.0" />
+                  <Font name="Calibri" size="64.0" />
                </font>
             </Label>
-            <Label fx:id="gramsLabel" visible="false" layoutX="368.0" layoutY="177.0" text="grams ">
+            <Label fx:id="gramsLabel" layoutX="368.0" layoutY="177.0" text="grams " visible="false">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label fx:id="ofcoLabel" visible="false" layoutX="407.0" layoutY="242.0" prefHeight="60.0" prefWidth="176.0" text="of Co2" textAlignment="CENTER">
+            <Label fx:id="ofcoLabel" layoutX="407.0" layoutY="242.0" prefHeight="60.0" prefWidth="176.0" text="of Co2" textAlignment="CENTER" visible="false">
                <font>
                   <Font size="36.0" />
                </font>

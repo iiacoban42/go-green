@@ -1,5 +1,6 @@
 package client.controllers;
 
+import client.requests.MealRequests;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,7 +28,8 @@ public class ControllerCo2Saved {
     @FXML
     public void showButtonPressed(ActionEvent event) {
 
-        coSavedVariable.setText("Placeholder");
+        int score = MealRequests.getScore();
+        coSavedVariable.setText(String.valueOf(score));
         gramsLabel.setVisible(true);
         ofcoLabel.setVisible(true);
 

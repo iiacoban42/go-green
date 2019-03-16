@@ -1,6 +1,7 @@
 package client.requests;
 
 import client.entities.MealList;
+import client.entities.Score;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -48,5 +49,27 @@ public class MealRequests {
             System.out.println("Meal send successfully");
         }
         return response.getStatusCode().toString();
+    }
+
+    /**
+     * Request score from the server.
+     * @return responseEntity message from the server.
+     */
+    public static int getScore() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/api/action/score";
+
+        ResponseEntity<Score> response
+                = restTemplate.getForEntity(url  , Score.class);
+
+        Score score = response.getBody();
+        System.out.println(String.valueOf(score.getTotalScore()));
+
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return score.getTotalScore();
+        }
+
+        return -1;
     }
 }
