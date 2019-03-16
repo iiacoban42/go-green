@@ -191,12 +191,12 @@
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="quorn" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <TextField fx:id="veggieBurgerCheese" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="veggieBurgerCheese" prefHeight="7.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <TextField fx:id="quorn" prefHeight="7.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <padding>
             <Insets top="5.0" />
          </padding>
