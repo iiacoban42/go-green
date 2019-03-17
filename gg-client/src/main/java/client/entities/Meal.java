@@ -1,7 +1,5 @@
 package client.entities;
 
-import java.util.Objects;
-
 public class Meal {
 
     private String product;
