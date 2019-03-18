@@ -25,43 +25,33 @@ public class AuthenticationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-//    @BeforeClass
-//    public static void createTestUser() {
-//        System.out.println("running createTestUser");
-//        if (UserManager.getUser("Test") != null) {
-//            if (!UserManager.getUser("Test").getHashPassword().equals("pass")) {
-//                UserManager.changePassword("Test", "pass");
-//            }
-//        } else {
-//            UserManager.addUser("Test", "pass", "email");
-//        }
-//    }
+    @BeforeClass
+    public static void createTestUser() {
+        System.out.println("running createTestUser");
+        if (UserManager.getUser("Test") != null) {
+            if (!UserManager.getUser("Test").getHashPassword().equals("pass")) {
+                UserManager.changePassword("Test", "pass");
+            }
+        } else {
+            UserManager.addUser("Test", "pass", "email");
+        }
+    }
 
     @Test
     public void loginTest_Success() throws Exception {
-//        if (UserManager.getUser("Test") == null) {
-//            UserManager.addUser("Test", "pass", "email");
-//
-//        } else {
-//            if (!UserManager.getUser("Test").getHashPassword().equals("pass")) {
-//                UserManager.changePassword("Test", "pass");
-//            }
-//        }
+        createTestUser();
         LoginCredentials credentials = new LoginCredentials("Test", "pass");
 
         mvc.perform(post("/authentication/login")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isOk());
-
-//        if (UserManager.getUser("Test") != null) {
-//            UserManager.deleteUser("Test");
-//        }
+        deleteTestUser();
     }
 
     @Test
     public void wrongUserName() throws Exception {
-        //createTestUser();
+        createTestUser();
         LoginCredentials credentials = new LoginCredentials("user", "pass");
 
         mvc.perform(post("/authentication/login")
@@ -69,12 +59,12 @@ public class AuthenticationTest {
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isUnauthorized());
 
-        //deleteTestUser();
+        deleteTestUser();
     }
 
     @Test
     public void wrongPassWord() throws Exception {
-//        createTestUser();
+        createTestUser();
         LoginCredentials credentials = new LoginCredentials("Test", "1");
 
         mvc.perform(post("/authentication/login")
@@ -82,13 +72,16 @@ public class AuthenticationTest {
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isUnauthorized());
 
-//        deleteTestUser();
+        deleteTestUser();
     }
 
     @Test
     public void registerTest_Success() throws Exception{
-        assertNull(UserManager.getUser("Test1"));
         RegisterCredentials credentials = new RegisterCredentials("mail", "Test1", "pass");
+
+        if (UserManager.getUser("Test1") != null) {
+            UserManager.deleteUser("Test1");
+        }
 
         mvc.perform(post("/authentication/register")
                 .contentType(APPLICATION_JSON_UTF8)
@@ -101,19 +94,21 @@ public class AuthenticationTest {
 
     @Test
     public void registerTest_Fail() throws Exception{
+        createTestUser();
         RegisterCredentials credentials = new RegisterCredentials("mail", "Test", "pass");
 
         mvc.perform(post("/authentication/register")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isUnauthorized());
+        deleteTestUser();
     }
 
-//    @AfterClass
-//    public static void deleteTestUser() {
-//        System.out.println("running delete test user");
-//        if (UserManager.getUser("Test") != null) {
-//            UserManager.deleteUser("Test");
-//        }
-//    }
+    @AfterClass
+    public static void deleteTestUser() {
+        System.out.println("running delete test user");
+        if (UserManager.getUser("Test") != null) {
+            UserManager.deleteUser("Test");
+        }
+    }
 }
