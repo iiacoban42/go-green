@@ -1,5 +1,7 @@
 package server.database;
 
+import org.hibernate.HibernateError;
+import org.hibernate.HibernateException;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -79,7 +81,10 @@ public class UserManagerTest {
         assertEquals(500, UserManager.getUser("cpt1").gettotalScore());
     }
 
-
+    @Test(expected = HibernateException.class)
+    public void addPresentUser() {
+        UserManager.addUser("cpt1", "1", "1@1.1");
+    }
 
 
 }

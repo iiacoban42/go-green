@@ -11,7 +11,7 @@ public class UserManager {
     /**
      * Method to create a User in the database.
      * @return the user that has been created,
-     *      null if add failed
+     *      or if there was already a user, the current one
      */
     public static User addUser(
             final String username,
