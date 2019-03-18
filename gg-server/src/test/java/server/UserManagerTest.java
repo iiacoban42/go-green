@@ -3,10 +3,7 @@ package server;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-
 import database.manager.UserManager;
-import database.manager.User;
-
 
 public class UserManagerTest {
 
@@ -20,7 +17,7 @@ public class UserManagerTest {
 
     @Test
     public void getNonexistentUserTest(){
-        User user = UserManager.getUser("N");
+        database.entity.User user = UserManager.getUser("N");
         assertNull(null, user);
     }
 }

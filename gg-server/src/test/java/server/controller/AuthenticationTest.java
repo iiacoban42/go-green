@@ -25,20 +25,28 @@ public class AuthenticationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @BeforeClass
-    public void createTestUser() {
-        if (UserManager.getUser("Test") != null) {
-            if (!UserManager.getUser("Test").getHashPassword().equals("pass")) {
-                UserManager.changePassword("Test", "pass");
-            }
-
-            UserManager.addUser("Test", "pass", "email");
-        }
-    }
+//    @BeforeClass
+//    public static void createTestUser() {
+//        System.out.println("running createTestUser");
+//        if (UserManager.getUser("Test") != null) {
+//            if (!UserManager.getUser("Test").getHashPassword().equals("pass")) {
+//                UserManager.changePassword("Test", "pass");
+//            }
+//        } else {
+//            UserManager.addUser("Test", "pass", "email");
+//        }
+//    }
 
     @Test
     public void loginTest_Success() throws Exception {
-        createTestUser();
+//        if (UserManager.getUser("Test") == null) {
+//            UserManager.addUser("Test", "pass", "email");
+//
+//        } else {
+//            if (!UserManager.getUser("Test").getHashPassword().equals("pass")) {
+//                UserManager.changePassword("Test", "pass");
+//            }
+//        }
         LoginCredentials credentials = new LoginCredentials("Test", "pass");
 
         mvc.perform(post("/authentication/login")
@@ -46,12 +54,14 @@ public class AuthenticationTest {
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isOk());
 
-        deleteTestUser();
+//        if (UserManager.getUser("Test") != null) {
+//            UserManager.deleteUser("Test");
+//        }
     }
 
     @Test
     public void wrongUserName() throws Exception {
-        createTestUser();
+        //createTestUser();
         LoginCredentials credentials = new LoginCredentials("user", "pass");
 
         mvc.perform(post("/authentication/login")
@@ -59,12 +69,12 @@ public class AuthenticationTest {
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isUnauthorized());
 
-        deleteTestUser();
+        //deleteTestUser();
     }
 
     @Test
     public void wrongPassWord() throws Exception {
-        createTestUser();
+//        createTestUser();
         LoginCredentials credentials = new LoginCredentials("Test", "1");
 
         mvc.perform(post("/authentication/login")
@@ -72,7 +82,7 @@ public class AuthenticationTest {
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isUnauthorized());
 
-        deleteTestUser();
+//        deleteTestUser();
     }
 
     @Test
@@ -99,10 +109,11 @@ public class AuthenticationTest {
         ).andExpect(status().isUnauthorized());
     }
 
-    @AfterClass
-    public void deleteTestUser() {
-        if (UserManager.getUser("Test") != null) {
-            UserManager.deleteUser("Test");
-        }
-    }
+//    @AfterClass
+//    public static void deleteTestUser() {
+//        System.out.println("running delete test user");
+//        if (UserManager.getUser("Test") != null) {
+//            UserManager.deleteUser("Test");
+//        }
+//    }
 }

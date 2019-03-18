@@ -1,13 +1,6 @@
 package server.controller;
 
-<<<<<<< HEAD
 import database.manager.UserManager;
-=======
-import database.entity.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
->>>>>>> 28709164224bdc78e08765cee484b62e72ec0d81
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,14 +23,14 @@ public class Authentication {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginCredentials credentials) {
         ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
-        database.manager.User user = database.manager.UserManager.getUser(credentials.getUsername());
+        /*database.entity.User user = database.manager.UserManager.getUser(credentials.getUsername());
         if ( user != null) {
             if (user.getHashPassword().equals(credentials.getPassword())) {
                 response = new ResponseEntity(HttpStatus.OK);
-                String createjwt = CreateJwt.createJwt(credentials.getUsername());
-                user.setToken(createjwt);
+                String createJwt = CreateJwt.createJwt(credentials.getUsername());
+                user.setToken(createJwt);
             }
-        }
+        }*/
 
         return response;
     }
@@ -56,20 +49,20 @@ public class Authentication {
             UserManager.addUser(credentials.getUsername(),
                     credentials.getPassword(), credentials.getEmail());
             response = new ResponseEntity(HttpStatus.OK);
-            String createjwt = CreateJwt.createJwt(credentials.getUsername());
-            UserManager.getUser(credentials.getUsername()).setToken(createjwt);
+            String createJwt = CreateJwt.createJwt(credentials.getUsername());
+            UserManager.getUser(credentials.getUsername()).setToken(createJwt);
         }
 
         return response;
     }
 
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll();
-    }
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeRequests()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .permitAll();
+//    }
 }
