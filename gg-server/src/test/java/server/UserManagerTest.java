@@ -15,6 +15,7 @@ public class UserManagerTest {
         UserManager.addUser("1", "1", "1@1.1");
         assertEquals("1", UserManager.getUser("1").getUsername());
         UserManager.deleteUser("1");
+        assertNull(UserManager.getUser("1"));
     }
 
     @Test

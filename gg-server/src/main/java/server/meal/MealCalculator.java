@@ -5,30 +5,30 @@ import server.entity.MealList;
 public class MealCalculator {
 
     public static final Meal[] Meal_Menu = {
-        new Meal("beans", 0.001, 0, true),
-        new Meal("VeggieBurger", 0.0026, 0, true),
-        new Meal("Insects", 0.0027, 0, false),
-        new Meal("Quorn", 0.0027, 0, true),
-        new Meal("Nuts", 0.0032, 0, true),
-        new Meal("Tofu", 0.0035, 0, true),
-        new Meal("Egg", 0.216, 0, true),
-        new Meal("BeefCroquette", 0.0052, 0, false),
-        new Meal("VeggieBurgerCheese", 0.0065, 0, true),
-        new Meal("Chicken", 0.0068, 0, false),
-        new Meal("Pork", 0.0070, 0, false),
-        new Meal("Cheese", 0.0100, 0, true),
-        new Meal("MixedMincedMeat", 0.0133, 0, false),
-        new Meal("Hamburger", 0.0168, 0, false),
-        new Meal("MincedMeat", 0.0194, 0, false),
-        new Meal("Steak", 0.0340, 0, false),
-        new Meal("Lamb", 0.0510, 0, false)
+        new Meal("beans", 1, 0, true),
+        new Meal("VeggieBurger", 2.6, 0, true),
+        new Meal("Insects", 2.7, 0, false),
+        new Meal("Quorn", 2.7, 0, true),
+        new Meal("Nuts", 3.2, 0, true),
+        new Meal("Tofu", 3.5, 0, true),
+        new Meal("Egg", 21.6, 0, true),
+        new Meal("BeefCroquette", 5.2, 0, false),
+        new Meal("VeggieBurgerCheese", 6.5, 0, true),
+        new Meal("Chicken", 6.8, 0, false),
+        new Meal("Pork", 7.0, 0, false),
+        new Meal("Cheese", 10.0, 0, true),
+        new Meal("MixedMincedMeat", 13.3, 0, false),
+        new Meal("Hamburger", 16.8, 0, false),
+        new Meal("MincedMeat", 19.4, 0, false),
+        new Meal("Steak", 34.0, 0, false),
+        new Meal("Lamb", 51.0, 0, false)
     };
 
     /**
      * Returns total amount of average co2 produced for making the Meals.
      *
      * @param mealList for which to calculate it
-     * @return double
+     * @return double of co2 in grams
      */
     public static double getAmountCo2(MealList mealList) {
         double co2 = 0;
@@ -75,7 +75,7 @@ public class MealCalculator {
      * http://library.wur.nl/WebQuery/wurpubs/fulltext/464580
      * Calculates the amount/CO2 produced by the average dutch meal.
      *
-     * @return CO2
+     * @return CO2 in grams
      */
     public static double dutchAverageMeal() {
         double avgBeans = 4;
@@ -95,9 +95,9 @@ public class MealCalculator {
                 + 1.1 + 1.2 + 1.2 + 1.2 + 1.2 + 1.2) * 1000 / (13 * 365);
 
 
-        return 0.001 * avgBeans + 0.0032 * avgNuts + 0.0036 * avgEgg
-                + 0.0068 * avgChicken + 0.007 * avgPork + 0.01 * avgCheese
-                + 0.0168 * avgCow + 0.051 * avgLamb;
+        return 1 * avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
+                + 6.8 * avgChicken + 7 * avgPork + 10 * avgCheese
+                + 16.8 * avgCow + 51 * avgLamb;
     }
 
 

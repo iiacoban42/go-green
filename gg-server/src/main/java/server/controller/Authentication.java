@@ -1,19 +1,15 @@
 package server.controller;
 
-import database.manager.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import database.manager.UserManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import server.entity.LoginCredentials;
 import server.entity.RegisterCredentials;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/authentication")
@@ -27,11 +23,12 @@ public class Authentication {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginCredentials credentials) {
         ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
-
-        if (database.manager.getUser(credentials.getUsername()) != null) {
-            if (database.manager.getUser(credentials.getUsername()).getHashPassword().equals(credentials.getPassword())) {
+        database.manager.User user = database.manager.UserManager.getUser(credentials.getUsername());
+        if ( user != null) {
+            if (user.getHashPassword().equals(credentials.getPassword())) {
                 response = new ResponseEntity(HttpStatus.OK);
-                CreateJWT.createJWT(credentials.getUsername());
+                String createjwt = CreateJwt.createJwt(credentials.getUsername());
+                user.setToken(createjwt);
             }
         }
 
@@ -44,27 +41,28 @@ public class Authentication {
      * @return boolean true or false
      */
     @PostMapping("/register")
-<<<<<<< HEAD
     public ResponseEntity register(@RequestBody RegisterCredentials credentials) {
-=======
-        public ResponseEntity register(@RequestBody RegisterCredentials credentials) {
-        SessionFactory sessionFactory;
-        sessionFactory = new Configuration()
-                .configure() // configures settings from hibernate.cfg.xml
-                .buildSessionFactory();
+        ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
 
-        Session session = sessionFactory.openSession();
-
-
-        List<User> users = session.createQuery("from User").list();
-        RegisterCredentials register = new RegisterCredentials("mail", "user", "pass");
->>>>>>> c443bf291d154821c75d37c0fc2c99722719c0c7
-        ResponseEntity response = new ResponseEntity(HttpStatus.OK);
-
-        if (credentials.getUsername().equals("admin")) {
-            response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        if (database.manager.UserManager
+                .getUser(credentials.getUsername()) == null) {
+            UserManager.addUser(credentials.getUsername(),
+                    credentials.getPassword(), credentials.getEmail());
+            response = new ResponseEntity(HttpStatus.OK);
+            String createjwt = CreateJwt.createJwt(credentials.getUsername());
+            UserManager.getUser(credentials.getUsername()).setToken(createjwt);
         }
 
         return response;
+    }
+
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll();
     }
 }

@@ -8,7 +8,7 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class CreateJWT {
+public class CreateJwt {
     private static String signingKey = "secret key";
 
     /**
@@ -16,7 +16,7 @@ public class CreateJWT {
      * @param username username and unique id of the user
      * @return the token
      */
-    public static String createJWT(String username) {
+    public static String createJwt(String username) {
         if (username == null) {
             return null;
         }
@@ -36,9 +36,15 @@ public class CreateJWT {
         builder.setExpiration(createExpirationDate(nowMillis));
         builder.signWith(signatureAlgorithm, base64Key);
 
+        System.out.println(builder.compact());
         return builder.compact();
     }
 
+    /**
+     * Create new expiration date for token; it expires after 30 minutes.
+     * @param nowMillis Current time
+     * @return Expiration date for token or null, if input is incorrect
+     */
     public static Date createExpirationDate(long nowMillis) {
         try {
             if (nowMillis <= 0) {
@@ -46,9 +52,9 @@ public class CreateJWT {
 
             }
             long expMillis = TimeUnit.MINUTES.toMillis(30);
-            return new Date(nowMillis+expMillis);
+            return new Date(nowMillis + expMillis);
 
-        } catch(IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             System.out.print("Time should be bigger than 0");
             return null;
         }

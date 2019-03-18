@@ -11,7 +11,7 @@ import java.util.List;
 public class ActionManager {
 
     /**
-     * Cretes a new action and adds it to the database
+     * Cretes a new action and adds it to the database.
      * @param actionName
      * @param user
      * @param score

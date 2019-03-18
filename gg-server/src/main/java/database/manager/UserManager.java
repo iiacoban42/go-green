@@ -72,7 +72,7 @@ public class UserManager {
         try {
             tx = session.beginTransaction();
             User user = (User)session.get(User.class, username);
-            session.delete(username);
+            session.delete(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -115,7 +115,7 @@ public class UserManager {
      * @param hashPassword String representing hashed password to be set
      * @return User with updated hashPassword
      */
-    public static User changePassword(String username, String hashPassword){
+    public static User changePassword(String username, String hashPassword) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         User user = null;

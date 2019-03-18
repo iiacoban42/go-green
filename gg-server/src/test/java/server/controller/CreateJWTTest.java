@@ -1,7 +1,7 @@
 package server.controller;
 
 import org.junit.Test;
-import server.controller.CreateJWT;
+import server.controller.CreateJwt;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -14,7 +14,7 @@ public class CreateJWTTest {
     @Test
     public void createExpirationDateTest() {
         System.out.println(System.currentTimeMillis());
-        Date expMillis = CreateJWT.createExpirationDate(1551695067923L);
+        Date expMillis = CreateJwt.createExpirationDate(1551695067923L);
         Date testDate = new Date(1551696867923L);
         assertEquals(0, testDate.compareTo(expMillis));
 
@@ -22,8 +22,8 @@ public class CreateJWTTest {
 
     @Test
     public void createJWT() {
-        String jwtToken = CreateJWT.createJWT("Paula");
-
+        String jwtToken = CreateJwt.createJwt("Paula");
+        System.out.println(jwtToken);
         System.out.println("------------ Decode JWT ------------");
         String[] split_string = jwtToken.split("\\.");
         String base64EncodedHeader = split_string[0];
@@ -57,6 +57,6 @@ public class CreateJWTTest {
 
     @Test
     public void usernameNull() {
-        assertNull(CreateJWT.createJWT(null));
+        assertNull(CreateJwt.createJwt(null));
     }
 }
