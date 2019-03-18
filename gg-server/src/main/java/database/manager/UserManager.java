@@ -135,5 +135,52 @@ public class UserManager {
         return user;
     }
 
+    /**
+     * Method to change users token.
+     * @param username a Sting representing the users username/primary key
+     * @param token a String representing the users unique token
+     */
+    public static void setToken(String username, String token) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            User user = (User)session.get(User.class, username);
+            user.setToken(token);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    /**
+     * Method to add score to the user in the database.
+     * @param username primary key, String represents users username
+     * @param score an integer representing the score to be added to the total score
+     */
+    public static void addScore(String username, int score) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.get(User.class, username).addScore(score);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
 }
 

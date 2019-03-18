@@ -3,7 +3,6 @@ package server.meal;
 public class Meal {
     private final String product;
     private final double co2;
-    private int quantity;
     private final boolean vegetarian;
 
     /**
@@ -11,13 +10,11 @@ public class Meal {
      *
      * @param product    contained in the meal.
      * @param co2        of the product/g.
-     * @param quantity   of the product in g
      * @param vegetarian product or not.
      */
-    public Meal(String product, double co2, int quantity, boolean vegetarian) {
+    public Meal(String product, double co2, boolean vegetarian) {
         this.product = product;
         this.co2 = co2;
-        this.quantity = quantity;
         this.vegetarian = vegetarian;
     }
 
@@ -25,16 +22,8 @@ public class Meal {
         return product;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public double getCo2() {
         return co2;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 
     public boolean isVegetarian() {

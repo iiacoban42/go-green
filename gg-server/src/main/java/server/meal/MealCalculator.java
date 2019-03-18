@@ -5,23 +5,23 @@ import server.entity.MealList;
 public class MealCalculator {
 
     public static final Meal[] Meal_Menu = {
-        new Meal("beans", 0.001, 0, true),
-        new Meal("VeggieBurger", 0.0026, 0, true),
-        new Meal("Insects", 0.0027, 0, false),
-        new Meal("Quorn", 0.0027, 0, true),
-        new Meal("Nuts", 0.0032, 0, true),
-        new Meal("Tofu", 0.0035, 0, true),
-        new Meal("Egg", 0.216, 0, true),
-        new Meal("BeefCroquette", 0.0052, 0, false),
-        new Meal("VeggieBurgerCheese", 0.0065, 0, true),
-        new Meal("Chicken", 0.0068, 0, false),
-        new Meal("Pork", 0.0070, 0, false),
-        new Meal("Cheese", 0.0100, 0, true),
-        new Meal("MixedMincedMeat", 0.0133, 0, false),
-        new Meal("Hamburger", 0.0168, 0, false),
-        new Meal("MincedMeat", 0.0194, 0, false),
-        new Meal("Steak", 0.0340, 0, false),
-        new Meal("Lamb", 0.0510, 0, false)
+        new Meal("beans", 0.001, true),
+        new Meal("veggieBurger", 0.0026, true),
+        new Meal("veggieBurgerCheese", 0.0065, true),
+        new Meal("quorn", 0.0027, true),
+        new Meal("nuts", 0.0032, true),
+        new Meal("tofu", 0.0035, true),
+        new Meal("egg", 0.216, true),
+        new Meal("beefCroquette", 0.0052, false),
+        new Meal("chicken", 0.0068, false),
+        new Meal("pork", 0.0070, false),
+        new Meal("steak", 0.0340, false),
+        new Meal("lamb", 0.0510, false),
+        new Meal("hamburger", 0.0168, false),
+        new Meal("mincedMeat", 0.0194, false),
+        new Meal("mixedMincedMeat", 0.0133, false),
+        new Meal("insects", 0.0027, false),
+        new Meal("cheese", 0.0100, true)
     };
 
     /**

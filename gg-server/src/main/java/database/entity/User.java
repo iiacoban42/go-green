@@ -47,6 +47,12 @@ public class User {
     private String friend;
 
     /**
+     * a String representing the token.
+     */
+    @Column(name = "token")
+    private String token;
+
+    /**
      * creates a user with a totalScore of 0.
      */
     public User() {
@@ -155,5 +161,26 @@ public class User {
     public void setHashPassword(final String hashPassword) {
         this.hashPassword = hashPassword;
     }
+
+    /**
+     * returns token.
+     * @return a String representing the token of the user.
+     */
+    public String getToken() {
+        return token;
+    }
+
+    /**
+     * sets token.
+     * @param token a String representing the token of the latest session
+     */
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void addScore(int score) {
+        this.totalScore += score;
+    }
+
 
 }
