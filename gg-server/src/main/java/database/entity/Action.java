@@ -1,8 +1,10 @@
-package database.manager;
+package database.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -24,8 +26,9 @@ public class Action {
      * increments by one for each action performed
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     /**
      * A Date representing the time the action was performed.
@@ -73,7 +76,7 @@ public class Action {
         this.dateTime = new Date();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

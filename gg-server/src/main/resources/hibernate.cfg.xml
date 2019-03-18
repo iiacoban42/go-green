@@ -8,16 +8,15 @@
         <property name="hibernate.connection.username">oop</property>
         <property name="hibernate.connection.password">group96</property>
         <property name="hibernate.connection.url">jdbc:mysql://84.107.51.29:3306/gogreen</property>
+
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
-        <property name="show_sql">false</property>
-        <property name="format_sql">false</property>
-        <property name="connection.pool_size">1</property>
+        <!-- <property name="connection.pool_size">1</property> -->
 
 
-        <mapping class="database.manager.User"></mapping>
-        <mapping class="database.manager.Action"></mapping>
+        <mapping class="database.entity.User"></mapping>
+        <mapping class="database.entity.Action"></mapping>
 
     </session-factory>
 </hibernate-configuration>

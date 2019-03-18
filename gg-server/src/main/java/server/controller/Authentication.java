@@ -1,6 +1,13 @@
 package server.controller;
 
+<<<<<<< HEAD
 import database.manager.UserManager;
+=======
+import database.entity.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+>>>>>>> 28709164224bdc78e08765cee484b62e72ec0d81
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
