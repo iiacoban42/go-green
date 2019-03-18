@@ -40,12 +40,10 @@ public class UserManagerTest {
     @Test
     public void addUserTest_Fail() {
         try {
-            UserManager.addUser("test", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "1@1.1");
+            UserManager.addUser("cpt1", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "1@1.1");
         } catch (PersistenceException e) {
             assertEquals(e.getMessage(), "org.hibernate.exception.DataException: could not execute statement");
         }
-
-        assertNull(UserManager.getUser("test"));
     }
 
     @Test
