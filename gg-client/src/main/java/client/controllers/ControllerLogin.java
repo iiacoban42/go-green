@@ -13,16 +13,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 
 @Component
-public class ControllerLogin  {
+public class ControllerLogin extends ControllerGeneral  {
 
     @FXML
     Text errorCredentials;
@@ -86,16 +84,7 @@ public class ControllerLogin  {
      * @param event created by button interaction
      */
     public void registerButtonPressed(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/register.fxml"));
-        Parent root1 = fxmlLoader.load();
-
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle("GoGreen");
-        stage.setScene(new Scene(root1));
-        stage.show();
-        stage.setResizable(false);
+      changeScene("register.fxml");
     }
 
     /**

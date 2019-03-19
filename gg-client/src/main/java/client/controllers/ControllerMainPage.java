@@ -12,7 +12,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class ControllerMainPage {
+public class ControllerMainPage extends ControllerGeneral {
 
     @FXML
     Button logoutButton;
@@ -54,15 +54,7 @@ public class ControllerMainPage {
      * @throws IOException input output exception is thrown.
      */
     public void mealButtonPressed(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/veggie_meal.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle("GoGreen");
-        stage.setScene(new Scene(root));
-        stage.show();
-        stage.setResizable(false);
+        changeScene("veggie_meal.fxml");
     }
 
     /**
@@ -73,15 +65,7 @@ public class ControllerMainPage {
      */
     @FXML
     public void savedcoButtonPressed(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/savedCarbon.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle("GoGreen");
-        stage.setScene(new Scene(root));
-        stage.show();
-        stage.setResizable(false);
+     changeScene("savedCarbon.fxml");
 
     }
 
@@ -93,16 +77,18 @@ public class ControllerMainPage {
      */
    @FXML
    public void bikeButtonPressed(ActionEvent event) throws IOException {
-       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/bike_feature.fxml"));
-       Parent root = fxmlLoader.load();
-       Stage stage = new Stage();
-       stage.initModality(Modality.APPLICATION_MODAL);
-       stage.initStyle(StageStyle.DECORATED);
-       stage.setTitle("GoGreen");
-       stage.setScene(new Scene(root));
-       stage.show();
-       stage.setResizable(false);
 
+        changeScene("bike_feature.fxml");
    }
+
+   @FXML
+   public void publicTransportationPressed( ActionEvent event) throws IOException {
+
+       changeScene("publicTransportation.fxml");
+   }
+
+
+
+
 
 }

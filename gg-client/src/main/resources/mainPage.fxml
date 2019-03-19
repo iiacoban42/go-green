@@ -42,7 +42,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button fx:id="transportButton" layoutX="570.0" layoutY="255.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Public Transport" textFill="WHITE">
+            <Button fx:id="transportButton" layoutX="570.0" layoutY="255.0" mnemonicParsing="false" onAction="#publicTransportationPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Public Transport" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
