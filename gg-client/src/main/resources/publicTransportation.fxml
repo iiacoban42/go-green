@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="526.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerPublicTransportation">
+<AnchorPane prefHeight="467.0" prefWidth="501.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerPublicTransportation">
    <children>
-      <GridPane layoutX="117.0" layoutY="101.0" prefHeight="244.0" prefWidth="293.0" style="-fx-background-color: #ffffff;">
+      <GridPane fx:id="grid" layoutX="117.0" layoutY="101.0" prefHeight="244.0" prefWidth="293.0" style="-fx-background-color: #ffffff;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -29,30 +30,35 @@
             <TextField fx:id="bus" GridPane.columnIndex="1" />
             <Label text="Tram" GridPane.rowIndex="1">
                <font>
-                  <Font name="Calibri" size="36.0" />
+                  <Font name="Calibri Light" size="36.0" />
                </font>
             </Label>
             <Label text="Bus">
                <font>
-                  <Font name="Calibri" size="36.0" />
+                  <Font name="Calibri Light" size="36.0" />
                </font>
             </Label>
             <Label text="Scooter" GridPane.rowIndex="3">
                <font>
-                  <Font name="Calibri" size="36.0" />
+                  <Font name="Calibri Light" size="36.0" />
                </font>
             </Label>
             <Label text="Metro" GridPane.rowIndex="2">
                <font>
-                  <Font name="Calibri" size="36.0" />
+                  <Font name="Calibri Light" size="36.0" />
                </font>
             </Label>
          </children>
       </GridPane>
       <Text layoutX="24.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distance ( in kilometers  )  : ">
          <font>
-            <Font name="Calibri" size="36.0" />
+            <Font name="Calibri Light" size="36.0" />
          </font>
       </Text>
+      <Button fx:id="submitButton" layoutX="209.0" layoutY="380.0" mnemonicParsing="false" onAction="#sendPublicTransportationActivities" style="-fx-background-color: #6bb300;" text="SUBMIT" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -3,6 +3,7 @@ package client.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
@@ -23,6 +24,9 @@ public class ControllerPublicTransportation {
 
     @FXML
     private TextField scooter;
+
+    @FXML
+    private Button submitButton;
 
     /**
      * Send public transportation activities.
