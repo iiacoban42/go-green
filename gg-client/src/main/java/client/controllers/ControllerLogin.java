@@ -53,7 +53,7 @@ public class ControllerLogin extends ControllerGeneral  {
         username = usernameTextField.getText();
         password = passwordTextField.getText();
 
-        if (valid(username) && valid(password)) {
+        if (validText(username) && validText(password)) {
             String result = "";
 
             try {
@@ -107,14 +107,6 @@ public class ControllerLogin extends ControllerGeneral  {
         loginButton.fire();
     }
 
-    /**
-     * Checks if input is valid.
-     * @param text with string of textfield
-     * @return true if input string is not empty or null. Otherwise it returns false.
-     */
-    private static boolean valid(String text) {
-        return text != null && !text.isEmpty() && (text.length() <= 20);
-    }
 
 
 }

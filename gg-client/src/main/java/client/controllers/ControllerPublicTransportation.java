@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 
-public class ControllerPublicTransportation {
+public class ControllerPublicTransportation extends ControllerGeneral {
 
     @FXML
     private GridPane grid;
@@ -43,7 +43,7 @@ public class ControllerPublicTransportation {
 
                 if (!kilometers.isEmpty()) {
 
-                    if (valid(kilometers)) {
+                    if (validNumber(kilometers)) {
 
                         double km = Double.parseDouble(kilometers);
                         String publicTransport = node.getId();
@@ -60,22 +60,5 @@ public class ControllerPublicTransportation {
     }
 
 
-
-    /**
-     * Test if given message is valid.
-     *
-     * @param message to check if valid
-     * @return boolean
-     */
-    public boolean valid(String message) {
-
-        try {
-            double number = Double.parseDouble(message);
-            return true;
-        } catch (NumberFormatException e) {
-            System.out.println("Error: " + message + " is NAN");
-            return false;
-        }
-    }
 
 }

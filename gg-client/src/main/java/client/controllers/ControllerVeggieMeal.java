@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ControllerVeggieMeal {
+public class ControllerVeggieMeal extends ControllerGeneral {
 
     @FXML
     private Button submit;
@@ -88,7 +88,7 @@ public class ControllerVeggieMeal {
 
                 if (!quantity.isEmpty()) {
 
-                    if (valid(quantity)) {
+                    if (validNumber(quantity)) {
 
                         int quantityInt = Integer.parseInt(quantity);
                         String ingredient = node.getId();
@@ -114,21 +114,6 @@ public class ControllerVeggieMeal {
     }
 
 
-    /**
-     * Test if given message is valid.
-     *
-     * @param message to check if valid
-     * @return boolean
-     */
-    public boolean valid(String message) {
 
-        try {
-            double number = Double.parseDouble(message);
-            return true;
-        } catch (NumberFormatException e) {
-            System.out.println("Error: " + message + " is NAN");
-            return false;
-        }
-    }
 
 }

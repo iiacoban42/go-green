@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 
-public class ControllerBike {
+public class ControllerBike extends ControllerGeneral{
 
     @FXML
     TextField distanceTextField;
@@ -18,8 +18,11 @@ public class ControllerBike {
     public void distanceEntered(ActionEvent event) {
 
         String distance = distanceTextField.getText();
-        System.out.println(distance);
+        if (validNumber(distance)) {
 
+            System.out.println(distance);
+
+        }
     }
 
 }

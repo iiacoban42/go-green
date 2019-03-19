@@ -29,4 +29,32 @@ public class ControllerGeneral {
         stage.setResizable(false);
 
     }
+
+    /**
+     * Test if given message is valid.
+     *
+     * @param message to check if valid number
+     * @return boolean
+     */
+    public boolean validNumber(String message) {
+
+        try {
+            double number = Double.parseDouble(message);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + message + " is NAN");
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input is valid.
+     * @param text with string of textfield
+     * @return true if the input is not null and not empty . Otherwise it returns false.
+     */
+
+    public static boolean validText(String text) {
+        return text != null && !text.isEmpty();
+    }
+
 }
