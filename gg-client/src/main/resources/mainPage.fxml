@@ -92,7 +92,7 @@
                   <Image url="@images/bike.png" />
                </image>
             </ImageView>
-            <Button fx:id="bikeButton" layoutX="575.0" layoutY="477.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
+            <Button fx:id="bikeButton" layoutX="575.0" layoutY="477.0" mnemonicParsing="false" onAction="#bikeButtonPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>

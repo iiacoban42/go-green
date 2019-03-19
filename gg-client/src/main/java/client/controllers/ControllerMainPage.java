@@ -66,7 +66,7 @@ public class ControllerMainPage {
     }
 
     /**
-     * When Co2 saved button is pressed a new window appeaars with the Co2 saved by the user.
+     * When Co2 saved button is pressed a new window appears with the Co2 saved by the user.
      *
      * @param event savedCo2 button pressed.
      * @throws IOException if something goes wrong.
@@ -84,5 +84,25 @@ public class ControllerMainPage {
         stage.setResizable(false);
 
     }
+
+    /**
+     * When bike button is pressed a new window appears.
+     *
+     * @param event bike button pressed.
+     * @throws IOException if something goes wrong.
+     */
+   @FXML
+   public void bikeButtonPressed(ActionEvent event) throws IOException {
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/bike_feature.fxml"));
+       Parent root = fxmlLoader.load();
+       Stage stage = new Stage();
+       stage.initModality(Modality.APPLICATION_MODAL);
+       stage.initStyle(StageStyle.DECORATED);
+       stage.setTitle("GoGreen");
+       stage.setScene(new Scene(root));
+       stage.show();
+       stage.setResizable(false);
+
+   }
 
 }
