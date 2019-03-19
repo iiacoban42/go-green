@@ -57,6 +57,7 @@ public class ControllerRegister {
     public void usernameEntered(ActionEvent event) {
         username = usernameRegister.getText();
         System.out.println(username);
+        passwordRegister.requestFocus();
     }
 
     /**
@@ -66,6 +67,7 @@ public class ControllerRegister {
     public void emailEntered(ActionEvent event) {
         email = emailRegister.getText();
         System.out.println(email);
+        submitButton.requestFocus();
 
     }
 
@@ -76,6 +78,7 @@ public class ControllerRegister {
     public void passwordEntered(ActionEvent event) {
         password = passwordRegister.getText();
         System.out.println(password);
+        emailRegister.requestFocus();
     }
 
     /**
