@@ -2,7 +2,9 @@ package client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class ControllerBike extends ControllerGeneral{
@@ -23,6 +25,9 @@ public class ControllerBike extends ControllerGeneral{
             System.out.println(distance);
 
         }
+
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
     }
 
 }

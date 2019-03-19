@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 
 public class ControllerPublicTransportation extends ControllerGeneral {
@@ -27,6 +28,36 @@ public class ControllerPublicTransportation extends ControllerGeneral {
 
     @FXML
     private Button submitButton;
+
+    /**
+     * Move to next TextField.
+     * @param event text field fired.
+     */
+    @FXML
+    public  void textFieldActive(ActionEvent event) {
+
+        boolean nextFound = false;
+        TextField current = (TextField) event.getSource();
+
+        for (Node node : grid.getChildren()) {
+
+            if (nextFound == true && node instanceof TextField) {
+
+                TextField next = (TextField) node;
+                next.requestFocus();
+                break;
+
+            }
+
+            if (node instanceof TextField && node.equals(current)) {
+
+                nextFound = true;
+
+            }
+
+            submitButton.requestFocus();
+        }
+    }
 
     /**
      * Send public transportation activities.
@@ -57,6 +88,9 @@ public class ControllerPublicTransportation extends ControllerGeneral {
                 }
             }
         }
+
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
     }
 
 

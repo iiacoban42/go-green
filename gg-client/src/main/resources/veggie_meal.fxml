@@ -186,87 +186,87 @@
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="veggieBurger" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="beans" onAction="#textFieldActive" GridPane.columnIndex="1">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="veggieBurgerCheese" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <TextField fx:id="veggieBurger" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="quorn" prefHeight="7.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <TextField fx:id="veggieBurgerCheese" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="nuts" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <TextField fx:id="quorn" onAction="#textFieldActive" prefHeight="7.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="tofu" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <TextField fx:id="nuts" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="egg" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <TextField fx:id="tofu" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="beefCroquette" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <TextField fx:id="egg" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="chicken" GridPane.columnIndex="1" GridPane.rowIndex="8">
+      <TextField fx:id="beefCroquette" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="pork" GridPane.columnIndex="1" GridPane.rowIndex="9">
+      <TextField fx:id="chicken" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="8">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="steak" GridPane.columnIndex="1" GridPane.rowIndex="10">
+      <TextField fx:id="pork" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="9">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="lamb" GridPane.columnIndex="1" GridPane.rowIndex="11">
+      <TextField fx:id="steak" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="10">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="hamburger" GridPane.columnIndex="1" GridPane.rowIndex="12">
+      <TextField fx:id="lamb" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="11">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="mincedMeat" GridPane.columnIndex="1" GridPane.rowIndex="13">
+      <TextField fx:id="hamburger" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="12">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="mixedMincedMeat" GridPane.columnIndex="1" GridPane.rowIndex="14">
+      <TextField fx:id="mincedMeat" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="13">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="insects" GridPane.columnIndex="1" GridPane.rowIndex="15">
+      <TextField fx:id="mixedMincedMeat" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="14">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="cheese" GridPane.columnIndex="1" GridPane.rowIndex="16">
+      <TextField fx:id="insects" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="15">
          <padding>
             <Insets top="5.0" />
          </padding>
       </TextField>
-      <TextField fx:id="beans" GridPane.columnIndex="1">
+      <TextField fx:id="cheese" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="16">
          <padding>
             <Insets top="5.0" />
          </padding>
