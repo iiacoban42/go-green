@@ -96,7 +96,7 @@ public class ControllerVeggieMeal extends ControllerGeneral {
 
             if (node instanceof TextField && node.equals(current) ) {
 
-                 nextFound = true;
+                nextFound = true;
 
             }
 
@@ -105,6 +105,7 @@ public class ControllerVeggieMeal extends ControllerGeneral {
 
 
     }
+
     @FXML
     void sendVeggieMeal(ActionEvent event) {
 

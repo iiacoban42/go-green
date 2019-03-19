@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-public class ControllerBike extends ControllerGeneral{
+public class ControllerBike extends ControllerGeneral {
 
     @FXML
     TextField distanceTextField;

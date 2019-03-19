@@ -2,15 +2,10 @@ package client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
+
 
 public class ControllerMainPage extends ControllerGeneral {
 
@@ -65,27 +60,37 @@ public class ControllerMainPage extends ControllerGeneral {
      */
     @FXML
     public void savedcoButtonPressed(ActionEvent event) throws IOException {
-     changeScene("savedCarbon.fxml");
+        changeScene("savedCarbon.fxml");
 
     }
 
     /**
-     * When bike button is pressed a new window appears.
-     *
-     * @param event bike button pressed.
-     * @throws IOException if something goes wrong.
-     */
-   @FXML
-   public void bikeButtonPressed(ActionEvent event) throws IOException {
+    * When bike button is pressed a new window appears.
+    * @param event bike button pressed.
+    * @throws IOException if something goes wrong.
+    */
+
+    @FXML
+    public void bikeButtonPressed(ActionEvent event) throws IOException {
 
         changeScene("bike_feature.fxml");
-   }
 
-   @FXML
-   public void publicTransportationPressed( ActionEvent event) throws IOException {
+    }
 
-       changeScene("publicTransportation.fxml");
-   }
+
+    /**
+    * Change window.
+    * @param event button for public transportation pressed.
+    * @throws IOException if something goes wrong.
+    */
+
+
+    @FXML
+    public void publicTransportationPressed( ActionEvent event) throws IOException {
+
+        changeScene("publicTransportation.fxml");
+
+    }
 
 
 

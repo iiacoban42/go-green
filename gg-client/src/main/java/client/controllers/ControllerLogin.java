@@ -84,7 +84,7 @@ public class ControllerLogin extends ControllerGeneral  {
      * @param event created by button interaction
      */
     public void registerButtonPressed(ActionEvent event) throws Exception {
-      changeScene("register.fxml");
+        changeScene("register.fxml");
     }
 
     /**
@@ -98,9 +98,9 @@ public class ControllerLogin extends ControllerGeneral  {
     }
 
     /**
-     * Takes password from the corresponding TextField.
-     * @param event created by textfield interaction
-     */
+    * Takes password from the corresponding TextField.
+    * @param event created by textfield interaction
+    */
     public void passwordEntered(ActionEvent event) {
         password = passwordTextField.getText();
         System.out.println(password);
