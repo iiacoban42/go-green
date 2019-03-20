@@ -2,7 +2,6 @@ package client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -66,8 +65,7 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     public void savedcoButtonPressed(ActionEvent event) throws IOException {
 
-          changeScene("savedCarbon.fxml", anchorPane);
-
+        changeScene("savedCarbon.fxml", anchorPane);
     }
 
     @FXML

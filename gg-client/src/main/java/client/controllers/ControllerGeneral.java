@@ -34,8 +34,8 @@ public class ControllerGeneral {
     /**
      * Changes the scene.
      * @param fxmlFile fxml file name
-     * @throws IOException if something goes wrong.                .
      * @param anchorPane anchor pane.
+     * @throws IOException if something goes wrong.
      */
     public void changeScene(String fxmlFile , AnchorPane anchorPane) throws IOException {
 

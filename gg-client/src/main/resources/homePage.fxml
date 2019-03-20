@@ -103,7 +103,7 @@
             </Pane>
          </children>
          </AnchorPane>
-      <ListView layoutX="-20.0" prefHeight="510.0" prefWidth="191.0" style="-fx-background-color: #fffffff;" visible="false" />
+      <ListView layoutX="-20.0" prefHeight="510.0" prefWidth="191.0" style="-fx-background-color: #ffffff;" visible="false" />
       <Button fx:id="homePageButton" alignment="BASELINE_LEFT" layoutX="24.0" layoutY="89.0" mnemonicParsing="false" onAction="#homePageButtonPressed" prefHeight="37.0" prefWidth="157.0" style="-fx-background-color: #ffffff;" text="HOME PAGE">
          <font>
             <Font size="16.0" />
