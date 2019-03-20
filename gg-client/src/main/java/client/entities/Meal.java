@@ -1,7 +1,5 @@
 package client.entities;
 
-import java.util.Objects;
-
 public class Meal {
 
     private String product;
@@ -30,15 +28,14 @@ public class Meal {
         if (this == object) {
             return true;
         }
-
-        if (object == null || getClass() != object.getClass()) {
-            return false;
+        if (object instanceof Meal) {
+            Meal meal = (Meal) object;
+            if (meal.quantity == this.quantity && meal.product.equals(this.product)) {
+                return true;
+            }
         }
 
-        Meal meal = (Meal) object;
-
-        return quantity == meal.quantity
-               && Objects.equals(product, meal.product);
+        return false;
     }
 
 
