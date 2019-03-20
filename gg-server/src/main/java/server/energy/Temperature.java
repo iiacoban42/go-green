@@ -5,6 +5,12 @@ public class Temperature {
     private double energy;
     private String system;
 
+    /**
+     * Temperature constructor.
+     * @param surface of the residence
+     * @param energy consumed
+     * @param system of heating
+     */
     public Temperature(double surface, double energy, String system) {
         this.surface = surface;
         this.energy = energy;

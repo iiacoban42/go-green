@@ -12,12 +12,15 @@ public class TemperatureCalculator {
         double averageEnergy = 185; //KWh/m2
         double result = temp.getSurface() * averageEnergy - temp.getEnergy() * 0.29;
         if (result > 0) {
-            if (temp.getSystem().equals("electricity"))
+            if (temp.getSystem().equals("electricity")) {
                 return result * 230;
-            if (temp.getSystem().equals("naturalGas"))
+            }
+            if (temp.getSystem().equals("naturalGas")) {
                 return result * 198;
-            if (temp.getSystem().equals("heatingOil"))
+            }
+            if (temp.getSystem().equals("heatingOil")) {
                 return result * 264;
+            }
 
         }
         return 0;
