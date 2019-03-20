@@ -65,7 +65,7 @@ public class ControllerLogin extends ControllerGeneral  {
             if  (result.equals("200 OK")) {
                 errorCredentials.setVisible(false);
 
-                Parent root2 = FXMLLoader.load(getClass().getResource("/mainPage.fxml"));
+                Parent root2 = FXMLLoader.load(getClass().getResource("/homePage.fxml"));
                 Stage app = (Stage)((Node) event.getSource()).getScene().getWindow();
                 app.setScene(new Scene(root2));
                 app.show();
@@ -84,7 +84,7 @@ public class ControllerLogin extends ControllerGeneral  {
      * @param event created by button interaction
      */
     public void registerButtonPressed(ActionEvent event) throws Exception {
-        changeScene("register.fxml");
+        changeWindow("register.fxml");
     }
 
     /**

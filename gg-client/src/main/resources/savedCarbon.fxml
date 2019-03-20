@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerCo2Saved">
+<AnchorPane fx:id="anchorPane" layoutX="157.0" prefHeight="510.0" prefWidth="609.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerCo2Saved">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
+      <Pane layoutX="-159.0" prefHeight="510.0" prefWidth="766.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="34.0" layoutY="40.0" prefHeight="41.0" prefWidth="284.0" text="You have saved : ">
                <font>
@@ -30,7 +30,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button fx:id="buttonShow" layoutX="450.0" layoutY="321.0" mnemonicParsing="false" onAction="#showButtonPressed" prefHeight="41.0" prefWidth="108.0" style="-fx-background-color: #6bb300;" text="Show" textFill="WHITE">
+            <Button fx:id="buttonShow" layoutX="50.0" layoutY="415.0" mnemonicParsing="false" onAction="#showButtonPressed" prefHeight="41.0" prefWidth="108.0" style="-fx-background-color: #6bb300;" text="Show" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="30.0" />
                </font>

@@ -3,6 +3,7 @@ package client.controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -12,12 +13,12 @@ import java.io.IOException;
 public class ControllerGeneral {
 
     /**
-     * Changes the scene.
+     * Changes the window.
      * @param fxmlFile fxml file name.
      * @throws IOException if something goes wrong.
      */
 
-    public void changeScene( String fxmlFile) throws IOException {
+    public void changeWindow(String fxmlFile) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/" + fxmlFile));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
@@ -27,6 +28,19 @@ public class ControllerGeneral {
         stage.setScene(new Scene(root));
         stage.show();
         stage.setResizable(false);
+
+    }
+
+    /**
+     * Changes the scene.
+     * @param fxmlFile fxml file name
+     * @throws IOException if something goes wrong.                .
+     * @param anchorPane anchor pane.
+     */
+    public void changeScene(String fxmlFile , AnchorPane anchorPane) throws IOException {
+
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/" + fxmlFile ));
+        anchorPane.getChildren().setAll(pane);
 
     }
 
