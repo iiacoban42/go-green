@@ -81,29 +81,13 @@ public class ControllerVeggieMeal extends ControllerGeneral {
     @FXML
     public  void textFieldActive(ActionEvent event) {
 
-        boolean nextFound = false;
+        changeTextField( event , grid );
+
         TextField current = (TextField) event.getSource();
-
-        for (Node node : grid.getChildren()) {
-
-            if (nextFound == true && node instanceof TextField ) {
-
-                TextField next = (TextField) node;
-                next.requestFocus();
-                break;
-
-            }
-
-            if (node instanceof TextField && node.equals(current) ) {
-
-                nextFound = true;
-
-            }
+        if (current.getId().equals("cheese")) {
 
             submit.requestFocus();
         }
-
-
     }
 
     @FXML
