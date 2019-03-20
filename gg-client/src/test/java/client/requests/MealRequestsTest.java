@@ -25,7 +25,6 @@ public class MealRequestsTest {
 
     @Test
     public void getScore_successful(){
-
         int response = MealRequests.getScore();
 
         assertNotEquals(response , -1);
