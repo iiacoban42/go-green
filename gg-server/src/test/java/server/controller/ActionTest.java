@@ -1,6 +1,7 @@
 package server.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import database.entity.User;
 import database.manager.ActionManager;
 import database.manager.UserManager;
 import org.junit.Before;
@@ -11,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import server.entity.Meal;
-import server.entity.MealList;
-import server.entity.Score;
+import server.entity.*;
+import server.meal.MealCalculator;
+import server.transportation.TransportationCalculator;
 
 import java.util.List;
 
@@ -78,10 +79,33 @@ public class ActionTest {
         MealList mealList = new MealList();
         mealList.addMeal(new Meal("VeggieBurger", 200));
 
+        int score = (int) MealCalculator.getAmountCo2(mealList);
+        int oldTotalScore = UserManager.getUser("admin").gettotalScore();
+
         mvc.perform(post("/action/meal")
             .contentType(APPLICATION_JSON_UTF8)
             .content(objectMapper.writeValueAsString(mealList))
         ).andExpect(status().isOk());
+
+        int newTotalScore = UserManager.getUser("admin").gettotalScore();
+        assertEquals(score, newTotalScore - oldTotalScore);
+    }
+
+    @Test
+    public void transportTest() throws Exception {
+        TransportList transportList = new TransportList();
+        transportList.addTransport(new Transport("bus", 100));
+
+        int score = (int)TransportationCalculator.getAmountCo2(transportList);
+        int oldTotalScore = UserManager.getUser("admin").gettotalScore();
+
+        mvc.perform(post("/action/transport")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(transportList))
+        ).andExpect(status().isOk());
+
+        int newTotalScore = UserManager.getUser("admin").gettotalScore();
+        assertEquals(score, newTotalScore - oldTotalScore);
     }
 
     @Test

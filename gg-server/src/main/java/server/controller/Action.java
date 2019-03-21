@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import server.entity.MealList;
 import server.entity.Score;
+import server.entity.TransportList;
 import server.meal.MealCalculator;
+import server.transportation.TransportationCalculator;
 
 import java.util.List;
 
@@ -63,6 +65,22 @@ public class Action {
         // System.out.println("score: " + score);
         UserManager.addScore("admin", score);
         ActionManager.addAction("meal", "admin", score);
+
+        return response;
+    }
+
+    /**
+     * Parse transport user did.
+     * @param transportList to check if valid
+     * @return true or false
+     */
+    @PostMapping("/transport")
+    public ResponseEntity meal(@RequestBody TransportList transportList) {
+        ResponseEntity response = new ResponseEntity(HttpStatus.OK);
+
+        int score = (int) TransportationCalculator.getAmountCo2(transportList);
+        UserManager.addScore("admin", score);
+        ActionManager.addAction("transport", "admin", score);
 
         return response;
     }
