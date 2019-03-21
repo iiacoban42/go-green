@@ -3,11 +3,15 @@ package client.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 
 public class ControllerMainPage extends ControllerGeneral {
+
+    @FXML
+    AnchorPane anchorPane;
 
     @FXML
     Button logoutButton;
@@ -31,7 +35,7 @@ public class ControllerMainPage extends ControllerGeneral {
     Button bikeButton;
 
     @FXML
-    Button leaderboardButton;
+    Button homePageButton;
 
     @FXML
     Button savedcoButton;
@@ -49,7 +53,7 @@ public class ControllerMainPage extends ControllerGeneral {
      * @throws IOException input output exception is thrown.
      */
     public void mealButtonPressed(ActionEvent event) throws IOException {
-        changeScene("veggie_meal.fxml");
+        changeWindow("veggie_meal.fxml");
     }
 
     /**
@@ -60,8 +64,14 @@ public class ControllerMainPage extends ControllerGeneral {
      */
     @FXML
     public void savedcoButtonPressed(ActionEvent event) throws IOException {
-        changeScene("savedCarbon.fxml");
 
+        changeScene("savedCarbon.fxml", anchorPane);
+    }
+
+    @FXML
+    public void homePageButtonPressed(ActionEvent event) throws IOException {
+
+        changeScene("mainMenu.fxml" ,anchorPane);
     }
 
     /**
@@ -73,7 +83,7 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     public void bikeButtonPressed(ActionEvent event) throws IOException {
 
-        changeScene("bike_feature.fxml");
+        changeWindow("bike_feature.fxml");
 
     }
 
@@ -88,7 +98,7 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     public void publicTransportationPressed( ActionEvent event) throws IOException {
 
-        changeScene("publicTransportation.fxml");
+        changeWindow("publicTransportation.fxml");
 
     }
 
