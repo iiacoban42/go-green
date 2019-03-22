@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TemperatureTest {
-    Temperature temp = new Temperature(55, 500, "electricity");
+    private Temperature temp = new Temperature(55, 500, "electricity");
 
     @Test
     public void ConstructorTest() {
@@ -51,6 +51,31 @@ public class TemperatureTest {
     public void toStringTest() {
         String string = "surface: 55.0 energy: 500.0 heating system: electricity" + "\n";
         assertTrue(string.equals(temp.toString()));
+    }
+
+    @Test
+    public void testJsonConverter() {
+        String string = "surface: 55.0 energy: 500.0 heating system: electricity" + "\n";
+
+        String json = "{\n" +
+                "   \"surface\":55,\n" +
+                "   \"energy\":500,\n" +
+                "   \"system\":\"electricity\"\n" +
+                "}";
+        Temperature temp = new Temperature();
+        temp.jsonConverter(json);
+        assertEquals(string, temp.toString());
+    }
+
+    @Test
+    public void throwsException() {
+        try {
+            Temperature temp = new Temperature();
+            temp.jsonConverter("");
+
+        } catch (Exception e) {
+            assertEquals("exception", e.getMessage());
+        }
     }
 
 
