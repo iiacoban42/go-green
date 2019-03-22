@@ -25,19 +25,6 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-    /**
-     * Makes a running session.
-     * @return a running session.
-     */
-    public static Session getHibernateSession() {
-
-        final SessionFactory sf = new Configuration()
-                .configure("hibernate.cfg.xml").buildSessionFactory();
-
-        // factory = new Configuration().configure().buildSessionFactory();
-        final Session session = sf.openSession();
-        return session;
-    }
 
     public static void shutdown() {
         // Close caches and connection pools
