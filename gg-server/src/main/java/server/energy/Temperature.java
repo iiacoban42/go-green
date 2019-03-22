@@ -7,9 +7,10 @@ public class Temperature {
 
     /**
      * Temperature constructor.
+     *
      * @param surface of the residence
-     * @param energy consumed
-     * @param system of heating
+     * @param energy  consumed
+     * @param system  of heating
      */
     public Temperature(double surface, double energy, String system) {
         this.surface = surface;
@@ -39,5 +40,10 @@ public class Temperature {
 
     public void setSystem(String system) {
         this.system = system;
+    }
+
+    public String toString() {
+        return "surface: " + surface + " energy: " + energy + " heating system: " + system + "\n";
+
     }
 }
