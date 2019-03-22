@@ -24,4 +24,6 @@ public class TemperatureCalculator {
         }
         return 0;
     }
+
+
 }
