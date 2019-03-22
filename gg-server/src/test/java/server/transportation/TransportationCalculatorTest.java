@@ -4,6 +4,7 @@ import org.junit.Test;
 import server.entity.Transport;
 import server.entity.TransportList;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static junit.framework.TestCase.assertEquals;

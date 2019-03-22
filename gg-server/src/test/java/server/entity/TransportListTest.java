@@ -8,8 +8,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class TransportListTest {
-    private Transport transport = new Transport("train", 10);
-    private Transport transport2 = new Transport("bus", 5);
+    Transport transport = new Transport("train", 10);
+    Transport transport2 = new Transport("bus", 5);
 
     @Test
     public void testAddTransport() {
