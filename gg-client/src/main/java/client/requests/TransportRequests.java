@@ -2,7 +2,11 @@ package client.requests;
 
 import client.entities.TransportList;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -11,7 +15,7 @@ public class TransportRequests {
 
 
     /**
-     * Sends transport List to server
+     * Sends transport List to server.
      * @param transportList transport List
      * @return server response.
      * @throws IOException if something goes wrong in the communication with the server.

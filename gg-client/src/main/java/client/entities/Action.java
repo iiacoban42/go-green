@@ -9,12 +9,13 @@ public class Action {
 
     /**
      * Constructor.
-     * @param id action id
+     *
+     * @param id         action id
      * @param actionName action type
-     * @param user user
-     * @param score score
+     * @param user       user
+     * @param score      score
      */
-    public Action(long id  , String actionName , String user , int score) {
+    public Action(long id, String actionName, String user, int score) {
 
         this.actionName = actionName;
         this.id = id;
@@ -25,7 +26,8 @@ public class Action {
     /**
      * Empty constructor.
      */
-    public Action(){}
+    public Action() {
+    }
 
     public long getId() {
         return id;
@@ -33,6 +35,7 @@ public class Action {
 
     /**
      * Set id.
+     *
      * @param id action id
      */
     public void setId(long id) {
@@ -41,22 +44,25 @@ public class Action {
 
     /**
      * Get action.
+     *
      * @return action
      */
-    public String getAction() {
+    public String getActionName() {
         return actionName;
     }
 
     /**
      * Set action.
+     *
      * @param action action type.
      */
-    public void setAction(String action) {
+    public void setActionName(String action) {
         this.actionName = action;
     }
 
     /**
      * Get user.
+     *
      * @return user.
      */
     public String getUser() {
@@ -65,6 +71,7 @@ public class Action {
 
     /**
      * SetUser.
+     *
      * @param user user.
      */
     public void setUser(String user) {
@@ -73,6 +80,7 @@ public class Action {
 
     /**
      * Get score.
+     *
      * @return score.
      */
     public int getScore() {
@@ -81,6 +89,7 @@ public class Action {
 
     /**
      * Set score.
+     *
      * @param score score
      */
     public void setScore(int score) {

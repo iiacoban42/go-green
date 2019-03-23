@@ -1,5 +1,7 @@
 package client.controllers;
 
+import static client.requests.TransportRequests.sendTransportList;
+
 import client.entities.Transport;
 import client.entities.TransportList;
 import javafx.event.ActionEvent;
@@ -9,8 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import static client.requests.TransportRequests.sendTransportList;
 
 
 public class ControllerBike extends ControllerGeneral {

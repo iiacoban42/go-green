@@ -22,6 +22,11 @@ public class ControllerLog {
     @FXML
     ListView actionList;
 
+    @FXML
+    void initialize() {
+        show.fire();
+    }
+
     /**
      * Get request to server.
      * @param event show button pressed.
@@ -41,12 +46,12 @@ public class ControllerLog {
     }
 
     /**
-     * Display parts of the action List
+     * Display parts of the action List.
      * @param list action list.
      */
     public void initializeList(List list) {
 
-        ObservableList<List> observableList = FXCollections.observableArrayList(list);
+        ObservableList observableList = FXCollections.observableArrayList(list);
         actionList.setItems(observableList);
     }
 
