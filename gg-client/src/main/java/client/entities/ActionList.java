@@ -5,11 +5,11 @@ import java.util.List;
 
 public class ActionList {
 
-    private  List<Action> actionList;
+    private List<Action> actionList;
 
     public ActionList() {
 
-        actionList = new ArrayList<Action>();
+        actionList = new ArrayList<>();
     }
 
     public ActionList(List<Action> actionList) {
@@ -32,15 +32,16 @@ public class ActionList {
 
     /**
      * Get names of all actions.
-     * @return List<String> type of actions.
+     *
+     * @return List type of actions
      */
     public List<String> getAllActionNames() {
 
-        List<String> names = new ArrayList<String>();
+        List<String> names = new ArrayList<>();
 
-        for (int i = 0; i < actionList.size(); i++) {
+        for (Action action : actionList) {
 
-            String actionName = actionList.get(i).getAction();
+            String actionName = action.getActionName();
             names.add(actionName);
         }
 
@@ -49,15 +50,16 @@ public class ActionList {
 
     /**
      * Get all scores for each action.
-     * @return List<Integer>
+     *
+     * @return List
      */
     public List<Integer> getAllScores() {
 
         List<Integer> actionScores = new ArrayList<>();
 
-        for (int i = 0; i < actionList.size(); i++) {
+        for (Action action : actionList) {
 
-            int actionScore = actionList.get(i).getScore();
+            int actionScore = action.getScore();
             actionScores.add(actionScore);
         }
 

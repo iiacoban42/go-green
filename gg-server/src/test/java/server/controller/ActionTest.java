@@ -1,7 +1,6 @@
 package server.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import database.entity.User;
 import database.manager.ActionManager;
 import database.manager.UserManager;
 import org.junit.Before;
