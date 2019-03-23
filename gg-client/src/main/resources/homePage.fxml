@@ -104,7 +104,7 @@
          </children>
          </AnchorPane>
       <ListView layoutX="-20.0" prefHeight="510.0" prefWidth="191.0" style="-fx-background-color: #ffffff;" visible="false" />
-      <Button fx:id="homePageButton" alignment="BASELINE_LEFT" layoutX="24.0" layoutY="89.0" mnemonicParsing="false" onAction="#homePageButtonPressed" prefHeight="37.0" prefWidth="157.0" style="-fx-background-color: #ffffff;" text="HOME PAGE">
+      <Button fx:id="homePageButton" alignment="BASELINE_LEFT" layoutX="-3.0" layoutY="90.0" mnemonicParsing="false" onAction="#homePageButtonPressed" prefHeight="37.0" prefWidth="157.0" style="-fx-background-color: #ffffff;" text="HOME PAGE">
          <font>
             <Font size="16.0" />
          </font>
@@ -112,7 +112,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="savedcoButton" alignment="BASELINE_LEFT" layoutX="24.0" layoutY="159.0" mnemonicParsing="false" onAction="#savedcoButtonPressed" prefHeight="34.0" prefWidth="167.0" style="-fx-background-color: #ffffff;" text="SAVED CO2">
+      <Button fx:id="savedcoButton" alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="127.0" mnemonicParsing="false" onAction="#savedcoButtonPressed" prefHeight="34.0" prefWidth="167.0" style="-fx-background-color: #ffffff;" text="SAVED CO2">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
@@ -120,7 +120,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="friendsButton" alignment="BOTTOM_LEFT" layoutX="24.0" layoutY="236.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="123.0" style="-fx-background-color: #ffffff;" text="OPPONENT ">
+      <Button fx:id="friendsButton" alignment="BOTTOM_LEFT" layoutX="-8.0" layoutY="170.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="123.0" style="-fx-background-color: #ffffff;" text="OPPONENT ">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
@@ -128,7 +128,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="achievementsButton" alignment="BASELINE_LEFT" layoutX="14.0" layoutY="314.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="143.0" style="-fx-background-color: #ffffff;" text="ACHIEVEMENTS">
+      <Button fx:id="achievementsButton" alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="216.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="143.0" style="-fx-background-color: #ffffff;" text="ACHIEVEMENTS">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
@@ -136,7 +136,15 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="logoutButton" layoutX="36.0" layoutY="423.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Log out">
+      <Button fx:id="logoutButton" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Log out">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="logButton" alignment="BOTTOM_LEFT" layoutX="-8.0" layoutY="255.0" mnemonicParsing="false" onAction="#logButtonPressed" prefHeight="39.0" prefWidth="123.0" style="-fx-background-color: #ffffff;" text="LOG">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
