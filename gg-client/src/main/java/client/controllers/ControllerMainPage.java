@@ -1,14 +1,30 @@
 package client.controllers;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.transitions.JFXFillTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
 
 public class ControllerMainPage extends ControllerGeneral {
+    @FXML
+    StackPane stackMeal;
+
+    @FXML
+    Pane pane;
 
     @FXML
     AnchorPane anchorPane;
@@ -48,6 +64,10 @@ public class ControllerMainPage extends ControllerGeneral {
 
     @FXML
     Button logButton;
+
+    @FXML
+    ImageView imageMeal;
+
 
     /**
      * When the mealButton is pressed new window for meal feature appears.
@@ -113,6 +133,39 @@ public class ControllerMainPage extends ControllerGeneral {
 
 
 
+    /**
+     * on hoovering show dialog.
+     */
+    @FXML
+    public void loadMealDialog(MouseEvent event) {
 
+        JFXDialogLayout content =  new JFXDialogLayout();
+        content.setHeading(new Text("Meal Calculator"));
+        content.setBody(new Text("We calculate the Carbon Dioxide\n"
+                +
+                                 "you produce by comparing your\n"
+                +
+                                 "meal with the Dutch average meal.\n\n"
+                +
+
+                "Please fill what you ate and then press Submit.\n"
+                ));
+
+        JFXButton button = new JFXButton("Close");
+
+        JFXDialog dialog = new JFXDialog(stackMeal , content , JFXDialog.DialogTransition.CENTER);
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+
+        content.setActions(button);
+            dialog.show();
+    }
 
 }
+
+
