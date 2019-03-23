@@ -35,34 +35,18 @@ public class ActionList {
      *
      * @return List type of actions
      */
-    public List<String> getAllActionNames() {
+    public List<String> getAllActionNamesAndScore() {
 
-        List<String> names = new ArrayList<>();
-
-        for (Action action : actionList) {
-
-            String actionName = action.getActionName();
-            names.add(actionName);
-        }
-
-        return names;
-    }
-
-    /**
-     * Get all scores for each action.
-     *
-     * @return List
-     */
-    public List<Integer> getAllScores() {
-
-        List<Integer> actionScores = new ArrayList<>();
+        List<String> details = new ArrayList<>();
 
         for (Action action : actionList) {
 
-            int actionScore = action.getScore();
-            actionScores.add(actionScore);
+            String actionDetails = action.getActionName() + "                   "  +  action.getScore();
+            details.add(actionDetails);
         }
 
-        return actionScores;
+        return details;
     }
+
+
 }

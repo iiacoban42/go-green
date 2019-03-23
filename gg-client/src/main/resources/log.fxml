@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.ListView?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="510.0" prefWidth="584.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerLog">
    <children>
-      <Pane prefHeight="510.0" prefWidth="584.0" style="-fx-background-color: #ffffff;">
+      <Pane layoutY="4.0" prefHeight="510.0" prefWidth="584.0" style="-fx-background-color: #ffffff;">
          <children>
-            <ListView fx:id="actionList" layoutX="42.0" layoutY="123.0" prefHeight="360.0" prefWidth="474.0" />
-            <JFXButton fx:id="show" layoutX="170.0" layoutY="54.0" onAction="#showButtonPressed" prefHeight="58.0" prefWidth="230.0" text="Show Actions">
+            <JFXButton fx:id="show" layoutX="220.0" layoutY="14.0" onAction="#showButtonPressed" prefHeight="55.0" prefWidth="144.0" style="-fx-background-color: #ffffff;" text="Actions">
                <font>
-                  <Font name="Calibri" size="31.0" />
+                  <Font name="Calibri" size="26.0" />
                </font>
             </JFXButton>
+            <JFXListView fx:id="listView" layoutX="176.0" layoutY="111.0" prefHeight="379.0" prefWidth="233.0" stylesheets="@list.css" />
          </children></Pane>
    </children>
 </AnchorPane>
