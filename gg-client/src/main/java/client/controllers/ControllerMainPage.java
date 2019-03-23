@@ -46,6 +46,9 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     Button achievementsButton;
 
+    @FXML
+    Button logButton;
+
     /**
      * When the mealButton is pressed new window for meal feature appears.
      *
@@ -100,6 +103,12 @@ public class ControllerMainPage extends ControllerGeneral {
 
         changeWindow("publicTransportation.fxml");
 
+    }
+
+    @FXML
+    public void logButtonPressed(ActionEvent event) throws IOException {
+
+        changeScene("log.fxml" , anchorPane );
     }
 
 
