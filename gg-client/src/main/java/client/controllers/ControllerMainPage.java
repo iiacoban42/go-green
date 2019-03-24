@@ -13,8 +13,9 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
 
-@SuppressWarnings("CheckStyle")
 public class ControllerMainPage extends ControllerGeneral {
+
+    public static boolean dialogBoxOn = false;
 
     @FXML
     JFXButton close;
@@ -82,7 +83,7 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     ImageView imageMeal;
 
-    public static boolean dialogBoxOn = false;
+
 
 
     /**
