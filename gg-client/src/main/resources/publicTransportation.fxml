@@ -55,7 +55,7 @@
             <Font name="Calibri Light" size="36.0" />
          </font>
       </Text>
-      <JFXButton fx:id="submitButton" layoutX="209.0" layoutY="380.0" mnemonicParsing="false" onAction="#sendPublicTransportationActivities" style="-fx-background-color: #6bb300;" text="SUBMIT" textFill="WHITE">
+      <JFXButton fx:id="submitButton" layoutX="209.0" layoutY="380.0" mnemonicParsing="false" onAction="#sendPublicTransportationActivities" style="-fx-background-color: #6bb300;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
