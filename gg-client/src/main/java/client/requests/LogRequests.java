@@ -52,6 +52,14 @@ public class LogRequests {
     }
 
     /**
+     * Set actionList.
+     * @param actionList list.
+     */
+    public void setActionList(List actionList) {
+        this.actionList = actionList;
+    }
+
+    /**
      * .
      *
      * @return Action action
