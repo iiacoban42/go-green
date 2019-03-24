@@ -80,7 +80,6 @@ public class Action {
         return id;
     }
 
-
     private Date getDateTime() {
         return dateTime;
     }
@@ -108,4 +107,5 @@ public class Action {
     private void setScore(final int score) {
         this.score = score;
     }
+
 }

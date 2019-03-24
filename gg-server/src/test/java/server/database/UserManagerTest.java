@@ -81,11 +81,5 @@ public class UserManagerTest {
         assertEquals(500, UserManager.getUser("cpt1").gettotalScore());
     }
 
-    @Test(expected = HibernateException.class)
-    public void addPresentUser() {
-        UserManager.addUser("cpt1", "1", "1@1.1");
-    }
-
-
 }
 
