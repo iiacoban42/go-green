@@ -41,7 +41,11 @@ public class ActionList {
 
         for (Action action : actionList) {
 
-            String actionDetails = action.getActionName() + "                   "  +  action.getScore();
+            String actionDetails = action.getActionName() + "                   "
+
+                    +
+                      action.getScore();
+
             details.add(actionDetails);
         }
 

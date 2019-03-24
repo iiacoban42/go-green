@@ -1,6 +1,12 @@
 package client.controllers;
 
+import static client.controllers.ControllerMainPage.dialogBoxOn;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -8,13 +14,47 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+
 public class ControllerGeneral {
+
+    /**
+     * Show Dialog.
+     * @param text text to display.
+     * @param heading head text.
+     * @param stackPane stackPane.
+     */
+    public void showDialog(String text, String heading , StackPane stackPane ) {
+        dialogBoxOn = true;
+        JFXDialogLayout content =  new JFXDialogLayout();
+        content.setHeading(new Text(heading));
+        content.setBody(new Text(text
+        ));
+
+        JFXButton button = new JFXButton("Close");
+
+        JFXDialog dialog = new JFXDialog(stackPane , content , JFXDialog.DialogTransition.CENTER);
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+                dialogBoxOn = false;
+            }
+        });
+
+        content.setActions(button);
+        dialog.show();
+
+    }
+
 
     /**
      * Changes the window.

@@ -10,18 +10,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="845.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerMainPage">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="971.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerMainPage">
    <children>
       <AnchorPane fx:id="anchorPane" layoutX="188.0" layoutY="39.0" prefHeight="510.0" prefWidth="584.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Pane prefHeight="510.0" prefWidth="645.0" style="-fx-background-color: #ffffff;">
+            <Pane prefHeight="533.0" prefWidth="704.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <ImageView fitHeight="169.0" fitWidth="151.0" layoutX="416.0" layoutY="281.0" pickOnBounds="true">
+                  <ImageView fitHeight="169.0" fitWidth="151.0" layoutX="504.0" layoutY="317.0" pickOnBounds="true">
                      <image>
                         <Image url="@images/bike.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="temperatureButton" layoutX="35.0" layoutY="225.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Home Temperature" textFill="WHITE">
+                  <JFXButton fx:id="temperatureButton" layoutX="76.0" layoutY="225.0" mnemonicParsing="false" onAction="#tempereturePressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Home Temperature" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic" size="13.0" />
                      </font>
@@ -29,7 +29,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="solarButton" layoutX="226.0" layoutY="225.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Solar Panels" textFill="WHITE">
+                  <JFXButton fx:id="solarButton" layoutX="292.0" layoutY="225.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Solar Panels" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic" size="13.0" />
                      </font>
@@ -37,7 +37,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="transportButton" layoutX="415.0" layoutY="225.0" mnemonicParsing="false" onAction="#publicTransportationPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Public Transport" textFill="WHITE">
+                  <JFXButton fx:id="transportButton" layoutX="507.0" layoutY="225.0" mnemonicParsing="false" onAction="#publicTransportationPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Public Transport" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic" size="13.0" />
                      </font>
@@ -50,22 +50,22 @@
                         <Font name="Calibri" size="23.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="137.0" fitWidth="150.0" layoutX="42.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="137.0" fitWidth="150.0" layoutX="84.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/tempereture.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="227.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="293.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/solarPanels.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="416.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="505.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/tram.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="mealButton" layoutX="35.0" layoutY="427.0" mnemonicParsing="false" onAction="#mealButtonPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text=" Meal" textFill="WHITE">
+                  <JFXButton fx:id="mealButton" layoutX="76.0" layoutY="466.0" mnemonicParsing="false" onAction="#mealButtonPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text=" Meal" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic" size="13.0" />
                      </font>
@@ -73,7 +73,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="localProduceButton" layoutX="226.0" layoutY="427.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Local Produce" textFill="WHITE">
+                  <JFXButton fx:id="localProduceButton" layoutX="292.0" layoutY="466.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Local Produce" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic" size="13.0" />
                      </font>
@@ -81,7 +81,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="bikeButton" layoutX="416.0" layoutY="427.0" mnemonicParsing="false" onAction="#bikeButtonPressed" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
+                  <JFXButton fx:id="bikeButton" layoutX="504.0" layoutY="466.0" mnemonicParsing="false" onAction="#bikeButtonPressed" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic" size="13.0" />
                      </font>
@@ -89,17 +89,22 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </JFXButton>
-                  <ImageView fx:id="imageMeal" fitHeight="127.0" fitWidth="123.0" layoutX="49.0" layoutY="286.0" onMouseEntered="#loadMealDialog" pickOnBounds="true">
+                  <ImageView fx:id="imageMeal" fitHeight="127.0" fitWidth="123.0" layoutX="90.0" layoutY="324.0" pickOnBounds="true">
                      <image>
                         <Image url="@images/vegan.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="137.0" fitWidth="131.0" layoutX="236.0" layoutY="281.0" pickOnBounds="true">
+                  <ImageView fitHeight="137.0" fitWidth="131.0" layoutX="302.0" layoutY="319.0" pickOnBounds="true">
                      <image>
                         <Image url="@images/local.png" />
                      </image>
                   </ImageView>
-                  <StackPane fx:id="stackMeal" layoutX="11.0" layoutY="281.0" onMouseEntered="#loadMealDialog" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackMeal" layoutX="52.0" layoutY="316.0" onMouseEntered="#loadMealDialogMeal" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackTemperature" layoutX="52.0" layoutY="76.0" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackPanels" layoutX="268.0" layoutY="74.0" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackTransport" layoutX="480.0" layoutY="74.0" onMouseEntered="#loadMealDialogTransport" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackBike" layoutX="483.0" layoutY="316.0" onMouseEntered="#loadMealDialogBike" prefHeight="150.0" prefWidth="186.0" />
+                  <StackPane fx:id="stackLProduce" layoutX="268.0" layoutY="316.0" prefHeight="150.0" prefWidth="200.0" />
                </children>
             </Pane>
          </children>

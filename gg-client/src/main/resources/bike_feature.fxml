@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <AnchorPane prefHeight="278.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerBike">
    <children>
       <Pane prefHeight="278.0" prefWidth="541.0" style="-fx-background-color: #ffffff;">
@@ -16,11 +18,11 @@
                   <Font name="Calibri Light" size="36.0" />
                </font>
             </Label>
-            <TextField fx:id="distanceTextField" layoutX="422.0" layoutY="79.0" onAction="#distanceEntered" prefHeight="34.0" prefWidth="86.0" />
-            <Button layoutX="216.0" layoutY="169.0" mnemonicParsing="false" style="-fx-background-color: #6bb300;" text="SUBMIT" textFill="WHITE">
+            <JFXTextField fx:id="distanceTextField" layoutX="422.0" layoutY="79.0" onAction="#distanceEntered" prefHeight="34.0" prefWidth="86.0" />
+            <JFXButton layoutX="216.0" layoutY="169.0" mnemonicParsing="false" style="-fx-background-color: #6bb300;" text="SUBMIT" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="24.0" />
-               </font></Button>
+               </font></JFXButton>
          </children>
       </Pane>
    </children>

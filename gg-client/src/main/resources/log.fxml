@@ -10,12 +10,12 @@
    <children>
       <Pane layoutY="4.0" prefHeight="510.0" prefWidth="584.0" style="-fx-background-color: #ffffff;">
          <children>
-            <JFXButton fx:id="show" layoutX="220.0" layoutY="14.0" onAction="#showButtonPressed" prefHeight="55.0" prefWidth="144.0" style="-fx-background-color: #ffffff;" text="Actions">
+            <JFXButton fx:id="show" layoutX="263.0" layoutY="14.0" onAction="#showButtonPressed" prefHeight="55.0" prefWidth="144.0" style="-fx-background-color: #ffffff;" text="Actions">
                <font>
                   <Font name="Calibri" size="26.0" />
                </font>
             </JFXButton>
-            <JFXListView fx:id="listView" layoutX="176.0" layoutY="111.0" prefHeight="379.0" prefWidth="233.0" stylesheets="@list.css" />
+            <JFXListView fx:id="listView" layoutX="183.0" layoutY="100.0" prefHeight="379.0" prefWidth="324.0" stylesheets="@list.css" />
          </children></Pane>
    </children>
 </AnchorPane>

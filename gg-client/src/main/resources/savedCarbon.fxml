@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" layoutX="157.0" prefHeight="510.0" prefWidth="609.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerCo2Saved">
+<AnchorPane fx:id="anchorPane" layoutX="157.0" prefHeight="510.0" prefWidth="609.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerCo2Saved">
    <children>
       <Pane layoutX="-159.0" prefHeight="510.0" prefWidth="766.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -30,7 +30,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button fx:id="buttonShow" layoutX="50.0" layoutY="415.0" mnemonicParsing="false" onAction="#showButtonPressed" prefHeight="41.0" prefWidth="108.0" style="-fx-background-color: #6bb300;" text="Show" textFill="WHITE">
+            <Button fx:id="buttonShow" layoutX="50.0" layoutY="415.0" mnemonicParsing="false" onAction="#showButtonPressed" prefHeight="41.0" prefWidth="108.0" style="-fx-background-color: #6bb300;" text="Show" textFill="WHITE" visible="false">
                <font>
                   <Font name="Calibri" size="30.0" />
                </font>

@@ -1,10 +1,7 @@
 package client.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -12,12 +9,31 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
 
+@SuppressWarnings("CheckStyle")
 public class ControllerMainPage extends ControllerGeneral {
+
+    @FXML
+    JFXButton close;
+
+    @FXML
+    StackPane stackPanels;
+
+    @FXML
+    StackPane stackTemperature;
+
+    @FXML
+    StackPane stackLProduce;
+
+    @FXML
+    StackPane stackTransport;
+
+    @FXML
+    StackPane stackBike;
+
     @FXML
     StackPane stackMeal;
 
@@ -66,6 +82,8 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     ImageView imageMeal;
 
+    public static boolean dialogBoxOn = false;
+
 
     /**
      * When the mealButton is pressed new window for meal feature appears.
@@ -89,9 +107,15 @@ public class ControllerMainPage extends ControllerGeneral {
         changeScene("savedCarbon.fxml", anchorPane);
     }
 
+    /**
+     * Change scene.
+     * @param event Home page button pressed.
+     * @throws IOException if something goes wrong.
+     */
     @FXML
     public void homePageButtonPressed(ActionEvent event) throws IOException {
 
+        dialogBoxOn = false;
         changeScene("mainMenu.fxml" ,anchorPane);
     }
 
@@ -108,13 +132,18 @@ public class ControllerMainPage extends ControllerGeneral {
 
     }
 
+    @FXML
+    public  void tempereturePressed(ActionEvent event) throws IOException {
+
+        changeWindow("temperature.fxml");
+    }
+
 
     /**
     * Change window.
     * @param event button for public transportation pressed.
     * @throws IOException if something goes wrong.
     */
-
 
     @FXML
     public void publicTransportationPressed( ActionEvent event) throws IOException {
@@ -132,37 +161,74 @@ public class ControllerMainPage extends ControllerGeneral {
 
 
     /**
-     * on hoovering show dialog.
+     * On hovering show dialog.
+     * @param event  hovering.
      */
     @FXML
-    public void loadMealDialog(MouseEvent event) {
+    public void loadMealDialogMeal(MouseEvent event) {
 
-        JFXDialogLayout content =  new JFXDialogLayout();
-        content.setHeading(new Text("Meal Calculator"));
-        content.setBody(new Text("We calculate the Carbon Dioxide\n"
+        String text = "We calculate the Carbon Dioxide\n"
                 +
-                                 "you produce by comparing your\n"
+                "you save by comparing your\n"
                 +
-                                 "meal with the Dutch average meal.\n\n"
+                "meal with the Dutch average meal.\n\n"
                 +
 
-                "Please fill what you ate and then press Submit.\n"
-                ));
+                "Please fill in  what you ate "
+                +
+                 "and then press Submit.\n";
 
-        JFXButton button = new JFXButton("Close");
-
-        JFXDialog dialog = new JFXDialog(stackMeal , content , JFXDialog.DialogTransition.CENTER);
-
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                dialog.close();
-            }
-        });
-
-        content.setActions(button);
-            dialog.show();
+        if (!dialogBoxOn) {
+            showDialog(text, "Meal Calculator", stackMeal);
+        }
     }
+
+
+    /**
+     * Show dialog box.
+     * @param event mouse hovering
+     */
+    @FXML
+    public void loadMealDialogBike(MouseEvent event) {
+
+        String text = "We calculate the Carbon Dioxide\n"
+                +
+                "you save by cycling instead of using the\n"
+                +
+                "car.\n\n"
+                +
+
+                "Please fill in the kilometers you have traveled\n"
+                +
+                 "and then press Submit";
+
+        if (!dialogBoxOn) {
+            showDialog(text, "Calculator for cycling", stackBike);
+        }
+    }
+
+    /**
+     * Show dialog box.
+     * @param event mouse hovering
+     */
+    @FXML
+    public void loadMealDialogTransport(MouseEvent event) {
+
+        String text = "We calculate the Carbon Dioxide\n"
+                +
+                "you save by using public transportation\n"
+                +
+                 "instead of using the car.\n\n"
+                +
+                 "Please fill in the kilometers you have traveled\n"
+                +
+                "and then press Submit";
+
+        if (!dialogBoxOn) {
+            showDialog(text, "Calculator for public Transportation", stackTransport);
+        }
+    }
+
 
 }
 
