@@ -26,6 +26,11 @@ public class ActionList {
         actionList.add(action);
     }
 
+    public int getSize() {
+
+        return actionList.size();
+    }
+
     public void setActionList(List<Action> actionList) {
         this.actionList = actionList;
     }

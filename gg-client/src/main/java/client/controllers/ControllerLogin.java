@@ -67,6 +67,7 @@ public class ControllerLogin extends ControllerGeneral  {
 
                 Parent root2 = FXMLLoader.load(getClass().getResource("/homePage.fxml"));
                 Stage app = (Stage)((Node) event.getSource()).getScene().getWindow();
+                app.setTitle("GoGreen");
                 app.setScene(new Scene(root2));
                 app.show();
 
