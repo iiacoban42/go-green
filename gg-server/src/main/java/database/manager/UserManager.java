@@ -5,7 +5,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
 import java.util.List;
 
 public class UserManager {
@@ -181,7 +180,10 @@ public class UserManager {
         } finally {
             session.close();
         }
+
+
     }
+
 
 }
 
