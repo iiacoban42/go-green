@@ -45,7 +45,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </JFXButton>
-                  <Text layoutX="28.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHAT HAVE YOU DONE FOR THE WORLD  TODAY ?" wrappingWidth="508.04296875">
+                  <Text layoutX="28.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHAT HAVE YOU DONE FOR THE WORLD  TODAY ?" wrappingWidth="508.04296875">
                      <font>
                         <Font name="Calibri" size="23.0" />
                      </font>

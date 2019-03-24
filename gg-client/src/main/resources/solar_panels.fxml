@@ -11,8 +11,8 @@
    <children>
       <Pane layoutY="-6.0" prefHeight="331.0" prefWidth="500.0" style="-fx-background-color: #ffffff;">
          <children>
-            <JFXTextField focusColor="#6bb300" layoutX="297.0" layoutY="151.0" prefHeight="25.0" prefWidth="173.0" />
-            <JFXButton fx:id="submit" layoutX="329.0" layoutY="240.0" mnemonicParsing="false"  style="-fx-background-color: #6bb300;" text="SUBMIT" textFill="WHITE">
+            <JFXTextField fx:id="panels" focusColor="#6bb300" layoutX="297.0" layoutY="151.0" prefHeight="25.0" prefWidth="173.0" />
+            <JFXButton fx:id="submit" layoutX="329.0" layoutY="240.0" mnemonicParsing="false" onAction="#submitButtonPressed" style="-fx-background-color: #6bb300;" text="SUBMIT" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
