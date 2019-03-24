@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerTemperature">
    <children>
       <GridPane layoutX="37.0" layoutY="113.0" prefHeight="254.0" prefWidth="526.0">
         <columnConstraints>
@@ -25,8 +25,8 @@
             <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <JFXTextField GridPane.columnIndex="1" />
-            <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="surface" onAction="#surfaceTextFieldActivated" GridPane.columnIndex="1" focusColor="#6bb300"/>
+            <JFXTextField fx:id="energy" onAction="#energyTextFieldActivated" GridPane.columnIndex="1" GridPane.rowIndex="1" focusColor="#6bb300"/>
             <Label prefHeight="21.0" prefWidth="335.0" text="Insert your apartment surface (m2)">
                <font>
                   <Font name="Calibri Light" size="18.0" />
@@ -39,7 +39,7 @@
             </Label>
             <VBox prefHeight="75.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <JFXRadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="146.0" text="Electric">
+                  <JFXRadioButton fx:id="electricity" mnemonicParsing="false" prefHeight="21.0" prefWidth="146.0" text="Electric">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -47,12 +47,12 @@
                         <ToggleGroup fx:id="heatingSystem" />
                      </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton mnemonicParsing="false" prefHeight="24.0" prefWidth="139.0" text="Natural gas" toggleGroup="$heatingSystem">
+                  <JFXRadioButton fx:id="naturalGas" mnemonicParsing="false" prefHeight="24.0" prefWidth="139.0" text="Natural gas" toggleGroup="$heatingSystem">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
                   </JFXRadioButton>
-                  <JFXRadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="143.0" text="Heating oil" toggleGroup="$heatingSystem">
+                  <JFXRadioButton fx:id="heatingOil" mnemonicParsing="false" prefHeight="21.0" prefWidth="143.0" text="Heating oil" toggleGroup="$heatingSystem">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -71,7 +71,7 @@
             <Font name="Calibri Light" size="36.0" />
          </font>
       </Label>
-      <JFXButton layoutX="426.0" layoutY="394.0" mnemonicParsing="false" style="-fx-background-color: #6bb300;" text="SUBMIT" textFill="WHITE">
+      <JFXButton fx:id="submit" layoutX="426.0" layoutY="394.0" mnemonicParsing="false" onAction="#submitButtonPressed" style="-fx-background-color: #6bb300;" text="SUBMIT" textFill="WHITE">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>

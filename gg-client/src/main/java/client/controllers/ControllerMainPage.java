@@ -83,6 +83,15 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     ImageView imageMeal;
 
+    /**
+     * Change scene.
+     * @param event solar button pressed.
+     * @throws IOException  if something goes wrong.
+     */
+    @FXML
+    public void solarButtonPressed(ActionEvent event) throws IOException {
+        changeWindow("solar_panels.fxml");
+    }
 
 
 
@@ -180,7 +189,7 @@ public class ControllerMainPage extends ControllerGeneral {
                  "and then press Submit.\n";
 
         if (!dialogBoxOn) {
-            showDialog(text, "Meal Calculator", stackMeal);
+            showDialog(text, "Meal", stackMeal);
         }
     }
 
@@ -201,10 +210,10 @@ public class ControllerMainPage extends ControllerGeneral {
 
                 "Please fill in the kilometers you have traveled\n"
                 +
-                 "and then press Submit";
+                 "and then press Submit.";
 
         if (!dialogBoxOn) {
-            showDialog(text, "Calculator for cycling", stackBike);
+            showDialog(text, "Cycling", stackBike);
         }
     }
 
@@ -223,10 +232,34 @@ public class ControllerMainPage extends ControllerGeneral {
                 +
                  "Please fill in the kilometers you have traveled\n"
                 +
-                "and then press Submit";
+                "and then press Submit.";
 
         if (!dialogBoxOn) {
-            showDialog(text, "Calculator for public Transportation", stackTransport);
+            showDialog(text, "Public Transportation", stackTransport);
+        }
+    }
+
+    /**
+     * Show dialog box.
+     * @param event mouse hovering
+     */
+    @FXML
+    public void loadDialogSolarPanels(MouseEvent event) {
+
+        String text = "We calculate the Carbon Dioxide\n"
+                +
+                "you save by multiplying the amount of\n"
+                +
+                "solar panels with an average saved co2\n"
+                +
+                 "for a year.\n\n"
+                +
+                 "Please fill in the amount of solar panels\n"
+                +
+                 "installed and then press Submit.";
+
+        if (!dialogBoxOn) {
+            showDialog(text, "Solar Panels", stackPanels);
         }
     }
 
