@@ -5,12 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.tomcat.util.codec.binary.Base64;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class CreateJwt {
     private static String signingKey = "secret key";
@@ -49,9 +44,14 @@ public class CreateJwt {
         return builder.compact();
     }
 
+    /**
+     * Get data at which the token was issued.
+     * @param jwtToken token
+     * @return date
+     */
     public static long getIssuedAtDate(String jwtToken) {
-        String[] split_string = jwtToken.split("\\.");
-        String base64EncodedBody = split_string[1];
+        String[] splitString = jwtToken.split("\\.");
+        String base64EncodedBody = splitString[1];
         Base64 base64Url = new Base64(true);
         String body = new String(base64Url.decode(base64EncodedBody));
         String[] bodyArray = body.split(",");
@@ -60,9 +60,14 @@ public class CreateJwt {
         return getExpirationDate;
     }
 
+    /**
+     * Get date at which token will expire.
+     * @param jwtToken token
+     * @return date
+     */
     public static long getExpirationDate(String jwtToken) {
-        String[] split_string = jwtToken.split("\\.");
-        String base64EncodedBody = split_string[1];
+        String[] splitString = jwtToken.split("\\.");
+        String base64EncodedBody = splitString[1];
         Base64 base64Url = new Base64(true);
         String body = new String(base64Url.decode(base64EncodedBody));
         String[] bodyArray = body.split(",");
@@ -71,9 +76,14 @@ public class CreateJwt {
         return getExpirationDate;
     }
 
+    /**
+     * Checks if the token is valid.
+     * @param jwtToken token
+     * @return true if valid else false
+     */
     public static boolean validateToken(String jwtToken) {
-        String[] split_string = jwtToken.split("\\.");
-        String base64EncodedBody = split_string[1];
+        String[] splitString = jwtToken.split("\\.");
+        String base64EncodedBody = splitString[1];
         Base64 base64Url = new Base64(true);
         String body = new String(base64Url.decode(base64EncodedBody));
         String id = body.split(",")[0].split(":")[1];
@@ -83,10 +93,6 @@ public class CreateJwt {
 
         String validateToken = database.manager.UserManager.getUser(id).getToken();
         long expDate = getExpirationDate(validateToken);
-        if (iatDate > expDate) {
-            return false;
-        }
-
-        return true;
+        return iatDate <= expDate;
     }
 }
