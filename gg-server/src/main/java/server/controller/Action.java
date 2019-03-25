@@ -45,7 +45,6 @@ public class Action {
     public List removeAction(@RequestParam(value = "id") long actionId) {
 
         database.entity.Action action = ActionManager.getAction(actionId);
-        UserManager.addScore("admin", 0 - action.getScore());
         ActionManager.deleteAction(actionId);
         List actionList = ActionManager.listActionsUser("admin");
 
@@ -63,7 +62,6 @@ public class Action {
 
         int score = (int)MealCalculator.getAmountCo2(mealList);
         // System.out.println("score: " + score);
-        UserManager.addScore("admin", score);
         ActionManager.addAction("meal", "admin", score);
 
         return response;
@@ -79,7 +77,6 @@ public class Action {
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
 
         int score = (int) TransportationCalculator.getAmountCo2(transportList);
-        UserManager.addScore("admin", score);
         ActionManager.addAction("transport", "admin", score);
 
         return response;
