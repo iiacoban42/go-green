@@ -11,7 +11,7 @@ public class UserManager {
     /**
      * Method to create a User in the database.
      * @return the user that has been created,
-     *      null if add failed
+     *      or if there was already a user, the current one
      */
     public static User addUser(
             final String username,
@@ -123,6 +123,7 @@ public class UserManager {
             tx = session.beginTransaction();
             user = (User)session.get(User.class, username);
             user.setHashPassword(hashPassword);
+            session.update(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -148,6 +149,7 @@ public class UserManager {
             tx = session.beginTransaction();
             User user = (User)session.get(User.class, username);
             user.setToken(token);
+            session.update(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -170,7 +172,35 @@ public class UserManager {
 
         try {
             tx = session.beginTransaction();
-            session.get(User.class, username).addScore(score);
+            User user = (User)session.get(User.class, username);
+            user.addScore(score);
+            session.update(user);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+
+    }
+
+    /**
+     * updates freind field of both parties.
+     * @param user String representing username of first party
+     * @param freind String representing username of second party
+     */
+    public static void addFriend(String user, String freind) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.get(User.class, user).setFriend(freind);
+            session.get(User.class, freind).setFriend(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -181,6 +211,5 @@ public class UserManager {
             session.close();
         }
     }
-
 }
 

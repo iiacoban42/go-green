@@ -1,7 +1,6 @@
 package database.manager;
 
-import database.entity.Action;
-import database.entity.User;
+import database.entity.Badge;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,38 +8,27 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class ActionManager {
+public class BadgeManager {
 
     /**
-     * Cretes a new action and adds it to the database.
-<<<<<<< HEAD
-     * @param actionName
-     * @param user
-     * @param score
-     * @return
-=======
-     * @param actionName String representing name of action
-     * @param username String representing username/primary key of user
-     * @param score integer representing score
-     * @return id, a intefer representing the primary key of Actiom
->>>>>>> 28709164224bdc78e08765cee484b62e72ec0d81
+     * Cretes a new badge and adds it to the database.
+     * @param badgeName String representing name of badge
+     * @param user String representing username/primary key of user
+     * @return id, a integer representing the primary key of Badge
      */
-    public static long addAction(
-            String actionName,
-            String username,
-            int score
+    public static long addBadge(
+            String badgeName,
+            String user
+
     ) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        Action action = null;
+        Badge badge = null;
 
         try {
             tx = session.beginTransaction();
-            action = new Action(actionName, username, score);
-            session.save(action);
-            User user = UserManager.getUser(action.getUser());
-            user.addScore(score);
-            session.update(user);
+            badge = new Badge(badgeName, user);
+            session.save(badge);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -50,21 +38,21 @@ public class ActionManager {
         } finally {
             session.close();
         }
-        return action.getId();
+        return badge.getId();
     }
 
     /**
-     * Lists all actions in database.
-     * @return a List object containing all Actions in database
+     * Lists all badges in database.
+     * @return a List object containing all Badges in database
      */
-    public static List actionList() {
+    public static List badgeList() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        List actions = null;
+        List badges = null;
 
         try {
             tx = session.beginTransaction();
-            actions = session.createQuery("From Action").list();
+            badges = session.createQuery("From Badge").list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -74,24 +62,21 @@ public class ActionManager {
         } finally {
             session.close();
         }
-        return actions;
+        return badges;
     }
 
     /**
-     * Deletes action with given id.
-     * @param id an long representing the primary key of the action
+     * Deletes badge with given id.
+     * @param id an long representing the primary key of the badge
      */
-    public static void deleteAction(long id) {
+    public static void deleteBadge(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            Action action = (Action)session.get(Action.class, id);
-            session.delete(action);
-            User user = UserManager.getUser(action.getUser());
-            user.settotalScore(user.gettotalScore() - action.getScore());
-            session.update(user);
+            Badge badge = (Badge)session.get(Badge.class, id);
+            session.delete(badge);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -104,18 +89,18 @@ public class ActionManager {
     }
 
     /**
-     * Retrieves Action with given id.
-     * @param id a long representing the primary key of action
-     * @return an Actuion, representing the row in the database
+     * Retrieves Badge with given id.
+     * @param id a long representing the primary key of badge
+     * @return a Badge, representing the row in the database
      */
-    public static Action getAction(long id) {
+    public static Badge getBadge(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        Action action = null;
+        Badge badge = null;
 
         try {
             tx = session.beginTransaction();
-            action = (Action)session.get(Action.class, id);
+            badge = (Badge)session.get(Badge.class, id);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -125,23 +110,23 @@ public class ActionManager {
         } finally {
             session.close();
         }
-        return action;
+        return badge;
     }
 
     /**
-     * Lists all actions performed by user.
+     * Lists all badges performed by user.
      * @param username a String representing the username/primary key of the user
-     * @return a List with Action objects
+     * @return a List with Badge objects
      */
-    public static List listActionsUser(String username) {
+    public static List listBadgesUser(String username) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        Action action = null;
+        Badge badge = null;
         List results = null;
 
         try {
             tx = session.beginTransaction();
-            String hql = "FROM Action WHERE user = :username";
+            String hql = "FROM Badge WHERE user = :username";
             Query query = session.createQuery(hql);
             query.setParameter("username", username);
             results = query.list();
