@@ -3,6 +3,7 @@ package server.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import database.manager.ActionManager;
 import database.manager.UserManager;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -33,6 +34,7 @@ public class ActionTest {
     private ObjectMapper objectMapper;
 
     @Before
+    @After
     public void deleteActions() {
         List actions = ActionManager.listActionsUser("admin");
 
