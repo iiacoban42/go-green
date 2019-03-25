@@ -1,5 +1,9 @@
 package server.energy;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+
 public class Temperature {
     private double surface;
     private double energy;
@@ -7,14 +11,19 @@ public class Temperature {
 
     /**
      * Temperature constructor.
+     *
      * @param surface of the residence
-     * @param energy consumed
-     * @param system of heating
+     * @param energy  consumed
+     * @param system  of heating
      */
     public Temperature(double surface, double energy, String system) {
         this.surface = surface;
         this.energy = energy;
         this.system = system;
+    }
+
+    public Temperature() {
+
     }
 
     public double getSurface() {
@@ -39,5 +48,30 @@ public class Temperature {
 
     public void setSystem(String system) {
         this.system = system;
+    }
+
+    public String toString() {
+        return "surface: " + surface + " energy: " + energy + " heating system: " + system + "\n";
+
+    }
+
+    /**
+     * Parses json strings into a Temperature object.
+     *
+     * @param json string translated into Temperature
+     */
+    public void jsonConverter(String json) {
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Temperature temp = objectMapper.readValue(json, Temperature.class);
+            this.surface = temp.getSurface();
+            this.system = temp.getSystem();
+            this.energy = temp.getEnergy();
+
+        } catch (IOException e) {
+            System.out.println("exception");
+        }
+
     }
 }

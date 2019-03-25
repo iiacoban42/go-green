@@ -60,7 +60,6 @@ public class TransportList {
      * Parses json strings into a MealList.
      *
      * @param json string translated into a list of meals
-     * @throws IOException if something goes wrong
      */
     public void jsonConverter(String json) {
 
