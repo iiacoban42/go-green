@@ -1,4 +1,4 @@
-package server.entity;
+/*package server.entity;
 
 import java.util.Calendar;
 import java.util.Timer;
@@ -15,4 +15,4 @@ public class DailySolarPanels extends TimerTask {
         // Schedule to run every Sunday in midnight
         timer.schedule(new SolarPanels(), date.getTime(), 1000 * 60 * 60 * 24);
     }
-}
+}*/
