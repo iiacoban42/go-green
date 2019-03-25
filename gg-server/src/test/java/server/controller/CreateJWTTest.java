@@ -11,14 +11,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class CreateJWTTest {
-    @Test
-    public void createExpirationDateTest() {
-        System.out.println(System.currentTimeMillis());
-        Date expMillis = CreateJwt.createExpirationDate(1551695067923L);
-        Date testDate = new Date(1551696867923L);
-        assertEquals(0, testDate.compareTo(expMillis));
-
-    }
 
     @Test
     public void createJWT() {
@@ -47,7 +39,7 @@ public class CreateJWTTest {
         String[] bodyArray = body.split(",");
         Long iatTest = Long.parseLong(bodyArray[2].replaceAll("\\D+", ""));
         Long expTest = Long.parseLong(bodyArray[3].replaceAll("\\D+", ""));
-
+        CreateJwt.validateToken(jwtToken);
 
         assertEquals(headerTest, header);
         assertEquals(bodySub, bodyArray[0]);

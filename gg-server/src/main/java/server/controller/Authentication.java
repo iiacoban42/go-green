@@ -1,8 +1,10 @@
 package server.controller;
 
 import database.manager.UserManager;
+import net.bytebuddy.build.Plugin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +30,7 @@ public class Authentication {
             if (user.getHashPassword().equals(credentials.getPassword())) {
                 response = new ResponseEntity(HttpStatus.OK);
                 String createJwt = CreateJwt.createJwt(credentials.getUsername());
-                user.setToken(createJwt);
+
             }
         }
 

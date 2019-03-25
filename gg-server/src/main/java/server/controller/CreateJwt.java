@@ -5,6 +5,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.tomcat.util.codec.binary.Base64;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -24,39 +28,65 @@ public class CreateJwt {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
 
+        // for setting expiration date
+        long thirtyMillis = System.currentTimeMillis() + 1800000;
+        Date expDate = new Date(thirtyMillis);
+
         // for generating secret key
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         String base64Key = Base64.encodeBase64String(signingKey.getBytes());
+
 
         // creating builder
         JwtBuilder builder = Jwts.builder();
         builder.setSubject(username);
         builder.setId(username);
         builder.setIssuedAt(now);
-        builder.setExpiration(createExpirationDate(nowMillis));
+        builder.setExpiration(expDate);
         builder.signWith(signatureAlgorithm, base64Key);
 
         System.out.println(builder.compact());
         return builder.compact();
     }
 
-    /**
-     * Create new expiration date for token; it expires after 30 minutes.
-     * @param nowMillis Current time
-     * @return Expiration date for token or null, if input is incorrect
-     */
-    public static Date createExpirationDate(long nowMillis) {
-        try {
-            if (nowMillis <= 0) {
-                throw new IllegalAccessException();
+    public static long getIssuedAtDate(String jwtToken) {
+        String[] split_string = jwtToken.split("\\.");
+        String base64EncodedBody = split_string[1];
+        Base64 base64Url = new Base64(true);
+        String body = new String(base64Url.decode(base64EncodedBody));
+        String[] bodyArray = body.split(",");
+        Long getExpirationDate = Long.parseLong(bodyArray[2].replaceAll("\\D+", ""));
 
-            }
-            long expMillis = TimeUnit.MINUTES.toMillis(30);
-            return new Date(nowMillis + expMillis);
+        return getExpirationDate;
+    }
 
-        } catch (IllegalAccessException e) {
-            System.out.print("Time should be bigger than 0");
-            return null;
+    public static long getExpirationDate(String jwtToken) {
+        String[] split_string = jwtToken.split("\\.");
+        String base64EncodedBody = split_string[1];
+        Base64 base64Url = new Base64(true);
+        String body = new String(base64Url.decode(base64EncodedBody));
+        String[] bodyArray = body.split(",");
+        Long getExpirationDate = Long.parseLong(bodyArray[3].replaceAll("\\D+", ""));
+
+        return getExpirationDate;
+    }
+
+    public static boolean validateToken(String jwtToken) {
+        String[] split_string = jwtToken.split("\\.");
+        String base64EncodedBody = split_string[1];
+        Base64 base64Url = new Base64(true);
+        String body = new String(base64Url.decode(base64EncodedBody));
+        String id = body.split(",")[0].split(":")[1];
+        id = id.replace("\"", "");
+
+        long iatDate = getIssuedAtDate(jwtToken);
+
+        String validateToken = database.manager.UserManager.getUser(id).getToken();
+        long expDate = getExpirationDate(validateToken);
+        if (iatDate > expDate) {
+            return false;
         }
+
+        return true;
     }
 }
