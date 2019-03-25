@@ -100,7 +100,7 @@
                      </image>
                   </ImageView>
                   <StackPane fx:id="stackMeal" layoutX="52.0" layoutY="316.0" onMouseEntered="#loadMealDialogMeal" prefHeight="150.0" prefWidth="200.0" />
-                  <StackPane fx:id="stackTemperature" layoutX="52.0" layoutY="76.0" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackTemperature" layoutX="52.0" layoutY="76.0" onMouseEntered="#loadDialogTempereture" prefHeight="150.0" prefWidth="200.0" />
                   <StackPane fx:id="stackPanels" layoutX="268.0" layoutY="74.0" onMouseEntered="#loadDialogSolarPanels" prefHeight="150.0" prefWidth="200.0" />
                   <StackPane fx:id="stackTransport" layoutX="480.0" layoutY="74.0" onMouseEntered="#loadMealDialogTransport" prefHeight="150.0" prefWidth="200.0" />
                   <StackPane fx:id="stackBike" layoutX="483.0" layoutY="316.0" onMouseEntered="#loadMealDialogBike" prefHeight="150.0" prefWidth="186.0" />

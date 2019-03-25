@@ -263,6 +263,27 @@ public class ControllerMainPage extends ControllerGeneral {
         }
     }
 
+    /**
+     * Show dialog box.
+     * @param event mouse hovering
+     */
+    @FXML
+    public void loadDialogTempereture(MouseEvent event) {
+
+        String text = "We calculate the Co2 you save\n"
+                +
+                "by lowering the temperature of your\n"
+                +
+                "home according to your monthly energy\n"
+                +
+                "consumption  mentioned on the utility bill.\n\n "
+                +
+                "Please fill it in and then press Submit.";
+
+        if (!dialogBoxOn) {
+            showDialog(text, "Home Temperature", stackTemperature);
+        }
+    }
 
 }
 
