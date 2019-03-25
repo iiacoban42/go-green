@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class ControllerRegister {
+public class ControllerRegister extends ControllerGeneral {
 
     @FXML
     Button submitButton;
@@ -39,9 +39,9 @@ public class ControllerRegister {
 
     public void submitButtonPressed(ActionEvent event) throws JsonProcessingException {
 
-        if (!valid(username) || !valid(email) || !valid(password)) {
+        if (!validText(username) || !validText(email) || !validText(password)) {
             errorMessage.setVisible(true);
-        } else if (valid(username) && valid(email) && valid(password)) {
+        } else if (validText(username) && validText(email) && validText(password)) {
             errorMessage.setVisible(false);
             sendRegisterCredentials(username , password , email);
             submitButton.getScene().getWindow().hide();
@@ -57,6 +57,7 @@ public class ControllerRegister {
     public void usernameEntered(ActionEvent event) {
         username = usernameRegister.getText();
         System.out.println(username);
+        passwordRegister.requestFocus();
     }
 
     /**
@@ -66,6 +67,7 @@ public class ControllerRegister {
     public void emailEntered(ActionEvent event) {
         email = emailRegister.getText();
         System.out.println(email);
+        submitButton.requestFocus();
 
     }
 
@@ -76,15 +78,8 @@ public class ControllerRegister {
     public void passwordEntered(ActionEvent event) {
         password = passwordRegister.getText();
         System.out.println(password);
+        emailRegister.requestFocus();
     }
 
-    /**
-     * Checks if input is valid.
-     * @param text with string of textfield
-     * @return true if the input is not null and not empty . Otherwise it returns false.
-     */
-    private static boolean valid(String text) {
-        return text != null && !text.isEmpty();
-    }
 
 }

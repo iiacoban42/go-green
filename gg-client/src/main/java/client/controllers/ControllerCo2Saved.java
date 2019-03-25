@@ -21,6 +21,10 @@ public class ControllerCo2Saved {
     Label gramsLabel;
 
 
+    @FXML
+    void initialize() {
+        buttonShow.fire();
+    }
 
     /**
      * When show button is pressed  CO2 SAVED appears.
