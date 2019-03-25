@@ -186,5 +186,28 @@ public class UserManager {
         }
     }
 
+    /**
+     * updates freind field of both parties.
+     * @param user String representing username of first party
+     * @param freind String representing username of second party
+     */
+    public static void addFriend(String user, String freind) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.get(User.class, user).setFriend(freind);
+            session.get(User.class, freind).setFriend(user);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 }
 

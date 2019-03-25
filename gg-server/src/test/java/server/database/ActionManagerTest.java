@@ -22,7 +22,9 @@ public class ActionManagerTest {
     public void addActionTest(){
         long id = ActionManager.addAction("1", "1", 100);
         assertEquals("1", ActionManager.getAction(id).getActionName());
+        assertEquals(100, UserManager.getUser("1").gettotalScore());
         ActionManager.deleteAction(id);
+        assertEquals(0, UserManager.getUser("1").gettotalScore());
         assertEquals(null, ActionManager.getAction(id));
     }
 

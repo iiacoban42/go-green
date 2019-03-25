@@ -1,6 +1,7 @@
 package database.manager;
 
 import database.entity.Action;
+import database.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,13 +14,13 @@ public class ActionManager {
     /**
      * Cretes a new action and adds it to the database.
      * @param actionName String representing name of action
-     * @param user String representing username/primary key of user
+     * @param username String representing username/primary key of user
      * @param score integer representing score
      * @return id, a intefer representing the primary key of Actiom
      */
     public static long addAction(
             String actionName,
-            String user,
+            String username,
             int score
     ) {
         final Session session = HibernateUtil.getHibernateSession();
@@ -28,8 +29,11 @@ public class ActionManager {
 
         try {
             tx = session.beginTransaction();
-            action = new Action(actionName, user, score);
+            action = new Action(actionName, username, score);
             session.save(action);
+            User user = UserManager.getUser(action.getUser());
+            user.addScore(score);
+            session.update(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -78,6 +82,9 @@ public class ActionManager {
             tx = session.beginTransaction();
             Action action = (Action)session.get(Action.class, id);
             session.delete(action);
+            User user = UserManager.getUser(action.getUser());
+            user.settotalScore(user.gettotalScore() - action.getScore());
+            session.update(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
