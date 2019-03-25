@@ -49,5 +49,9 @@ public class MealTest {
         test.setQuantity(30);
         test.setProduct("test");
         assertNotEquals(test, meal);
+        assertNotEquals(null , meal);
     }
+
+
+
 }

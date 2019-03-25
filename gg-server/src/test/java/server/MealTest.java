@@ -49,6 +49,6 @@ public class MealTest {
 
     @Test
     public void dutchAverageMeal() {
-        Assert.assertEquals(6, MealCalculator.dutchAverageMeal(), 0.01);
+        Assert.assertEquals(6000, MealCalculator.dutchAverageMeal(), 7);
     }
 }

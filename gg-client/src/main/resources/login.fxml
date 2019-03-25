@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,32 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerLogin">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerLogin">
     <AnchorPane prefHeight="334.0" prefWidth="559.0">
-        <Pane prefHeight="362.0" prefWidth="559.0" style="-fx-background-color: #FFFFFF;">
-            <Button fx:id="loginButton" layoutX="333.0" layoutY="263.0" mnemonicParsing="false" onAction="#loginButtonPressed" prefHeight="44.0" prefWidth="95.0" style="-fx-background-color: #6bb300;" text="Login" textAlignment="CENTER" textFill="WHITE">
-                <font>
-                    <Font name="Calibri" size="24.0" />
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </Button>
-            <Button fx:id="registerButton" layoutX="66.0" layoutY="263.0" mnemonicParsing="false" onAction="#registerButtonPressed" prefHeight="44.0" prefWidth="129.0" style="-fx-background-color: #6bb300;" text="Register" textAlignment="CENTER" textFill="WHITE">
-                <font>
-                    <Font name="Calibri" size="24.0" />
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </Button>
-            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="306.0" layoutY="118.0" onAction="#usernameEntered" promptText="username" />
-            <PasswordField fx:id="passwordTextField" alignment="CENTER" layoutX="306.0" layoutY="169.0" onAction="#passwordEntered" promptText="password" />
-            <Label layoutX="70.0" layoutY="235.0" text="Don't have an account?" />
+        <Pane prefHeight="362.0" prefWidth="566.0" style="-fx-background-color: #FFFFFF;">
+            <Label layoutX="70.0" layoutY="244.0" text="Don't have an account?" />
             <ImageView fitHeight="234.0" fitWidth="255.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@images/logo.PNG" />
             </ImageView>
-            <Label layoutX="293.0" layoutY="41.0" prefHeight="46.0" prefWidth="175.0" text="Log in here" textAlignment="CENTER">
+            <Label layoutX="293.0" layoutY="41.0" prefHeight="46.0" prefWidth="167.0" text="Log in here" textAlignment="CENTER">
                 <font>
                     <Font name="Calibri" size="36.0" />
                 </font>
@@ -49,6 +30,22 @@
                 </font>
             </Label>
          <Text fx:id="errorCredentials" fill="#e13e3e" layoutX="293.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="** Wrong Credentials" visible="false" />
+         <JFXButton fx:id="registerButton" layoutX="70.0" layoutY="263.0" onAction="#registerButtonPressed" prefHeight="44.0" prefWidth="124.0" style="-fx-background-color: #6bb300;" text="Register" textFill="WHITE">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </JFXButton>
+         <JFXButton fx:id="loginButton" layoutX="323.0" layoutY="258.0" onAction="#loginButtonPressed" prefHeight="51.0" prefWidth="101.0" style="-fx-background-color: #6bb300;" text="Log in" textFill="WHITE">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </JFXButton>
+         <JFXTextField fx:id="usernameTextField" alignment="CENTER" focusColor="#6bb300" layoutX="303.0" layoutY="137.0" onAction="#usernameEntered" promptText="username" unFocusColor="BLACK">
+            <font>
+               <Font name="Calibri" size="12.0" />
+            </font>
+         </JFXTextField>
+         <JFXPasswordField fx:id="passwordTextField" alignment="CENTER" focusColor="#6bb300" layoutX="303.0" layoutY="181.0" onAction="#passwordEntered" promptText="password" unFocusColor="BLACK" />
         </Pane>
     </AnchorPane>
 </VBox>

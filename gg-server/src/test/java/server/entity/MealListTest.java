@@ -97,15 +97,13 @@ public class MealListTest {
     @Test
     public void throwsException() {
         try {
-            MealList list=new MealList();
+            MealList list = new MealList();
             list.jsonConverter("");
 
         } catch (Exception e) {
             assertEquals("exception", e.getMessage());
         }
     }
-
-
 
 
     @Test
