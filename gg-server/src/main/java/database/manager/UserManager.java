@@ -123,6 +123,7 @@ public class UserManager {
             tx = session.beginTransaction();
             user = (User)session.get(User.class, username);
             user.setHashPassword(hashPassword);
+            session.update(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -148,6 +149,7 @@ public class UserManager {
             tx = session.beginTransaction();
             User user = (User)session.get(User.class, username);
             user.setToken(token);
+            session.update(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -170,7 +172,9 @@ public class UserManager {
 
         try {
             tx = session.beginTransaction();
-            session.get(User.class, username).addScore(score);
+            User user = (User)session.get(User.class, username);
+            user.addScore(score);
+            session.update(user);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
