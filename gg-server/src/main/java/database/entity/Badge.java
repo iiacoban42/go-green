@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 
 
 /**
- * represents an action in the action_log table.
+ * represents a badge in badges.
  * stores info in database
  */
 @Entity
-@Table(name = "action_log")
-public class Action {
+@Table(name = "badges")
+public class Badge {
 
     /**
      * Primary key.
@@ -31,17 +31,17 @@ public class Action {
     private long id;
 
     /**
-     * A Date representing the time the action was performed.
+     * A Date representing the time the badge was given.
      */
     @Column(name = "date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
 
     /**
-     * A String representing the name of the action performed.
+     * A String representing the name of the badge.
      */
-    @Column(name = "action_name")
-    private String actionName;
+    @Column(name = "name")
+    private String badgeName;
 
     /**
      * A String representing the username of the user who performed the action.
@@ -49,27 +49,20 @@ public class Action {
     @Column(name = "user")
     private String user;
 
-    /**
-     * A Integer representing the co2_score gained by performing the action.
-     */
-    @Column(name = "score")
-    private int score;
 
 
     /**
-     * Creates an action to insert in the action log.
+     * Creates a badge to insert in badges.
      * id will be auto-generated after it has been inserted in table.
-     * @param actionName a String that represents the name of the action performed
+     * @param badgeName a String that represents the name of the badge
      * @param user a String representing the username of the User who performed the action
-     * @param score a Int representing the score gained by the action
      */
-    public Action(String actionName, String user, int score) {
-        this.actionName = actionName;
+    public Badge(String badgeName, String user) {
+        this.badgeName = badgeName;
         this.user = user;
-        this.score = score;
     }
 
-    public Action(){}
+    public Badge(){}
 
     @PrePersist
     void creatAt() {
@@ -80,16 +73,17 @@ public class Action {
         return id;
     }
 
+
     private Date getDateTime() {
         return dateTime;
     }
 
-    public String getActionName() {
-        return actionName;
+    public String getBadgeName() {
+        return badgeName;
     }
 
-    private void setActionName(final String actionName) {
-        this.actionName = actionName;
+    private void setBadgeName(final String badgeName) {
+        this.badgeName = badgeName;
     }
 
     public String getUser() {
@@ -99,13 +93,4 @@ public class Action {
     private void setUser(final String user) {
         this.user = user;
     }
-
-    public int getScore() {
-        return score;
-    }
-
-    private void setScore(final int score) {
-        this.score = score;
-    }
-
 }

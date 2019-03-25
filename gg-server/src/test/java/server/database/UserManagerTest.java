@@ -1,5 +1,7 @@
 package server.database;
 
+import org.hibernate.HibernateError;
+import org.hibernate.HibernateException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -86,6 +88,12 @@ public class UserManagerTest {
         assertEquals(500, UserManager.getUser("cpt1").gettotalScore());
     }
 
+    @Test
+    public void addFeind() {
+        UserManager.addFriend("cpt1", "cpt2");
+        assertEquals("cpt2", UserManager.getUser("cpt1").getFriend());
+        assertEquals("cpt1", UserManager.getUser("cpt2").getFriend());
+    }
 
 }
 
