@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.username">oop</property>
         <property name="hibernate.connection.password">group96</property>
         <property name="hibernate.connection.url">jdbc:mysql://84.107.51.29:3306/gogreen</property>
@@ -17,7 +17,7 @@
 
         <mapping class="database.entity.User"></mapping>
         <mapping class="database.entity.Action"></mapping>
+        <mapping class="database.entity.Badge"></mapping>
         <mapping class="database.entity.ContinuouseAction"></mapping>
-
     </session-factory>
 </hibernate-configuration>

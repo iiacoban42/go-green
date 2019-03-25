@@ -24,7 +24,7 @@ public class MealCalculatorTest {
     public void testGetAmountCo2OverFlow() {
         server.entity.Meal[] list = new server.entity.Meal[] {
                 new server.entity.Meal(MealCalculator.Meal_Menu[16].getProduct(), 500),
-                new server.entity.Meal(MealCalculator.Meal_Menu[0].getProduct(), 200)
+                new server.entity.Meal(MealCalculator.Meal_Menu[0].getProduct(), 1000)
         };
         MealList mealList = new MealList(Arrays.asList(list));
 
@@ -41,7 +41,7 @@ public class MealCalculatorTest {
 
         assertTrue(MealCalculator.isVegetarian(mealList));
 
-        mealList.addMeal(new server.entity.Meal("Insects", 20));
+        mealList.addMeal(new server.entity.Meal("insects", 20));
         assertFalse(MealCalculator.isVegetarian(mealList));
     }
 }

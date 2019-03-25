@@ -10,7 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ public class ControllerVeggieMeal {
     private Button submit;
 
     @FXML
-    private VBox textFields;
+    private GridPane grid;
 
     @FXML
     private TextField beans;
@@ -79,7 +80,7 @@ public class ControllerVeggieMeal {
 
         MealList list = new MealList();
 
-        for (Node node : textFields.getChildren()) {
+        for (Node node : grid.getChildren()) {
 
             if (node instanceof TextField) {
 
@@ -92,10 +93,10 @@ public class ControllerVeggieMeal {
                         int quantityInt = Integer.parseInt(quantity);
                         String ingredient = node.getId();
 
-                        Meal meal = new Meal(ingredient , quantityInt);
+                        Meal meal = new Meal(ingredient, quantityInt);
                         list.addMeal(meal);
                         //for testing purposes
-                        //System.out.println(quantity + " " + ingredient);
+                        System.out.println(quantity + " " + ingredient);
                     }
 
                     ((TextField) node).setText("");
@@ -109,13 +110,13 @@ public class ControllerVeggieMeal {
             System.out.println("meal was not sent to the server");
         }
 
-        submit.getScene().getWindow().hide();
-
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
 
     /**
      * Test if given message is valid.
+     *
      * @param message to check if valid
      * @return boolean
      */

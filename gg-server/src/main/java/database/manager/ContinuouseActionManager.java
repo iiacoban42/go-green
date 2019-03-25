@@ -26,7 +26,7 @@ public class ContinuouseActionManager {
      */
     public static long createCa(String username, String actionName,
                                 int scorePerDay, int relavantInfo) {
-        final Session session = HibernateUtil.getHibernateSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         ContinuouseAction continuouseAction = null;
 

@@ -184,6 +184,8 @@ public class UserManager {
         } finally {
             session.close();
         }
+
+
     }
 
     /**
