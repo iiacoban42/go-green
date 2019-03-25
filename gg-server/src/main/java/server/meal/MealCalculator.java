@@ -5,6 +5,7 @@ import server.entity.MealList;
 public class MealCalculator {
 
     public static final Meal[] Meal_Menu = {
+<<<<<<< HEAD
         new Meal("beans", 1, 0, true),
         new Meal("VeggieBurger", 2.6, 0, true),
         new Meal("Insects", 2.7, 0, false),
@@ -22,6 +23,25 @@ public class MealCalculator {
         new Meal("MincedMeat", 19.4, 0, false),
         new Meal("Steak", 34.0, 0, false),
         new Meal("Lamb", 51.0, 0, false)
+=======
+        new Meal("beans", 1, true),
+        new Meal("veggieBurger", 2.6, true),
+        new Meal("veggieBurgerCheese", 6.5, true),
+        new Meal("quorn", 2.7, true),
+        new Meal("nuts", 3.2, true),
+        new Meal("tofu", 3.5, true),
+        new Meal("egg", 216, true),
+        new Meal("beefCroquette", 5.2, false),
+        new Meal("chicken", 6.8, false),
+        new Meal("pork", 7, false),
+        new Meal("steak", 34, false),
+        new Meal("lamb", 51, false),
+        new Meal("hamburger", 16.8, false),
+        new Meal("mincedMeat", 19.4, false),
+        new Meal("mixedMincedMeat", 13.3, false),
+        new Meal("insects", 2.7, false),
+        new Meal("cheese", 10, true)
+>>>>>>> b7fc630f78221149385add8f3436989963a1b45c
     };
 
     /**
@@ -95,7 +115,11 @@ public class MealCalculator {
                 + 1.1 + 1.2 + 1.2 + 1.2 + 1.2 + 1.2) * 1000 / (13 * 365);
 
 
+<<<<<<< HEAD
         return 1 * avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
+=======
+        return  avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
+>>>>>>> b7fc630f78221149385add8f3436989963a1b45c
                 + 6.8 * avgChicken + 7 * avgPork + 10 * avgCheese
                 + 16.8 * avgCow + 51 * avgLamb;
     }
