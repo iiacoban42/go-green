@@ -42,7 +42,7 @@ public class UserManagerTest {
         try {
             UserManager.addUser("cpt1", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "1@1.1");
         } catch (PersistenceException e) {
-            assertEquals(e.getMessage(), "org.hibernate.exception.DataException: could not execute statement");
+            assertEquals("org.hibernate.exception.ConstraintViolationException: could not execute statement", e.getMessage());
         }
     }
 
