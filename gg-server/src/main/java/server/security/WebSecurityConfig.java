@@ -1,7 +1,6 @@
 package server.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,18 +12,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
+    /**
+     * Constructor WebSecurityConfig.
+     *
+     * @param userDetailsService UserDetailsServiceImpl
+     * @param passwordEncoder BCryptPasswordEncoder
+     */
     @Autowired
-    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder encoder) {
+    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService,
+                             BCryptPasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
-        this.bCryptPasswordEncoder = encoder;
-    }
+        this.passwordEncoder = passwordEncoder;
 
-    /*public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder encoder) {
-        this.userDetailsService = userDetailsService;
-        this.bCryptPasswordEncoder = encoder;
-    }*/
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -42,13 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsService).passwordEncoder(this.bCryptPasswordEncoder);
+        auth.userDetailsService(this.userDetailsService)
+            .passwordEncoder(this.passwordEncoder);
     }
 
-    /*@Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
-    }*/
     /*
     public void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {

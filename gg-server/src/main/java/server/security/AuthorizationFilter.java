@@ -24,25 +24,27 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
                                     FilterChain chain) throws IOException, ServletException {
         String header = request.getHeader("Authorization");
 
-        if (header == null || !header.startsWith("Bearer")) {
+        if (header == null || !header.startsWith("Bearer ")) {
             chain.doFilter(request, response);
             return;
         }
+        String token = header.replace("Bearer ", "");
+        UsernamePasswordAuthenticationToken authenticationToken = null;
 
-        boolean valid = CreateJwt.validateToken(header);
+        boolean valid = CreateJwt.validateToken(token);
         if (valid) {
-            System.out.println("test");
-        }
+            String username = CreateJwt.getSubject(token);
 
-        UsernamePasswordAuthenticationToken authenticationToken =
-            new UsernamePasswordAuthenticationToken(
-                "admin",
+            authenticationToken = new UsernamePasswordAuthenticationToken(
+                username,
                 null,
                 Collections.emptyList()
             );
 
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        }
 
+
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         chain.doFilter(request, response);
     }
 }

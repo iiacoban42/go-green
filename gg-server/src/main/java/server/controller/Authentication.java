@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import server.security.CreateJwt;
 import server.entity.LoginCredentials;
 import server.entity.RegisterCredentials;
+import server.security.CreateJwt;
 
 @RestController
 @RequestMapping("/authentication")
 public class Authentication {
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public Authentication(BCryptPasswordEncoder encoder) {
-        this.bCryptPasswordEncoder = encoder;
+        this.passwordEncoder = encoder;
     }
 
     /**
@@ -52,8 +52,7 @@ public class Authentication {
      */
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterCredentials credentials) {
-        System.out.println("------------hey-o==-------------------");
-        credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
+        credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
         ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
 
         if (database.manager.UserManager

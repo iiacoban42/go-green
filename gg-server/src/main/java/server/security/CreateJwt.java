@@ -1,5 +1,7 @@
 package server.security;
 
+import database.manager.UserManager;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,6 +14,7 @@ public class CreateJwt {
 
     /**
      * Creates a JSON Web Token that validates the user when they go to a different link.
+     *
      * @param username username and unique id of the user
      * @return the token
      */
@@ -40,12 +43,14 @@ public class CreateJwt {
         builder.setExpiration(expDate);
         builder.signWith(signatureAlgorithm, base64Key);
 
+        UserManager.setToken(username, builder.compact());
         System.out.println(builder.compact());
         return builder.compact();
     }
 
     /**
-     * Get data at which the token was issued.
+     * Get date at which the token was issued.
+     *
      * @param jwtToken token
      * @return date
      */
@@ -62,6 +67,7 @@ public class CreateJwt {
 
     /**
      * Get date at which token will expire.
+     *
      * @param jwtToken token
      * @return date
      */
@@ -77,7 +83,22 @@ public class CreateJwt {
     }
 
     /**
+     * Return subject from given token.
+     *
+     * @param jwtToken token
+     * @return subject
+     */
+    public static String getSubject(String jwtToken) {
+        Claims claims = Jwts.parser()
+            .setSigningKey(Base64.encodeBase64String(signingKey.getBytes()))
+            .parseClaimsJws(jwtToken).getBody();
+
+        return claims.getSubject();
+    }
+
+    /**
      * Checks if the token is valid.
+     *
      * @param jwtToken token
      * @return true if valid else false
      */
@@ -92,6 +113,9 @@ public class CreateJwt {
         long iatDate = getIssuedAtDate(jwtToken);
 
         String validateToken = database.manager.UserManager.getUser(id).getToken();
+        if (validateToken == null) {
+            return false;
+        }
         long expDate = getExpirationDate(validateToken);
         return iatDate <= expDate;
     }
