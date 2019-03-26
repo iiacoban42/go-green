@@ -12,7 +12,11 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 
 
-public class LoginRequests {
+public class LoginRequests  {
+
+
+
+
 
     /**
      * Sends the username and password to the server in json format using a post request.
@@ -22,7 +26,7 @@ public class LoginRequests {
      */
     public static String sendLoginCredentials(String username, String password) throws IOException {
 
-        String urlLogin = "http://localhost:8080/api/authentication/login";
+        String urlLogin = "http://localhost:8080/api/users/login";
 
         LoginCredentials credentials = new LoginCredentials(username, password);
 
@@ -41,6 +45,10 @@ public class LoginRequests {
             entity,
             ResponseEntity.class
         );
+
+        String tokenResponse = response.getHeaders().get( "Authorization").get(0);
+        Token token = new Token(tokenResponse);
+        Session.setToken(token);
 
         return response.getStatusCode().toString();
     }

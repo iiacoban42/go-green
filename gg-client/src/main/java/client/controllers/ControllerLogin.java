@@ -19,8 +19,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 
+
 @Component
 public class ControllerLogin extends ControllerGeneral  {
+
 
     @FXML
     Text errorCredentials;
@@ -57,7 +59,7 @@ public class ControllerLogin extends ControllerGeneral  {
             String result = "";
 
             try {
-                result =  sendLoginCredentials(username, password);
+                result = sendLoginCredentials(username, password);
             } catch (IOException e) {
                 System.out.println("Wrong credentials");
             }

@@ -24,7 +24,7 @@ public class RegisterRequests {
         String password,
         String email
     ) throws JsonProcessingException {
-        String urlRegister = "http://localhost:8080/api/authentication/register";
+        String urlRegister = "http://localhost:8080/api/users/register";
 
         RegisterCredentials credentials = new RegisterCredentials(username, password, email);
 

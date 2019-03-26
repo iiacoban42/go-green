@@ -1,6 +1,7 @@
 package client.requests;
 
 import client.entities.MealList;
+
 import client.entities.Score;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpEntity;
@@ -30,6 +31,7 @@ public class MealRequests {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.set("Authorization", Session.getToken().getToken());
 
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
         RestTemplate restTemplate = new RestTemplate();
@@ -41,6 +43,7 @@ public class MealRequests {
             ResponseEntity.class
         );
 
+
         return response.getStatusCode().toString();
     }
 
@@ -51,13 +54,23 @@ public class MealRequests {
      */
     public static int getScore() {
 
-        RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8080/api/action/score";
 
-        ResponseEntity<Score> response
-            = restTemplate.getForEntity(url, Score.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.set("Authorization", Session.getToken().getToken());
 
-        Score score = response.getBody();
+        HttpEntity<String> entity = new HttpEntity<String>(headers);
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                entity,
+                Score.class
+        );
+
+        Score score = (Score) response.getBody();
 
         return score.getTotalScore();
     }
