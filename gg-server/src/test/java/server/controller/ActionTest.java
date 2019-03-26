@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import server.entity.*;
@@ -33,6 +34,7 @@ public class ActionTest {
     private ObjectMapper objectMapper;
 
     @Before
+    @WithMockUser("admin")
     public void deleteActions() {
         List actions = ActionManager.listActionsUser("admin");
 
@@ -45,6 +47,7 @@ public class ActionTest {
     }
 
     @Test
+    @WithMockUser("admin")
     public void listActionsTest() throws Exception {
         ActionManager.addAction("meal", "admin", 5);
         ActionManager.addAction("meal", "admin", 20);
@@ -57,6 +60,7 @@ public class ActionTest {
     }
 
     @Test
+    @WithMockUser("admin")
     public void removeActionTest() throws Exception {
         ActionManager.addAction("meal", "admin", 5);
 
@@ -71,6 +75,7 @@ public class ActionTest {
     }
 
     @Test
+    @WithMockUser("admin")
     public void mealTest() throws Exception {
         MealList mealList = new MealList();
         mealList.addMeal(new Meal("VeggieBurger", 200));
@@ -88,6 +93,7 @@ public class ActionTest {
     }
 
     @Test
+    @WithMockUser("admin")
     public void transportTest() throws Exception {
         TransportList transportList = new TransportList();
         transportList.addTransport(new Transport("bus", 100));
@@ -105,6 +111,7 @@ public class ActionTest {
     }
 
     @Test
+    @WithMockUser("admin")
     public void scoreTest() throws Exception {
         Score score = new Score();
         score.setTotalScore(UserManager.getUser("admin").gettotalScore());

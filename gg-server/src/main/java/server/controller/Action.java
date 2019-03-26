@@ -4,6 +4,7 @@ import database.manager.ActionManager;
 import database.manager.UserManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,10 @@ import java.util.List;
 @RequestMapping("/action")
 public class Action {
 
+    private String getUser() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
     /**
      * Returns all actions from a user.
      * @return list
@@ -31,9 +36,7 @@ public class Action {
     @ResponseBody
     public List getAllActions() {
 
-        List actionList = ActionManager.listActionsUser("admin");
-
-        return actionList;
+        return ActionManager.listActionsUser(getUser());
     }
 
     /**
@@ -46,9 +49,8 @@ public class Action {
 
         database.entity.Action action = ActionManager.getAction(actionId);
         ActionManager.deleteAction(actionId);
-        List actionList = ActionManager.listActionsUser("admin");
 
-        return actionList;
+        return ActionManager.listActionsUser(getUser());
     }
 
     /**
@@ -62,7 +64,7 @@ public class Action {
 
         int score = (int)MealCalculator.getAmountCo2(mealList);
         // System.out.println("score: " + score);
-        ActionManager.addAction("meal", "admin", score);
+        ActionManager.addAction("meal", getUser(), score);
 
         return response;
     }
@@ -77,7 +79,7 @@ public class Action {
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
 
         int score = (int) TransportationCalculator.getAmountCo2(transportList);
-        ActionManager.addAction("transport", "admin", score);
+        ActionManager.addAction("transport", getUser(), score);
 
         return response;
     }

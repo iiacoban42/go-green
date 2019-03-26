@@ -1,5 +1,6 @@
 package server.controller;
 
+import database.entity.User;
 import database.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import server.entity.LoginCredentials;
 import server.entity.RegisterCredentials;
-import server.security.CreateJwt;
+
+import java.security.Principal;
 
 @RestController
-@RequestMapping("/authentication")
+@RequestMapping("/users")
 public class Authentication {
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -24,24 +26,15 @@ public class Authentication {
     }
 
     /**
-     * Check if login credentials are valid.
-     *
-     * @param credentials to check if valid
-     * @return true or false
+     * Changes the users password to the password in LoginCredentials.password.
+     * @param credentials LoginCredentials
+     * @param principal filled behind the scenes
      */
-    @PostMapping("/test/login")
-    public ResponseEntity login(@RequestBody LoginCredentials credentials) {
-        ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
-        database.entity.User user = database.manager.UserManager.getUser(credentials.getUsername());
-        if ( user != null) {
-            if (user.getHashPassword().equals(credentials.getPassword())) {
-                response = new ResponseEntity(HttpStatus.OK);
-                String createJwt = CreateJwt.createJwt(credentials.getUsername());
-                UserManager.getUser(credentials.getUsername()).setToken(createJwt);
-            }
-        }
+    @PostMapping("/changePassword")
+    public void changePassword(@RequestBody LoginCredentials credentials, Principal principal) {
+        credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
 
-        return response;
+        UserManager.changePassword(principal.getName(), credentials.getPassword());
     }
 
     /**
@@ -55,10 +48,12 @@ public class Authentication {
         credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
         ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
 
-        if (database.manager.UserManager
-                .getUser(credentials.getUsername()) == null) {
+        User user = database.manager.UserManager.getUser(credentials.getUsername());
+        if (user == null) {
             UserManager.addUser(credentials.getUsername(),
-                    credentials.getPassword(), credentials.getEmail());
+                credentials.getPassword(),
+                credentials.getEmail());
+
             response = new ResponseEntity(HttpStatus.OK);
         }
 

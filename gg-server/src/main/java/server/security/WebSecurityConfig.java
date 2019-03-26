@@ -1,6 +1,6 @@
 package server.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,21 +11,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private UserDetailsServiceImpl userDetailsService;
-    private BCryptPasswordEncoder passwordEncoder;
+    //private UserDetailsServiceImpl userDetailsService;
+    //private BCryptPasswordEncoder passwordEncoder;
 
-    /**
-     * Constructor WebSecurityConfig.
-     *
-     * @param userDetailsService UserDetailsServiceImpl
-     * @param passwordEncoder BCryptPasswordEncoder
-     */
-    @Autowired
-    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService,
-                             BCryptPasswordEncoder passwordEncoder) {
-        this.userDetailsService = userDetailsService;
-        this.passwordEncoder = passwordEncoder;
+    @Bean
+    public UserDetailsServiceImpl userDetailsService() {
+        return new UserDetailsServiceImpl();
+    }
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
@@ -33,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
             .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/authentication/register").permitAll()
+            .antMatchers(HttpMethod.POST, "/users/register").permitAll()
             .anyRequest().authenticated()
             .and()
             .addFilter(new AuthenticationFilter(authenticationManager()))
@@ -44,8 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsService)
-            .passwordEncoder(this.passwordEncoder);
+        auth.userDetailsService(userDetailsService())
+            .passwordEncoder(passwordEncoder());
     }
 
     /*
