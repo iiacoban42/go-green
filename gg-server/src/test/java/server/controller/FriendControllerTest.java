@@ -30,6 +30,9 @@ public class FriendControllerTest {
 
     @Before
     public void initTests() {
+        if (UserManager.getUser("Daniel") != null) {
+            UserManager.deleteUser("Daniel");
+        }
         UserManager.addUser("Daniel", "hunter2", "daniel99@gmail.com");
         UserManager.addScore("Daniel", 200);
     }
