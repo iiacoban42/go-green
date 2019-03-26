@@ -1,18 +1,27 @@
 package server.controller;
 
 import database.manager.UserManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import server.security.CreateJwt;
 import server.entity.LoginCredentials;
 import server.entity.RegisterCredentials;
 
 @RestController
 @RequestMapping("/authentication")
 public class Authentication {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    public Authentication(BCryptPasswordEncoder encoder) {
+        this.bCryptPasswordEncoder = encoder;
+    }
 
     /**
      * Check if login credentials are valid.
@@ -20,7 +29,7 @@ public class Authentication {
      * @param credentials to check if valid
      * @return true or false
      */
-    @PostMapping("/login")
+    @PostMapping("/test/login")
     public ResponseEntity login(@RequestBody LoginCredentials credentials) {
         ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
         database.entity.User user = database.manager.UserManager.getUser(credentials.getUsername());
@@ -28,7 +37,7 @@ public class Authentication {
             if (user.getHashPassword().equals(credentials.getPassword())) {
                 response = new ResponseEntity(HttpStatus.OK);
                 String createJwt = CreateJwt.createJwt(credentials.getUsername());
-
+                UserManager.getUser(credentials.getUsername()).setToken(createJwt);
             }
         }
 
@@ -43,6 +52,8 @@ public class Authentication {
      */
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterCredentials credentials) {
+        System.out.println("------------hey-o==-------------------");
+        credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
         ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
 
         if (database.manager.UserManager
@@ -50,8 +61,6 @@ public class Authentication {
             UserManager.addUser(credentials.getUsername(),
                     credentials.getPassword(), credentials.getEmail());
             response = new ResponseEntity(HttpStatus.OK);
-            String createJwt = CreateJwt.createJwt(credentials.getUsername());
-            UserManager.getUser(credentials.getUsername()).setToken(createJwt);
         }
 
         return response;

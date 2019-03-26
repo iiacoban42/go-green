@@ -1,4 +1,4 @@
-package server.controller;
+package server.security;
 
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
