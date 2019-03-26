@@ -83,6 +83,17 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     ImageView imageMeal;
 
+
+    /**
+     * Change scene.
+     * @param event opponent button pressed.
+     * @throws IOException if something goes wrong.
+     */
+    @FXML
+    public void opponentPressed(ActionEvent event) throws IOException {
+        changeScene("addFriend.fxml" , anchorPane);
+    }
+
     /**
      * Change scene.
      * @param event solar button pressed.
