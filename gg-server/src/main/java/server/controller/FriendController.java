@@ -5,6 +5,7 @@ import database.entity.User;
 import database.manager.UserManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,10 @@ import server.entity.FriendScore;
 @RequestMapping("/friends")
 public class FriendController {
 
+    private String getUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
     /**
      * Add friend to user.
      *
@@ -26,7 +31,7 @@ public class FriendController {
     @GetMapping("/friend")
     @ResponseBody
     public FriendScore getFriend() {
-        String username = UserManager.getUser("admin").getFriend();
+        String username = UserManager.getUser(getUsername()).getFriend();
 
         if (username == null) {
             throw new ResponseStatusException(
@@ -49,7 +54,7 @@ public class FriendController {
 
         User user = UserManager.getUser(friend.getName());
         if (user != null) {
-            UserManager.addFriend("admin", friend.getName());
+            UserManager.addFriend(getUsername(), friend.getName());
             response = new ResponseEntity(HttpStatus.OK);
         }
 

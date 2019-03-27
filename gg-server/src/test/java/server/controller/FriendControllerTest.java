@@ -8,6 +8,7 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import server.entity.Friend;
@@ -28,8 +29,21 @@ public class FriendControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @BeforeClass
+    public static void initTest() {
+        if (UserManager.getUser("TestUser") != null) {
+            UserManager.deleteUser("TestUser");
+        }
+        UserManager.addUser("TestUser", "hunter2", "TestUser@gmail.com");
+    }
+
+    @AfterClass
+    public static void cleanTest() {
+        UserManager.deleteUser("TestUser");
+    }
+
     @Before
-    public void initTests() {
+    public void initFriend() {
         if (UserManager.getUser("Daniel") != null) {
             UserManager.deleteUser("Daniel");
         }
@@ -38,13 +52,14 @@ public class FriendControllerTest {
     }
 
     @After
-    public void cleanTests() {
+    public void cleanFriend() {
         UserManager.deleteUser("Daniel");
     }
 
     @Test
+    @WithMockUser("TestUser")
     public void getFriendTest_success() throws Exception {
-        UserManager.addFriend("admin", "Daniel");
+        UserManager.addFriend("TestUser", "Daniel");
         FriendScore friendScore = new FriendScore("Daniel", 200);
         String expected = objectMapper.writeValueAsString(friendScore);
 
@@ -54,6 +69,7 @@ public class FriendControllerTest {
     }
 
     @Test
+    @WithMockUser("TestUser")
     public void getFriendTest_fail() throws Exception {
         mvc.perform(get("/friends/friend")
             .contentType(APPLICATION_JSON_UTF8))
@@ -61,6 +77,7 @@ public class FriendControllerTest {
     }
 
     @Test
+    @WithMockUser("TestUser")
     public void addFriendTest_success() throws Exception {
         Friend friend = new Friend("Daniel");
 
@@ -71,6 +88,7 @@ public class FriendControllerTest {
     }
 
     @Test
+    @WithMockUser("TestUser")
     public void addFriendTest_fail() throws Exception {
         Friend friend = new Friend("Lisa");
 
