@@ -71,12 +71,21 @@ public class FriendRequestsTestWithMockito {
     }
 
 
-//    @Test
-//    public void testAddFriendRequest() {
-//       String response =  addFriendRequest("userForTests2");
-//       assertEquals("200 OK", response);
-//
-//    }
+    @Test
+    public void testAddFriendRequest() throws JsonProcessingException {
+       String response =  addFriendRequest("userForTests2");
+       assertEquals("200 OK", response);
+
+    }
+
+    @Test
+    public void testGetScoreAndNameOfFriend_successful() throws JsonProcessingException {
+        addFriendRequest("userForTests2");
+        String response = friendRequests.getScoreAdNameOfFriend();
+        assertEquals("200 OK"  , response);
+    }
+
+
 
 
 }

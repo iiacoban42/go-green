@@ -41,19 +41,15 @@ public class FriendRequests {
      * @return http message frm the server.
      * @throws IOException if something goes wrong.
      */
-    public static String addFriendRequest(String name) throws RestClientResponseException {
+    public static String addFriendRequest(String name)
+            throws RestClientResponseException, JsonProcessingException {
 
         final String urlAddFriend = "http://localhost:8080/api/friends/add";
 
         Friend friend = new Friend(name);
         ObjectMapper objectMapper = new ObjectMapper();
-        String json = null;
 
-        try {
-            json = objectMapper.writeValueAsString(friend);
-        }   catch (JsonProcessingException e) {
-            System.out.println("json prob");
-        }
+        String json = objectMapper.writeValueAsString(friend);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -84,10 +80,8 @@ public class FriendRequests {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         headers.set("Authorization", Session.getToken().getToken());
-
         HttpEntity<String> entity = new HttpEntity<String>(headers);
         RestTemplate restTemplate = new RestTemplate();
-
         ResponseEntity response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
@@ -98,8 +92,6 @@ public class FriendRequests {
         friendScore = (FriendScore) response.getBody();
 
         return response.getStatusCode().toString();
-
-
     }
 
 }

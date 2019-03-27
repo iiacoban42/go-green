@@ -21,5 +21,9 @@ public class TokenTest {
         assertNotEquals(tokenTest.getToken() , "wrong") ;
     }
 
-
+    @Test
+    public void testDeleteToken() {
+        tokenTest.deleteToken();
+        assertEquals("" , tokenTest.getToken());
+    }
 }

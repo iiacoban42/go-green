@@ -4,6 +4,7 @@ import static client.requests.FriendRequests.addFriendRequest;
 
 import client.requests.FriendRequests;
 import client.requests.MealRequests;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -60,7 +61,7 @@ public class ControllerOpponent {
      * @throws IOException if something goes wrong.
      */
     @FXML
-    public void addFriend(ActionEvent event)  {
+    public void addFriend(ActionEvent event) throws JsonProcessingException {
 
         String response = "";
 
