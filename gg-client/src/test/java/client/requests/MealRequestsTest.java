@@ -2,12 +2,22 @@ package client.requests;
 
 import client.entities.Meal;
 import client.entities.MealList;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.junit.Before;
 import org.junit.Test;
 
+import static client.requests.LoginRequests.sendLoginCredentials;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class MealRequestsTest {
+
+    @Before
+    public void setUp() throws JsonProcessingException {
+
+        sendLoginCredentials("userForTests" , "test");
+
+    }
 
     @Test
     public void mealTest_successful() throws Exception {

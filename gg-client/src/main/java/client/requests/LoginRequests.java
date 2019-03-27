@@ -26,7 +26,7 @@ public class LoginRequests  {
      * @throws RestClientResponseException if something went wrong
      */
     public static String sendLoginCredentials(String username,
-                                              String password) throws RestClientResponseException {
+                         String password) throws RestClientResponseException, JsonProcessingException {
 
         String urlLogin = "http://localhost:8080/api/users/login";
 
@@ -34,11 +34,9 @@ public class LoginRequests  {
 
         ObjectMapper objectMapper = new ObjectMapper();
         String json = "";
-        try {
-            json = objectMapper.writeValueAsString(credentials);
-        } catch (JsonProcessingException e) {
-            System.out.println("json prob");
-        }
+
+        json = objectMapper.writeValueAsString(credentials);
+
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);

@@ -3,19 +3,28 @@ package client.requests;
 import client.entities.Action;
 import client.entities.ActionList;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static client.requests.LoginRequests.sendLoginCredentials;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class LogRequestsTestWithMockito {
+    @Before
+    public void setUp() throws JsonProcessingException {
+
+        sendLoginCredentials("userForTests" , "test");
+
+    }
 
     private LogRequests mockLogRequests = mock(LogRequests.class);
     private  LogRequests logRequests = new LogRequests();
+
 
 
     @Test
@@ -46,14 +55,6 @@ public class LogRequestsTestWithMockito {
         Mockito.verifyNoMoreInteractions(mockLogRequests);
     }
 
-    @Test
-    public void testGetAllActionsFromTheServer_successful() {
-
-      String response =  logRequests.getAllActionsFromTheServer();
-
-      assertEquals(String.class , response.getClass());
-
-    }
 
     @Test
     public void testConverter() throws JsonProcessingException {
@@ -69,6 +70,17 @@ public class LogRequestsTestWithMockito {
        assertEquals(ActionList.class, result.getClass());
        assertEquals(test.getActionList().toString() , result.getActionList().toString());
     }
+
+    @Test
+    public void testGetAllActionsFromTheServer_successful() {
+
+        String response =  logRequests.getAllActionsFromTheServer();
+
+        assertEquals(String.class , response.getClass());
+
+    }
+
+
 
     @Test(expected = Exception.class)
     public  void testConverterException() throws JsonProcessingException {

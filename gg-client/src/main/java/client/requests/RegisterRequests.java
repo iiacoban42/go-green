@@ -24,18 +24,16 @@ public class RegisterRequests {
         String username,
         String password,
         String email
-    ) throws RestClientResponseException {
+    ) throws RestClientResponseException, JsonProcessingException {
         String urlRegister = "http://localhost:8080/api/users/register";
 
-        RegisterCredentials credentials = new RegisterCredentials(username, password, email);
+        RegisterCredentials credentials = new RegisterCredentials(email, username, password);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String json = "";
-        try {
-            json = objectMapper.writeValueAsString(credentials);
-        } catch (JsonProcessingException e) {
-            System.out.println("json prob");
-        }
+
+        json = objectMapper.writeValueAsString(credentials);
+
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);

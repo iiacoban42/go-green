@@ -2,6 +2,7 @@ package client.controllers;
 
 import static client.requests.RegisterRequests.sendRegisterCredentials;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,7 +38,8 @@ public class ControllerRegister extends ControllerGeneral {
      * @param event created by button interaction
      */
 
-    public void submitButtonPressed(ActionEvent event) throws RestClientResponseException {
+    public void submitButtonPressed(ActionEvent event)
+            throws RestClientResponseException, JsonProcessingException {
 
         if (!validText(username) || !validText(email) || !validText(password)) {
             errorMessage.setVisible(true);
