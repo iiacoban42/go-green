@@ -86,26 +86,29 @@ public class ControllerOpponent {
     @FXML
     public  void  initialize() {
 
-        FriendRequests friendRequests = new FriendRequests();
+        try {
+            FriendRequests friendRequests = new FriendRequests();
 
-        String response =  friendRequests.getScoreAdNameOfFriend();
+            String response =  friendRequests.getScoreAdNameOfFriend();
 
-        System.out.println(friendRequests.getFriendScore().getScore());
+            System.out.println(friendRequests.getFriendScore().getScore());
 
-        if (response.equals("200 OK")) {
+            if (response.equals("200 OK")) {
 
-            XYChart.Series scores = new XYChart.Series();
-            scores.setName("Carbon Dioxide Saved (grams)");
-            scores.getData().add(new XYChart.Data(friendRequests.getFriendScore().getName() ,
+                XYChart.Series scores = new XYChart.Series();
+                scores.setName("Carbon Dioxide Saved (grams)");
+                scores.getData().add(new XYChart.Data(friendRequests.getFriendScore().getName(),
                     friendRequests.getFriendScore().getScore()));
 
-            scores.getData().add(new XYChart.Data("YOU" ,(double) MealRequests.getScore()));
-            chart.getData().addAll(scores);
-            chart.setBarGap(5);
+                scores.getData().add(new XYChart.Data("YOU", (double) MealRequests.getScore()));
+                chart.getData().addAll(scores);
+                chart.setBarGap(5);
+            }
 
-
-
+        } catch (RestClientResponseException e) {
+            System.out.println("friend not found");
         }
 
     }
 }
+
