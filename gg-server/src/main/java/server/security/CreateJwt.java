@@ -1,5 +1,6 @@
 package server.security;
 
+import database.entity.User;
 import database.manager.UserManager;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
@@ -43,7 +44,6 @@ public class CreateJwt {
         builder.setExpiration(expDate);
         builder.signWith(signatureAlgorithm, base64Key);
 
-        UserManager.setToken(username, builder.compact());
         System.out.println(builder.compact());
         return builder.compact();
     }
@@ -90,8 +90,8 @@ public class CreateJwt {
      */
     public static String getSubject(String jwtToken) {
         Claims claims = Jwts.parser()
-            .setSigningKey(Base64.encodeBase64String(signingKey.getBytes()))
-            .parseClaimsJws(jwtToken).getBody();
+                .setSigningKey(Base64.encodeBase64String(signingKey.getBytes()))
+                .parseClaimsJws(jwtToken).getBody();
 
         return claims.getSubject();
     }
@@ -112,11 +112,15 @@ public class CreateJwt {
 
         long iatDate = getIssuedAtDate(jwtToken);
 
-        String validateToken = database.manager.UserManager.getUser(id).getToken();
-        if (validateToken == null) {
-            return false;
+        User user = UserManager.getUser(id);
+        if (user != null) {
+            String validateToken = user.getToken();
+
+            if (validateToken != null) {
+                long expDate = getExpirationDate(validateToken);
+                return iatDate <= expDate;
+            }
         }
-        long expDate = getExpirationDate(validateToken);
-        return iatDate <= expDate;
+        return false;
     }
 }

@@ -65,7 +65,7 @@ public class AuthenticationTest {
 
     @Test
     public void wrongUserName() throws Exception {
-        LoginCredentials credentials = new LoginCredentials("user", "pass");
+        LoginCredentials credentials = new LoginCredentials("henk", "pass");
 
         mvc.perform(post("/users/login")
                 .contentType(APPLICATION_JSON_UTF8)

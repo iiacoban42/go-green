@@ -1,6 +1,7 @@
 package server.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import database.manager.UserManager;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -53,6 +54,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         Authentication authResult) throws IOException, ServletException {
 
         System.out.println("Successful authentication Username: " + authResult.getName());
-        response.addHeader("Authorization", "Bearer " + CreateJwt.createJwt(authResult.getName()));
+        String token = CreateJwt.createJwt(authResult.getName());
+        UserManager.setToken(authResult.getName(), token);
+        response.addHeader("Authorization", "Bearer " + token);
     }
 }
