@@ -41,6 +41,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
                 Collections.emptyList()
             );
 
+            System.out.println("Valid token user: " + username);
         }
 
 

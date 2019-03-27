@@ -11,7 +11,7 @@ import java.util.Collections;
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("trying to authenticate");
+        System.out.println("Loading user by name: " + username);
 
         database.entity.User user = UserManager.getUser(username);
         if (user == null) {

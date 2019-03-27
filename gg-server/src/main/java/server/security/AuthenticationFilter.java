@@ -52,7 +52,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         FilterChain chain,
         Authentication authResult) throws IOException, ServletException {
 
-        System.out.println("Username: " + authResult.getName());
+        System.out.println("Successful authentication Username: " + authResult.getName());
         response.addHeader("Authorization", "Bearer " + CreateJwt.createJwt(authResult.getName()));
     }
 }

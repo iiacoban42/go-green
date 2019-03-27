@@ -93,7 +93,7 @@ public class Action {
     public Score score() {
         Score score = new Score();
 
-        score.setTotalScore(UserManager.getUser("admin").gettotalScore());
+        score.setTotalScore(UserManager.getUser(getUser()).gettotalScore());
 
         return score;
     }
