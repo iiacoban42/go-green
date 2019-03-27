@@ -57,7 +57,6 @@ public class ActionList {
             details.add(actionDetails);
         }
 
-        System.out.println( details.toString());
 
         return details;
     }

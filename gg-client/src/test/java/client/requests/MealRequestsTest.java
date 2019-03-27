@@ -30,7 +30,7 @@ public class MealRequestsTest {
 
     @Test(expected = Exception.class)
     public void mealTest_unsuccessful() throws Exception {
-        String response = MealRequests.sendMealList(null);
+     MealRequests.sendMealList(null);
     }
 
     @Test

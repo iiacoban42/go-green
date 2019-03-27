@@ -80,6 +80,15 @@ public class LogRequestsTestWithMockito {
 
     }
 
+    @Test
+    public void testConverter_EmptyActionList() throws JsonProcessingException {
+
+        logRequests.setActionList(new ArrayList());
+        ActionList actionList = logRequests.converter();
+        ActionList expected = new ActionList();
+
+        assertEquals(expected.getActionList().toString() , actionList.getActionList().toString() );
+    }
 
 
     @Test(expected = Exception.class)
@@ -89,7 +98,5 @@ public class LogRequestsTestWithMockito {
         logRequests.converter();
 
     }
-
-
 
 }
