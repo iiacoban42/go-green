@@ -1,7 +1,5 @@
 package server.database;
 
-import org.hibernate.HibernateError;
-import org.hibernate.HibernateException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,7 +42,7 @@ public class UserManagerTest {
         try {
             UserManager.addUser("cpt1", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "1@1.1");
         } catch (PersistenceException e) {
-            assertEquals(e.getMessage(), "org.hibernate.exception.DataException: could not execute statement");
+            assertEquals("org.hibernate.exception.DataException: could not execute statement", e.getMessage());
         }
     }
 
@@ -89,7 +87,7 @@ public class UserManagerTest {
     }
 
     @Test
-    public void addFeind() {
+    public void addFriend() {
         UserManager.addFriend("cpt1", "cpt2");
         assertEquals("cpt2", UserManager.getUser("cpt1").getFriend());
         assertEquals("cpt1", UserManager.getUser("cpt2").getFriend());

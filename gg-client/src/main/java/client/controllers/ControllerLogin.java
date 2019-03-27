@@ -15,14 +15,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientResponseException;
 
-import java.io.IOException;
 
 
 
 @Component
 public class ControllerLogin extends ControllerGeneral  {
-
 
     @FXML
     Text errorCredentials;
@@ -59,8 +58,8 @@ public class ControllerLogin extends ControllerGeneral  {
             String result = "";
 
             try {
-                result = sendLoginCredentials(username, password);
-            } catch (IOException e) {
+                result =  sendLoginCredentials(username, password);
+            } catch (RestClientResponseException e) {
                 System.out.println("Wrong credentials");
             }
 
