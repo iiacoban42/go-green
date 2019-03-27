@@ -43,7 +43,7 @@ public class ControllerRegister extends ControllerGeneral {
             errorMessage.setVisible(true);
         } else if (validText(username) && validText(email) && validText(password)) {
             errorMessage.setVisible(false);
-            sendRegisterCredentials(username , password , email);
+            sendRegisterCredentials(email, username, password);
             submitButton.getScene().getWindow().hide();
         }
 
