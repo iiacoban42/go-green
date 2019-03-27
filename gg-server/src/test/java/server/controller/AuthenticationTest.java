@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import server.entity.LoginCredentials;
 import server.entity.RegisterCredentials;
+import server.security.CreateJwt;
 import server.security.WebSecurityConfig;
 
 import static org.junit.Assert.assertNotNull;
@@ -38,19 +39,14 @@ public class AuthenticationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @BeforeClass
-    public static void createTestUser() {
+    @Before
+    public void createTestUser() {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        System.out.println("running createTestUser");
 
         if (UserManager.getUser("Test") != null) {
             UserManager.deleteUser("Test");
         }
         UserManager.addUser("Test", encoder.encode("pass"), "email");
-    }
-    @Before
-    public void setup() {
-        //mvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
     @Test
@@ -141,9 +137,55 @@ public class AuthenticationTest {
         ).andExpect(status().isOk());
     }
 
+    @Test
+    public void deleteUserTest_No_Bearer() throws Exception {
+        // Remove "Bearer " for extra branch coverage of the AuthorizationFilter
+        String token = "This is not a valid token";
+        System.out.println("token: " + token);
+
+        mvc.perform(post("/users/deleteUser")
+            .header("Authorization", token)
+            .contentType(APPLICATION_JSON_UTF8)
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void deleteUserTest_Wrong_Token() throws Exception {
+        LoginCredentials credentials = new LoginCredentials("Test", "pass");
+
+        MvcResult mvcResult = mvc.perform(post("/users/login")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(credentials))
+        ).andExpect(status().isOk()).andReturn();
+
+        // Remove "Bearer " for extra branch coverage of the AuthorizationFilter
+        String token = CreateJwt.createJwt("Test");
+
+        mvc.perform(post("/users/deleteUser")
+            .header("Authorization", token)
+            .contentType(APPLICATION_JSON_UTF8)
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void deleteUserTest_Success() throws Exception {
+        LoginCredentials credentials = new LoginCredentials("Test", "pass");
+
+        MvcResult mvcResult = mvc.perform(post("/users/login")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(credentials))
+        ).andExpect(status().isOk()).andReturn();
+
+        String token = mvcResult.getResponse().getHeader("Authorization");
+
+        mvc.perform(post("/users/deleteUser")
+            .header("Authorization", token)
+            .contentType(APPLICATION_JSON_UTF8)
+        ).andExpect(status().isOk());
+    }
+
     @AfterClass
     public static void deleteTestUser() {
-        System.out.println("running delete test user");
         if (UserManager.getUser("Test") != null) {
             UserManager.deleteUser("Test");
         }

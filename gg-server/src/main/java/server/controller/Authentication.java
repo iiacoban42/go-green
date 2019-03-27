@@ -46,15 +46,9 @@ public class Authentication {
      */
     @PostMapping("/deleteUser")
     public ResponseEntity deleteAccount(Principal principal) {
-        ResponseEntity response = new ResponseEntity(HttpStatus.NOT_FOUND);
-        User user = UserManager.getUser(principal.getName());
+        UserManager.deleteUser(principal.getName());
 
-        if (user != null) {
-            UserManager.deleteUser(principal.getName());
-            response = new ResponseEntity(HttpStatus.OK);
-        }
-
-        return response;
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import server.energy.Temperature;
+import server.energy.TemperatureCalculator;
 import server.entity.MealList;
 import server.entity.Score;
 import server.entity.TransportList;
@@ -71,17 +73,28 @@ public class Action {
 
     /**
      * Parse transport user did.
-     * @param transportList to check if valid
-     * @return true or false
+     * @param transportList list of transport
+     * @return OK
      */
     @PostMapping("/transport")
     public ResponseEntity meal(@RequestBody TransportList transportList) {
-        ResponseEntity response = new ResponseEntity(HttpStatus.OK);
-
         int score = (int) TransportationCalculator.getAmountCo2(transportList);
         ActionManager.addAction("transport", getUser(), score);
 
-        return response;
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    /**
+     * Parse temperature user did.
+     * @param temperature class
+     * @return OK
+     */
+    @PostMapping("/temperature")
+    public ResponseEntity temperature(@RequestBody Temperature temperature) {
+        int score = (int) TemperatureCalculator.getAmountCo2(temperature);
+        ActionManager.addAction("temperature", getUser(), score);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
