@@ -27,14 +27,34 @@ public class Authentication {
 
     /**
      * Changes the users password to the password in LoginCredentials.password.
+     *
      * @param credentials LoginCredentials
-     * @param principal filled behind the scenes
+     * @param principal   filled behind the scenes
      */
     @PostMapping("/changePassword")
     public void changePassword(@RequestBody LoginCredentials credentials, Principal principal) {
         credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
 
         UserManager.changePassword(principal.getName(), credentials.getPassword());
+    }
+
+    /**
+     * Deletes the user account from which it is called.
+     *
+     * @param principal user details
+     * @return Ok or NOT_FOUND
+     */
+    @PostMapping("/deleteUser")
+    public ResponseEntity deleteAccount(Principal principal) {
+        ResponseEntity response = new ResponseEntity(HttpStatus.NOT_FOUND);
+        User user = UserManager.getUser(principal.getName());
+
+        if (user != null) {
+            UserManager.deleteUser(principal.getName());
+            response = new ResponseEntity(HttpStatus.OK);
+        }
+
+        return response;
     }
 
     /**
@@ -51,8 +71,8 @@ public class Authentication {
         User user = database.manager.UserManager.getUser(credentials.getUsername());
         if (user == null) {
             UserManager.addUser(credentials.getUsername(),
-                credentials.getPassword(),
-                credentials.getEmail());
+                    credentials.getPassword(),
+                    credentials.getEmail());
 
             response = new ResponseEntity(HttpStatus.OK);
         }
