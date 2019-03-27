@@ -1,0 +1,251 @@
+diff --git a/gg-client/src/main/java/client/controllers/ControllerRegister.java b/gg-client/src/main/java/client/controllers/ControllerRegister.java
+index dbf1a29..ea544d8 100644
+--- a/gg-client/src/main/java/client/controllers/ControllerRegister.java
++++ b/gg-client/src/main/java/client/controllers/ControllerRegister.java
+@@ -2,6 +2,7 @@ package client.controllers;
+ 
+ import static client.requests.RegisterRequests.sendRegisterCredentials;
+ 
++import com.fasterxml.jackson.core.JsonProcessingException;
+ import javafx.event.ActionEvent;
+ import javafx.fxml.FXML;
+ import javafx.scene.control.Button;
+@@ -37,7 +38,7 @@ public class ControllerRegister extends ControllerGeneral {
+      * @param event created by button interaction
+      */
+ 
+-    public void submitButtonPressed(ActionEvent event) throws RestClientResponseException {
++    public void submitButtonPressed(ActionEvent event) throws RestClientResponseException, JsonProcessingException {
+ 
+         if (!validText(username) || !validText(email) || !validText(password)) {
+             errorMessage.setVisible(true);
+diff --git a/gg-client/src/main/java/client/requests/LoginRequests.java b/gg-client/src/main/java/client/requests/LoginRequests.java
+index d206a0f..edc9374 100644
+--- a/gg-client/src/main/java/client/requests/LoginRequests.java
++++ b/gg-client/src/main/java/client/requests/LoginRequests.java
+@@ -26,7 +26,7 @@ public class LoginRequests  {
+      * @throws RestClientResponseException if something went wrong
+      */
+     public static String sendLoginCredentials(String username,
+-                                              String password) throws RestClientResponseException {
++                                              String password) throws RestClientResponseException, JsonProcessingException {
+ 
+         String urlLogin = "http://localhost:8080/api/users/login";
+ 
+@@ -34,11 +34,9 @@ public class LoginRequests  {
+ 
+         ObjectMapper objectMapper = new ObjectMapper();
+         String json = "";
+-        try {
++
+             json = objectMapper.writeValueAsString(credentials);
+-        } catch (JsonProcessingException e) {
+-            System.out.println("json prob");
+-        }
++
+ 
+         HttpHeaders headers = new HttpHeaders();
+         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+diff --git a/gg-client/src/main/java/client/requests/RegisterRequests.java b/gg-client/src/main/java/client/requests/RegisterRequests.java
+index 69f8d6b..cfb813e 100644
+--- a/gg-client/src/main/java/client/requests/RegisterRequests.java
++++ b/gg-client/src/main/java/client/requests/RegisterRequests.java
+@@ -24,18 +24,16 @@ public class RegisterRequests {
+         String username,
+         String password,
+         String email
+-    ) throws RestClientResponseException {
++    ) throws RestClientResponseException, JsonProcessingException {
+         String urlRegister = "http://localhost:8080/api/users/register";
+ 
+-        RegisterCredentials credentials = new RegisterCredentials(username, password, email);
++        RegisterCredentials credentials = new RegisterCredentials(email, username, password);
+ 
+         ObjectMapper objectMapper = new ObjectMapper();
+         String json = "";
+-        try {
++
+             json = objectMapper.writeValueAsString(credentials);
+-        } catch (JsonProcessingException e) {
+-            System.out.println("json prob");
+-        }
++
+ 
+         HttpHeaders headers = new HttpHeaders();
+         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+diff --git a/gg-client/src/test/java/client/requests/LogRequestsTestWithMockito.java b/gg-client/src/test/java/client/requests/LogRequestsTestWithMockito.java
+index 90b1c06..1cee3c9 100644
+--- a/gg-client/src/test/java/client/requests/LogRequestsTestWithMockito.java
++++ b/gg-client/src/test/java/client/requests/LogRequestsTestWithMockito.java
+@@ -46,14 +46,6 @@ public class LogRequestsTestWithMockito {
+         Mockito.verifyNoMoreInteractions(mockLogRequests);
+     }
+ 
+-    @Test
+-    public void testGetAllActionsFromTheServer_successful() {
+-
+-      String response =  logRequests.getAllActionsFromTheServer();
+-
+-      assertEquals(String.class , response.getClass());
+-
+-    }
+ 
+     @Test
+     public void testConverter() throws JsonProcessingException {
+@@ -70,12 +62,10 @@ public class LogRequestsTestWithMockito {
+        assertEquals(test.getActionList().toString() , result.getActionList().toString());
+     }
+ 
+-    @Test(expected = Exception.class)
++    @Test(expected = JsonProcessingException.class)
+     public  void testConverterException() throws JsonProcessingException {
+-
+-        logRequests.setActionList(null);
+-        logRequests.converter();
+-
++        Mockito.when(mockLogRequests.converter()).thenThrow(new JsonProcessingException(""){});
++        mockLogRequests.converter();
+     }
+ 
+ 
+diff --git a/gg-client/src/test/java/client/requests/LoginRequestsTest.java b/gg-client/src/test/java/client/requests/LoginRequestsTest.java
+index 6c034d4..789e843 100644
+--- a/gg-client/src/test/java/client/requests/LoginRequestsTest.java
++++ b/gg-client/src/test/java/client/requests/LoginRequestsTest.java
+@@ -1,23 +1,19 @@
+ package client.requests;
+ 
+-import client.requests.LoginRequests;
++import com.fasterxml.jackson.core.JsonProcessingException;
+ import org.junit.Test;
+ 
+-import static org.junit.Assert.assertEquals;
++
++import static client.requests.LoginRequests.sendLoginCredentials;
++import static junit.framework.TestCase.assertEquals;
+ 
+ public class LoginRequestsTest {
+ 
+     @Test
+-    public void loginTest_successful() throws Exception {
+-
+-        String response = LoginRequests.sendLoginCredentials("admin" , "pass" );
+-        assertEquals("200 OK" , response);
+-    }
++    public void testSendLoginCredentials_succesfull() throws JsonProcessingException {
+ 
+-    @Test(expected = Exception.class)
+-    public void loginTest_unsuccessful() throws Exception {
+-        String response = LoginRequests.sendLoginCredentials("user" , "pass");
+-        assertEquals("401 UNAUTHORIZED", response);
++      String response =  sendLoginCredentials("userForTests" , "test");
++      assertEquals("200 OK" , response );
+     }
+ 
+ }
+diff --git a/gg-client/src/test/java/client/requests/MealRequestsTest.java b/gg-client/src/test/java/client/requests/MealRequestsTest.java
+deleted file mode 100644
+index 9a5d589..0000000
+--- a/gg-client/src/test/java/client/requests/MealRequestsTest.java
++++ /dev/null
+@@ -1,33 +0,0 @@
+-package client.requests;
+-
+-import client.entities.Meal;
+-import client.entities.MealList;
+-import org.junit.Test;
+-
+-import static org.junit.Assert.assertEquals;
+-import static org.junit.Assert.assertNotEquals;
+-
+-public class MealRequestsTest {
+-
+-    @Test
+-    public void mealTest_successful() throws Exception {
+-        Meal meal = new Meal("beans" , 33);
+-        MealList mealList = new MealList();
+-        mealList.addMeal(meal);
+-        String response = MealRequests.sendMealList(mealList);
+-        assertEquals("200 OK" , response);
+-    }
+-
+-    @Test(expected = Exception.class)
+-    public void mealTest_unsuccessful() throws Exception {
+-        String response = MealRequests.sendMealList(null);
+-    }
+-
+-    @Test
+-    public void getScore_successful(){
+-        int response = MealRequests.getScore();
+-
+-        assertNotEquals(response , -1);
+-    }
+-
+-}
+diff --git a/gg-client/src/test/java/client/requests/RegisterRequestsTest.java b/gg-client/src/test/java/client/requests/RegisterRequestsTest.java
+deleted file mode 100644
+index 92ae819..0000000
+--- a/gg-client/src/test/java/client/requests/RegisterRequestsTest.java
++++ /dev/null
+@@ -1,26 +0,0 @@
+-package client.requests;
+-
+-import client.requests.RegisterRequests;
+-import org.junit.Test;
+-
+-import static org.junit.Assert.assertEquals;
+-
+-
+-public class RegisterRequestsTest {
+-
+-
+-    @Test
+-    public void loginTest_successful() throws Exception {
+-
+-        String response = RegisterRequests.sendRegisterCredentials("email", "user" , "pass");
+-        assertEquals("200 OK" , response);
+-    }
+-
+-    @Test(expected = Exception.class)
+-    public void loginTest_unsuccessful() throws Exception {
+-
+-        String response = RegisterRequests.sendRegisterCredentials("email", "admin" , "pass");
+-        assertEquals("401 UNAUTHORIZED", response);
+-    }
+-}
+-
+diff --git a/gg-client/src/test/java/client/requests/TransportRequestsTest.java b/gg-client/src/test/java/client/requests/TransportRequestsTest.java
+deleted file mode 100644
+index 49148f2..0000000
+--- a/gg-client/src/test/java/client/requests/TransportRequestsTest.java
++++ /dev/null
+@@ -1,29 +0,0 @@
+-package client.requests;
+-
+-import client.entities.Transport;
+-import client.entities.TransportList;
+-import org.junit.Test;
+-import org.mockito.Mockito;
+-
+-import static org.junit.Assert.assertEquals;
+-
+-public class TransportRequestsTest {
+-
+-
+-    @Test
+-    public void TransportSend_successful() throws Exception {
+-        TransportList transportList = new TransportList();
+-
+-        String response = TransportRequests.sendTransportList(transportList);
+-        assertEquals("200 OK" , response);
+-    }
+-
+-
+-    @Test(expected = Exception.class)
+-    public void TransportSend_unsuccessful() throws Exception {
+-
+-     TransportRequests.sendTransportList(null);
+-
+-
+-    }
+-}

@@ -26,7 +26,7 @@ public class LoginRequests  {
      * @throws RestClientResponseException if something went wrong
      */
     public static String sendLoginCredentials(String username,
-                         String password) throws RestClientResponseException, JsonProcessingException {
+                  String password) throws RestClientResponseException, JsonProcessingException {
 
         String urlLogin = "http://localhost:8080/api/users/login";
 
