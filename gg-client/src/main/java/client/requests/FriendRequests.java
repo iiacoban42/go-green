@@ -43,7 +43,7 @@ public class FriendRequests {
      */
     public static String addFriendRequest(String name) throws RestClientResponseException {
 
-        String urlAddFriend = "http://localhost:8080/api/friends/add";
+        final String urlAddFriend = "http://localhost:8080/api/friends/add";
 
         Friend friend = new Friend(name);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -57,6 +57,7 @@ public class FriendRequests {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.set("Authorization", Session.getToken().getToken());
 
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
         RestTemplate restTemplate = new RestTemplate();
@@ -80,11 +81,21 @@ public class FriendRequests {
 
         String url = "http://localhost:8080/api/friends/friend";
 
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<FriendScore> response
-                = restTemplate.getForEntity(url, FriendScore.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.set("Authorization", Session.getToken().getToken());
 
-        friendScore = response.getBody();
+        HttpEntity<String> entity = new HttpEntity<String>(headers);
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                entity,
+                FriendScore.class
+        );
+
+        friendScore = (FriendScore) response.getBody();
 
         return response.getStatusCode().toString();
 
