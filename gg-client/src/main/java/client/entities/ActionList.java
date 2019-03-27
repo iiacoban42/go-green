@@ -2,6 +2,7 @@ package client.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ActionList {
 
@@ -46,13 +47,17 @@ public class ActionList {
 
         for (Action action : actionList) {
 
-            String actionDetails = action.getActionName() + "                   "
+            StringBuilder stringBuilder = new StringBuilder(50);
+            stringBuilder.insert(0 , action.getActionName() + "              ");
+            stringBuilder.insert(16 , action.getScore());
+            stringBuilder.delete(16 + String.valueOf(action.getScore()).length(), action.getActionName().length() + String.valueOf(action.getScore()).length() + 14);
+            System.out.println(stringBuilder.toString());
 
-                    +
-                      action.getScore();
-
+            String actionDetails = stringBuilder.toString();
             details.add(actionDetails);
         }
+
+        System.out.println( details.toString());
 
         return details;
     }
