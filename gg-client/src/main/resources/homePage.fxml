@@ -134,7 +134,7 @@
             <Font size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="-6.0" layoutY="510.0" prefHeight="39.0" prefWidth="166.0" text="Log out">
+      <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="-6.0" layoutY="510.0" onAction="#logout" prefHeight="39.0" prefWidth="166.0" text="Log out">
          <font>
             <Font size="18.0" />
          </font>

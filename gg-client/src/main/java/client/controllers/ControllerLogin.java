@@ -23,6 +23,7 @@ import org.springframework.web.client.RestClientResponseException;
 @Component
 public class ControllerLogin extends ControllerGeneral  {
 
+
     @FXML
     Text errorCredentials;
 
