@@ -1,9 +1,5 @@
 package client.entities;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-
 public class Temperature {
     private double surface;
     private double energy;
@@ -22,9 +18,6 @@ public class Temperature {
         this.system = system;
     }
 
-    public Temperature() {
-
-    }
 
     public double getSurface() {
         return surface;
