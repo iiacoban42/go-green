@@ -18,13 +18,7 @@ public class ActionListTestWithMockito {
 
     private List<Action> list =  new ArrayList<>();
 
-    @Test
-    public void testSetActionListCall(){
-        actionList.setActionList(Mockito.anyList());
-        verify(actionList).setActionList(Mockito.anyList());
-        verify(actionList , times(1)).setActionList(Mockito.anyList());
-        Mockito.verifyNoMoreInteractions(actionList);
-    }
+
 
     @Test
     public void testAddAction() {
@@ -42,6 +36,14 @@ public class ActionListTestWithMockito {
         actionList.getAllActionNamesAndScore();
         verify(actionList).getAllActionNamesAndScore();
         verify(actionList , times(1)).getAllActionNamesAndScore();
+        Mockito.verifyNoMoreInteractions(actionList);
+    }
+
+    @Test
+    public void testSetActionListCall(){
+        actionList.setActionList(Mockito.anyList());
+        verify(actionList).setActionList(Mockito.anyList());
+        verify(actionList , times(1)).setActionList(Mockito.anyList());
         Mockito.verifyNoMoreInteractions(actionList);
     }
 

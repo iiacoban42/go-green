@@ -1,12 +1,19 @@
 package client.controllers;
 
+import client.entities.Temperature;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static client.requests.TemperatureRequests.sendTemperature;
 
 public class ControllerTemperature {
 
@@ -14,6 +21,10 @@ public class ControllerTemperature {
 
     private String stringEnergy;
 
+    private String heatingSystem;
+
+    @FXML
+    GridPane grid;
 
     @FXML
     private TextField surface;
@@ -32,6 +43,10 @@ public class ControllerTemperature {
 
     @FXML
     private Button submit;
+
+
+    @FXML
+    VBox box;
 
 
     /**
@@ -58,12 +73,39 @@ public class ControllerTemperature {
 
     }
 
+
     /**
      * Close the window.
      * @param event submit button pressed.
      */
     @FXML
-    public void submitButtonPressed(ActionEvent event) {
+    public void submitButtonPressed(ActionEvent event) throws IOException {
+
+
+        for (Node node : box.getChildren()) {
+
+
+            if (node instanceof RadioButton) {
+
+                if (((RadioButton) node).isSelected()) {
+
+                    heatingSystem = node.getId();
+
+                }
+
+
+            }
+
+        }
+
+        Temperature temperature = new Temperature(Double.parseDouble(stringSurface) ,
+                Double.parseDouble(stringEnergy) , heatingSystem);
+
+            sendTemperature(temperature);
+
+
+
+
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
     }
