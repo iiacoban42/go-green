@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "continuous_action")
-public class ContinuouseAction {
+public class ContinuousAction {
 
     /**
      * Primary key.
@@ -82,8 +82,8 @@ public class ContinuouseAction {
     /**
      * an integer representing relevant information such as number of solar panels.
      */
-    @Column(name = "relevant_info")
-    private int relavantInfo;
+    @Column(name = "number_solar_panels")
+    private int numSolarPanels;
 
     /**
      * Constructs a continouse action with total score set to scorePerDay.
@@ -91,15 +91,15 @@ public class ContinuouseAction {
      * @param actionName a String representing the name of the continous action.
      * @param scorePerDay a Int representing the score gained per day
      */
-    public ContinuouseAction(String user, String actionName, int scorePerDay, int relavantInfo) {
+    public ContinuousAction(String user, String actionName, int scorePerDay, int numSolarPanels) {
         this.user = user;
         this.actionName = actionName;
         this.scorePerDay = scorePerDay;
-        this.relavantInfo = relavantInfo;
+        this.numSolarPanels = numSolarPanels;
         this.totalScore = scorePerDay;
     }
 
-    public ContinuouseAction() {}
+    public ContinuousAction() {}
 
     @PrePersist
     void creatAt() {
@@ -167,12 +167,12 @@ public class ContinuouseAction {
         this.dateEnded = dateEnded;
     }
 
-    public int getRelavantInfo() {
-        return relavantInfo;
+    public int setNumSolarPanels() {
+        return numSolarPanels;
     }
 
-    public void setRelavantInfo(int relavantInfo) {
-        this.relavantInfo = relavantInfo;
+    public void setNumSolarPanels(int numSolarPanels) {
+        this.numSolarPanels = numSolarPanels;
     }
 
     public Date getDateLastCashedIn() {
@@ -186,7 +186,7 @@ public class ContinuouseAction {
     /**
      * Does everything needed to check in a day.
      */
-    public void checkIn() {
+    public void chashIn() {
         this.totalScore += this.scorePerDay;
         this.dateLastCashedIn = new Date();
         this.daysCashedIn ++;
