@@ -14,7 +14,7 @@ import static client.requests.LoginRequests.sendLoginCredentials;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class LogRequestsTestWithMockito {
+public class LogRequestsMockitoTest {
     @Before
     public void setUp() throws JsonProcessingException {
 

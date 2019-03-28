@@ -3,7 +3,6 @@ package client.requests;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Test;
 
-
 import static client.requests.LoginRequests.sendLoginCredentials;
 import static junit.framework.TestCase.assertEquals;
 

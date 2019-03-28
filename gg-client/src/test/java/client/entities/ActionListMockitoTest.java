@@ -9,7 +9,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ActionListTestWithMockito {
+public class ActionListMockitoTest {
 
     private ActionList actionList = mock(ActionList.class);
     private ActionList actionList2;

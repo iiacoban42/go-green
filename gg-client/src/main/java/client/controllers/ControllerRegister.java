@@ -40,6 +40,9 @@ public class ControllerRegister extends ControllerGeneral {
 
     public void submitButtonPressed(ActionEvent event)
             throws RestClientResponseException, JsonProcessingException {
+        username = usernameRegister.getText();
+        password = passwordRegister.getText();
+        email = emailRegister.getText();
 
         if (!validText(username) || !validText(email) || !validText(password)) {
             errorMessage.setVisible(true);
@@ -74,7 +77,6 @@ public class ControllerRegister extends ControllerGeneral {
         email = emailRegister.getText();
         System.out.println(email);
         submitButton.requestFocus();
-
     }
 
     /**

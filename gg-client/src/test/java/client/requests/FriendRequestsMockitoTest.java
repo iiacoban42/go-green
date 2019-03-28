@@ -13,7 +13,7 @@ import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.*;
 
-public class FriendRequestsTestWithMockito {
+public class FriendRequestsMockitoTest {
 
     @Before
     public void setUp() throws JsonProcessingException {
