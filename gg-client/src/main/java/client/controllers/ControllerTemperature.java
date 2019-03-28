@@ -1,5 +1,7 @@
 package client.controllers;
 
+import static client.requests.TemperatureRequests.sendTemperature;
+
 import client.entities.Temperature;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,15 +9,16 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static client.requests.TemperatureRequests.sendTemperature;
 
 public class ControllerTemperature {
+
+    @FXML
+    VBox box;
 
     private String stringSurface;
 
@@ -23,8 +26,7 @@ public class ControllerTemperature {
 
     private String heatingSystem;
 
-    @FXML
-    GridPane grid;
+
 
     @FXML
     private TextField surface;
@@ -45,8 +47,7 @@ public class ControllerTemperature {
     private Button submit;
 
 
-    @FXML
-    VBox box;
+
 
 
     /**
@@ -101,7 +102,7 @@ public class ControllerTemperature {
         Temperature temperature = new Temperature(Double.parseDouble(stringSurface) ,
                 Double.parseDouble(stringEnergy) , heatingSystem);
 
-            sendTemperature(temperature);
+        sendTemperature(temperature);
 
 
 

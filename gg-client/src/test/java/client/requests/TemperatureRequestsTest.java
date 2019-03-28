@@ -1,8 +1,6 @@
 package client.requests;
 
 import client.entities.Temperature;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
