@@ -1,13 +1,13 @@
-# CSE1105 Template Repository
+# GOGREEN  
 
-This a template repository to help you get started on making the best project possible!
+GoGreen is a gamified app that tracks the Co2 saved by the environment-friendly activities of the user and shared the score with a friend. 
+We try to encourage everybody who uses this app to adopt a mindful attitude towards the nature as well as a healthier lifestyle. The actions tracked are 
+eating a vegetarian meal, buying local products, taking the bike or public transportation instead of car, installing solar panels and lower the home temperature. 
+You can find these activities on the home page. The Co2 saved page shows the amount of Co2 you saved so far and on the oponent page you can find the Co2 saved by the friend you are competing with.  
 
-You can download the latest version [here](https://github.com/SERG-Delft/TI1216/releases)
 
-http://stackoverflow.com/a/6466993
-
-## How to import into your IDE
-
+## Getting Started  
+import the project into your IDE  
 Eclipse:
 [http://javapapers.com/java/import-maven-project-into-eclipse/](http://javapapers.com/java/import-maven-project-into-eclipse/)
 
@@ -15,19 +15,23 @@ Intellij:
 [https://www.jetbrains.com/help/idea/2016.2/importing-project-from-maven-model.html](https://www.jetbrains.com/help/idea/2016.2/importing-project-from-maven-model.html)
 =======
 
-Alessandra Santi
-netid: asanti
+## Prerequisites  
+Java 11  
 
-Strong points:
-- Orgazination and planning skills
-- Motivation
+## Installing & Testing    
+Run main from server, then run main from client and the app launches.  
+To run the tests, right click on the root directory then 'run all tests'. To test the client make sure you first start the server.    
 
-Weak points:
-- I don't have prior knownledge of programming
 
-My goal for this project is not only to be a better programmer, but to be a better computer scientist. Aiming to be responsible for my ideas and respectful of others'. My reality starts from very poor backgroud in progrommaning but I am motivated to be the best version of me in relation to the project and my teammates. I strongly believe that working with people with different mindset and backgrounds will be an incredible opportunity to achieve my, and hopefully, everyone's goal. I am willing to listen and pay attention to make sure I learn everything I can.
-The most concrete observation I can make about how I am going to reach my goal is definatly relying upond planning and commitment. I believe that sticking to a pre-made schedule is not only going to allow us to stay on track but it will give me time to dig deeper in the matter treated.
-![](https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/16388395_1103798423064963_2695095194197448980_n.jpg?_nc_cat=106&_nc_ht=scontent-amt2-1.xx&oh=f6ac17d26b3f40e61805548e3ac12b04&oe=5CECA3C0)
+## Built With  
+Spring - The client-server communication framework used  
+Hibernate - Relational database framework  
+JavaFX, Jfoenix, Scene Builder - Graphics  
+Junit, mockito - Tests  
+Maven - Dependency Management    
+ 
+
+## Authors  
 
 inika (Ioanna Nika)
 
@@ -67,24 +71,6 @@ Being better at comunicationg would be very important in day to day life, but al
 Being good at comunicating what you are thinking is a important quality in an engeneer, and is probably what I am strugeling most with.
 To accomplish this I will need to be more alert with messages, reponding promptly whene relevant.
 And durring team meating I will need to pay special attention to making sure I am being understood and that I am helping other thoughts from my own being heard.
-
-
-Rayan Rakibuzzaman netid :rrakibuzzaman
-
-![alt text](profile/Rayan.jpeg)
-
-Weak points
-•	Procrastinates a lot
-•	Slow learner
-
-Strong Points
-•	Likes to finish what’s started
-•	Patient
-
-I would like to learn several things from this project including learning to work in a team, being more responsible 
-(as others depend on my feedback), doing some actual work to achieve a goal.On the academic side, I would like to
-learn to program better(Java), solving complex layered problems and gain insight on programs like Git. I would also
-like to learn how to test better(and efficiently) an actual working program that other people might use.
 
 
 
