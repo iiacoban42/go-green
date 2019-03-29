@@ -1,6 +1,6 @@
 package database.manager;
 
-import database.entity.ContinuouseAction;
+import database.entity.ContinuousAction;
 import database.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,14 +8,13 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 
 
 
 
-public class ContinuouseActionManager {
+public class ContinuousActionManager {
     /**
      * creates a continuous action and comitis it to database.
      * @param username a String representing the primarykey/username of user
@@ -28,14 +27,14 @@ public class ContinuouseActionManager {
                                 int scorePerDay, int relavantInfo) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        ContinuouseAction continuouseAction = null;
+        ContinuousAction continuousAction = null;
 
         try {
             tx = session.beginTransaction();
-            continuouseAction = new ContinuouseAction(username, actionName,
+            continuousAction = new ContinuousAction(username, actionName,
                     scorePerDay, relavantInfo);
-            session.save(continuouseAction);
-            User user = UserManager.getUser(continuouseAction.getUser());
+            session.save(continuousAction);
+            User user = UserManager.getUser(continuousAction.getUser());
             user.addScore(scorePerDay);
             session.update(user);
             tx.commit();
@@ -47,7 +46,7 @@ public class ContinuouseActionManager {
         } finally {
             session.close();
         }
-        return continuouseAction.getId();
+        return continuousAction.getId();
     }
 
     /**
@@ -60,9 +59,9 @@ public class ContinuouseActionManager {
 
         try {
             tx = session.beginTransaction();
-            ContinuouseAction continuouseAction =
-                    (ContinuouseAction)session.get(ContinuouseAction.class, id);
-            session.delete(continuouseAction);
+            ContinuousAction continuousAction =
+                    (ContinuousAction)session.get(ContinuousAction.class, id);
+            session.delete(continuousAction);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -78,20 +77,20 @@ public class ContinuouseActionManager {
      * performs all updates required for "check in" including updating user score.
      * @param id a long representing primary key of continuouse action
      */
-    public static void checkInCa(long id) {
+    public static void chashInCa(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            ContinuouseAction continuouseAction =
-                    (ContinuouseAction)session.get(ContinuouseAction.class, id);
-            continuouseAction.checkIn();
-            continuouseAction.setDateLastCashedIn(new Date());
-            session.update(continuouseAction);
+            ContinuousAction continuousAction =
+                    (ContinuousAction)session.get(ContinuousAction.class, id);
+            continuousAction.chashIn();
+            continuousAction.setDateLastCashedIn(new Date());
+            session.update(continuousAction);
             tx.commit();
-            String username = continuouseAction.getUser();
-            UserManager.addScore(username, continuouseAction.getScorePerDay());
+            String username = continuousAction.getUser();
+            UserManager.addScore(username, continuousAction.getScorePerDay());
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -103,18 +102,18 @@ public class ContinuouseActionManager {
     }
 
     /**
-     * gets ContinuouseAction with primary key id.
+     * gets ContinuousAction with primary key id.
      * @param id a long representing primary key of continuouse action
-     * @return a ContinuouseAction with primary key id
+     * @return a ContinuousAction with primary key id
      */
-    public static ContinuouseAction getCa(long id) {
+    public static ContinuousAction getCa(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        ContinuouseAction continuouseAction = null;
+        ContinuousAction continuousAction = null;
 
         try {
             tx = session.beginTransaction();
-            continuouseAction = (ContinuouseAction)session.get(ContinuouseAction.class, id);
+            continuousAction = (ContinuousAction)session.get(ContinuousAction.class, id);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -124,21 +123,21 @@ public class ContinuouseActionManager {
         } finally {
             session.close();
         }
-        return continuouseAction;
+        return continuousAction;
     }
 
     /**
      * lists all continuous actions in database.
-     * @return a List of ContinuouseAction in database
+     * @return a List of ContinuousAction in database
      */
-    public static List<ContinuouseAction> listCa() {
+    public static List<ContinuousAction> listCa() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        List<ContinuouseAction> continuouseActions = null;
+        List<ContinuousAction> continuousActions = null;
 
         try {
             tx = session.beginTransaction();
-            continuouseActions = session.createQuery("From ContinuouseAction").list();
+            continuousActions = session.createQuery("From ContinuousAction").list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -148,7 +147,7 @@ public class ContinuouseActionManager {
         } finally {
             session.close();
         }
-        return continuouseActions;
+        return continuousActions;
 
     }
 
@@ -157,25 +156,18 @@ public class ContinuouseActionManager {
      * @param username a String representing the primarykey/username of user
      * @return a List of Continuousection
      */
-    public static List<ContinuouseAction> listActiveCaByUser(String username) {
+    public static ContinuousAction getActiveCaByUser(String username) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        List<ContinuouseAction> results = null;
+        ContinuousAction continuousAction = null;
 
         try {
             tx = session.beginTransaction();
-            String hql = "FROM ContinuouseAction WHERE user = :username";
+            String hql = "FROM ContinuousAction WHERE user = :username AND dateEnded IS NULL";
             Query query = session.createQuery(hql);
             query.setParameter("username", username);
-            results = query.list();
+            continuousAction = (ContinuousAction) query.list().get(0);
             tx.commit();
-            Iterator<ContinuouseAction> itr = results.iterator();
-            while (itr.hasNext()) {
-                ContinuouseAction continuouseAction = itr.next();
-                if (continuouseAction.getDateEnded() != null) {
-                    itr.remove();
-                }
-            }
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -184,11 +176,11 @@ public class ContinuouseActionManager {
         } finally {
             session.close();
         }
-        return results;
+        return continuousAction;
     }
 
     /**
-     * puts an end date on given ContinuouseAction.
+     * puts an end date on given ContinuousAction.
      * @param id a long representing primary key of continuouse action
      */
     public static void endCa(long id) {
@@ -197,10 +189,10 @@ public class ContinuouseActionManager {
 
         try {
             tx = session.beginTransaction();
-            ContinuouseAction continuouseAction =
-                    (ContinuouseAction)session.get(ContinuouseAction.class, id);
-            continuouseAction.setDateEnded(new Date());
-            session.update(continuouseAction);
+            ContinuousAction continuousAction =
+                    (ContinuousAction)session.get(ContinuousAction.class, id);
+            continuousAction.setDateEnded(new Date());
+            session.update(continuousAction);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {

@@ -42,14 +42,12 @@ public class ActionTest {
         }
 
         int score = UserManager.getUser("admin").gettotalScore();
-        UserManager.addScore("admin", 0 - score);
     }
 
     @Test
     public void listActionsTest() throws Exception {
         ActionManager.addAction("meal", "admin", 5);
         ActionManager.addAction("meal", "admin", 20);
-        UserManager.addScore("admin", 25);
 
         String expected = objectMapper.writeValueAsString(ActionManager.listActionsUser("admin"));
 
@@ -65,7 +63,6 @@ public class ActionTest {
         String expected = objectMapper.writeValueAsString(ActionManager.listActionsUser("admin"));
 
         long id = ActionManager.addAction("meal", "admin", 20);
-        UserManager.addScore("admin", 25);
 
         mvc.perform(get("/action/manage/remove").param("id", String.valueOf(id))
             .contentType(APPLICATION_JSON_UTF8))

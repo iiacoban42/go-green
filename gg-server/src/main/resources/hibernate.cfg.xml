@@ -18,6 +18,6 @@
         <mapping class="database.entity.User"></mapping>
         <mapping class="database.entity.Action"></mapping>
         <mapping class="database.entity.Badge"></mapping>
-        <mapping class="database.entity.ContinuouseAction"></mapping>
+        <mapping class="database.entity.ContinuousAction"></mapping>
     </session-factory>
 </hibernate-configuration>
