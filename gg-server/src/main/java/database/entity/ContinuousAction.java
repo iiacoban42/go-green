@@ -167,7 +167,7 @@ public class ContinuousAction {
         this.dateEnded = dateEnded;
     }
 
-    public int setNumSolarPanels() {
+    public int getNumSolarPanels() {
         return numSolarPanels;
     }
 

@@ -1,8 +1,8 @@
 package server.entity;
 
-import database.entity.ContinuouseAction;
+import database.entity.ContinuousAction;
 import database.manager.UserManager;
-import database.manager.ContinuouseActionManager;
+import database.manager.ContinuousActionManager;
 
 import java.util.Date;
 import java.util.List;
@@ -16,9 +16,8 @@ public class SolarPanels {
      * @return amount of CO2 saved in grams
      */
     public int savedCO2(String username) {
-        List <ContinuouseAction> caList = ContinuouseActionManager.listActiveCaByUser(username);
-        ContinuouseAction ca = ContinuouseActionManager.listActiveCaByUser(username).get(0);
-        int amountSP= ca.getRelavantInfo();
+        ContinuousAction ca = ContinuousActionManager.getActiveCaByUser(username);
+        int amountSP= ca.getNumSolarPanels();
         int savedCO2perSP = 630*1000/(6*365);
         int savedCO2 = 0;
 
