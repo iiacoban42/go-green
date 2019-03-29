@@ -15,11 +15,11 @@ public class SolarPanels {
      * @param username
      * @return amount of CO2 saved in grams
      */
-    public int savedCO2(String username) {
+    public long savedCO2(String username) {
         ContinuousAction ca = ContinuousActionManager.getActiveCaByUser(username);
         int amountSP= ca.getNumSolarPanels();
         int savedCO2perSP = 630*1000/(6*365);
-        int savedCO2 = 0;
+        long savedCO2 = 0;
 
         long now = System.currentTimeMillis();
         Date lastCashInDate = ca.getDateLastCashedIn();
@@ -27,9 +27,13 @@ public class SolarPanels {
 
         if (now - lastCashInMillis > (1000 * 60 * 60 * 24)) {
             savedCO2 = amountSP * savedCO2perSP;
+            ContinuousActionManager.cashInCa(ca.getId());
         }
 
         return savedCO2;
     }
 
+//    public int newAmountSP (String username, int numSolarPanels) {
+//
+//    }
 }

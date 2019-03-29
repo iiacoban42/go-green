@@ -77,7 +77,7 @@ public class ContinuousActionManager {
      * performs all updates required for "check in" including updating user score.
      * @param id a long representing primary key of continuouse action
      */
-    public static void chashInCa(long id) {
+    public static void cashInCa(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
