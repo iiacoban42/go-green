@@ -3,7 +3,7 @@
 ## Main problems  Encountered
 
 ### Problem 1: Some people didnt finish the work they had to do 
-Database testing specifically.
+- Database testing specifically.
 
 
 
