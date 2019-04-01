@@ -36,7 +36,10 @@ public class ActionManagerTest {
         ActionManager.addAction("1", "2", 100);
         List<Action> actions = ActionManager.listActionsUser("1");
         assertEquals(3, actions.size());
-        actions = ActionManager.actionList();
+        for (Action action : actions){
+            ActionManager.deleteAction(action.getId());
+        }
+        actions = ActionManager.listActionsUser("2");
         for (Action action : actions){
             ActionManager.deleteAction(action.getId());
         }
