@@ -31,10 +31,11 @@ public class BadgeManager {
             session.save(badge);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -55,10 +56,11 @@ public class BadgeManager {
             badges = session.createQuery("From Badge").list();
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -79,10 +81,11 @@ public class BadgeManager {
             session.delete(badge);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -103,10 +106,11 @@ public class BadgeManager {
             badge = (Badge)session.get(Badge.class, id);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -132,10 +136,11 @@ public class BadgeManager {
             results = query.list();
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }

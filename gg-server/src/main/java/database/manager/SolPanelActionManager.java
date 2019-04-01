@@ -1,6 +1,6 @@
 package database.manager;
 
-import database.entity.ContinuouseAction;
+import database.entity.SolPanelAction;
 import database.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,67 +8,66 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 
 
 
 
-public class ContinuouseActionManager {
+public class SolPanelActionManager {
     /**
      * creates a continuous action and comitis it to database.
      * @param username a String representing the primarykey/username of user
-     * @param actionName a String represening the type of continuouse action
      * @param scorePerDay an int representing the score gained per day.
-     * @param relavantInfo an int that can represent what is needed such as # of solar panels
+     * @param numSolarPanels an int that can represent what is needed such as # of solar panels
      * @return a long that represents CAs primary key
      */
-    public static long createCa(String username, String actionName,
-                                int scorePerDay, int relavantInfo) {
+    public static long createSp(String username, int scorePerDay, int numSolarPanels) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        ContinuouseAction continuouseAction = null;
+        SolPanelAction solPanelAction = null;
 
         try {
             tx = session.beginTransaction();
-            continuouseAction = new ContinuouseAction(username, actionName,
-                    scorePerDay, relavantInfo);
-            session.save(continuouseAction);
-            User user = UserManager.getUser(continuouseAction.getUser());
+
+            solPanelAction = new SolPanelAction(username, scorePerDay, numSolarPanels);
+            session.save(solPanelAction);
+            User user = UserManager.getUser(solPanelAction.getUser());
             user.addScore(scorePerDay);
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
-        return continuouseAction.getId();
+        return solPanelAction.getId();
     }
 
     /**
      * delets Continuouse action from database.
      * @param id a long representing primary key of continuouse action
      */
-    public static void deleteCa(long id) {
+    public static void deleteSp(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            ContinuouseAction continuouseAction =
-                    (ContinuouseAction)session.get(ContinuouseAction.class, id);
-            session.delete(continuouseAction);
+            SolPanelAction solPanelAction =
+                    (SolPanelAction)session.get(SolPanelAction.class, id);
+            session.delete(solPanelAction);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -78,77 +77,82 @@ public class ContinuouseActionManager {
      * performs all updates required for "check in" including updating user score.
      * @param id a long representing primary key of continuouse action
      */
-    public static void checkInCa(long id) {
+    public static void cashInSp(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            ContinuouseAction continuouseAction =
-                    (ContinuouseAction)session.get(ContinuouseAction.class, id);
-            continuouseAction.checkIn();
-            continuouseAction.setDateLastCashedIn(new Date());
-            session.update(continuouseAction);
+            SolPanelAction solPanelAction =
+                    (SolPanelAction)session.get(SolPanelAction.class, id);
+            solPanelAction.chashIn();
+            solPanelAction.setDateLastCashedIn(new Date());
+            session.update(solPanelAction);
+            String username = solPanelAction.getUser();
+            User user = (User)session.get(User.class, username);
+            user.addScore(solPanelAction.getScorePerDay());
+            session.update(user);
             tx.commit();
-            String username = continuouseAction.getUser();
-            UserManager.addScore(username, continuouseAction.getScorePerDay());
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
     }
 
     /**
-     * gets ContinuouseAction with primary key id.
+     * gets SolPanelAction with primary key id.
      * @param id a long representing primary key of continuouse action
-     * @return a ContinuouseAction with primary key id
+     * @return a SolPanelAction with primary key id
      */
-    public static ContinuouseAction getCa(long id) {
+    public static SolPanelAction getSp(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        ContinuouseAction continuouseAction = null;
+        SolPanelAction solPanelAction = null;
 
         try {
             tx = session.beginTransaction();
-            continuouseAction = (ContinuouseAction)session.get(ContinuouseAction.class, id);
+            solPanelAction = (SolPanelAction)session.get(SolPanelAction.class, id);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
-        return continuouseAction;
+        return solPanelAction;
     }
 
     /**
      * lists all continuous actions in database.
-     * @return a List of ContinuouseAction in database
+     * @return a List of SolPanelAction in database
      */
-    public static List<ContinuouseAction> listCa() {
+    public static List<SolPanelAction> listSp() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        List<ContinuouseAction> continuouseActions = null;
+        List<SolPanelAction> solPanelActions = null;
 
         try {
             tx = session.beginTransaction();
-            continuouseActions = session.createQuery("From ContinuouseAction").list();
+            solPanelActions = session.createQuery("From SolPanelAction").list();
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
-        return continuouseActions;
+        return solPanelActions;
 
     }
 
@@ -157,56 +161,51 @@ public class ContinuouseActionManager {
      * @param username a String representing the primarykey/username of user
      * @return a List of Continuousection
      */
-    public static List<ContinuouseAction> listActiveCaByUser(String username) {
+    public static SolPanelAction getActiveSpByUser(String username) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        List<ContinuouseAction> results = null;
+        SolPanelAction solPanelAction = null;
 
         try {
             tx = session.beginTransaction();
-            String hql = "FROM ContinuouseAction WHERE user = :username";
+            String hql = "FROM SolPanelAction WHERE user = :username AND dateEnded IS NULL";
             Query query = session.createQuery(hql);
             query.setParameter("username", username);
-            results = query.list();
+            solPanelAction = (SolPanelAction) query.list().get(0);
             tx.commit();
-            Iterator<ContinuouseAction> itr = results.iterator();
-            while (itr.hasNext()) {
-                ContinuouseAction continuouseAction = itr.next();
-                if (continuouseAction.getDateEnded() != null) {
-                    itr.remove();
-                }
-            }
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
-        return results;
+        return solPanelAction;
     }
 
     /**
-     * puts an end date on given ContinuouseAction.
+     * puts an end date on given SolPanelAction.
      * @param id a long representing primary key of continuouse action
      */
-    public static void endCa(long id) {
+    public static void endSp(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            ContinuouseAction continuouseAction =
-                    (ContinuouseAction)session.get(ContinuouseAction.class, id);
-            continuouseAction.setDateEnded(new Date());
-            session.update(continuouseAction);
+            SolPanelAction solPanelAction =
+                    (SolPanelAction)session.get(SolPanelAction.class, id);
+            solPanelAction.setDateEnded(new Date());
+            session.update(solPanelAction);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }

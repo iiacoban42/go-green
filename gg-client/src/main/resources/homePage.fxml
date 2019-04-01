@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="971.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerMainPage">
+   <children>
+      <AnchorPane fx:id="anchorPane" layoutX="188.0" layoutY="39.0" prefHeight="510.0" prefWidth="584.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Pane prefHeight="533.0" prefWidth="704.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <ImageView fitHeight="169.0" fitWidth="151.0" layoutX="504.0" layoutY="317.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@images/bike.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton fx:id="temperatureButton" layoutX="76.0" layoutY="225.0" mnemonicParsing="false" onAction="#tempereturePressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Home Temperature" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="solarButton" layoutX="292.0" layoutY="225.0" mnemonicParsing="false" onAction="#solarButtonPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Solar Panels" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="transportButton" layoutX="507.0" layoutY="225.0" mnemonicParsing="false" onAction="#publicTransportationPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Public Transport" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Text layoutX="28.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHAT HAVE YOU DONE FOR THE WORLD  TODAY ?" wrappingWidth="508.04296875">
+                     <font>
+                        <Font name="Calibri" size="23.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="137.0" fitWidth="150.0" layoutX="84.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/tempereture.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="293.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/solarPanels.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="505.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/tram.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton fx:id="mealButton" layoutX="76.0" layoutY="466.0" mnemonicParsing="false" onAction="#mealButtonPressed" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text=" Meal" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="localProduceButton" layoutX="292.0" layoutY="466.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #6bb300;" text="Local Produce" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="bikeButton" layoutX="504.0" layoutY="466.0" mnemonicParsing="false" onAction="#bikeButtonPressed" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fx:id="imageMeal" fitHeight="127.0" fitWidth="123.0" layoutX="90.0" layoutY="324.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@images/vegan.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="137.0" fitWidth="131.0" layoutX="302.0" layoutY="319.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@images/local.png" />
+                     </image>
+                  </ImageView>
+                  <StackPane fx:id="stackMeal" layoutX="52.0" layoutY="316.0" onMouseEntered="#loadMealDialogMeal" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackTemperature" layoutX="52.0" layoutY="76.0" onMouseEntered="#loadDialogTempereture" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackPanels" layoutX="268.0" layoutY="74.0" onMouseEntered="#loadDialogSolarPanels" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackTransport" layoutX="480.0" layoutY="74.0" onMouseEntered="#loadMealDialogTransport" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackBike" layoutX="483.0" layoutY="316.0" onMouseEntered="#loadMealDialogBike" prefHeight="150.0" prefWidth="186.0" />
+                  <StackPane fx:id="stackLProduce" layoutX="268.0" layoutY="316.0" prefHeight="150.0" prefWidth="200.0" />
+               </children>
+            </Pane>
+         </children>
+         </AnchorPane>
+      <JFXButton fx:id="homePageButton" layoutX="4.0" layoutY="82.0" onAction="#homePageButtonPressed" prefHeight="37.0" prefWidth="166.0" style="-fx-background-color: #ffffff;" text="HOME PAGE">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="savedcoButton" layoutX="2.0" layoutY="158.0" onAction="#savedcoButtonPressed" prefHeight="37.0" prefWidth="166.0" text="SAVED CO2">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="friendsButton" layoutX="-6.0" layoutY="235.0" prefHeight="44.0" prefWidth="166.0" text="OPPONENT">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="achievementsButton" layoutX="-4.0" layoutY="316.0" prefHeight="37.0" prefWidth="166.0" text="ACHIEVEMENTS">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="logButton" layoutX="-1.0" layoutY="391.0" onAction="#logButtonPressed" prefHeight="44.0" prefWidth="166.0" text="LOG">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="-6.0" layoutY="510.0" prefHeight="39.0" prefWidth="166.0" text="Log out">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</Pane>

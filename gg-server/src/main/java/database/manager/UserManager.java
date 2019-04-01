@@ -27,10 +27,11 @@ public class UserManager {
             session.save(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -51,10 +52,11 @@ public class UserManager {
             users = session.createQuery("FROM User").list();
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
             return users;
@@ -74,10 +76,11 @@ public class UserManager {
             session.delete(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -98,10 +101,11 @@ public class UserManager {
             user = (User)session.get(User.class, username);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -126,10 +130,11 @@ public class UserManager {
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -152,10 +157,11 @@ public class UserManager {
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -177,8 +183,10 @@ public class UserManager {
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
             e.printStackTrace();
         } finally {
@@ -199,12 +207,15 @@ public class UserManager {
 
         try {
             tx = session.beginTransaction();
+
             session.get(User.class, user).setFriend(freind);
             session.get(User.class, freind).setFriend(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
             e.printStackTrace();
         } finally {

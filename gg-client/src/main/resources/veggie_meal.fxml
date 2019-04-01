@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="820.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerVeggieMeal">
-   <Label layoutX="77.0" layoutY="40.0" text="Choose ingredients">
+<AnchorPane prefHeight="820.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerVeggieMeal">
+   <Label layoutX="41.0" layoutY="29.0" text="Choose ingredients">
       <font>
-         <Font name="Calibri Bold" size="24.0" />
+         <Font name="Calibri Light" size="36.0" />
       </font>
    </Label>
-   <Label layoutX="460.0" layoutY="40.0" text="Choose quantity (grams) ">
+   <Label layoutX="371.0" layoutY="29.0" text="Choose quantity (grams) ">
       <font>
-         <Font name="Calibri Bold" size="24.0" />
+         <Font name="Calibri Light" size="36.0" />
       </font>
    </Label>
-   <Button fx:id="submit" layoutX="506.0" layoutY="754.0" mnemonicParsing="false" onAction="#sendVeggieMeal" prefHeight="44.0" prefWidth="129.0" style="-fx-background-color: #6bb300;" text="Submit" textFill="WHITE">
+   <JFXButton fx:id="submit" layoutX="506.0" layoutY="754.0" mnemonicParsing="false" onAction="#sendVeggieMeal" prefHeight="44.0" prefWidth="129.0" style="-fx-background-color: #6bb300;" text="Submit" textFill="WHITE">
       <font>
          <Font name="Calibri" size="24.0" />
       </font>
-   </Button>
-   <GridPane fx:id="grid" layoutX="100.0" layoutY="85.0" prefHeight="655.0">
+   </JFXButton>
+   <GridPane fx:id="grid" layoutX="100.0" layoutY="85.0" prefHeight="655.0" style="-fx-background-color: #ffffff;">
       <columnConstraints>
          <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="10.0" prefWidth="377.0" />
          <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="0.0" prefWidth="164.0" />
@@ -186,90 +186,90 @@
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="veggieBurger" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <JFXTextField fx:id="beans" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="veggieBurgerCheese" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      </JFXTextField>
+      <JFXTextField fx:id="veggieBurger" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="quorn" prefHeight="7.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      </JFXTextField>
+      <JFXTextField fx:id="veggieBurgerCheese" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="nuts" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      </JFXTextField>
+      <JFXTextField fx:id="quorn" focusColor="#6bb300" onAction="#textFieldActive" prefHeight="7.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="tofu" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      </JFXTextField>
+      <JFXTextField fx:id="nuts" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="egg" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      </JFXTextField>
+      <JFXTextField fx:id="tofu" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="beefCroquette" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      </JFXTextField>
+      <JFXTextField fx:id="egg" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="chicken" GridPane.columnIndex="1" GridPane.rowIndex="8">
+      </JFXTextField>
+      <JFXTextField fx:id="beefCroquette" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="pork" GridPane.columnIndex="1" GridPane.rowIndex="9">
+      </JFXTextField>
+      <JFXTextField fx:id="chicken" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="8">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="steak" GridPane.columnIndex="1" GridPane.rowIndex="10">
+      </JFXTextField>
+      <JFXTextField fx:id="pork" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="9">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="lamb" GridPane.columnIndex="1" GridPane.rowIndex="11">
+      </JFXTextField>
+      <JFXTextField fx:id="steak" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="10">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="hamburger" GridPane.columnIndex="1" GridPane.rowIndex="12">
+      </JFXTextField>
+      <JFXTextField fx:id="lamb" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="11">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="mincedMeat" GridPane.columnIndex="1" GridPane.rowIndex="13">
+      </JFXTextField>
+      <JFXTextField fx:id="hamburger" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="12">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="mixedMincedMeat" GridPane.columnIndex="1" GridPane.rowIndex="14">
+      </JFXTextField>
+      <JFXTextField fx:id="mincedMeat" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="13">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="insects" GridPane.columnIndex="1" GridPane.rowIndex="15">
+      </JFXTextField>
+      <JFXTextField fx:id="mixedMincedMeat" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="14">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="cheese" GridPane.columnIndex="1" GridPane.rowIndex="16">
+      </JFXTextField>
+      <JFXTextField fx:id="insects" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="15">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
-      <TextField fx:id="beans" GridPane.columnIndex="1">
+      </JFXTextField>
+      <JFXTextField fx:id="cheese" focusColor="#6bb300" onAction="#textFieldActive" GridPane.columnIndex="1" GridPane.rowIndex="16">
          <padding>
             <Insets top="5.0" />
          </padding>
-      </TextField>
+      </JFXTextField>
    </GridPane>
 </AnchorPane>

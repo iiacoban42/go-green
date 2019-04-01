@@ -13,16 +13,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 
 @Component
-public class ControllerLogin  {
+public class ControllerLogin extends ControllerGeneral  {
 
     @FXML
     Text errorCredentials;
@@ -55,7 +53,7 @@ public class ControllerLogin  {
         username = usernameTextField.getText();
         password = passwordTextField.getText();
 
-        if (valid(username) && valid(password)) {
+        if (validText(username) && validText(password)) {
             String result = "";
 
             try {
@@ -67,8 +65,9 @@ public class ControllerLogin  {
             if  (result.equals("200 OK")) {
                 errorCredentials.setVisible(false);
 
-                Parent root2 = FXMLLoader.load(getClass().getResource("/mainPage.fxml"));
+                Parent root2 = FXMLLoader.load(getClass().getResource("/homePage.fxml"));
                 Stage app = (Stage)((Node) event.getSource()).getScene().getWindow();
+                app.setTitle("GoGreen");
                 app.setScene(new Scene(root2));
                 app.show();
 
@@ -86,16 +85,7 @@ public class ControllerLogin  {
      * @param event created by button interaction
      */
     public void registerButtonPressed(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/register.fxml"));
-        Parent root1 = fxmlLoader.load();
-
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle("GoGreen");
-        stage.setScene(new Scene(root1));
-        stage.show();
-        stage.setResizable(false);
+        changeWindow("register.fxml");
     }
 
     /**
@@ -109,23 +99,15 @@ public class ControllerLogin  {
     }
 
     /**
-     * Takes password from the corresponding TextField.
-     * @param event created by textfield interaction
-     */
+    * Takes password from the corresponding TextField.
+    * @param event created by textfield interaction
+    */
     public void passwordEntered(ActionEvent event) {
         password = passwordTextField.getText();
         System.out.println(password);
         loginButton.fire();
     }
 
-    /**
-     * Checks if input is valid.
-     * @param text with string of textfield
-     * @return true if input string is not empty or null. Otherwise it returns false.
-     */
-    private static boolean valid(String text) {
-        return text != null && !text.isEmpty() && (text.length() <= 20);
-    }
 
 
 }

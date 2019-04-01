@@ -5,23 +5,23 @@ import server.entity.MealList;
 public class MealCalculator {
 
     public static final Meal[] Meal_Menu = {
-        new Meal("beans", 0.001, true),
-        new Meal("veggieBurger", 0.0026, true),
-        new Meal("veggieBurgerCheese", 0.0065, true),
-        new Meal("quorn", 0.0027, true),
-        new Meal("nuts", 0.0032, true),
-        new Meal("tofu", 0.0035, true),
-        new Meal("egg", 0.216, true),
-        new Meal("beefCroquette", 0.0052, false),
-        new Meal("chicken", 0.0068, false),
-        new Meal("pork", 0.0070, false),
-        new Meal("steak", 0.0340, false),
-        new Meal("lamb", 0.0510, false),
-        new Meal("hamburger", 0.0168, false),
-        new Meal("mincedMeat", 0.0194, false),
-        new Meal("mixedMincedMeat", 0.0133, false),
-        new Meal("insects", 0.0027, false),
-        new Meal("cheese", 0.0100, true)
+        new Meal("beans", 1, true),
+        new Meal("veggieBurger", 2.6, true),
+        new Meal("veggieBurgerCheese", 6.5, true),
+        new Meal("quorn", 2.7, true),
+        new Meal("nuts", 3.2, true),
+        new Meal("tofu", 3.5, true),
+        new Meal("egg", 216, true),
+        new Meal("beefCroquette", 5.2, false),
+        new Meal("chicken", 6.8, false),
+        new Meal("pork", 7, false),
+        new Meal("steak", 34, false),
+        new Meal("lamb", 51, false),
+        new Meal("hamburger", 16.8, false),
+        new Meal("mincedMeat", 19.4, false),
+        new Meal("mixedMincedMeat", 13.3, false),
+        new Meal("insects", 2.7, false),
+        new Meal("cheese", 10, true)
     };
 
     /**
@@ -95,9 +95,9 @@ public class MealCalculator {
                 + 1.1 + 1.2 + 1.2 + 1.2 + 1.2 + 1.2) * 1000 / (13 * 365);
 
 
-        return 0.001 * avgBeans + 0.0032 * avgNuts + 0.0036 * avgEgg
-                + 0.0068 * avgChicken + 0.007 * avgPork + 0.01 * avgCheese
-                + 0.0168 * avgCow + 0.051 * avgLamb;
+        return  avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
+                + 6.8 * avgChicken + 7 * avgPork + 10 * avgCheese
+                + 16.8 * avgCow + 51 * avgLamb;
     }
 
 
