@@ -2,6 +2,9 @@ package server.meal;
 
 import server.entity.MealList;
 
+/**
+ * https://www.terrapass.com/eat-your-way-to-a-smaller-carbon-footprint
+ */
 public class LocalProduceCalc {
     public static final Meal[] products = {
         new Meal("fruits", 1.1, true),
@@ -24,7 +27,7 @@ public class LocalProduceCalc {
      */
     public static double getAmountCo2(MealList mealList) {
         double co2 = server.meal.MealCalculator.co2(mealList, products);
-        return 0.7 * co2;
+        return 0.07 * co2;
 
     }
 }

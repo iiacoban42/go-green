@@ -16,7 +16,7 @@ public class LocalProduceCalcTest {
         };
         MealList mealList = new MealList(Arrays.asList(list));
 
-        assertEquals(LocalProduceCalc.getAmountCo2(mealList), 294 , 0.01);
+        assertEquals(LocalProduceCalc.getAmountCo2(mealList), 29.4 , 0.01);
     }
 
     @Test
