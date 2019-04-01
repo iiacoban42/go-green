@@ -31,7 +31,7 @@ public class MealCalculator {
      * @return double
      */
     public static double getAmountCo2(MealList mealList) {
-        double co2 = Co2(mealList);
+        double co2 = co2(mealList,Meal_Menu);
         double averageDutchMeal = dutchAverageMeal();
         double result;
         result = averageDutchMeal - co2;
@@ -41,10 +41,15 @@ public class MealCalculator {
         return result;
     }
 
-    public static double Co2(MealList meal){
-        double co2=0;
+    /**
+     * Calculates the co2 of a meal.
+     * @param meal for co2 calculation
+     * @return co2 consumed by the meal
+     */
+    public static double co2(MealList meal, Meal[] menu) {
+        double co2 = 0;
         for (server.entity.Meal listMeal : meal.getMeals()) {
-            for (Meal menuMeal : Meal_Menu) {
+            for (Meal menuMeal : menu) {
                 if (menuMeal.getProduct().equals(listMeal.getProduct())) {
                     co2 += menuMeal.getCo2() * listMeal.getQuantity();
                 }
@@ -98,7 +103,7 @@ public class MealCalculator {
                 + 1.1 + 1.2 + 1.2 + 1.2 + 1.2 + 1.2) * 1000 / (13 * 365);
 
 
-        return  avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
+        return avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
                 + 6.8 * avgChicken + 7 * avgPork + 10 * avgCheese
                 + 16.8 * avgCow + 51 * avgLamb;
     }
