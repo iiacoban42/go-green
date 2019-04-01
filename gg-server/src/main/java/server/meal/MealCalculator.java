@@ -31,23 +31,26 @@ public class MealCalculator {
      * @return double
      */
     public static double getAmountCo2(MealList mealList) {
-        double co2 = 0;
+        double co2 = Co2(mealList);
         double averageDutchMeal = dutchAverageMeal();
         double result;
+        result = averageDutchMeal - co2;
+        if (result < 0) {
+            return 0;
+        }
+        return result;
+    }
 
-        for (server.entity.Meal listMeal : mealList.getMeals()) {
+    public static double Co2(MealList meal){
+        double co2=0;
+        for (server.entity.Meal listMeal : meal.getMeals()) {
             for (Meal menuMeal : Meal_Menu) {
                 if (menuMeal.getProduct().equals(listMeal.getProduct())) {
                     co2 += menuMeal.getCo2() * listMeal.getQuantity();
                 }
             }
         }
-        result = averageDutchMeal - co2;
-        if (result < 0) {
-            return 0;
-        }
-        return result;
-
+        return co2;
     }
 
     /**
