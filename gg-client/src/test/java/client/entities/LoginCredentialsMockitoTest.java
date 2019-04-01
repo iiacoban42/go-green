@@ -6,7 +6,7 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
-public class LoginCredentialsTestWithMockito {
+public class LoginCredentialsMockitoTest {
 
 
      private LoginCredentials loginCredentials = mock(LoginCredentials.class);

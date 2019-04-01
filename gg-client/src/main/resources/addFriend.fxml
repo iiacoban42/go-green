@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerOpponent">
+   <children>
+      <Pane prefHeight="494.0" prefWidth="707.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <JFXTextField fx:id="addFriendTextField" focusColor="#6bb300" layoutX="33.0" layoutY="90.0" onAction="#usernameOfFriendEntered" prefHeight="45.0" prefWidth="185.0" promptText="search by username" />
+            <Text layoutX="33.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a friend  :" wrappingWidth="151.23046875">
+               <font>
+                  <Font name="Calibri Light" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="errorNotFoundMessage" fill="#e13e3e" layoutX="33.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User not found" visible="false" wrappingWidth="122.98828125">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="addButton" layoutX="234.0" layoutY="102.0" onAction="#addFriend" prefHeight="33.0" prefWidth="45.0" style="-fx-background-color: #6bb300;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="15.0" />
+               </font>
+            </JFXButton>
+            <BarChart fx:id="chart" layoutX="318.0" layoutY="31.0" prefHeight="429.0" prefWidth="359.0" style="-fx-background-color: #ffffff;" title="Statistics">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis prefHeight="317.0" prefWidth="28.0" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <Text fx:id="successMessage" fill="#3e610a" layoutX="33.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend Added!" visible="false">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

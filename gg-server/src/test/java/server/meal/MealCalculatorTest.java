@@ -17,7 +17,7 @@ public class MealCalculatorTest {
                 new server.entity.Meal(MealCalculator.Meal_Menu[1].getProduct(), 100)
         };
         MealList mealList = new MealList(Arrays.asList(list));
-
+        System.out.println(MealCalculator.dutchAverageMeal()-(MealCalculator.Meal_Menu[0].getCo2() * 200 + MealCalculator.Meal_Menu[1].getCo2() * 100));
         assertEquals(MealCalculator.getAmountCo2(mealList), MealCalculator.dutchAverageMeal()-(MealCalculator.Meal_Menu[0].getCo2() * 200 + MealCalculator.Meal_Menu[1].getCo2() * 100), 0.01);
     }
     @Test
