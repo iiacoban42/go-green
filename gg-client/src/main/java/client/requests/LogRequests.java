@@ -4,17 +4,12 @@ import client.entities.Action;
 import client.entities.ActionList;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogRequests {
+public class LogRequests extends  GeneralRequests {
 
     private List actionList;
 
@@ -34,26 +29,14 @@ public class LogRequests {
     public String getAllActionsFromTheServer() {
 
 
-        RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8080/api/action/manage/actions";
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        headers.set("Authorization", Session.getToken().getToken());
+        Pair pair =  doGetRequest(url , actionList.getClass());
 
-        HttpEntity<String> entity = new HttpEntity<String>(headers);
-
-        ResponseEntity response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                entity,
-              List.class
-        );
-
-        this.actionList = (List) response.getBody();
+        this.actionList = (List) pair.getValue();
         System.out.println(actionList.toString());
 
-        return response.getStatusCode().toString();
+        return (String) pair.getKey();
 
 
 
