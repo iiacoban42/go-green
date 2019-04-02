@@ -11,12 +11,12 @@
 <?import javafx.scene.text.Text?>
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="971.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerMainPage">
+<children>
+   <AnchorPane fx:id="anchorPane" layoutX="188.0" layoutY="39.0" prefHeight="510.0" prefWidth="584.0" style="-fx-background-color: #ffffff;">
    <children>
-      <AnchorPane fx:id="anchorPane" layoutX="188.0" layoutY="39.0" prefHeight="510.0" prefWidth="584.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <Pane prefHeight="533.0" prefWidth="704.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <ImageView fitHeight="169.0" fitWidth="151.0" layoutX="504.0" layoutY="317.0" pickOnBounds="true">
+      <Pane prefHeight="533.0" prefWidth="704.0" style="-fx-background-color: #ffffff;">
+      <children>
+                  <ImageView fitHeight="169.0" fitWidth="151.0" layoutX="507.0" layoutY="316.0" pickOnBounds="true">
                      <image>
                         <Image url="@images/bike.png" />
                      </image>
@@ -81,7 +81,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="bikeButton" layoutX="504.0" layoutY="466.0" mnemonicParsing="false" onAction="#bikeButtonPressed" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
+                  <JFXButton fx:id="bikeButton" layoutX="507.0" layoutY="465.0" mnemonicParsing="false" onAction="#bikeButtonPressed" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: #6bb300;" text="Cycling" textFill="WHITE">
                      <font>
                         <Font name="Century Gothic" size="13.0" />
                      </font>
@@ -99,12 +99,65 @@
                         <Image url="@images/local.png" />
                      </image>
                   </ImageView>
-                  <StackPane fx:id="stackMeal" layoutX="52.0" layoutY="316.0" onMouseEntered="#loadMealDialogMeal" prefHeight="150.0" prefWidth="200.0" />
-                  <StackPane fx:id="stackTemperature" layoutX="52.0" layoutY="76.0" onMouseEntered="#loadDialogTempereture" prefHeight="150.0" prefWidth="200.0" />
-                  <StackPane fx:id="stackPanels" layoutX="268.0" layoutY="74.0" onMouseEntered="#loadDialogSolarPanels" prefHeight="150.0" prefWidth="200.0" />
-                  <StackPane fx:id="stackTransport" layoutX="480.0" layoutY="74.0" onMouseEntered="#loadMealDialogTransport" prefHeight="150.0" prefWidth="200.0" />
-                  <StackPane fx:id="stackBike" layoutX="483.0" layoutY="316.0" onMouseEntered="#loadMealDialogBike" prefHeight="150.0" prefWidth="186.0" />
+                  <JFXButton fx:id="inf1" layoutX="29.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#loadDialogTempereture" prefHeight="25.0" prefWidth="8.0" style="-fx-background-color: white;" text="Button" textFill="WHITE">
+                     <graphic>
+                        <ImageView fx:id="" fitHeight="17.0" fitWidth="19.0">
+                           <image>
+                              <Image url="@images/information.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="inf2" layoutX="245.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#loadDialogSolarPanels" prefHeight="25.0" prefWidth="8.0" style="-fx-background-color: white;" text="Button" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="19.0">
+                           <image>
+                              <Image url="@images/information.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="inf3" layoutX="457.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#loadMealDialogTransport" prefHeight="25.0" prefWidth="8.0" style="-fx-background-color: white;" text="Button" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="19.0">
+                           <image>
+                              <Image url="@images/information.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="inf4" layoutX="29.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#loadDialogMeal" prefHeight="25.0" prefWidth="8.0" style="-fx-background-color: white;" text="Button" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="19.0">
+                           <image>
+                              <Image url="@images/information.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="inf5" layoutX="245.0" layoutY="470.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="8.0" style="-fx-background-color: white;" text="Button" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="19.0">
+                           <image>
+                              <Image url="@images/information.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="inf6" layoutX="457.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#loadMealDialogBike" prefHeight="25.0" prefWidth="8.0" style="-fx-background-color: white;" text="Button" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="19.0">
+                           <image>
+                              <Image url="@images/information.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <StackPane fx:id="stackPanels" layoutX="268.0" layoutY="74.0" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackTransport" layoutX="480.0" layoutY="74.0" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackTemperature" layoutX="52.0" layoutY="76.0" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackMeal" layoutX="52.0" layoutY="316.0" prefHeight="150.0" prefWidth="200.0" />
                   <StackPane fx:id="stackLProduce" layoutX="268.0" layoutY="316.0" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackBike" layoutX="493.0" layoutY="313.0" prefHeight="150.0" prefWidth="186.0" />
                </children>
             </Pane>
          </children>
