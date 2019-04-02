@@ -333,6 +333,11 @@ public class ControllerMainPage extends ControllerGeneral {
 
     }
 
+    @FXML
+    public  void showLocalProduce(ActionEvent event) throws IOException {
+        changeWindow("local_produce.fxml" );
+    }
+
 }
 
 
