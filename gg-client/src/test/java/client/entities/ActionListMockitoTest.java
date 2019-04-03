@@ -9,7 +9,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ActionListTestWithMockito {
+public class ActionListMockitoTest {
 
     private ActionList actionList = mock(ActionList.class);
     private ActionList actionList2;
@@ -18,13 +18,7 @@ public class ActionListTestWithMockito {
 
     private List<Action> list =  new ArrayList<>();
 
-    @Test
-    public void testSetActionListCall(){
-        actionList.setActionList(Mockito.anyList());
-        verify(actionList).setActionList(Mockito.anyList());
-        verify(actionList , times(1)).setActionList(Mockito.anyList());
-        Mockito.verifyNoMoreInteractions(actionList);
-    }
+
 
     @Test
     public void testAddAction() {
@@ -46,11 +40,19 @@ public class ActionListTestWithMockito {
     }
 
     @Test
+    public void testSetActionListCall(){
+        actionList.setActionList(Mockito.anyList());
+        verify(actionList).setActionList(Mockito.anyList());
+        verify(actionList , times(1)).setActionList(Mockito.anyList());
+        Mockito.verifyNoMoreInteractions(actionList);
+    }
+
+    @Test
     public void testGetAllActionNamesAndScore() {
      actionList2 = new ActionList();
      actionList2.addAction(action2);
      List<String> test = new ArrayList<>();
-     String string =  action2.getActionName() + "                   "
+     String string =  action2.getActionName() + "       "
 
              +
              action2.getScore();
@@ -58,6 +60,16 @@ public class ActionListTestWithMockito {
      test.add(string);
 
      assertEquals(test , actionList2.getAllActionNamesAndScore());
+    }
+
+    @Test
+    public void testGetAllActionNamesAndScore_emptyList() {
+
+        actionList2 = new ActionList();
+        List<String> test = new ArrayList<>();
+        List<String> actual = actionList2.getAllActionNamesAndScore();
+        assertEquals(test.toString() ,actual.toString() );
+
     }
 
     @Test

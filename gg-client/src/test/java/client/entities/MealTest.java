@@ -37,20 +37,7 @@ public class MealTest {
         assertEquals("chicken", meal.getProduct());
     }
 
-    @Test
-    public void testEquals() {
-        Score score = new Score();
-        score.setTotalScore(10);
-        assertNotEquals(score, meal);
-        Meal test = new Meal("test", 100);
-        assertNotEquals(test, meal);
-        test.setProduct("beans");
-        assertNotEquals(test, meal);
-        test.setQuantity(30);
-        test.setProduct("test");
-        assertNotEquals(test, meal);
-        assertNotEquals(null , meal);
-    }
+
 
 
 

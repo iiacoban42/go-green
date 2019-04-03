@@ -119,7 +119,7 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="friendsButton" layoutX="-6.0" layoutY="235.0" prefHeight="44.0" prefWidth="166.0" text="OPPONENT">
+      <JFXButton fx:id="friendsButton" layoutX="-6.0" layoutY="235.0" onAction="#opponentPressed" prefHeight="44.0" prefWidth="166.0" text="OPPONENT">
          <font>
             <Font size="20.0" />
          </font>
@@ -134,7 +134,7 @@
             <Font size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="-6.0" layoutY="510.0" prefHeight="39.0" prefWidth="166.0" text="Log out">
+      <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="-6.0" layoutY="510.0" onAction="#logout" prefHeight="39.0" prefWidth="166.0" text="Log out">
          <font>
             <Font size="18.0" />
          </font>

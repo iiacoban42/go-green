@@ -1,11 +1,11 @@
 package server.controller;
 
 import database.entity.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import database.manager.UserManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,54 +13,62 @@ import org.springframework.web.bind.annotation.RestController;
 import server.entity.LoginCredentials;
 import server.entity.RegisterCredentials;
 
-import java.util.List;
+import java.security.Principal;
 
 @RestController
-@RequestMapping("/authentication")
+@RequestMapping("/users")
 public class Authentication {
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    public Authentication(BCryptPasswordEncoder encoder) {
+        this.passwordEncoder = encoder;
+    }
 
     /**
-     * Check if login credentials are valid.
-     * @param credentials to check if valid
-     * @return true or false
+     * Changes the users password to the password in LoginCredentials.password.
+     *
+     * @param credentials LoginCredentials
+     * @param principal   filled behind the scenes
      */
-    @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginCredentials credentials) {
-        LoginCredentials login = new LoginCredentials("user", "pass");
+    @PostMapping("/changePassword")
+    public void changePassword(@RequestBody LoginCredentials credentials, Principal principal) {
+        credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
 
-        ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        UserManager.changePassword(principal.getName(), credentials.getPassword());
+    }
 
-        if (credentials.getUsername().equals("admin")) {
-            response = new ResponseEntity(HttpStatus.OK);
-        }
+    /**
+     * Deletes the user account from which it is called.
+     *
+     * @param principal user details
+     * @return Ok or NOT_FOUND
+     */
+    @PostMapping("/deleteUser")
+    public ResponseEntity deleteAccount(Principal principal) {
+        UserManager.deleteUser(principal.getName());
 
-        return response;
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
      * Takes credentials and returns true or false I guess.
+     *
      * @param credentials to check if valid
      * @return boolean true or false
      */
     @PostMapping("/register")
-        public ResponseEntity register(@RequestBody RegisterCredentials credentials) {
-        SessionFactory sessionFactory;
-        sessionFactory = new Configuration()
-                .configure() // configures settings from hibernate.cfg.xml
-                .buildSessionFactory();
+    public ResponseEntity register(@RequestBody RegisterCredentials credentials) {
+        credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
+        ResponseEntity response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
 
-        Session session = sessionFactory.openSession();
+        User user = database.manager.UserManager.getUser(credentials.getUsername());
+        if (user == null) {
+            UserManager.addUser(credentials.getUsername(),
+                    credentials.getPassword(),
+                    credentials.getEmail());
 
-
-        List<User> users = session.createQuery("from User").list();
-        RegisterCredentials register = new RegisterCredentials("mail", "user", "pass");
-        ResponseEntity response = new ResponseEntity(HttpStatus.OK);
-
-        System.out.println("hello world!");
-        System.out.println(credentials.getUsername());
-
-        if (credentials.getUsername().equals("admin")) {
-            response = new ResponseEntity(HttpStatus.UNAUTHORIZED);
+            response = new ResponseEntity(HttpStatus.OK);
         }
 
         return response;

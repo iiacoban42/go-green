@@ -29,6 +29,7 @@ public class TransportRequests {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.set("Authorization", Session.getToken().getToken());
 
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
         RestTemplate restTemplate = new RestTemplate();

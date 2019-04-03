@@ -17,9 +17,21 @@ public class MealCalculatorTest {
                 new server.entity.Meal(MealCalculator.Meal_Menu[1].getProduct(), 100)
         };
         MealList mealList = new MealList(Arrays.asList(list));
-
+        System.out.println(MealCalculator.dutchAverageMeal()-(MealCalculator.Meal_Menu[0].getCo2() * 200 + MealCalculator.Meal_Menu[1].getCo2() * 100));
         assertEquals(MealCalculator.getAmountCo2(mealList), MealCalculator.dutchAverageMeal()-(MealCalculator.Meal_Menu[0].getCo2() * 200 + MealCalculator.Meal_Menu[1].getCo2() * 100), 0.01);
     }
+
+    @Test
+    public void testCo2() {
+        server.entity.Meal[] list = new server.entity.Meal[] {
+                new server.entity.Meal(MealCalculator.Meal_Menu[0].getProduct(), 200),
+                new server.entity.Meal(MealCalculator.Meal_Menu[1].getProduct(), 100)
+        };
+        MealList mealList = new MealList(Arrays.asList(list));
+
+        assertEquals(MealCalculator.co2(mealList, MealCalculator.Meal_Menu), 460, 0.01);
+    }
+
     @Test
     public void testGetAmountCo2OverFlow() {
         server.entity.Meal[] list = new server.entity.Meal[] {

@@ -10,4 +10,6 @@ public class Main {
         System.setProperty("server.servlet.context-path", "/api");
         SpringApplication.run(Main.class , args);
     }
+
+
 }
