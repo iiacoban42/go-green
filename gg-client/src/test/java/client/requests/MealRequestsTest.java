@@ -24,13 +24,13 @@ public class MealRequestsTest {
         Meal meal = new Meal("beans" , 33);
         MealList mealList = new MealList();
         mealList.addMeal(meal);
-        String response = MealRequests.sendMealList(mealList);
+        String response = MealRequests.sendMealList(mealList , "http://localhost:8080/api/action/meal");
         assertEquals("200 OK" , response);
     }
 
     @Test(expected = Exception.class)
     public void mealTest_unsuccessful() throws Exception {
-     MealRequests.sendMealList(null);
+     MealRequests.sendMealList(null, "http://localhost:8080/api/action/meal");
     }
 
     @Test

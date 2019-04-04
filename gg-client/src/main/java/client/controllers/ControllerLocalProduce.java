@@ -1,5 +1,9 @@
 package client.controllers;
 
+import static client.requests.MealRequests.sendMealList;
+
+import client.entities.Meal;
+import client.entities.MealList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -7,6 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
 
 public class ControllerLocalProduce extends  ControllerGeneral {
 
@@ -68,6 +75,8 @@ public class ControllerLocalProduce extends  ControllerGeneral {
      */
     @FXML
     public void submitPressed(ActionEvent event) {
+
+        MealList mealList =  new MealList();
         for (Node node : grid.getChildren()) {
 
             if (node instanceof TextField) {
@@ -81,6 +90,8 @@ public class ControllerLocalProduce extends  ControllerGeneral {
                         int quantityInt = Integer.parseInt(quantity);
                         String ingredient = node.getId();
 
+                        Meal meal = new Meal(ingredient, quantityInt);
+                        mealList.addMeal(meal);
                         //for testing purposes
                         System.out.println(quantity + " " + ingredient);
                     }
@@ -88,8 +99,16 @@ public class ControllerLocalProduce extends  ControllerGeneral {
                     ((TextField) node).setText("");
                 }
             }
-            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
         }
+
+        try {
+            sendMealList(mealList , "http://localhost:8080/api/action/localProduce");
+        } catch (IOException e) {
+            System.out.println("meal was not sent to the server");
+        }
+
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
     }
 }

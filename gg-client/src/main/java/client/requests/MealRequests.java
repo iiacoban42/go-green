@@ -16,9 +16,7 @@ public class MealRequests extends GeneralRequests {
      * @return responseEntity message from the server
      * @throws IOException input output exception.
      */
-    public static String sendMealList(MealList mealList) throws IOException {
-
-        String url = "http://localhost:8080/api/action/meal";
+    public static String sendMealList(MealList mealList ,  String url) throws IOException {
 
         String response = doPostRequest(mealList , url);
 
