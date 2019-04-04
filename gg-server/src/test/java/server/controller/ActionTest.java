@@ -116,6 +116,24 @@ public class ActionTest {
 
     @Test
     @WithMockUser("TestUser")
+    public void localProduceTest() throws Exception {
+        MealList mealList = new MealList();
+        mealList.addMeal(new Meal("fruits", 200));
+
+        int score = (int) MealCalculator.getAmountCo2(mealList);
+        int oldTotalScore = UserManager.getUser("TestUser").gettotalScore();
+
+        mvc.perform(post("/action/meal")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(mealList))
+        ).andExpect(status().isOk());
+
+        int newTotalScore = UserManager.getUser("TestUser").gettotalScore();
+        assertEquals(score, newTotalScore - oldTotalScore);
+    }
+
+    @Test
+    @WithMockUser("TestUser")
     public void transportTest() throws Exception {
         TransportList transportList = new TransportList();
         transportList.addTransport(new Transport("bus", 100));

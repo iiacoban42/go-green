@@ -17,6 +17,7 @@ import server.energy.TemperatureCalculator;
 import server.entity.MealList;
 import server.entity.Score;
 import server.entity.TransportList;
+import server.meal.LocalProduceCalc;
 import server.meal.MealCalculator;
 import server.transportation.TransportationCalculator;
 
@@ -32,6 +33,7 @@ public class Action {
 
     /**
      * Returns all actions from a user.
+     *
      * @return list
      */
     @GetMapping("/manage/actions")
@@ -43,10 +45,11 @@ public class Action {
 
     /**
      * Removes a action done by a user.
+     *
      * @param actionId of action
      * @return new list
      */
-    @RequestMapping(value = {"/manage/delete","manage/remove"})
+    @RequestMapping(value = {"/manage/delete", "manage/remove"})
     public List removeAction(@RequestParam(value = "id") long actionId) {
 
         database.entity.Action action = ActionManager.getAction(actionId);
@@ -57,6 +60,7 @@ public class Action {
 
     /**
      * Parse meal user ate.
+     *
      * @param mealList to check if valid
      * @return true or false
      */
@@ -64,20 +68,36 @@ public class Action {
     public ResponseEntity meal(@RequestBody MealList mealList) {
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
 
-        int score = (int)MealCalculator.getAmountCo2(mealList);
-        // System.out.println("score: " + score);
+        int score = (int) MealCalculator.getAmountCo2(mealList);
         ActionManager.addAction("meal", getUser(), score);
 
         return response;
     }
 
     /**
+     * Parse meal user ate.
+     *
+     * @param mealList to check if valid
+     * @return true or false
+     */
+    @PostMapping("/localProduce")
+    public ResponseEntity localProduce(@RequestBody MealList mealList) {
+        ResponseEntity response = new ResponseEntity(HttpStatus.OK);
+
+        int score = (int) LocalProduceCalc.getAmountCo2(mealList);
+        ActionManager.addAction("localProduce", getUser(), score);
+
+        return response;
+    }
+
+    /**
      * Parse transport user did.
+     *
      * @param transportList list of transport
      * @return OK
      */
     @PostMapping("/transport")
-    public ResponseEntity meal(@RequestBody TransportList transportList) {
+    public ResponseEntity transport(@RequestBody TransportList transportList) {
         int score = (int) TransportationCalculator.getAmountCo2(transportList);
         ActionManager.addAction("transport", getUser(), score);
 
@@ -86,6 +106,7 @@ public class Action {
 
     /**
      * Parse temperature user did.
+     *
      * @param temperature class
      * @return OK
      */
@@ -99,6 +120,7 @@ public class Action {
 
     /**
      * Returns score of user to user.
+     *
      * @return score
      */
     @GetMapping("/score")
