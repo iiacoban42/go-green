@@ -1,7 +1,5 @@
 package server.database;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,14 +8,9 @@ import org.junit.Test;
 
 import database.manager.UserManager;
 import database.entity.User;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 
-
-import javax.persistence.PersistenceException;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 
 public class UserManagerTest {
@@ -35,15 +28,6 @@ public class UserManagerTest {
         UserManager.deleteUser("cpt3");
     }
 
-/*
-    @Test
-    public void addUserTest() {
-        UserManager.addUser("cpt5", "1", "1@1.1");
-        assertEquals("cpt5", UserManager.getUser("cpt5").getUsername());
-        UserManager.deleteUser("1");
-        assertNull(UserManager.getUser("cpt5"));
-    }
-*/
     @Test
     public void getNonexistentUserTest() {
         User user = UserManager.getUser("N");
@@ -57,18 +41,6 @@ public class UserManagerTest {
         assertEquals("2", UserManager.getUser("cptTest").getHashPassword());
         UserManager.deleteUser("cptTest");
     }
-    /*
-    @Test
-    public void listUsersTest(){
-        List<User> users = UserManager.listUsers();
-        ArrayList<String> usernames = new ArrayList<String>();
-        for (User user : users){
-            usernames.add(user.getUsername());
-        }
-        Assert.assertTrue(users.contains("cpt1"));
-        assertTrue(users.contains("cpt2"));
-        assertTrue(users.contains("cpt3"));
-    }*/
 
     @Test
     public void tokenTest() {
