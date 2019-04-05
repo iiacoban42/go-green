@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "continuous_action")
-public class ContinuouseAction {
+public class SolPanelAction {
 
     /**
      * Primary key.
@@ -35,12 +35,6 @@ public class ContinuouseAction {
      */
     @Column(name = "user")
     private String user;
-
-    /**
-     * a String representing the name of the continouses action.
-     */
-    @Column(name = "action_name")
-    private String actionName;
 
     /**
      * A Date representing the time the continouse action was initiated.
@@ -82,24 +76,21 @@ public class ContinuouseAction {
     /**
      * an integer representing relevant information such as number of solar panels.
      */
-    @Column(name = "relevant_info")
-    private int relavantInfo;
+    @Column(name = "number_solar_panels")
+    private int numSolarPanels;
 
     /**
      * Constructs a continouse action with total score set to scorePerDay.
      * @param user a Stiring representing the primary key/username of user.
-     * @param actionName a String representing the name of the continous action.
-     * @param scorePerDay a Int representing the score gained per day
      */
-    public ContinuouseAction(String user, String actionName, int scorePerDay, int relavantInfo) {
+    public SolPanelAction(String user, int numSolarPanels) {
         this.user = user;
-        this.actionName = actionName;
-        this.scorePerDay = scorePerDay;
-        this.relavantInfo = relavantInfo;
+        this.scorePerDay = 630 * 1000 / ( 6 * 365 ) * numSolarPanels;
+        this.numSolarPanels = numSolarPanels;
         this.totalScore = scorePerDay;
     }
 
-    public ContinuouseAction() {}
+    public SolPanelAction() {}
 
     @PrePersist
     void creatAt() {
@@ -119,13 +110,6 @@ public class ContinuouseAction {
         this.user = user;
     }
 
-    public String getActionName() {
-        return actionName;
-    }
-
-    public void setActionName(String actionName) {
-        this.actionName = actionName;
-    }
 
     public Date getDateTime() {
         return dateTime;
@@ -167,12 +151,12 @@ public class ContinuouseAction {
         this.dateEnded = dateEnded;
     }
 
-    public int getRelavantInfo() {
-        return relavantInfo;
+    public int setNumSolarPanels() {
+        return numSolarPanels;
     }
 
-    public void setRelavantInfo(int relavantInfo) {
-        this.relavantInfo = relavantInfo;
+    public void setNumSolarPanels(int numSolarPanels) {
+        this.numSolarPanels = numSolarPanels;
     }
 
     public Date getDateLastCashedIn() {
@@ -186,9 +170,22 @@ public class ContinuouseAction {
     /**
      * Does everything needed to check in a day.
      */
-    public void checkIn() {
+    public void chashIn() {
         this.totalScore += this.scorePerDay;
         this.dateLastCashedIn = new Date();
         this.daysCashedIn ++;
+    }
+
+    /**
+     * checks if it has been more than 24 hours since last cash in.
+     * @return boolean, true if the last cashed in time was more that a day ago
+     */
+    public boolean twentyFourHourSince() {
+        long now = new Date().getTime();
+        long lastCashedIn = dateLastCashedIn.getTime();
+        if (now - lastCashedIn > 86400000) {
+            return true;
+        }
+        return false;
     }
 }
