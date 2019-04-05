@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "continuous_action")
-public class ContinuousAction {
+public class SolPanelAction {
 
     /**
      * Primary key.
@@ -35,12 +35,6 @@ public class ContinuousAction {
      */
     @Column(name = "user")
     private String user;
-
-    /**
-     * a String representing the name of the continouses action.
-     */
-    @Column(name = "action_name")
-    private String actionName;
 
     /**
      * A Date representing the time the continouse action was initiated.
@@ -88,18 +82,16 @@ public class ContinuousAction {
     /**
      * Constructs a continouse action with total score set to scorePerDay.
      * @param user a Stiring representing the primary key/username of user.
-     * @param actionName a String representing the name of the continous action.
      * @param scorePerDay a Int representing the score gained per day
      */
-    public ContinuousAction(String user, String actionName, int scorePerDay, int numSolarPanels) {
+    public SolPanelAction(String user, int scorePerDay, int numSolarPanels) {
         this.user = user;
-        this.actionName = actionName;
         this.scorePerDay = scorePerDay;
         this.numSolarPanels = numSolarPanels;
         this.totalScore = scorePerDay;
     }
 
-    public ContinuousAction() {}
+    public SolPanelAction() {}
 
     @PrePersist
     void creatAt() {
@@ -119,13 +111,6 @@ public class ContinuousAction {
         this.user = user;
     }
 
-    public String getActionName() {
-        return actionName;
-    }
-
-    public void setActionName(String actionName) {
-        this.actionName = actionName;
-    }
 
     public Date getDateTime() {
         return dateTime;
