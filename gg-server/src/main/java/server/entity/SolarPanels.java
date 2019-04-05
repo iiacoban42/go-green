@@ -7,6 +7,8 @@ import database.manager.ContinuousActionManager;
 import java.util.Date;
 import java.util.List;
 
+import static database.manager.ContinuousActionManager.endCa;
+
 public class SolarPanels {
 
     /**
@@ -15,25 +17,44 @@ public class SolarPanels {
      * @param username
      * @return amount of CO2 saved in grams
      */
-    public long savedCO2(String username) {
-        ContinuousAction ca = ContinuousActionManager.getActiveCaByUser(username);
-        int amountSP= ca.getNumSolarPanels();
-        int savedCO2perSP = 630*1000/(6*365);
-        long savedCO2 = 0;
+    public Integer savedCO2(String username) {
+        if (ContinuousActionManager.getActiveCaByUser(username) != null) {
+            ContinuousAction ca = ContinuousActionManager.getActiveCaByUser(username);
+            int amountSP = ca.getNumSolarPanels();
+            int savedCO2perSP = 630 * 1000 / (6 * 365);
+            int savedCO2 = 0;
 
-        long now = System.currentTimeMillis();
-        Date lastCashInDate = ca.getDateLastCashedIn();
-        long lastCashInMillis = lastCashInDate.getTime();
+            Date lastCashInDate = ca.getDateLastCashedIn();
+            long lastCashInMillis = lastCashInDate.getTime();
 
-        if (now - lastCashInMillis > (1000 * 60 * 60 * 24)) {
-            savedCO2 = amountSP * savedCO2perSP;
-            ContinuousActionManager.cashInCa(ca.getId());
+            if (twentyFourHoursPassed(lastCashInMillis)) {
+                savedCO2 = amountSP * savedCO2perSP;
+                ContinuousActionManager.cashInCa(ca.getId());
+            }
+
+            return savedCO2;
         }
-
-        return savedCO2;
+            return null;
     }
 
-//    public int newAmountSP (String username, int numSolarPanels) {
-//
-//    }
+    public void newAmountSP (String username, int numSolarPanels) {
+        int totalScore = 0;
+        if (ContinuousActionManager.getActiveCaByUser(username) != null) {
+            ContinuousActionManager.getActiveCaByUser(username).getTotalScore();
+            endCa(ContinuousActionManager.getActiveCaByUser(username).getId());
+        }
+
+        ContinuousAction ca = new ContinuousAction(username, "solar panels",0, numSolarPanels);
+        int scorePerDay = savedCO2(username);
+        ca.setScorePerDay(scorePerDay);
+        ca.setTotalScore(totalScore);
+    }
+
+    public boolean twentyFourHoursPassed(long lastCashIn) {
+        long now = System.currentTimeMillis();
+        if (now - lastCashIn > (1000 * 60 * 60 * 24)) {
+            return true;
+        }
+        return false;
+    }
 }
