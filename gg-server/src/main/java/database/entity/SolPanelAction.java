@@ -171,9 +171,18 @@ public class SolPanelAction {
     /**
      * Does everything needed to check in a day.
      */
-    public void chashIn() {
+    public void cashIn() {
         this.totalScore += this.scorePerDay;
         this.dateLastCashedIn = new Date();
         this.daysCashedIn ++;
+    }
+
+    public boolean twentyFourHoursPassed() {
+        long now = System.currentTimeMillis();
+        long lastCashIn = this.dateLastCashedIn.getTime();
+        if (now - lastCashIn > (1000 * 60 * 60 * 24)) {
+            return true;
+        }
+        return false;
     }
 }

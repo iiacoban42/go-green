@@ -49,7 +49,7 @@ public class SolPanelActionManager {
     }
 
     /**
-     * delets Continuouse action from database.
+     * deletes solar panel from database.
      * @param id a long representing primary key of continuouse action
      */
     public static void deleteSp(long id) {
@@ -77,11 +77,7 @@ public class SolPanelActionManager {
      * performs all updates required for "check in" including updating user score.
      * @param id a long representing primary key of continuouse action
      */
-<<<<<<< HEAD:gg-server/src/main/java/database/manager/ContinuousActionManager.java
-    public static void cashInCa(long id) {
-=======
     public static void cashInSp(long id) {
->>>>>>> 478e71624f4f349adfcbe08d4a1504622ed5c4d2:gg-server/src/main/java/database/manager/SolPanelActionManager.java
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
@@ -89,7 +85,8 @@ public class SolPanelActionManager {
             tx = session.beginTransaction();
             SolPanelAction solPanelAction =
                     (SolPanelAction)session.get(SolPanelAction.class, id);
-            solPanelAction.chashIn();
+            solPanelAction.twentyFourHoursPassed();
+            solPanelAction.cashIn();
             solPanelAction.setDateLastCashedIn(new Date());
             session.update(solPanelAction);
             String username = solPanelAction.getUser();
@@ -214,4 +211,45 @@ public class SolPanelActionManager {
             session.close();
         }
     }
+
+    /**
+     * Calculates amount of CO2 saved by producing energy by solar panels. The following source has been used for calculating the saved CO2 per solar panel:
+     * https://www.gaslicht.com/energiebesparing/stroom-opwekken-met-zonnepanelen
+     * @param username
+     * @return amount of CO2 saved in grams
+     */
+    public Integer savedCO2(String username) {
+        if (SolPanelActionManager.getActiveSpByUser(username) != null) {
+            SolPanelAction solPanelAction = SolPanelActionManager.getActiveSpByUser(username);
+            int amountSP = solPanelAction.getNumSolarPanels();
+            int savedCO2perSP = 630 * 1000 / (6 * 365);
+            int savedCO2 = 0;
+
+            Date lastCashInDate = solPanelAction.getDateLastCashedIn();
+            long lastCashInMillis = lastCashInDate.getTime();
+
+            if (twentyFourHoursPassed(lastCashInMillis)) {
+                savedCO2 = amountSP * savedCO2perSP;
+                SolPanelActionManager.cashInSp(solPanelAction.getId());
+            }
+
+            return savedCO2;
+        }
+        return null;
+    }
+
+    public void newAmountSP (String username, int numSolarPanels) {
+        int totalScore = 0;
+        if (SolPanelActionManager.getActiveSpByUser(username) != null) {
+            totalScore = SolPanelActionManager.getActiveSpByUser(username).getTotalScore();
+            endSp(SolPanelActionManager.getActiveSpByUser(username).getId());
+        }
+
+        SolPanelAction solPanelAction = new SolPanelAction(username,0, numSolarPanels);
+        int scorePerDay = savedCO2(username);
+        solPanelAction.setScorePerDay(scorePerDay);
+        solPanelAction.setTotalScore(totalScore);
+    }
+
+
 }

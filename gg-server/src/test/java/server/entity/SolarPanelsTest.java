@@ -1,8 +1,8 @@
 package server.entity;
 
-import database.entity.ContinuousAction;
+import database.entity.SolPanelAction;
 import database.entity.User;
-import database.manager.ContinuousActionManager;
+import database.manager.SolPanelActionManager;
 import database.manager.UserManager;
 import org.junit.Test;
 
@@ -13,9 +13,9 @@ public class SolarPanelsTest {
     @Test
     public void zero() {
         User testSP = UserManager.addUser("testSP", "testSP", "email");
-        ContinuousActionManager.createCa("testSP", "solar panels", 0, 0);
+        long id = SolPanelActionManager.createSp("testSP", 0, 0);
         Date now = new Date();
-        ContinuousActionManager.getActiveCaByUser("testSP").setDateLastCashedIn(now);
+        SolPanelActionManager.getActiveSpByUser("testSP").setDateLastCashedIn(now);
         int savedCo2 = SolarPanels.savedCO2("testSP");
     }
 }
