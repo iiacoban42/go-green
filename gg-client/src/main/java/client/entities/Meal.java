@@ -22,21 +22,6 @@ public class Meal {
         return quantity;
     }
 
-    @Override
-    public boolean equals(Object object) {
-
-        if (this == object) {
-            return true;
-        }
-        if (object instanceof Meal) {
-            Meal meal = (Meal) object;
-            if (meal.quantity == this.quantity && meal.product.equals(this.product)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 
 
     public void setQuantity(int quantity) {

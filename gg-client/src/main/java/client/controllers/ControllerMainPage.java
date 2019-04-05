@@ -1,14 +1,17 @@
 package client.controllers;
 
+import client.requests.Session;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -82,6 +85,17 @@ public class ControllerMainPage extends ControllerGeneral {
 
     @FXML
     ImageView imageMeal;
+
+
+    /**
+     * Change scene.
+     * @param event opponent button pressed.
+     * @throws IOException if something goes wrong.
+     */
+    @FXML
+    public void opponentPressed(ActionEvent event) throws IOException {
+        changeScene("addFriend.fxml" , anchorPane);
+    }
 
     /**
      * Change scene.
@@ -283,6 +297,22 @@ public class ControllerMainPage extends ControllerGeneral {
         if (!dialogBoxOn) {
             showDialog(text, "Home Temperature", stackTemperature);
         }
+    }
+
+    /**
+     * logout.
+     * @param event logout button pressed.
+     */
+    @FXML
+    public void logout(ActionEvent event) throws IOException {
+
+        Session.getToken().deleteToken();
+        Stage app = (Stage)((Node) event.getSource()).getScene().getWindow();
+        app.close();
+        changeWindow("login.fxml");
+
+
+
     }
 
 }

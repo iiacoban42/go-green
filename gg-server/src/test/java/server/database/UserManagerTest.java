@@ -57,7 +57,7 @@ public class UserManagerTest {
     }
 
     @Test
-    public void addFiend() {
+    public void addFriend() {
         UserManager.addFriend("cpt1", "cpt2");
         assertEquals("cpt2", UserManager.getUser("cpt1").getFriend());
         assertEquals("cpt1", UserManager.getUser("cpt2").getFriend());

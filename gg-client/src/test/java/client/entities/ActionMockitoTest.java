@@ -6,7 +6,7 @@ import org.mockito.Mockito;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ActionTestWithMockito {
+public class ActionMockitoTest {
 
     private Action action = mock(Action.class);
     private Action action2 = new Action(15 , "transport" , "user" , 10);

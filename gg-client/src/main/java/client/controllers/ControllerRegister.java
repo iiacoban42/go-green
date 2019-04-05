@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.springframework.web.client.RestClientResponseException;
 
 public class ControllerRegister extends ControllerGeneral {
 
@@ -37,13 +38,21 @@ public class ControllerRegister extends ControllerGeneral {
      * @param event created by button interaction
      */
 
-    public void submitButtonPressed(ActionEvent event) throws JsonProcessingException {
+    public void submitButtonPressed(ActionEvent event)
+            throws RestClientResponseException, JsonProcessingException {
+        username = usernameRegister.getText();
+        password = passwordRegister.getText();
+        email = emailRegister.getText();
 
         if (!validText(username) || !validText(email) || !validText(password)) {
             errorMessage.setVisible(true);
         } else if (validText(username) && validText(email) && validText(password)) {
             errorMessage.setVisible(false);
-            sendRegisterCredentials(username , password , email);
+            try {
+                sendRegisterCredentials(username, password, email);
+            } catch (RestClientResponseException e) {
+                errorMessage.setVisible(true);
+            }
             submitButton.getScene().getWindow().hide();
         }
 
@@ -68,7 +77,6 @@ public class ControllerRegister extends ControllerGeneral {
         email = emailRegister.getText();
         System.out.println(email);
         submitButton.requestFocus();
-
     }
 
     /**

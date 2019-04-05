@@ -43,4 +43,10 @@ public class TemperatureCalculatorTest {
         assertEquals(getAmountCo2(temp),0,0);
     }
 
+    @Test
+    public void SystemTest() {
+        Temperature temp = new Temperature(56, 6000, "");
+        assertEquals(getAmountCo2(temp),0,0);
+    }
+
 }
