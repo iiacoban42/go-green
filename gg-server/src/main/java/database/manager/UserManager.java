@@ -10,13 +10,14 @@ import java.util.List;
 public class UserManager {
     /**
      * Method to create a User in the database.
+     *
      * @return the user that has been created,
-     *      or if there was already a user, the current one
+     *     or if there was already a user, the current one.
      */
     public static User addUser(
-            final String username,
-            final String password,
-            final String email) {
+        final String username,
+        final String password,
+        final String email) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         User user = null;
@@ -40,6 +41,7 @@ public class UserManager {
 
     /**
      * Method to list all users in database.
+     *
      * @return a list containing all users in database
      */
     public static List listUsers() {
@@ -72,7 +74,7 @@ public class UserManager {
 
         try {
             tx = session.beginTransaction();
-            User user = (User)session.get(User.class, username);
+            User user = (User) session.get(User.class, username);
             session.delete(user);
             tx.commit();
         } catch (HibernateException e) {
@@ -88,6 +90,7 @@ public class UserManager {
 
     /**
      * Mothod to get user by username.
+     *
      * @param username a Sting representingthe username /primarykey of user
      * @return a List containing only the relevant user
      */
@@ -98,7 +101,7 @@ public class UserManager {
 
         try {
             tx = session.beginTransaction();
-            user = (User)session.get(User.class, username);
+            user = (User) session.get(User.class, username);
             tx.commit();
         } catch (HibernateException e) {
             try {
@@ -114,7 +117,8 @@ public class UserManager {
 
     /**
      * Method to change user password.
-     * @param username primary key, String represents users username
+     *
+     * @param username     primary key, String represents users username
      * @param hashPassword String representing hashed password to be set
      * @return User with updated hashPassword
      */
@@ -125,7 +129,7 @@ public class UserManager {
 
         try {
             tx = session.beginTransaction();
-            user = (User)session.get(User.class, username);
+            user = (User) session.get(User.class, username);
             user.setHashPassword(hashPassword);
             session.update(user);
             tx.commit();
@@ -143,8 +147,9 @@ public class UserManager {
 
     /**
      * Method to change users token.
+     *
      * @param username a Sting representing the users username/primary key
-     * @param token a String representing the users unique token
+     * @param token    a String representing the users unique token
      */
     public static void setToken(String username, String token) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -152,7 +157,7 @@ public class UserManager {
 
         try {
             tx = session.beginTransaction();
-            User user = (User)session.get(User.class, username);
+            User user = (User) session.get(User.class, username);
             user.setToken(token);
             session.update(user);
             tx.commit();
@@ -169,8 +174,9 @@ public class UserManager {
 
     /**
      * Method to add score to the user in the database.
+     *
      * @param username primary key, String represents users username
-     * @param score an integer representing the score to be added to the total score
+     * @param score    an integer representing the score to be added to the total score
      */
     public static void addScore(String username, int score) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -178,7 +184,7 @@ public class UserManager {
 
         try {
             tx = session.beginTransaction();
-            User user = (User)session.get(User.class, username);
+            User user = (User) session.get(User.class, username);
             user.addScore(score);
             session.update(user);
             tx.commit();
@@ -197,19 +203,19 @@ public class UserManager {
     }
 
     /**
-     * updates freind field of both parties.
-     * @param user String representing username of first party
-     * @param freind String representing username of second party
+     * updates friend field of both parties.
+     *
+     * @param user   String representing username of first party
+     * @param friend String representing username of second party
      */
-    public static void addFriend(String user, String freind) {
+    public static void addFriend(String user, String friend) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-
-            session.get(User.class, user).setFriend(freind);
-            session.get(User.class, freind).setFriend(user);
+            session.get(User.class, user).setFriend(friend);
+            session.get(User.class, friend).setFriend(user);
             tx.commit();
         } catch (HibernateException e) {
             try {

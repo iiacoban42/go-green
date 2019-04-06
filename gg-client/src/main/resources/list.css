@@ -1,4 +1,20 @@
 .list-cell 
 {
-  -fx-font: 18pt "Calibri";
+  -fx-font: 18pt "monospace";
 }
+
+.list-cell:odd {
+  -fx-cell-click-color:#ff531a;
+  -fx-background-color: #ff531a;
+  -fx-font-color: white;
+}
+
+.list-cell:even {
+  -fx-cell-click-color: #cce9ff;
+  -fx-background-color: #cce9ff;
+  -fx-font-color:#ff531a ;
+}
+.list-border:editable{
+  -fx-border-outline-color: black;
+}
+

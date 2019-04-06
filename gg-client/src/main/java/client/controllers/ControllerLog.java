@@ -57,6 +57,7 @@ public class ControllerLog {
     public void initializeList(List list) {
 
         ObservableList data = FXCollections.observableArrayList(list);
+        System.out.println(data.toString());
         listView.setItems(data);
 
     }

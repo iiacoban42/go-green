@@ -17,23 +17,22 @@ import java.util.List;
 public class SolPanelActionManager {
     /**
      * creates a continuous action and comitis it to database.
-     * @param username a String representing the primarykey/username of user
-     * @param scorePerDay an int representing the score gained per day.
+     * score per day is derived from number of solar panels
+     * @param username a String representing the primarykey/username of user.
      * @param numSolarPanels an int that can represent what is needed such as # of solar panels
      * @return a long that represents CAs primary key
      */
-    public static long createSp(String username, int scorePerDay, int numSolarPanels) {
+    public static long createSp(String username, int numSolarPanels) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         SolPanelAction solPanelAction = null;
 
         try {
             tx = session.beginTransaction();
-
-            solPanelAction = new SolPanelAction(username, scorePerDay, numSolarPanels);
+            solPanelAction = new SolPanelAction(username, numSolarPanels);
             session.save(solPanelAction);
             User user = UserManager.getUser(solPanelAction.getUser());
-            user.addScore(scorePerDay);
+            user.addScore(630 * 1000 / ( 6 * 365 ) * numSolarPanels);
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
@@ -75,6 +74,7 @@ public class SolPanelActionManager {
 
     /**
      * performs all updates required for "check in" including updating user score.
+     * If it has not been 24 hours since last cashed in, nothing is done
      * @param id a long representing primary key of continuouse action
      */
     public static void cashInSp(long id) {
@@ -85,6 +85,7 @@ public class SolPanelActionManager {
             tx = session.beginTransaction();
             SolPanelAction solPanelAction =
                     (SolPanelAction)session.get(SolPanelAction.class, id);
+<<<<<<< HEAD
             solPanelAction.twentyFourHoursPassed();
             solPanelAction.cashIn();
             solPanelAction.setDateLastCashedIn(new Date());
@@ -93,6 +94,17 @@ public class SolPanelActionManager {
             User user = (User)session.get(User.class, username);
             user.addScore(solPanelAction.getScorePerDay());
             session.update(user);
+=======
+            if (solPanelAction.twentyFourHourSince()) {
+                solPanelAction.chashIn();
+                solPanelAction.setDateLastCashedIn(new Date());
+                session.update(solPanelAction);
+                String username = solPanelAction.getUser();
+                User user = (User) session.get(User.class, username);
+                user.addScore(solPanelAction.getScorePerDay());
+                session.update(user);
+            }
+>>>>>>> 6d6a00c202252eaaa30a9a2154511f410dbf2425
             tx.commit();
         } catch (HibernateException e) {
             try {
@@ -213,6 +225,7 @@ public class SolPanelActionManager {
     }
 
     /**
+<<<<<<< HEAD
      * Calculates amount of CO2 saved by producing energy by solar panels. The following source has been used for calculating the saved CO2 per solar panel:
      * https://www.gaslicht.com/energiebesparing/stroom-opwekken-met-zonnepanelen
      * @param username
@@ -252,4 +265,27 @@ public class SolPanelActionManager {
     }
 
 
+=======
+     * updates solPanelAction in database.
+     * @param solPanelAction solPanalAction to be updated in its updated form
+     */
+    public static void update(SolPanelAction solPanelAction) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.update(solPanelAction);
+            tx.commit();
+        } catch (HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+    }
+>>>>>>> 6d6a00c202252eaaa30a9a2154511f410dbf2425
 }

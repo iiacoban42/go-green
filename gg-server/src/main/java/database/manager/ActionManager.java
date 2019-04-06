@@ -13,17 +13,10 @@ public class ActionManager {
 
     /**
      * Cretes a new action and adds it to the database.
-<<<<<<< HEAD
-     * @param actionName
-     * @param user
-     * @param score
-     * @return
-=======
      * @param actionName String representing name of action
      * @param username String representing username/primary key of user
      * @param score integer representing score
      * @return id, a intefer representing the primary key of Actiom
->>>>>>> 28709164224bdc78e08765cee484b62e72ec0d81
      */
     public static long addAction(
             String actionName,

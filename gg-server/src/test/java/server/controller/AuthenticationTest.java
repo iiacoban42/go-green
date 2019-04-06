@@ -1,14 +1,25 @@
 package server.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import database.manager.UserManager;
+import org.apache.catalina.core.ApplicationContext;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 import server.entity.LoginCredentials;
 import server.entity.RegisterCredentials;
+import server.security.CreateJwt;
+import server.security.WebSecurityConfig;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -18,61 +29,54 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(Authentication.class)
+@ContextConfiguration
 public class AuthenticationTest {
 
+    @Autowired
+    private WebApplicationContext wac;
     @Autowired
     private MockMvc mvc;
     @Autowired
     private ObjectMapper objectMapper;
 
-    @BeforeClass
-    public static void createTestUser() {
-        System.out.println("running createTestUser");
+    @Before
+    public void createTestUser() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         if (UserManager.getUser("Test") != null) {
-            if (!UserManager.getUser("Test").getHashPassword().equals("pass")) {
-                UserManager.changePassword("Test", "pass");
-            }
-        } else {
-            UserManager.addUser("Test", "pass", "email");
+            UserManager.deleteUser("Test");
         }
+        UserManager.addUser("Test", encoder.encode("pass"), "email");
     }
 
     @Test
     public void loginTest_Success() throws Exception {
-        createTestUser();
         LoginCredentials credentials = new LoginCredentials("Test", "pass");
 
-        mvc.perform(post("/authentication/login")
+        mvc.perform(post("/users/login")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isOk());
-        deleteTestUser();
     }
 
     @Test
     public void wrongUserName() throws Exception {
-        createTestUser();
-        LoginCredentials credentials = new LoginCredentials("user", "pass");
+        LoginCredentials credentials = new LoginCredentials("henk", "pass");
 
-        mvc.perform(post("/authentication/login")
+        mvc.perform(post("/users/login")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isUnauthorized());
-
-        deleteTestUser();
     }
 
     @Test
     public void wrongPassWord() throws Exception {
-        createTestUser();
-        LoginCredentials credentials = new LoginCredentials("Test", "1");
+        LoginCredentials credentials = new LoginCredentials("Test", "notpass");
 
-        mvc.perform(post("/authentication/login")
+        mvc.perform(post("/users/login")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isUnauthorized());
-
-        deleteTestUser();
     }
 
     @Test
@@ -83,7 +87,7 @@ public class AuthenticationTest {
             UserManager.deleteUser("Test1");
         }
 
-        mvc.perform(post("/authentication/register")
+        mvc.perform(post("/users/register")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isOk());
@@ -94,19 +98,94 @@ public class AuthenticationTest {
 
     @Test
     public void registerTest_Fail() throws Exception{
-        createTestUser();
         RegisterCredentials credentials = new RegisterCredentials("mail", "Test", "pass");
 
-        mvc.perform(post("/authentication/register")
+        mvc.perform(post("/users/register")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(credentials))
         ).andExpect(status().isUnauthorized());
-        deleteTestUser();
+    }
+
+    @Test
+    public void changePasswordTest_Forbidden() throws Exception {
+        LoginCredentials credentials = new LoginCredentials("Test", "password");
+
+        mvc.perform(post("/users/changePassword")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(credentials))
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void changePasswordTest_Success() throws Exception {
+        LoginCredentials credentials = new LoginCredentials("Test", "pass");
+
+        MvcResult mvcResult = mvc.perform(post("/users/login")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(credentials))
+        ).andExpect(status().isOk()).andReturn();
+
+        String token = mvcResult.getResponse().getHeader("Authorization");
+        System.out.println("token: " + token);
+
+        LoginCredentials newCredentials = new LoginCredentials("Test", "password");
+
+        mvc.perform(post("/users/changePassword")
+            .header("Authorization", token)
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(newCredentials))
+        ).andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteUserTest_No_Bearer() throws Exception {
+        // Remove "Bearer " for extra branch coverage of the AuthorizationFilter
+        String token = "This is not a valid token";
+        System.out.println("token: " + token);
+
+        mvc.perform(post("/users/deleteUser")
+            .header("Authorization", token)
+            .contentType(APPLICATION_JSON_UTF8)
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void deleteUserTest_Wrong_Token() throws Exception {
+        LoginCredentials credentials = new LoginCredentials("Test", "pass");
+
+        MvcResult mvcResult = mvc.perform(post("/users/login")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(credentials))
+        ).andExpect(status().isOk()).andReturn();
+
+        // Remove "Bearer " for extra branch coverage of the AuthorizationFilter
+        String token = CreateJwt.createJwt("Test");
+
+        mvc.perform(post("/users/deleteUser")
+            .header("Authorization", token)
+            .contentType(APPLICATION_JSON_UTF8)
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void deleteUserTest_Success() throws Exception {
+        LoginCredentials credentials = new LoginCredentials("Test", "pass");
+
+        MvcResult mvcResult = mvc.perform(post("/users/login")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(credentials))
+        ).andExpect(status().isOk()).andReturn();
+
+        String token = mvcResult.getResponse().getHeader("Authorization");
+
+        mvc.perform(post("/users/deleteUser")
+            .header("Authorization", token)
+            .contentType(APPLICATION_JSON_UTF8)
+        ).andExpect(status().isOk());
     }
 
     @AfterClass
     public static void deleteTestUser() {
-        System.out.println("running delete test user");
         if (UserManager.getUser("Test") != null) {
             UserManager.deleteUser("Test");
         }

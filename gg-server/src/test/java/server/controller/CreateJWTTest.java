@@ -1,11 +1,9 @@
 package server.controller;
 
 import org.junit.Test;
-import server.controller.CreateJwt;
+import server.security.CreateJwt;
 
 import org.apache.commons.codec.binary.Base64;
-
-import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

@@ -50,15 +50,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-<<<<<<< HEAD
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.6.0</version>
-=======
             <groupId>com.jfoenix</groupId>
             <artifactId>jfoenix</artifactId>
             <version>9.0.8</version>
->>>>>>> b7fc630f78221149385add8f3436989963a1b45c
         </dependency>
     </dependencies>
 

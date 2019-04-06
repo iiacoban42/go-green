@@ -82,11 +82,10 @@ public class SolPanelAction {
     /**
      * Constructs a continouse action with total score set to scorePerDay.
      * @param user a Stiring representing the primary key/username of user.
-     * @param scorePerDay a Int representing the score gained per day
      */
-    public SolPanelAction(String user, int scorePerDay, int numSolarPanels) {
+    public SolPanelAction(String user, int numSolarPanels) {
         this.user = user;
-        this.scorePerDay = scorePerDay;
+        this.scorePerDay = 630 * 1000 / ( 6 * 365 ) * numSolarPanels;
         this.numSolarPanels = numSolarPanels;
         this.totalScore = scorePerDay;
     }
@@ -177,10 +176,21 @@ public class SolPanelAction {
         this.daysCashedIn ++;
     }
 
+<<<<<<< HEAD
     public boolean twentyFourHoursPassed() {
         long now = System.currentTimeMillis();
         long lastCashIn = this.dateLastCashedIn.getTime();
         if (now - lastCashIn > (1000 * 60 * 60 * 24)) {
+=======
+    /**
+     * checks if it has been more than 24 hours since last cash in.
+     * @return boolean, true if the last cashed in time was more that a day ago
+     */
+    public boolean twentyFourHourSince() {
+        long now = new Date().getTime();
+        long lastCashedIn = dateLastCashedIn.getTime();
+        if (now - lastCashedIn > 86400000) {
+>>>>>>> 6d6a00c202252eaaa30a9a2154511f410dbf2425
             return true;
         }
         return false;

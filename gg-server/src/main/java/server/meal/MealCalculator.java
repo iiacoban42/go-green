@@ -5,25 +5,6 @@ import server.entity.MealList;
 public class MealCalculator {
 
     public static final Meal[] Meal_Menu = {
-<<<<<<< HEAD
-        new Meal("beans", 1, 0, true),
-        new Meal("VeggieBurger", 2.6, 0, true),
-        new Meal("Insects", 2.7, 0, false),
-        new Meal("Quorn", 2.7, 0, true),
-        new Meal("Nuts", 3.2, 0, true),
-        new Meal("Tofu", 3.5, 0, true),
-        new Meal("Egg", 21.6, 0, true),
-        new Meal("BeefCroquette", 5.2, 0, false),
-        new Meal("VeggieBurgerCheese", 6.5, 0, true),
-        new Meal("Chicken", 6.8, 0, false),
-        new Meal("Pork", 7.0, 0, false),
-        new Meal("Cheese", 10.0, 0, true),
-        new Meal("MixedMincedMeat", 13.3, 0, false),
-        new Meal("Hamburger", 16.8, 0, false),
-        new Meal("MincedMeat", 19.4, 0, false),
-        new Meal("Steak", 34.0, 0, false),
-        new Meal("Lamb", 51.0, 0, false)
-=======
         new Meal("beans", 1, true),
         new Meal("veggieBurger", 2.6, true),
         new Meal("veggieBurgerCheese", 6.5, true),
@@ -41,33 +22,40 @@ public class MealCalculator {
         new Meal("mixedMincedMeat", 13.3, false),
         new Meal("insects", 2.7, false),
         new Meal("cheese", 10, true)
->>>>>>> b7fc630f78221149385add8f3436989963a1b45c
     };
 
     /**
      * Returns total amount of average co2 produced for making the Meals.
      *
      * @param mealList for which to calculate it
-     * @return double of co2 in grams
+     * @return double
      */
     public static double getAmountCo2(MealList mealList) {
-        double co2 = 0;
+        double co2 = co2(mealList,Meal_Menu);
         double averageDutchMeal = dutchAverageMeal();
         double result;
-
-        for (server.entity.Meal listMeal : mealList.getMeals()) {
-            for (Meal menuMeal : Meal_Menu) {
-                if (menuMeal.getProduct().equals(listMeal.getProduct())) {
-                    co2 += menuMeal.getCo2() * listMeal.getQuantity();
-                }
-            }
-        }
         result = averageDutchMeal - co2;
         if (result < 0) {
             return 0;
         }
         return result;
+    }
 
+    /**
+     * Calculates the co2 of a meal.
+     * @param meal for co2 calculation
+     * @return co2 consumed by the meal
+     */
+    public static double co2(MealList meal, Meal[] menu) {
+        double co2 = 0;
+        for (server.entity.Meal listMeal : meal.getMeals()) {
+            for (Meal menuMeal : menu) {
+                if (menuMeal.getProduct().equals(listMeal.getProduct())) {
+                    co2 += menuMeal.getCo2() * listMeal.getQuantity();
+                }
+            }
+        }
+        return co2;
     }
 
     /**
@@ -95,7 +83,7 @@ public class MealCalculator {
      * http://library.wur.nl/WebQuery/wurpubs/fulltext/464580
      * Calculates the amount/CO2 produced by the average dutch meal.
      *
-     * @return CO2 in grams
+     * @return CO2
      */
     public static double dutchAverageMeal() {
         double avgBeans = 4;
@@ -115,11 +103,7 @@ public class MealCalculator {
                 + 1.1 + 1.2 + 1.2 + 1.2 + 1.2 + 1.2) * 1000 / (13 * 365);
 
 
-<<<<<<< HEAD
-        return 1 * avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
-=======
-        return  avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
->>>>>>> b7fc630f78221149385add8f3436989963a1b45c
+        return avgBeans + 3.2 * avgNuts + 3.6 * avgEgg
                 + 6.8 * avgChicken + 7 * avgPork + 10 * avgCheese
                 + 16.8 * avgCow + 51 * avgLamb;
     }
