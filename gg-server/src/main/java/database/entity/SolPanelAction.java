@@ -176,12 +176,6 @@ public class SolPanelAction {
         this.daysCashedIn ++;
     }
 
-<<<<<<< HEAD
-    public boolean twentyFourHoursPassed() {
-        long now = System.currentTimeMillis();
-        long lastCashIn = this.dateLastCashedIn.getTime();
-        if (now - lastCashIn > (1000 * 60 * 60 * 24)) {
-=======
     /**
      * checks if it has been more than 24 hours since last cash in.
      * @return boolean, true if the last cashed in time was more that a day ago
@@ -190,7 +184,6 @@ public class SolPanelAction {
         long now = new Date().getTime();
         long lastCashedIn = dateLastCashedIn.getTime();
         if (now - lastCashedIn > 86400000) {
->>>>>>> 6d6a00c202252eaaa30a9a2154511f410dbf2425
             return true;
         }
         return false;
