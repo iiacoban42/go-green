@@ -21,6 +21,24 @@ public class ControllerMainPage extends ControllerGeneral {
     public static boolean dialogBoxOn = false;
 
     @FXML
+    JFXButton inf1;
+
+    @FXML
+    JFXButton inf2;
+
+    @FXML
+    JFXButton inf3;
+
+    @FXML
+    JFXButton inf4;
+
+    @FXML
+    JFXButton inf5;
+
+    @FXML
+    JFXButton inf6;
+
+    @FXML
     JFXButton close;
 
     @FXML
@@ -189,7 +207,7 @@ public class ControllerMainPage extends ControllerGeneral {
      * @param event  hovering.
      */
     @FXML
-    public void loadMealDialogMeal(MouseEvent event) {
+    public void loadDialogMeal(MouseEvent event) {
 
         String text = "We calculate the Carbon Dioxide\n"
                 +
@@ -313,6 +331,11 @@ public class ControllerMainPage extends ControllerGeneral {
 
 
 
+    }
+
+    @FXML
+    public  void showLocalProduce(ActionEvent event) throws IOException {
+        changeWindow("local_produce.fxml" );
     }
 
 }

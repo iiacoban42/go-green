@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.springframework.web.client.RestClientResponseException;
@@ -20,6 +21,11 @@ import java.io.IOException;
 
 public class ControllerOpponent {
 
+    @FXML
+    Label friendLabel;
+
+    @FXML
+    Label userLabel;
 
     @FXML
     JFXTextField addFriendTextField;
@@ -74,6 +80,8 @@ public class ControllerOpponent {
         if (response.equals("200 OK")) {
             errorNotFoundMessage.setVisible(false);
             successMessage.setVisible(true);
+            chart.getData().clear();
+            initialize();
         } else {
             successMessage.setVisible(false);
             errorNotFoundMessage.setVisible(true);
@@ -104,6 +112,12 @@ public class ControllerOpponent {
                 scores.getData().add(new XYChart.Data("YOU", (double) MealRequests.getScore()));
                 chart.getData().addAll(scores);
                 chart.setBarGap(5);
+
+                friendLabel.setText(friendRequests.getFriendScore().getName()
+                        + " : "
+                        + Integer.toString(friendRequests.getFriendScore().getScore()));
+
+                userLabel.setText("you : " + MealRequests.getScore());
             }
 
         } catch (RestClientResponseException e) {

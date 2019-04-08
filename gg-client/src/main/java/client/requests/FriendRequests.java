@@ -3,19 +3,13 @@ package client.requests;
 import client.entities.Friend;
 import client.entities.FriendScore;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import javafx.util.Pair;
 import org.springframework.web.client.RestClientResponseException;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
 
-public class FriendRequests {
+public class FriendRequests extends GeneralRequests {
 
     private FriendScore friendScore;
 
@@ -47,25 +41,10 @@ public class FriendRequests {
         final String urlAddFriend = "http://localhost:8080/api/friends/add";
 
         Friend friend = new Friend(name);
-        ObjectMapper objectMapper = new ObjectMapper();
 
-        String json = objectMapper.writeValueAsString(friend);
+        String  response =  doPostRequest(friend , urlAddFriend);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        headers.set("Authorization", Session.getToken().getToken());
-
-        HttpEntity<String> entity = new HttpEntity<>(json, headers);
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity response = restTemplate.exchange(
-                  urlAddFriend,
-                  HttpMethod.POST,
-                  entity,
-                  ResponseEntity.class
-          );
-
-        return response.getStatusCode().toString();
+        return response;
     }
 
 
@@ -77,21 +56,11 @@ public class FriendRequests {
 
         String url = "http://localhost:8080/api/friends/friend";
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        headers.set("Authorization", Session.getToken().getToken());
-        HttpEntity<String> entity = new HttpEntity<String>(headers);
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                entity,
-                FriendScore.class
-        );
+        Pair pair =  doGetRequest(url , friendScore.getClass());
 
-        friendScore = (FriendScore) response.getBody();
+        friendScore = (FriendScore) pair.getValue();
 
-        return response.getStatusCode().toString();
+        return (String) pair.getKey();
     }
 
 }

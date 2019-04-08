@@ -5,18 +5,18 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerOpponent">
    <children>
       <Pane prefHeight="494.0" prefWidth="707.0" style="-fx-background-color: #ffffff;">
          <children>
             <JFXTextField fx:id="addFriendTextField" focusColor="#6bb300" layoutX="33.0" layoutY="90.0" onAction="#usernameOfFriendEntered" prefHeight="45.0" prefWidth="185.0" promptText="search by username" />
-            <Text layoutX="33.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a friend  :" wrappingWidth="151.23046875">
+            <Text layoutX="25.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a friend  :" wrappingWidth="176.23046875">
                <font>
                   <Font name="Calibri Light" size="24.0" />
                </font>
@@ -44,6 +44,16 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Text>
+            <Label fx:id="userLabel" layoutX="33.0" layoutY="395.0" prefHeight="28.0" prefWidth="288.0">
+               <font>
+                  <Font name="Calibri Light" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="friendLabel" layoutX="33.0" layoutY="432.0" prefHeight="28.0" prefWidth="288.0" style="-fx-background-color: white;">
+               <font>
+                  <Font name="Calibri Light" size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
