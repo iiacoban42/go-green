@@ -69,7 +69,10 @@ public class Action {
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
 
         int score = (int) MealCalculator.getAmountCo2(mealList);
-        ActionManager.addAction("meal", getUser(), score);
+
+        ActionManager.addAction(
+                MealCalculator.isVegetarian(mealList) ? "veggieMeal" : "meal",
+                getUser(), score);
 
         return response;
     }

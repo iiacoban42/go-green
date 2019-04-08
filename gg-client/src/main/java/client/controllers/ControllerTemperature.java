@@ -27,7 +27,6 @@ public class ControllerTemperature {
     private String heatingSystem;
 
 
-
     @FXML
     private TextField surface;
 
@@ -47,11 +46,9 @@ public class ControllerTemperature {
     private Button submit;
 
 
-
-
-
     /**
      * Take surface from user.
+     *
      * @param event surface Entered
      */
     @FXML
@@ -64,6 +61,7 @@ public class ControllerTemperature {
 
     /**
      * Get energy from the user.
+     *
      * @param event energy entered.
      */
     @FXML
@@ -77,11 +75,13 @@ public class ControllerTemperature {
 
     /**
      * Close the window.
+     *
      * @param event submit button pressed.
      */
     @FXML
     public void submitButtonPressed(ActionEvent event) throws IOException {
-
+        stringSurface = surface.getText();
+        stringEnergy = energy.getText();
 
         for (Node node : box.getChildren()) {
 
@@ -99,20 +99,15 @@ public class ControllerTemperature {
 
         }
 
-        Temperature temperature = new Temperature(Double.parseDouble(stringSurface) ,
-                Double.parseDouble(stringEnergy) , heatingSystem);
+        Temperature temperature = new Temperature(Double.parseDouble(stringSurface),
+                Double.parseDouble(stringEnergy), heatingSystem);
 
         sendTemperature(temperature);
-
-
 
 
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
     }
-
-
-
 
 
 }
