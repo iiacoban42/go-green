@@ -6,7 +6,7 @@
 - Report
 - Some tasks about features. 
 
-### Problem 1: A member of the group was delayed for some of the Monday meetings.
+### Problem 2: A member of the group was delayed for some of the Monday meetings.
 
 
 ## Adjustments from previous sprints  
