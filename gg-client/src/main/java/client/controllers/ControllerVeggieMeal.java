@@ -120,7 +120,7 @@ public class ControllerVeggieMeal extends ControllerGeneral {
         }
 
         try {
-            sendMealList(list);
+            sendMealList(list, "http://localhost:8080/api/action/meal");
         } catch (IOException e) {
             System.out.println("meal was not sent to the server");
         }
