@@ -80,8 +80,12 @@ public class Action {
         return id;
     }
 
-    private Date getDateTime() {
+    public Date getDateTime() {
         return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getActionName() {

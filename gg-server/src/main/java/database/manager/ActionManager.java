@@ -130,11 +130,11 @@ public class ActionManager {
      * @param username a String representing the username/primary key of the user
      * @return a List with Action objects
      */
-    public static List listActionsUser(String username) {
+    public static List<Action> listActionsUser(String username) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Action action = null;
-        List results = null;
+        List<Action> results = null;
 
         try {
             tx = session.beginTransaction();
@@ -155,4 +155,77 @@ public class ActionManager {
         return results;
     }
 
+    /**
+     * counts amount of consecutive days user has done vegimeal action.
+     * @param username username of user
+     * @return integer represening streaj
+     */
+    public static int vegimealStreak(String username) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        final long millisInDay = 86400000;
+        int streak = 0;
+        try {
+            tx = session.beginTransaction();
+            String hql = "FROM Action WHERE actionName = :actionName AND user = :username";
+            Query query = session.createQuery(hql);
+            query.setParameter("username", username);
+            query.setParameter("actionName", "vegimeal");
+            List<Action> results = query.list();
+            long time = System.currentTimeMillis();
+            for (Action action : results) {
+                if (action.getDateTime().getTime() > time - millisInDay) {
+                    streak++;
+                    break;
+                }
+            }
+            time -= millisInDay;
+            boolean combo = true;
+            while (combo) {
+                combo = false;
+                for (Action action : results) {
+                    if (action.getDateTime().getTime() < time
+                            && action.getDateTime().getTime() > time - millisInDay) {
+                        streak++;
+                        time -= millisInDay;
+                        combo = true;
+                        break;
+                    }
+                }
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+        return streak;
+    }
+
+    /**
+     * updates an Acion in the database.
+     * @param action The action object which should be updated in database
+     */
+    public static void updateAction(Action action) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.update(action);
+            tx.commit();
+        } catch (HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+    }
 }

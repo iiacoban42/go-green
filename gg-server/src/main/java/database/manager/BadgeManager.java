@@ -43,6 +43,49 @@ public class BadgeManager {
     }
 
     /**
+     * adds a badge to user or modifies the level so that user has badge asked for.
+     * @param badgeName name of the badge alocated
+     * @param username primarykey/username of user
+     * @param level integer representing the level of the badge
+     * @return long representing primary key of badge
+     */
+    public static long addBadge(
+            String badgeName,
+            String username,
+            int level
+    ) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Badge badge = null;
+
+        try {
+            tx = session.beginTransaction();
+            String hql = "FROM Badge WHERE badgeName = :badgeName AND user = :username";
+            Query query = session.createQuery(hql);
+            query.setParameter("username", username);
+            query.setParameter("badgeName", badgeName);
+            badge = (Badge)query.uniqueResult();
+            if (badge == null) {
+                badge = new Badge(badgeName, username, level);
+                session.save(badge);
+            } else {
+                badge.setLevel(level);
+                session.update(badge);
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+        return badge.getId();
+    }
+
+    /**
      * Lists all badges in database.
      * @return a List object containing all Badges in database
      */
@@ -53,6 +96,7 @@ public class BadgeManager {
 
         try {
             tx = session.beginTransaction();
+            String hql = "FROM Badge WHERE badge";
             badges = session.createQuery("From Badge").list();
             tx.commit();
         } catch (HibernateException e) {
@@ -122,11 +166,11 @@ public class BadgeManager {
      * @param username a String representing the username/primary key of the user
      * @return a List with Badge objects
      */
-    public static List listBadgesUser(String username) {
+    public static List<Badge> listBadgesUser(String username) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Badge badge = null;
-        List results = null;
+        List<Badge> results = null;
 
         try {
             tx = session.beginTransaction();
@@ -146,5 +190,23 @@ public class BadgeManager {
         }
         return results;
     }
+
+    /**
+     * checkd for badges to be alocated for specific user.
+     * @param username username of user who needs to have his badge allocated
+     */
+    public static void checkBadges(String username) {
+        int vegiStreak = ActionManager.vegimealStreak(username);
+        if (vegiStreak >= 5) {
+            addBadge("vegiStreak", username, 1);
+        }
+        if (vegiStreak >= 10) {
+            addBadge("vegiStreak", username, 2);
+        }
+        if (vegiStreak >= 20) {
+            addBadge("vegiStreak", username, 3);
+        }
+    }
+
 
 }

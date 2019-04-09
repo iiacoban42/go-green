@@ -49,20 +49,38 @@ public class Badge {
     @Column(name = "user")
     private String user;
 
-
+    @Column(name = "badge")
+    private int level;
 
     /**
      * Creates a badge to insert in badges.
      * id will be auto-generated after it has been inserted in table.
+     * level is set to 1.
      * @param badgeName a String that represents the name of the badge
      * @param user a String representing the username of the User who performed the action
      */
     public Badge(String badgeName, String user) {
         this.badgeName = badgeName;
         this.user = user;
+        this.level = 1;
     }
 
+
     public Badge(){}
+
+    /**
+     * Creates a badge to insert in badges.
+     * id will be auto-generated after it has been inserted in table.
+     * @param badgeName a String that represents the name of the badge
+     * @param user a String representing the username of the User who performed the action
+     * @param level an integer representing the level of the badge
+     */
+    public Badge(String badgeName, String user, int level) {
+        this.badgeName = badgeName;
+        this.user = user;
+        this.level = level;
+    }
+
 
     @PrePersist
     void creatAt() {
@@ -92,5 +110,17 @@ public class Badge {
 
     private void setUser(final String user) {
         this.user = user;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
