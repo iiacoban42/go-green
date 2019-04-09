@@ -1,6 +1,8 @@
 package server.controller;
 
+import database.entity.Badge;
 import database.manager.ActionManager;
+import database.manager.BadgeManager;
 import database.manager.UserManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -111,4 +113,9 @@ public class Action {
         return score;
     }
 
+    @GetMapping("/badge")
+    @ResponseBody
+    public List<Badge> badges() {
+        return BadgeManager.listBadgesUser(getUser());
+    }
 }
