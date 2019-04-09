@@ -156,11 +156,12 @@ public class ActionManager {
     }
 
     /**
-     * counts amount of consecutive days user has done vegimeal action.
+     * counts amount of consecutive days user has done of a specified action.
      * @param username username of user
+     * @param actionName a string representing the name of the action
      * @return integer represening streaj
      */
-    public static int vegimealStreak(String username) {
+    public static int streakCalculator(String username, String actionName) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         final long millisInDay = 86400000;
@@ -170,7 +171,7 @@ public class ActionManager {
             String hql = "FROM Action WHERE actionName = :actionName AND user = :username";
             Query query = session.createQuery(hql);
             query.setParameter("username", username);
-            query.setParameter("actionName", "vegimeal");
+            query.setParameter("actionName", actionName);
             List<Action> results = query.list();
             long time = System.currentTimeMillis();
             for (Action action : results) {
@@ -204,6 +205,40 @@ public class ActionManager {
             session.close();
         }
         return streak;
+    }
+
+    /**
+     * calculates co2 saved by user with specific action.
+     * @param username a string representing username/primary key of user
+     * @param actionName a string representing name of specified action
+     * @return long represenitng co2 saved
+     */
+    public static long co2SavedByActionByUser(String username, String actionName) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        int co2Saved = 0;
+
+        try {
+            tx = session.beginTransaction();
+            String hql = "FROM Action WHERE actionName = :actionName AND user = :username";
+            Query query = session.createQuery(hql);
+            query.setParameter("username", username);
+            query.setParameter("actionName", actionName);
+            List<Action> results = query.list();
+            for (Action action : results) {
+                co2Saved += action.getScore();
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+        return co2Saved;
     }
 
     /**

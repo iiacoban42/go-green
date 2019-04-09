@@ -138,6 +138,7 @@ public class Action {
     @GetMapping("/badge")
     @ResponseBody
     public List<Badge> badges() {
+        BadgeManager.checkBadges(getUser());
         return BadgeManager.listBadgesUser(getUser());
     }
 }

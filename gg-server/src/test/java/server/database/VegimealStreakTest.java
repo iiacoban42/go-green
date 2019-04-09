@@ -23,17 +23,17 @@ public class VegimealStreakTest {
         UserManager.addUser("vst3", "2", "2");
         final long millisInDay = 86400000;
         for(int i = 0; i < 5; i++){
-            Action action = ActionManager.getAction(ActionManager.addAction("vegimeal", "vst1", 0));
+            Action action = ActionManager.getAction(ActionManager.addAction("vegiemeal", "vst1", 100000));
             action.setDateTime(new Date(System.currentTimeMillis()- i * millisInDay));
             ActionManager.updateAction(action);
         }
         for(int i = 0; i < 10; i++){
-            Action action = ActionManager.getAction(ActionManager.addAction("vegimeal", "vst2", 0));
+            Action action = ActionManager.getAction(ActionManager.addAction("vegiemeal", "vst2", 100000));
             action.setDateTime(new Date(System.currentTimeMillis()- i * millisInDay));
             ActionManager.updateAction(action);
         }
         for(int i = 0; i < 20; i++){
-            Action action = ActionManager.getAction(ActionManager.addAction("vegimeal", "vst3", 0));
+            Action action = ActionManager.getAction(ActionManager.addAction("vegiemeal", "vst3", 100000));
             action.setDateTime(new Date(System.currentTimeMillis()- i * millisInDay));
             ActionManager.updateAction(action);
         }
@@ -77,9 +77,12 @@ public class VegimealStreakTest {
         assertEquals(0, BadgeManager.listBadgesUser("vst0").size());
         BadgeManager.checkBadges("vst1");
         assertEquals(1, BadgeManager.listBadgesUser("vst1").get(0).getLevel());
+        assertEquals(1, BadgeManager.listBadgesUser("vst1").get(1).getLevel());
         BadgeManager.checkBadges("vst2");
         assertEquals(2, BadgeManager.listBadgesUser("vst2").get(0).getLevel());
+        assertEquals(2, BadgeManager.listBadgesUser("vst2").get(1).getLevel());
         BadgeManager.checkBadges("vst3");
         assertEquals(3, BadgeManager.listBadgesUser("vst3").get(0).getLevel());
+        assertEquals(3, BadgeManager.listBadgesUser("vst3").get(1).getLevel());
     }
 }

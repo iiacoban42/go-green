@@ -196,17 +196,50 @@ public class BadgeManager {
      * @param username username of user who needs to have his badge allocated
      */
     public static void checkBadges(String username) {
-        int vegiStreak = ActionManager.vegimealStreak(username);
-        if (vegiStreak >= 5) {
-            addBadge("vegiStreak", username, 1);
+        checkStreak(username, "vegiemeal");
+        checkStreak(username, "transport");
+        checkStreak(username, "localProduce");
+        checkCo2Badge(username, "vegiemeal");
+        checkCo2Badge(username, "transport");
+        checkCo2Badge(username, "localProduce");
+    }
+
+    /**
+     * gives badge to given user and saves it to database.
+     * give badges for maintaining daily streak at 5,10,20.
+     * @param username a string representing username/primary key of user
+     * @param actionName a string representing name of action
+     */
+    private static void checkStreak(String username, String actionName) {
+        int streak = ActionManager.streakCalculator(username, actionName);
+        if (streak >= 5) {
+            addBadge(actionName  + "StreakBadge", username, 1);
         }
-        if (vegiStreak >= 10) {
-            addBadge("vegiStreak", username, 2);
+        if (streak >= 10) {
+            addBadge(actionName + "StreakBadge", username, 2);
         }
-        if (vegiStreak >= 20) {
-            addBadge("vegiStreak", username, 3);
+        if (streak >= 20) {
+            addBadge(actionName + "StreakBadge", username, 3);
         }
     }
 
-
+    /**
+     * gives badge to given user and saves it to database.
+     * gives badge for saving an amount of co2 with a given action.
+     * levels are 500000, 1000000, 2000000.
+     * @param username a string representing username/primary key of user
+     * @param actionName a string representing name of action
+     */
+    private static void checkCo2Badge(String username, String actionName) {
+        long co2Saved = ActionManager.co2SavedByActionByUser(username, actionName);
+        if (co2Saved >= 500000) {
+            addBadge(actionName  + "Co2SavedBadge", username, 1);
+        }
+        if (co2Saved >= 1000000) {
+            addBadge(actionName + "Co2SavedBadge", username, 2);
+        }
+        if (co2Saved >= 2000000) {
+            addBadge(actionName + "Co2SavedBadge", username, 3);
+        }
+    }
 }

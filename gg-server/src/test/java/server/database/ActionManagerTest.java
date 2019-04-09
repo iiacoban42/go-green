@@ -64,15 +64,14 @@ public class ActionManagerTest {
 
     @Test
     public void vegimealStrekTest() {
-
-        int streak = ActionManager.vegimealStreak("2");
+        int streak = ActionManager.streakCalculator("2", "vegimeal");
 
         assertEquals(3, streak);
     }
 
     @Test
     public void vegimealStrekTest2() {
-        int streak = ActionManager.vegimealStreak("3");
+        int streak = ActionManager.streakCalculator("3", "vegimeal");
         assertEquals(2, streak);
     }
     @AfterClass

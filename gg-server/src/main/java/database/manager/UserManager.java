@@ -90,7 +90,6 @@ public class UserManager {
 
     /**
      * Mothod to get user by username.
-     *
      * @param username a Sting representingthe username /primarykey of user
      * @return a List containing only the relevant user
      */
@@ -147,9 +146,8 @@ public class UserManager {
 
     /**
      * Method to change users token.
-     *
      * @param username a Sting representing the users username/primary key
-     * @param token    a String representing the users unique token
+     * @param token     a String representing the users unique token
      */
     public static void setToken(String username, String token) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -174,7 +172,6 @@ public class UserManager {
 
     /**
      * Method to add score to the user in the database.
-     *
      * @param username primary key, String represents users username
      * @param score    an integer representing the score to be added to the total score
      */
@@ -204,7 +201,6 @@ public class UserManager {
 
     /**
      * updates friend field of both parties.
-     *
      * @param user   String representing username of first party
      * @param friend String representing username of second party
      */
