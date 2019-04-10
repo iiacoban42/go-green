@@ -56,17 +56,6 @@ public class ActionTest {
         UserManager.deleteUser("TestUser");
     }
 
-    /*@Before
-    @After
-    @WithMockUser("admin")
-    public void deleteActions() {
-        List actions = ActionManager.listActionsUser("admin");
-
-        for (Object actionObj : actions) {
-            database.entity.Action action = (database.entity.Action)actionObj;
-            ActionManager.deleteAction(action.getId());
-        }
-    }*/
 
     @Test
     @WithMockUser("TestUser")

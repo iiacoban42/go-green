@@ -101,7 +101,12 @@ public class Action {
     @PostMapping("/transport")
     public ResponseEntity transport(@RequestBody TransportList transportList) {
         int score = (int) TransportationCalculator.getAmountCo2(transportList);
-        ActionManager.addAction("transport", getUser(), score);
+
+        if (transportList.size() == 1 && transportList.get(0).getName().equals("bike")) {
+            ActionManager.addAction("bike", getUser(), score);
+        } else {
+            ActionManager.addAction("transport", getUser(), score);
+        }
 
         return new ResponseEntity(HttpStatus.OK);
     }
