@@ -206,19 +206,19 @@ public class BadgeManager {
 
     /**
      * gives badge to given user and saves it to database.
-     * give badges for maintaining daily streak at 5,10,20.
+     * give badges for maintaining daily streak at 7,14,21.
      * @param username a string representing username/primary key of user
      * @param actionName a string representing name of action
      */
     private static void checkStreak(String username, String actionName) {
         int streak = ActionManager.streakCalculator(username, actionName);
-        if (streak >= 5) {
+        if (streak >= 7) {
             addBadge(actionName  + "StreakBadge", username, 1);
         }
-        if (streak >= 10) {
+        if (streak >= 14) {
             addBadge(actionName + "StreakBadge", username, 2);
         }
-        if (streak >= 20) {
+        if (streak >= 21) {
             addBadge(actionName + "StreakBadge", username, 3);
         }
     }

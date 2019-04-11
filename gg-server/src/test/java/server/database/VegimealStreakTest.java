@@ -22,17 +22,17 @@ public class VegimealStreakTest {
         UserManager.addUser("vst2", "2", "2");
         UserManager.addUser("vst3", "2", "2");
         final long millisInDay = 86400000;
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 7; i++){
             Action action = ActionManager.getAction(ActionManager.addAction("vegiemeal", "vst1", 100000));
             action.setDateTime(new Date(System.currentTimeMillis()- i * millisInDay));
             ActionManager.updateAction(action);
         }
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 14; i++){
             Action action = ActionManager.getAction(ActionManager.addAction("vegiemeal", "vst2", 100000));
             action.setDateTime(new Date(System.currentTimeMillis()- i * millisInDay));
             ActionManager.updateAction(action);
         }
-        for(int i = 0; i < 20; i++){
+        for(int i = 0; i < 21; i++){
             Action action = ActionManager.getAction(ActionManager.addAction("vegiemeal", "vst3", 100000));
             action.setDateTime(new Date(System.currentTimeMillis()- i * millisInDay));
             ActionManager.updateAction(action);
