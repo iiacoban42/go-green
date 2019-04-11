@@ -2,8 +2,7 @@ package server.entity;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class TransportTest {
     private Transport transport = new Transport("plane", 123);
@@ -32,6 +31,21 @@ public class TransportTest {
     @Test
     public void testGetProduct() {
         assertEquals(transport.getName(), "plane");
+    }
+
+    @Test
+    public void testGetProduct2() {
+        assertNotEquals(transport.getName(), null);
+    }
+
+    @Test
+    public void testGetDistance() {
+        assertEquals(transport.getDistance(), 123,0.1);
+    }
+
+    @Test
+    public void testGetDistance2() {
+        assertNotEquals(transport.getDistance(), 0,0.1);
     }
 
     @Test

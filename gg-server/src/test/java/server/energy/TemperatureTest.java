@@ -15,6 +15,16 @@ public class TemperatureTest {
     }
 
     @Test
+    public void ContructorTest2() {
+        assertNotEquals(temp.getEnergy(), 55, 0.01);
+    }
+
+    @Test
+    public void ContructorTest3() {
+        assertNotEquals(temp.getSurface(), 500, 0.01);
+    }
+
+    @Test
     public void getSurfaceTest() {
         assertEquals(temp.getSurface(), 55, 0.01);
     }
@@ -27,6 +37,16 @@ public class TemperatureTest {
     @Test
     public void getSystemTest() {
         assertTrue(temp.getSystem().equals("electricity"));
+    }
+
+    @Test
+    public void getSystemTest2() {
+        assertFalse(temp.getSystem().equals("naturalGas"));
+    }
+
+    @Test
+    public void getSystemTest3() {
+        assertFalse(temp.getSystem().equals("heatingOil"));
     }
 
     @Test
@@ -45,6 +65,18 @@ public class TemperatureTest {
     public void setSystemTest() {
         temp.setSystem("naturalGas");
         assertTrue(temp.getSystem().equals("naturalGas"));
+    }
+
+    @Test
+    public void setSystemTest2() {
+        temp.setSystem("naturalGas");
+        assertFalse(temp.getSystem().equals("heatingOil"));
+    }
+
+    @Test
+    public void setSystemTest3() {
+        temp.setSystem("naturalGas");
+        assertFalse(temp.getSystem().equals("electricity"));
     }
 
     @Test
