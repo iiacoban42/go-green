@@ -139,11 +139,4 @@ public class Action {
 
         return score;
     }
-
-    @GetMapping("/badge")
-    @ResponseBody
-    public List<Badge> badges() {
-        BadgeManager.checkBadges(getUser());
-        return BadgeManager.listBadgesUser(getUser());
-    }
 }
