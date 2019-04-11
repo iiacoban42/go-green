@@ -19,6 +19,7 @@ public class TransportationTest {
     public void testGetProduct2() {
         assertNotEquals(transport.getName(), "airbus");
     }
+
     @Test
     public void testGetProduct() {
         assertEquals(transport.getName(), "plane");
@@ -44,7 +45,7 @@ public class TransportationTest {
     @Test
     public void testEquals3() {
         Transportation transport2 = new Transportation("car", 97);
-        assertFalse(transport2.equals(transport));
+        assertFalse(transport.equals(transport2));
     }
 
     @Test
@@ -57,6 +58,5 @@ public class TransportationTest {
         Meal transport2 = new Meal("car", 97);
         assertFalse(transport.equals(transport2));
     }
-
 
 }

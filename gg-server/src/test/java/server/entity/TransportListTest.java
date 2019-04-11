@@ -48,17 +48,13 @@ public class TransportListTest {
     public void testGetTransport() {
         List<Transport> list = new ArrayList<>();
         list.add(transport);
-
         TransportList transportList = new TransportList(list);
         assertEquals(transportList.getTransport(), list);
     }
 
     @Test
     public void testSetTransport() {
-
         List<Transport> list = new ArrayList<>();
-
-
         TransportList transportList = new TransportList(list);
         transportList.setTransport(list);
         assertEquals(transportList.getTransport(), list);
@@ -90,6 +86,17 @@ public class TransportListTest {
     }
 
     @Test
+    public void testJsonConverter1(){
+        List<Transport> list = new ArrayList<>();
+        list.add(transport);
+        list.add(transport2);
+        TransportList list1= new TransportList(list);
+        TransportList transportList = new TransportList();
+        transportList.jsonConverter(json);
+        assertTrue(transportList.equals(list1));
+    }
+
+    @Test
     public void throwsException() {
         try {
             TransportList list = new TransportList();
@@ -113,13 +120,11 @@ public class TransportListTest {
 
     @Test
     public void testGet() {
-        String string = "train 10.0";
-        String string2 = "bus 5.0";
         TransportList list = new TransportList();
         list.addTransport(transport);
         list.addTransport(transport2);
-        assertEquals(list.get(0).toString(), string);
-        assertEquals(list.get(1).toString(), string2);
+        assertTrue(list.get(0).equals(transport));
+        assertTrue(list.get(1).equals(transport2));
     }
 
     @Test

@@ -125,7 +125,7 @@ public class TemperatureTest {
             temp.jsonConverter("surface: 55.0 energy: 500.0 heating system: electricity");
 
         } catch (Exception e) {
-            assertEquals("exception", e.getMessage());
+            assertEquals("string not json", e.getMessage());
         }
     }
 

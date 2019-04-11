@@ -54,29 +54,25 @@ public class MealTest {
         Meal meal2 = new Meal("pizza", 0.4, false);
         assertTrue(meal2.equals(meal));
     }
+
     @Test
     public void testEquals3() {
-        Meal meal2 = new Meal("pizza", 0.4, false);
-        assertTrue(meal2.equals(meal));
-    }
-    @Test
-    public void testEquals4() {
         Meal meal2 = new Meal("pizza", 0.1, false);
         assertFalse(meal2.equals(meal));
     }
     @Test
-    public void testEquals5() {
+    public void testEquals4() {
         Meal meal2 = new Meal("pizza", 0.4, true);
         assertFalse(meal2.equals(meal));
     }
 
     @Test
-    public void testEquals6() {
+    public void testEquals5() {
         assertTrue(meal.equals(meal));
     }
 
     @Test
-    public void testEquals7() {
+    public void testEquals6() {
         Transport meal2 = new Transport("pizza", 0.4);
         assertFalse(meal.equals(meal2));
     }

@@ -28,7 +28,6 @@ public class MealListTest {
         Meal meal = new Meal("pizza", 200);
         List<Meal> list = new ArrayList<>();
         list.add(meal);
-
         MealList mealList = new MealList(list);
         assertEquals(mealList.getMeals(), list);
     }
@@ -39,7 +38,6 @@ public class MealListTest {
         List<Meal> list = new ArrayList<>();
         list.add(meal);
         list.add(new Meal("burger", 100));
-
         MealList mealList = new MealList(list);
         mealList.removeMeal(meal);
         list.remove(meal);
@@ -51,7 +49,6 @@ public class MealListTest {
         Meal meal = new Meal("pizza", 200);
         List<Meal> list = new ArrayList<>();
         list.add(meal);
-
         MealList mealList = new MealList(list);
         assertEquals(mealList.getMeals(), list);
     }
@@ -61,7 +58,6 @@ public class MealListTest {
         Meal meal = new Meal("pizza", 200);
         List<Meal> list = new ArrayList<>();
         list.add(meal);
-
         MealList mealList = new MealList();
         mealList.setMeals(list);
         assertEquals(mealList.getMeals(), list);
@@ -105,8 +101,6 @@ public class MealListTest {
         assertEquals(true, mealList.equals(list));
     }
 
-
-
     @Test
     public void throwsException() {
         try {
@@ -129,18 +123,15 @@ public class MealListTest {
         }
     }
 
-
     @Test
     public void testGet() {
-        String string = "burger 100";
-        String string2 = "pizza 200";
         Meal meal = new Meal("pizza", 200);
         Meal meal2 = new Meal("burger", 100);
         MealList mealList = new MealList();
         mealList.addMeal(meal);
         mealList.addMeal(meal2);
-        assertEquals(mealList.get(0).toString(), string2);
-        assertEquals(mealList.get(1).toString(), string);
+        assertTrue(mealList.get(0).equals(meal));
+        assertTrue(mealList.get(1).equals(meal2));
     }
 
     @Test
