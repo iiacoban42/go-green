@@ -70,7 +70,7 @@ public class MealList {
             });
 
         } catch (IOException e) {
-            System.out.println("exception");
+            System.out.println("string not json");
         }
 
     }

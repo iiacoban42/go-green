@@ -70,8 +70,23 @@ public class Temperature {
             this.energy = temp.getEnergy();
 
         } catch (IOException e) {
-            System.out.println("exception");
+            System.out.println("string not json");
         }
 
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Temperature)) {
+            return false;
+        }
+        Temperature that = (Temperature) other;
+        return Double.compare(that.getSurface(), getSurface()) == 0
+                && Double.compare(that.getEnergy(), getEnergy()) == 0
+                && getSystem().equals(that.getSystem());
+    }
+
 }

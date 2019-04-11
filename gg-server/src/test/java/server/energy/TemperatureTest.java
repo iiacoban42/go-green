@@ -1,6 +1,7 @@
 package server.energy;
 
 import org.junit.Test;
+import server.entity.Meal;
 
 import static org.junit.Assert.*;
 
@@ -100,37 +101,9 @@ public class TemperatureTest {
 
     @Test
     public void testJsonConverter2() {
-        Temperature temp = new Temperature();
-        temp.jsonConverter(json);
-        assertEquals(temp.getSurface(),55,0.1);
-    }
-
-    @Test
-    public void testJsonConverter3() {
-        Temperature temp = new Temperature();
-        temp.jsonConverter(json);
-        assertEquals(temp.getEnergy(),500,0.1);
-    }
-
-    @Test
-    public void testJsonConverter4() {
-        Temperature temp = new Temperature();
-        temp.jsonConverter(json);
-        assertNotEquals(temp.getEnergy(),55,0.1);
-    }
-
-    @Test
-    public void testJsonConverter5() {
-        Temperature temp = new Temperature();
-        temp.jsonConverter(json);
-        assertNotEquals(temp.getSurface(),500,0.1);
-    }
-
-    @Test
-    public void testJsonConverter6() {
-        Temperature temp = new Temperature();
-        temp.jsonConverter(json);
-        assertEquals(temp.getSystem(),"electricity");
+        Temperature temp2 = new Temperature();
+        temp2.jsonConverter(json);
+        assertTrue(temp2.equals(temp));
     }
 
 
@@ -141,7 +114,7 @@ public class TemperatureTest {
             temp.jsonConverter("");
 
         } catch (Exception e) {
-            assertEquals("exception", e.getMessage());
+            assertEquals("string not json", e.getMessage());
         }
     }
 
@@ -156,5 +129,39 @@ public class TemperatureTest {
         }
     }
 
+    @Test
+    public void testEquals() {
+        Temperature temp2 = new Temperature(55, 500, "electricity");
+        assertTrue(temp2.equals(temp));
+    }
+
+    @Test
+    public void test2Equals() {
+        Temperature temp2 = new Temperature(56, 500, "electricity");
+        assertFalse(temp.equals(temp2));
+    }
+
+    @Test
+    public void test3Equals() {
+        Temperature temp2 = new Temperature(55, 505, "electricity");
+        assertFalse(temp.equals(temp2));
+    }
+
+    @Test
+    public void test4Equals() {
+        Temperature temp2 = new Temperature(55, 500, "naturalGas");
+        assertFalse(temp.equals(temp2));
+    }
+
+    @Test
+    public void test5Equals() {
+        Meal temp2 = new Meal("naturalGas",55);
+        assertFalse(temp.equals(temp2));
+    }
+
+    @Test
+    public void test6Equals() {
+        assertTrue(temp.equals(temp));
+    }
 
 }

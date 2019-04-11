@@ -7,9 +7,11 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+
 public class TransportListTest {
     private Transport transport = new Transport("train", 10);
     private Transport transport2 = new Transport("bus", 5);
+
     private String json = "[  \n" +
             "   {  \n" +
             "      \"name\":\"train\",\n" +
@@ -51,10 +53,10 @@ public class TransportListTest {
     }
 
     @Test
-    public void testSetMeals() {
+    public void testSetTransport() {
 
         List<Transport> list = new ArrayList<>();
-        list.add(transport);
+
 
         TransportList transportList = new TransportList(list);
         transportList.setTransport(list);
@@ -86,20 +88,6 @@ public class TransportListTest {
         assertEquals(string, transportList.toString());
     }
 
-    @Test
-    public void testJsonConverter2() {
-        TransportList transportList = new TransportList();
-        transportList.jsonConverter(json);
-        assertEquals(transportList.get(1).getDistance(),5,0.1);
-    }
-
-    @Test
-    public void testJsonConverter3() {
-        TransportList transportList = new TransportList();
-        transportList.jsonConverter(json);
-        assertEquals(transportList.get(0).getName(),"train");
-    }
-
 
 
     @Test
@@ -109,7 +97,7 @@ public class TransportListTest {
             list.jsonConverter("");
 
         } catch (Exception e) {
-            assertEquals("exception", e.getMessage());
+            assertEquals("string not json", e.getMessage());
         }
     }
 
@@ -120,7 +108,7 @@ public class TransportListTest {
             list.jsonConverter("trip: train 10.0\nbus 5.0\n");
 
         } catch (Exception e) {
-            assertEquals("exception", e.getMessage());
+            assertEquals("string not json", e.getMessage());
         }
     }
 
@@ -136,4 +124,6 @@ public class TransportListTest {
         assertEquals(list.get(0).toString(), string);
         assertEquals(list.get(1).toString(), string2);
     }
+
+
 }

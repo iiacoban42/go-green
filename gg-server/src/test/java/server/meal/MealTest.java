@@ -1,6 +1,7 @@
 package server.meal;
 
 import org.junit.Test;
+import server.entity.Transport;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.*;
@@ -42,5 +43,43 @@ public class MealTest {
     public void testIsVegetarian2() {
         assertTrue(meal2.isVegetarian());
     }
+
+    @Test
+    public void testEquals() {
+        Meal meal2 = new Meal("burger", 0.4, false);
+        assertFalse(meal2.equals(meal));
+    }
+    @Test
+    public void testEquals2() {
+        Meal meal2 = new Meal("pizza", 0.4, false);
+        assertTrue(meal2.equals(meal));
+    }
+    @Test
+    public void testEquals3() {
+        Meal meal2 = new Meal("pizza", 0.4, false);
+        assertTrue(meal2.equals(meal));
+    }
+    @Test
+    public void testEquals4() {
+        Meal meal2 = new Meal("pizza", 0.1, false);
+        assertFalse(meal2.equals(meal));
+    }
+    @Test
+    public void testEquals5() {
+        Meal meal2 = new Meal("pizza", 0.4, true);
+        assertFalse(meal2.equals(meal));
+    }
+
+    @Test
+    public void testEquals6() {
+        assertTrue(meal.equals(meal));
+    }
+
+    @Test
+    public void testEquals7() {
+        Transport meal2 = new Transport("pizza", 0.4);
+        assertFalse(meal.equals(meal2));
+    }
+
 
 }

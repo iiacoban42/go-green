@@ -38,7 +38,8 @@ public class MealListTest {
         list.add(new Meal("burger", 100));
 
         MealList mealList = new MealList(list);
-        mealList.removeMeal(new Meal("burger", 100));
+        mealList.removeMeal(meal);
+        list.remove(meal);
         assertEquals(mealList.getMeals(), list);
     }
 
@@ -92,21 +93,6 @@ public class MealListTest {
         assertEquals(string, mealList.toString());
     }
 
-    @Test
-    public void testJsonConverter2() {
-        MealList mealList = new MealList();
-        mealList.jsonConverter(json);
-        assertEquals(mealList.get(1).getQuantity(),150,0.1);
-    }
-
-    @Test
-    public void testJsonConverter3() {
-        MealList mealList = new MealList();
-        mealList.jsonConverter(json);
-        assertEquals(mealList.get(0).getProduct(),"lamb");
-    }
-
-
 
     @Test
     public void throwsException() {
@@ -115,7 +101,7 @@ public class MealListTest {
             list.jsonConverter("");
 
         } catch (Exception e) {
-            assertEquals("exception", e.getMessage());
+            assertEquals("string not json", e.getMessage());
         }
     }
 
@@ -126,7 +112,7 @@ public class MealListTest {
             list.jsonConverter("meal: lamb 300\nbeans 150\n");
 
         } catch (Exception e) {
-            assertEquals("exception", e.getMessage());
+            assertEquals("string not json", e.getMessage());
         }
     }
 
