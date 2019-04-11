@@ -6,9 +6,12 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.*;
 
 public class MealListTest {
+    private Meal meal = new Meal("lamb",300);
+    private Meal meal2 = new Meal("chicken",200);
     private String json = "[  \n" +
             "   {  \n" +
             "      \"product\":\"lamb\",\n" +
@@ -76,7 +79,6 @@ public class MealListTest {
 
     @Test
     public void testSize() {
-        String string = "meal: pizza 200\n";
         Meal meal = new Meal("pizza", 200);
         Meal meal2 = new Meal("burger", 100);
         MealList mealList = new MealList();
@@ -92,6 +94,17 @@ public class MealListTest {
         mealList.jsonConverter(json);
         assertEquals(string, mealList.toString());
     }
+
+    @Test
+    public void testJsonConverter2() {
+        MealList list = new MealList();
+        list.addMeal(new Meal("lamb",300));
+        list.addMeal(new Meal("beans",150));
+        MealList mealList = new MealList();
+        mealList.jsonConverter(json);
+        assertEquals(true, mealList.equals(list));
+    }
+
 
 
     @Test
@@ -130,5 +143,41 @@ public class MealListTest {
         assertEquals(mealList.get(1).toString(), string);
     }
 
+    @Test
+    public void testEquals(){
+        MealList list1 = new MealList();
+        MealList list2 = new MealList();
+        list1.addMeal(meal);
+        list1.addMeal(meal2);
+        list2.addMeal(meal);
+        list2.addMeal(meal2);
+        assertTrue(list1.equals(list2));
+    }
+
+    @Test
+    public void testEquals2(){
+        MealList list1 = new MealList();
+        MealList list2 = new MealList();
+        list1.addMeal(meal2);
+        list1.addMeal(meal);
+        list2.addMeal(meal);
+        list2.addMeal(meal2);
+        assertFalse(list1.equals(list2));
+    }
+
+    @Test
+    public void testEquals3(){
+        MealList list1 = new MealList();
+        list1.addMeal(meal);
+        list1.addMeal(meal2);
+        assertTrue(list1.equals(list1));
+    }
+
+    @Test
+    public void testEquals4(){
+        MealList list1 = new MealList();
+        list1.addMeal(meal);
+        assertFalse(list1.equals(meal));
+    }
 
 }

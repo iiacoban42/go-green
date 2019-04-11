@@ -56,6 +56,20 @@ public class MealList {
     }
 
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof MealList) {
+            MealList mealList = (MealList) other;
+            return getMeals().equals(mealList.getMeals());
+        } else {
+            return false;
+        }
+    }
+
+
     /**
      * Parses json strings into a MealList.
      *
@@ -72,6 +86,8 @@ public class MealList {
         } catch (IOException e) {
             System.out.println("string not json");
         }
+
+
 
     }
 
