@@ -2,6 +2,7 @@ package server.entity;
 
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.*;
 
 public class MealTest {
@@ -50,4 +51,33 @@ public class MealTest {
         meal.setQuantity(100);
         assertEquals(meal.getQuantity(), 100);
     }
+
+    @Test
+    public void testEquals() {
+        Meal meal2 = new Meal("burger", 200);
+        assertFalse(meal2.equals(meal));
+    }
+    @Test
+    public void testEquals2() {
+        Meal meal2 = new Meal("pizza", 200);
+        assertTrue(meal2.equals(meal));
+    }
+
+    @Test
+    public void testEquals4() {
+        Meal meal2 = new Meal("pizza", 4);
+        assertFalse(meal2.equals(meal));
+    }
+
+    @Test
+    public void testEquals5() {
+        assertTrue(meal.equals(meal));
+    }
+
+    @Test
+    public void testEquals6() {
+        Transport meal2 = new Transport("pizza", 0.4);
+        assertFalse(meal.equals(meal2));
+    }
+
 }

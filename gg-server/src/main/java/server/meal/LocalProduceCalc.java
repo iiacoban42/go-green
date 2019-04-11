@@ -4,8 +4,6 @@ import server.entity.MealList;
 
 /**
  * https://www.terrapass.com/eat-your-way-to-a-smaller-carbon-footprint
- *
- *
  */
 public class LocalProduceCalc {
     public static final Meal[] products = {

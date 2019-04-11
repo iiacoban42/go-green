@@ -1,5 +1,6 @@
 package server.entity;
 
+
 public class Meal {
     private String product;
     private int quantity;
@@ -32,4 +33,18 @@ public class Meal {
     public String toString() {
         return product + " " + quantity;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Meal)) {
+            return false;
+        }
+        Meal meal = (Meal) other;
+        return getQuantity() == meal.getQuantity()
+                && getProduct().equals(meal.getProduct());
+    }
+
 }
