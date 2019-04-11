@@ -9,6 +9,16 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class MealListTest {
+    private String json = "[  \n" +
+            "   {  \n" +
+            "      \"product\":\"lamb\",\n" +
+            "      \"quantity\":300\n" +
+            "   },\n" +
+            "   {  \n" +
+            "      \"product\":\"beans\",\n" +
+            "      \"quantity\":150\n" +
+            "   }\n" +
+            "]";
 
     @Test
     public void testAddMeal() {
@@ -77,21 +87,25 @@ public class MealListTest {
     @Test
     public void testJsonConverter() {
         String string = "meal: lamb 300\nbeans 150\n";
-
-        String json = "[  \n" +
-                "   {  \n" +
-                "      \"product\":\"lamb\",\n" +
-                "      \"quantity\":300\n" +
-                "   },\n" +
-                "   {  \n" +
-                "      \"product\":\"beans\",\n" +
-                "      \"quantity\":150\n" +
-                "   }\n" +
-                "]";
         MealList mealList = new MealList();
         mealList.jsonConverter(json);
         assertEquals(string, mealList.toString());
     }
+
+    @Test
+    public void testJsonConverter2() {
+        MealList mealList = new MealList();
+        mealList.jsonConverter(json);
+        assertEquals(mealList.get(1).getQuantity(),150,0.1);
+    }
+
+    @Test
+    public void testJsonConverter3() {
+        MealList mealList = new MealList();
+        mealList.jsonConverter(json);
+        assertEquals(mealList.get(0).getProduct(),"lamb");
+    }
+
 
 
     @Test
@@ -99,6 +113,17 @@ public class MealListTest {
         try {
             MealList list = new MealList();
             list.jsonConverter("");
+
+        } catch (Exception e) {
+            assertEquals("exception", e.getMessage());
+        }
+    }
+
+    @Test
+    public void throwsException2() {
+        try {
+            MealList list = new MealList();
+            list.jsonConverter("meal: lamb 300\nbeans 150\n");
 
         } catch (Exception e) {
             assertEquals("exception", e.getMessage());

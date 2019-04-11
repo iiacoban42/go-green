@@ -8,8 +8,18 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class TransportListTest {
-    Transport transport = new Transport("train", 10);
-    Transport transport2 = new Transport("bus", 5);
+    private Transport transport = new Transport("train", 10);
+    private Transport transport2 = new Transport("bus", 5);
+    private String json = "[  \n" +
+            "   {  \n" +
+            "      \"name\":\"train\",\n" +
+            "      \"distance\":10\n" +
+            "   },\n" +
+            "   {  \n" +
+            "      \"name\":\"bus\",\n" +
+            "      \"distance\":5\n" +
+            "   }\n" +
+            "]";
 
     @Test
     public void testAddTransport() {
@@ -71,21 +81,25 @@ public class TransportListTest {
     @Test
     public void testJsonConverter() {
         String string = "trip: train 10.0\nbus 5.0\n";
-
-        String json = "[  \n" +
-                "   {  \n" +
-                "      \"name\":\"train\",\n" +
-                "      \"distance\":10\n" +
-                "   },\n" +
-                "   {  \n" +
-                "      \"name\":\"bus\",\n" +
-                "      \"distance\":5\n" +
-                "   }\n" +
-                "]";
         TransportList transportList = new TransportList();
         transportList.jsonConverter(json);
         assertEquals(string, transportList.toString());
     }
+
+    @Test
+    public void testJsonConverter2() {
+        TransportList transportList = new TransportList();
+        transportList.jsonConverter(json);
+        assertEquals(transportList.get(1).getDistance(),5,0.1);
+    }
+
+    @Test
+    public void testJsonConverter3() {
+        TransportList transportList = new TransportList();
+        transportList.jsonConverter(json);
+        assertEquals(transportList.get(0).getName(),"train");
+    }
+
 
 
     @Test
@@ -98,6 +112,18 @@ public class TransportListTest {
             assertEquals("exception", e.getMessage());
         }
     }
+
+    @Test
+    public void throwsException2() {
+        try {
+            TransportList list = new TransportList();
+            list.jsonConverter("trip: train 10.0\nbus 5.0\n");
+
+        } catch (Exception e) {
+            assertEquals("exception", e.getMessage());
+        }
+    }
+
 
 
     @Test
