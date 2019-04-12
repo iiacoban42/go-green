@@ -9,6 +9,7 @@ public class Badge {
     private String user;
     private int level;
 
+    public Badge() {}
 
     /**
      * Constructor.
