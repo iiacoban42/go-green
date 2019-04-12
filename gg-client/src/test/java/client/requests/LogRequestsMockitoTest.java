@@ -19,7 +19,6 @@ public class LogRequestsMockitoTest {
     public void setUp() throws JsonProcessingException {
 
         sendLoginCredentials("userForTests" , "test");
-
     }
 
     private LogRequests mockLogRequests = mock(LogRequests.class);

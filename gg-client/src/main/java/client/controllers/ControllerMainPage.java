@@ -338,6 +338,11 @@ public class ControllerMainPage extends ControllerGeneral {
         changeWindow("local_produce.fxml" );
     }
 
+    @FXML
+    public void achievementsButtonPressed(ActionEvent event) throws IOException {
+        changeScene("badges.fxml" , anchorPane);
+    }
+
 }
 
 
