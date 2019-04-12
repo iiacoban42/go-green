@@ -1,8 +1,6 @@
 package server.controller;
 
-import database.entity.Badge;
 import database.manager.ActionManager;
-import database.manager.BadgeManager;
 import database.manager.UserManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

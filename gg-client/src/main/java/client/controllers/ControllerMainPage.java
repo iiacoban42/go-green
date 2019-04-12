@@ -1,6 +1,5 @@
 package client.controllers;
 
-import client.entities.Action;
 import client.requests.Session;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;

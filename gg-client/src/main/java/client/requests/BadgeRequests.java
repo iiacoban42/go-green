@@ -5,9 +5,9 @@ import javafx.util.Pair;
 
 public class BadgeRequests extends GeneralRequests {
 
-    private  BadgeList badgeList ;
+    private  BadgeList badgeList;
 
-    public BadgeRequests(){};
+    public BadgeRequests(){}
 
     public BadgeList getBadgeList() {
         return badgeList;
@@ -21,11 +21,11 @@ public class BadgeRequests extends GeneralRequests {
 
         String url = "http://localhost:8080/api/badges";
 
-       Pair pair = doGetRequest(url , BadgeList.class);
+        Pair pair = doGetRequest(url , BadgeList.class);
 
-       badgeList = (BadgeList) pair.getValue();
+        badgeList = (BadgeList) pair.getValue();
 
-       return (String) pair.getKey();
+        return (String) pair.getKey();
 
     }
 }

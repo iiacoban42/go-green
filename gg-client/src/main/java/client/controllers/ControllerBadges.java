@@ -32,7 +32,8 @@ public class ControllerBadges {
     @FXML
     ImageView localF;
 
-
+    // it needs if statements so we can decide what to display.
+    @SuppressWarnings("CheckStyle")
     @FXML
     void initialize() {
 
@@ -101,60 +102,60 @@ public class ControllerBadges {
             }
 
 
-                if (current.getBadgeName().equals("vegiemealCo2SavedBadge")) {
+            if (current.getBadgeName().equals("vegiemealCo2SavedBadge")) {
+
+                if (current.getLevel() == 1) {
+                    Image veganMeal = new Image("images/badges/veggieMealBronze.jpg");
+                    vegan.setImage(veganMeal);
+                }
+
+                if (current.getLevel() == 2) {
+                    Image veganMeal = new Image("images/badges/veggieMealSilver.jpg");
+                    vegan.setImage(veganMeal);
+                }
+
+                if (current.getLevel() == 3) {
+                    Image veganMeal = new Image("images/badges/veggieMealGold.jpg");
+                    vegan.setImage(veganMeal);
+                }
+            } else
+
+
+                if (current.getBadgeName().equals("localProduceCo2SavedBadge")) {
 
                     if (current.getLevel() == 1) {
-                        Image veganMeal = new Image("images/badges/veggieMealBronze.jpg");
-                        vegan.setImage(veganMeal);
+                        Image local = new Image("images/badges/localProduceBronze.jpg");
+                        localProduce.setImage(local);
                     }
 
                     if (current.getLevel() == 2) {
-                        Image veganMeal = new Image("images/badges/veggieMealSilver.jpg");
-                        vegan.setImage(veganMeal);
+                        Image local = new Image("images/badges/localProduceSilver.jpg");
+                        localProduce.setImage(local);
                     }
 
                     if (current.getLevel() == 3) {
-                        Image veganMeal = new Image("images/badges/veggieMealGold.jpg");
-                        vegan.setImage(veganMeal);
-                }
-            } else
+                        Image local = new Image("images/badges/localProduceGold.jpg");
+                        localProduce.setImage(local);
+                    }
+                } else
 
+                    if (current.getBadgeName().equals("transportCo2SavedBadge")) {
 
-            if (current.getBadgeName().equals("localProduceCo2SavedBadge")) {
+                        if (current.getLevel() == 1) {
+                            Image transport = new Image("images/badges/transportationBronze.jpg");
+                            transportation.setImage(transport);
+                        }
 
-                if (current.getLevel() == 1) {
-                    Image local = new Image("images/badges/localProduceBronze.jpg");
-                    localProduce.setImage(local);
-                }
+                        if (current.getLevel() == 2) {
+                            Image transport = new Image("images/badges/transportationSilver.jpg");
+                            transportation.setImage(transport);
+                        }
 
-                if (current.getLevel() == 2) {
-                    Image local = new Image("images/badges/localProduceSilver.jpg");
-                    localProduce.setImage(local);
-                }
-
-                if (current.getLevel() == 3) {
-                    Image local = new Image("images/badges/localProduceGold.jpg");
-                    localProduce.setImage(local);
-                }
-            } else
-
-            if (current.getBadgeName().equals("transportCo2SavedBadge")) {
-
-                if (current.getLevel() == 1) {
-                    Image transport = new Image("images/badges/transportationBronze.jpg");
-                    transportation.setImage(transport);
-                }
-
-                if (current.getLevel() == 2) {
-                    Image transport = new Image("images/badges/transportationSilver.jpg");
-                    transportation.setImage(transport);
-                }
-
-                if (current.getLevel() == 3) {
-                    Image transport = new Image("images/badges/transportationGold.jpg");
-                    transportation.setImage(transport);
-                }
-            }
+                        if (current.getLevel() == 3) {
+                            Image transport = new Image("images/badges/transportationGold.jpg");
+                            transportation.setImage(transport);
+                        }
+                    }
 
         }
 
