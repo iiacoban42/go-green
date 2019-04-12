@@ -10,8 +10,22 @@ public class Badge {
     private int level;
 
 
+    /**
+     * Constructor.
+     * @param id .
+     * @param dateTime .
+     * @param badgeName .
+     * @param user .
+     * @param level .
+     */
+    public Badge(long id , Date dateTime , String badgeName , String user , int level) {
 
-    public Badge(){}
+        this.id = id;
+        this.dateTime = dateTime;
+        this.badgeName = badgeName;
+        this.user = user;
+        this.level = level;
+    }
 
 
     public long getId() {
@@ -19,35 +33,19 @@ public class Badge {
     }
 
 
-    private Date getDateTime() {
-        return dateTime;
-    }
-
     public String getBadgeName() {
         return badgeName;
     }
 
-    private void setBadgeName(final String badgeName) {
-        this.badgeName = badgeName;
-    }
 
     public String getUser() {
         return user;
     }
 
-    private void setUser(final String user) {
-        this.user = user;
-    }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
-    }
 
     public int getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
 }

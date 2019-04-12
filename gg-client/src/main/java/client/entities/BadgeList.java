@@ -11,10 +11,6 @@ public class BadgeList {
         this.badgeList = new ArrayList<>();
     }
 
-    public BadgeList(List<Badge> badgeList) {
-        this.badgeList = badgeList;
-    }
-
     public void addBadge(Badge badge) {
         this.badgeList.add(badge);
     }
