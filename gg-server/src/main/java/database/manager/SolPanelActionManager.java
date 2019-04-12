@@ -175,7 +175,9 @@ public class SolPanelActionManager {
             String hql = "FROM SolPanelAction WHERE user = :username AND dateEnded IS NULL";
             Query query = session.createQuery(hql);
             query.setParameter("username", username);
-            solPanelAction = (SolPanelAction) query.list().get(0);
+            if (query.list().size() > 0) {
+                solPanelAction = (SolPanelAction) query.list().get(0);
+            }
             tx.commit();
         } catch (HibernateException e) {
             try {
