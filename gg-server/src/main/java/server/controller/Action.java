@@ -1,6 +1,8 @@
 package server.controller;
 
+import database.entity.SolPanelAction;
 import database.manager.ActionManager;
+import database.manager.SolPanelActionManager;
 import database.manager.UserManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import server.energy.Temperature;
 import server.energy.TemperatureCalculator;
 import server.entity.MealList;
 import server.entity.Score;
+import server.entity.SolarPanels;
 import server.entity.TransportList;
 import server.meal.LocalProduceCalc;
 import server.meal.MealCalculator;
@@ -124,6 +127,29 @@ public class Action {
     }
 
     /**
+     * Parse amount of solar panels user has.
+     *
+     * @param solarPanels class
+     * @return OK
+     */
+    @PostMapping("/setSolarPanels")
+    public ResponseEntity temperature(@RequestBody SolarPanels solarPanels) {
+        SolPanelAction solPanelAction = SolPanelActionManager.getActiveSpByUser(getUser());
+        if (solPanelAction != null) {
+            if (solarPanels.getamount() != 0) {
+                solPanelAction.setNumSolarPanels(solarPanels.getamount());
+                SolPanelActionManager.update(solPanelAction);
+            } else {
+                SolPanelActionManager.deleteSp(solPanelAction.getId());
+            }
+        } else {
+            SolPanelActionManager.createSp(getUser(), solarPanels.getamount());
+        }
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    /**
      * Returns score of user to user.
      *
      * @return score
@@ -136,5 +162,21 @@ public class Action {
         score.setTotalScore(UserManager.getUser(getUser()).gettotalScore());
 
         return score;
+    }
+
+    /**
+     * Return the number of solar panels a user has.
+     *
+     * @return amount of solar panels
+     */
+    @GetMapping("/solarPanels")
+    @ResponseBody
+    public SolarPanels solarPanels() {
+        SolarPanels solarPanels = new SolarPanels();
+
+        SolPanelAction solPanelAction = SolPanelActionManager.getActiveSpByUser(getUser());
+        solarPanels.setamount(solPanelAction.getNumSolarPanels());
+
+        return solarPanels;
     }
 }

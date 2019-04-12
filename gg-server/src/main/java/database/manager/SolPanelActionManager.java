@@ -16,9 +16,9 @@ import java.util.List;
 
 public class SolPanelActionManager {
     /**
-     * creates a continuous action and comitis it to database.
+     * creates a continuous action and commits it to database.
      * score per day is derived from number of solar panels
-     * @param username a String representing the primarykey/username of user.
+     * @param username a String representing the primary key/username of user.
      * @param numSolarPanels an int that can represent what is needed such as # of solar panels
      * @return a long that represents CAs primary key
      */

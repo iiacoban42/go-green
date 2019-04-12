@@ -173,12 +173,12 @@ public class SolPanelAction {
     public void cashIn() {
         this.totalScore += this.scorePerDay;
         this.dateLastCashedIn = new Date();
-        this.daysCashedIn ++;
+        this.daysCashedIn++;
     }
 
     /**
      * checks if it has been more than 24 hours since last cash in.
-     * @return boolean, true if the last cashed in time was more that a day ago
+     * @return boolean, true if the last cashed in time was more than a day ago
      */
     public boolean twentyFourHourSince() {
         long now = new Date().getTime();

@@ -1,6 +1,8 @@
 package server.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import database.entity.SolPanelAction;
+import database.manager.SolPanelActionManager;
 import database.manager.UserManager;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -52,6 +54,13 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         HttpServletResponse response,
         FilterChain chain,
         Authentication authResult) throws IOException, ServletException {
+
+        // Do solar panel stuff
+        SolPanelAction solPanelAction =
+                SolPanelActionManager.getActiveSpByUser(authResult.getName());
+        if (solPanelAction != null) {
+            SolPanelActionManager.cashInSp(solPanelAction.getId());
+        }
 
         System.out.println("Successful authentication Username: " + authResult.getName());
         String token = CreateJwt.createJwt(authResult.getName());
