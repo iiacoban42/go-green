@@ -1,5 +1,8 @@
 package client.controllers;
 
+import static client.requests.SolarPanelRequests.getSolarPanels;
+import static client.requests.SolarPanelRequests.sendSolarPanels;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -7,11 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.springframework.web.client.RestClientResponseException;
-
-import java.awt.*;
-
-import static client.requests.SolarPanelRequests.getSolarPanels;
-import static client.requests.SolarPanelRequests.sendSolarPanels;
 
 
 public class ControllerSolarPanels {
@@ -32,7 +30,7 @@ public class ControllerSolarPanels {
 
         int num;
         try {
-             num = getSolarPanels();
+            num = getSolarPanels();
         } catch (RestClientResponseException e) {
             num = 0;
         }
