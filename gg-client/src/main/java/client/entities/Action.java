@@ -1,8 +1,11 @@
 package client.entities;
 
+import java.util.Date;
+
 public class Action {
 
     private long id;
+    private Date dateTime;
     private String actionName;
     private String user;
     private int score;
@@ -40,6 +43,24 @@ public class Action {
      */
     public void setId(long id) {
         this.id = id;
+    }
+
+    /**
+     * Get time action was created.
+     *
+     * @return date
+     */
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    /**
+     * Set time action was created.
+     *
+     * @param dateTime date
+     */
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     /**

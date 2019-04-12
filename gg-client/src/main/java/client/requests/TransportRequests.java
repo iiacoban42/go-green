@@ -1,17 +1,10 @@
 package client.requests;
 
 import client.entities.TransportList;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
-public class TransportRequests {
+public class TransportRequests extends GeneralRequests {
 
 
     /**
@@ -24,24 +17,9 @@ public class TransportRequests {
 
         String urlTransport = "http://localhost:8080/api/action/transport";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(transportList);
+        String response  =  doPostRequest(transportList , urlTransport);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        headers.set("Authorization", Session.getToken().getToken());
-
-        HttpEntity<String> entity = new HttpEntity<>(json, headers);
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity response = restTemplate.exchange(
-                urlTransport,
-                HttpMethod.POST,
-                entity,
-                ResponseEntity.class
-        );
-
-        return response.getStatusCode().toString();
+        return response;
     }
 
 }

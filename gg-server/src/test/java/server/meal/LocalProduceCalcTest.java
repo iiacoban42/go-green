@@ -20,6 +20,17 @@ public class LocalProduceCalcTest {
     }
 
     @Test
+    public void test2GetAmountCo2() {
+        server.entity.Meal[] list = new server.entity.Meal[] {
+                new server.entity.Meal(LocalProduceCalc.products[7].getProduct(), 200),
+                new server.entity.Meal(LocalProduceCalc.products[8].getProduct(), 100)
+        };
+        MealList mealList = new MealList(Arrays.asList(list));
+
+        assertEquals(LocalProduceCalc.getAmountCo2(mealList), 455 , 0.01);
+    }
+
+    @Test
     public void testCo2() {
         server.entity.Meal[] list = new server.entity.Meal[] {
                 new server.entity.Meal(LocalProduceCalc.products[0].getProduct(), 200),
@@ -29,4 +40,15 @@ public class LocalProduceCalcTest {
 
         assertEquals(MealCalculator.co2(mealList, LocalProduceCalc.products), 420, 0.01);
     }
+    @Test
+    public void test2Co2() {
+        server.entity.Meal[] list = new server.entity.Meal[] {
+                new server.entity.Meal(LocalProduceCalc.products[7].getProduct(), 200),
+                new server.entity.Meal(LocalProduceCalc.products[8].getProduct(), 100)
+        };
+        MealList mealList = new MealList(Arrays.asList(list));
+
+        assertEquals(MealCalculator.co2(mealList, LocalProduceCalc.products), 6500, 0.01);
+    }
+
 }

@@ -56,17 +56,6 @@ public class ActionTest {
         UserManager.deleteUser("TestUser");
     }
 
-    /*@Before
-    @After
-    @WithMockUser("admin")
-    public void deleteActions() {
-        List actions = ActionManager.listActionsUser("admin");
-
-        for (Object actionObj : actions) {
-            database.entity.Action action = (database.entity.Action)actionObj;
-            ActionManager.deleteAction(action.getId());
-        }
-    }*/
 
     @Test
     @WithMockUser("TestUser")
@@ -101,6 +90,24 @@ public class ActionTest {
     public void mealTest() throws Exception {
         MealList mealList = new MealList();
         mealList.addMeal(new Meal("VeggieBurger", 200));
+
+        int score = (int) MealCalculator.getAmountCo2(mealList);
+        int oldTotalScore = UserManager.getUser("TestUser").gettotalScore();
+
+        mvc.perform(post("/action/meal")
+            .contentType(APPLICATION_JSON_UTF8)
+            .content(objectMapper.writeValueAsString(mealList))
+        ).andExpect(status().isOk());
+
+        int newTotalScore = UserManager.getUser("TestUser").gettotalScore();
+        assertEquals(score, newTotalScore - oldTotalScore);
+    }
+
+    @Test
+    @WithMockUser("TestUser")
+    public void localProduceTest() throws Exception {
+        MealList mealList = new MealList();
+        mealList.addMeal(new Meal("fruits", 200));
 
         int score = (int) MealCalculator.getAmountCo2(mealList);
         int oldTotalScore = UserManager.getUser("TestUser").gettotalScore();

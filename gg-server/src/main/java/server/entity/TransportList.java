@@ -55,6 +55,18 @@ public class TransportList {
         return result;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof TransportList)) {
+            return false;
+        }
+        TransportList transportList = (TransportList) other;
+        return getTransport().equals(transportList.getTransport());
+    }
+
 
     /**
      * Parses json strings into a MealList.
@@ -69,7 +81,7 @@ public class TransportList {
             });
 
         } catch (IOException e) {
-            System.out.println("exception");
+            System.out.println("string not json");
         }
 
     }

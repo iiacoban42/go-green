@@ -1,17 +1,10 @@
 package client.requests;
 
 import client.entities.Temperature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
-public class TemperatureRequests {
+public class TemperatureRequests extends  GeneralRequests {
 
     /**
      * Send home Temperature.
@@ -21,27 +14,11 @@ public class TemperatureRequests {
      */
     public static String sendTemperature(Temperature temperature) throws IOException {
 
-        String urlLogin = "http://localhost:8080/api/action/temperature";
+        String url = "http://localhost:8080/api/action/temperature";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(temperature);
+        String response = doPostRequest(temperature  , url);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        headers.set("Authorization", Session.getToken().getToken());
-
-        HttpEntity<String> entity = new HttpEntity<>(json, headers);
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity response = restTemplate.exchange(
-                urlLogin,
-                HttpMethod.POST,
-                entity,
-                ResponseEntity.class
-        );
-
-
-        return response.getStatusCode().toString();
+        return response;
     }
 
 

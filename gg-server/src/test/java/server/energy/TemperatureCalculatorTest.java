@@ -49,4 +49,22 @@ public class TemperatureCalculatorTest {
         assertEquals(getAmountCo2(temp),0,0);
     }
 
+    @Test
+    public void SystemTest2() {
+        Temperature temp = new Temperature(56, 6000, "electric");
+        assertEquals(getAmountCo2(temp),0,0);
+    }
+
+    @Test
+    public void SystemTest3() {
+        Temperature temp = new Temperature(56, 6000, "oil");
+        assertEquals(getAmountCo2(temp),0,0);
+    }
+
+    @Test
+    public void SystemTest4() {
+        Temperature temp = new Temperature(56, 6000, "gas");
+        assertEquals(getAmountCo2(temp),0,0);
+    }
+
 }

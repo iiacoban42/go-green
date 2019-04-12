@@ -1,5 +1,6 @@
 package server.entity;
 
+
 public class Transport {
     private String name;
     private double distance;
@@ -32,4 +33,18 @@ public class Transport {
     public String toString() {
         return name + " " + distance;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Transport)) {
+            return false;
+        }
+        Transport transport = (Transport) other;
+        return Double.compare(transport.getDistance(), getDistance()) == 0
+                && getName().equals(transport.getName());
+    }
+
 }
