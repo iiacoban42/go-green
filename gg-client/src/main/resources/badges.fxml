@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerBadges">
+   <children>
+      <Pane fx:id="vegie" layoutY="1.0" prefHeight="494.0" prefWidth="707.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level" wrappingWidth="133.0">
+               <font>
+                  <Font name="Calibri Light" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="254.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vegeterian Meal">
+               <font>
+                  <Font name="Calibri Light" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="253.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transportation">
+               <font>
+                  <Font name="Calibri Light" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="258.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local Produce">
+               <font>
+                  <Font name="Calibri Light" size="24.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="vegan" fitHeight="97.0" fitWidth="133.0" layoutX="258.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="transportation" fitHeight="97.0" fitWidth="133.0" layoutX="253.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="localProduce" fitHeight="97.0" fitWidth="133.0" layoutX="258.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="level" fitHeight="150.0" fitWidth="170.0" layoutX="14.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="transportF" fitHeight="97.0" fitWidth="133.0" layoutX="414.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="localF" fitHeight="97.0" fitWidth="133.0" layoutX="414.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="veganF" fitHeight="97.0" fitWidth="133.0" layoutX="414.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cd7f32" height="24.0" layoutX="14.0" layoutY="443.0" stroke="#cd7f32" strokeType="INSIDE" width="46.0" />
+            <Text layoutX="68.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bronze">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="SILVER" height="24.0" layoutX="14.0" layoutY="401.0" stroke="SILVER" strokeType="INSIDE" width="46.0" />
+            <Text layoutX="69.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Silver">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4af37" height="24.0" layoutX="14.0" layoutY="359.0" stroke="#d4af37" strokeType="INSIDE" width="46.0" />
+            <Text layoutX="71.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gold">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="567.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/badges/prototypeC.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="567.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/badges/prototypeF.jpg" />
+               </image>
+            </ImageView>
+            <Text layoutX="620.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="618.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Co2 Saved">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Text>
+         </children></Pane>
+   </children>
+</AnchorPane>

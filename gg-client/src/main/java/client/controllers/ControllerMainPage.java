@@ -1,5 +1,6 @@
 package client.controllers;
 
+import client.entities.Action;
 import client.requests.Session;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -336,6 +337,11 @@ public class ControllerMainPage extends ControllerGeneral {
     @FXML
     public  void showLocalProduce(ActionEvent event) throws IOException {
         changeWindow("local_produce.fxml" );
+    }
+
+    @FXML
+    public void achievementsButtonPressed(ActionEvent event) throws IOException {
+        changeScene("badges.fxml" , anchorPane);
     }
 
 }
