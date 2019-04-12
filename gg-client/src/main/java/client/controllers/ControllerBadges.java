@@ -32,6 +32,12 @@ public class ControllerBadges {
     @FXML
     ImageView localF;
 
+    private final ImageView[] imageViews = {
+        localProduce, localF,
+        transportation, transportF,
+        vegan, veganF
+    };
+
     // it needs if statements so we can decide what to display.
     @FXML
     void initialize() {
@@ -48,17 +54,22 @@ public class ControllerBadges {
 
             String badgeName = current.getBadgeName();
             String imageName = null;
+            int imageNum = 0;
 
             if (badgeName.contains("localProduce")) {
                 imageName = "localProduce";
+                imageNum = 0;
             } else if (badgeName.contains("transport")) {
                 imageName = "transportation";
+                imageNum = 1 * 2;
             } else if (badgeName.contains("vegiemeal")) {
                 imageName = "veggieMeal";
+                imageNum = 2 * 2;
             }
 
             if (badgeName.contains("StreakBadge")) {
                 imageName += "F";
+                imageNum++;
             }
 
             String[] levels = {"Bronze", "Silver", "Gold"};
@@ -66,7 +77,8 @@ public class ControllerBadges {
 
             System.out.println("images/badges/" + imageName + ".jpg");
             Image image = new Image("images/badges/" + imageName + ".jpg");
-            localF.setImage(image);
+
+            imageViews[imageNum].setImage(image);
         }
 
         int score = MealRequests.getScore();
