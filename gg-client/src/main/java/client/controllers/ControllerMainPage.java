@@ -343,6 +343,23 @@ public class ControllerMainPage extends ControllerGeneral {
         changeScene("badges.fxml" , anchorPane);
     }
 
+
+    /**
+     * Show dialog box.
+     * @param event mouse hovering
+     */
+    @FXML
+    public void loadDialogLocal(MouseEvent event) {
+
+        String text = "We calculate the Co2 you save according\n"
+                + "to how much you buy local. You can save\n"
+                + "7% of Co2 is you chose to buy local instead of import.\n\n"
+                + "Please fill it in and then press Submit.";
+        if (!dialogBoxOn) {
+            showDialog(text, "Local Produce", stackLProduce);
+        }
+    }
+
 }
 
 

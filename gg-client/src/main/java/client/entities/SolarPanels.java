@@ -1,4 +1,4 @@
-package server.entity;
+package client.entities;
 
 public class SolarPanels {
     private int amount;

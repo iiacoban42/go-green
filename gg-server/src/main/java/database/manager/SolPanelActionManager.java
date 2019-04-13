@@ -16,9 +16,9 @@ import java.util.List;
 
 public class SolPanelActionManager {
     /**
-     * creates a continuous action and comitis it to database.
+     * creates a continuous action and commits it to database.
      * score per day is derived from number of solar panels
-     * @param username a String representing the primarykey/username of user.
+     * @param username a String representing the primary key/username of user.
      * @param numSolarPanels an int that can represent what is needed such as # of solar panels
      * @return a long that represents CAs primary key
      */
@@ -48,7 +48,7 @@ public class SolPanelActionManager {
     }
 
     /**
-     * delets Continuouse action from database.
+     * deletes solar panel from database.
      * @param id a long representing primary key of continuouse action
      */
     public static void deleteSp(long id) {
@@ -85,8 +85,9 @@ public class SolPanelActionManager {
             tx = session.beginTransaction();
             SolPanelAction solPanelAction =
                     (SolPanelAction)session.get(SolPanelAction.class, id);
+
             if (solPanelAction.twentyFourHourSince()) {
-                solPanelAction.chashIn();
+                solPanelAction.cashIn();
                 solPanelAction.setDateLastCashedIn(new Date());
                 session.update(solPanelAction);
                 String username = solPanelAction.getUser();
@@ -94,6 +95,7 @@ public class SolPanelActionManager {
                 user.addScore(solPanelAction.getScorePerDay());
                 session.update(user);
             }
+
             tx.commit();
         } catch (HibernateException e) {
             try {
@@ -173,7 +175,9 @@ public class SolPanelActionManager {
             String hql = "FROM SolPanelAction WHERE user = :username AND dateEnded IS NULL";
             Query query = session.createQuery(hql);
             query.setParameter("username", username);
-            solPanelAction = (SolPanelAction) query.list().get(0);
+            if (query.list().size() > 0) {
+                solPanelAction = (SolPanelAction) query.list().get(0);
+            }
             tx.commit();
         } catch (HibernateException e) {
             try {
@@ -215,7 +219,7 @@ public class SolPanelActionManager {
 
     /**
      * updates solPanelAction in database.
-     * @param solPanelAction solPanalAction to be updated in its updated form
+     * @param solPanelAction solPanelAction to be updated in its updated form
      */
     public static void update(SolPanelAction solPanelAction) {
         Session session = HibernateUtil.getSessionFactory().openSession();

@@ -196,10 +196,10 @@ public class BadgeManager {
      * @param username username of user who needs to have his badge allocated
      */
     public static void checkBadges(String username) {
-        checkStreak(username, "vegiemeal");
+        checkStreak(username, "veggieMeal");
         checkStreak(username, "transport");
         checkStreak(username, "localProduce");
-        checkCo2Badge(username, "vegiemeal");
+        checkCo2Badge(username, "veggieMeal");
         checkCo2Badge(username, "transport");
         checkCo2Badge(username, "localProduce");
     }
