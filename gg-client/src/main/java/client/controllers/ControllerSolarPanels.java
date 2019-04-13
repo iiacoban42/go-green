@@ -15,7 +15,7 @@ import org.springframework.web.client.RestClientResponseException;
 public class ControllerSolarPanels {
 
     @FXML
-    Label numSP;
+    Label numSolarPanels;
 
     @FXML
     JFXButton submit;
@@ -34,11 +34,12 @@ public class ControllerSolarPanels {
         } catch (RestClientResponseException e) {
             num = 0;
         }
-        numSP.setText(Integer.toString(num));
+        numSolarPanels.setText(Integer.toString(num));
     }
 
     /**
      * Close window.
+     *
      * @param event submit pressed.
      */
     @FXML
