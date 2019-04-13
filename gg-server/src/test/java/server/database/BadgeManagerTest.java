@@ -36,6 +36,7 @@ public class BadgeManagerTest {
         BadgeManager.addBadge("1", "bmt2");
         List<Badge> badges = BadgeManager.listBadgesUser("bmt1");
         assertEquals(3, badges.size());
+        badges.addAll(BadgeManager.listBadgesUser("bmt2"));
         for (Badge action : badges){
             BadgeManager.deleteBadge(action.getId());
         }
