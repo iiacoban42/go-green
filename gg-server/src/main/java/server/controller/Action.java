@@ -136,7 +136,7 @@ public class Action {
      * @return OK
      */
     @PostMapping("/setSolarPanels")
-    public ResponseEntity temperature(@RequestBody SolarPanels solarPanels) {
+    public ResponseEntity setSolarPanels(@RequestBody SolarPanels solarPanels) {
         SolPanelAction solPanelAction = SolPanelActionManager.getActiveSpByUser(getUser());
         if (solPanelAction != null) {
             if (solarPanels.getamount() != 0) {
@@ -175,10 +175,12 @@ public class Action {
     @GetMapping("/solarPanels")
     @ResponseBody
     public SolarPanels solarPanels() {
-        SolarPanels solarPanels = new SolarPanels();
+        SolarPanels solarPanels = new SolarPanels(0);
 
         SolPanelAction solPanelAction = SolPanelActionManager.getActiveSpByUser(getUser());
-        solarPanels.setamount(solPanelAction.getNumSolarPanels());
+        if (solPanelAction != null) {
+            solarPanels.setamount(solPanelAction.getNumSolarPanels());
+        }
 
         return solarPanels;
     }
