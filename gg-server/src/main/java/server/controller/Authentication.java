@@ -1,6 +1,8 @@
 package server.controller;
 
 import database.entity.User;
+import database.manager.ActionManager;
+import database.manager.BadgeManager;
 import database.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import server.entity.LoginCredentials;
 import server.entity.RegisterCredentials;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -46,6 +49,22 @@ public class Authentication {
      */
     @PostMapping("/deleteUser")
     public ResponseEntity deleteAccount(Principal principal) {
+        // Have to delete all actions in case there are any.
+        List actions = ActionManager.listActionsUser(principal.getName());
+
+        for (Object actionObj : actions) {
+            database.entity.Action action = (database.entity.Action) actionObj;
+            ActionManager.deleteAction(action.getId());
+        }
+
+        // Have to delete all badges in case there are any.
+        List badges = BadgeManager.listBadgesUser(principal.getName());
+
+        for (Object badgeObj : badges) {
+            database.entity.Badge badge = (database.entity.Badge) badgeObj;
+            BadgeManager.deleteBadge(badge.getId());
+        }
+
         UserManager.deleteUser(principal.getName());
 
         return new ResponseEntity(HttpStatus.OK);

@@ -31,15 +31,16 @@ public class ActionManager {
             tx = session.beginTransaction();
             action = new Action(actionName, username, score);
             session.save(action);
-            User user = UserManager.getUser(action.getUser());
+            User user = (User)session.get(User.class, username);
             user.addScore(score);
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -60,10 +61,11 @@ public class ActionManager {
             actions = session.createQuery("From Action").list();
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -82,15 +84,16 @@ public class ActionManager {
             tx = session.beginTransaction();
             Action action = (Action)session.get(Action.class, id);
             session.delete(action);
-            User user = UserManager.getUser(action.getUser());
+            User user = (User)session.get(User.class, action.getUser());
             user.settotalScore(user.gettotalScore() - action.getScore());
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -111,10 +114,11 @@ public class ActionManager {
             action = (Action)session.get(Action.class, id);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -126,11 +130,11 @@ public class ActionManager {
      * @param username a String representing the username/primary key of the user
      * @return a List with Action objects
      */
-    public static List listActionsUser(String username) {
+    public static List<Action> listActionsUser(String username) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Action action = null;
-        List results = null;
+        List<Action> results = null;
 
         try {
             tx = session.beginTransaction();
@@ -140,14 +144,123 @@ public class ActionManager {
             results = query.list();
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
         return results;
     }
 
+    /**
+     * counts amount of consecutive days user has done of a specified action.
+     * @param username username of user
+     * @param actionName a string representing the name of the action
+     * @return integer represening streaj
+     */
+    public static int streakCalculator(String username, String actionName) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        final long millisInDay = 86400000;
+        int streak = 0;
+        try {
+            tx = session.beginTransaction();
+            String hql = "FROM Action WHERE actionName = :actionName AND user = :username";
+            Query query = session.createQuery(hql);
+            query.setParameter("username", username);
+            query.setParameter("actionName", actionName);
+            List<Action> results = query.list();
+            long time = System.currentTimeMillis();
+            for (Action action : results) {
+                if (action.getDateTime().getTime() > time - millisInDay) {
+                    streak++;
+                    break;
+                }
+            }
+            time -= millisInDay;
+            boolean combo = true;
+            while (combo) {
+                combo = false;
+                for (Action action : results) {
+                    if (action.getDateTime().getTime() < time
+                            && action.getDateTime().getTime() > time - millisInDay) {
+                        streak++;
+                        time -= millisInDay;
+                        combo = true;
+                        break;
+                    }
+                }
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+        return streak;
+    }
+
+    /**
+     * calculates co2 saved by user with specific action.
+     * @param username a string representing username/primary key of user
+     * @param actionName a string representing name of specified action
+     * @return long represenitng co2 saved
+     */
+    public static long co2SavedByActionByUser(String username, String actionName) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        int co2Saved = 0;
+
+        try {
+            tx = session.beginTransaction();
+            String hql = "FROM Action WHERE actionName = :actionName AND user = :username";
+            Query query = session.createQuery(hql);
+            query.setParameter("username", username);
+            query.setParameter("actionName", actionName);
+            List<Action> results = query.list();
+            for (Action action : results) {
+                co2Saved += action.getScore();
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+        return co2Saved;
+    }
+
+    /**
+     * updates an Acion in the database.
+     * @param action The action object which should be updated in database
+     */
+    public static void updateAction(Action action) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.update(action);
+            tx.commit();
+        } catch (HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+    }
 }

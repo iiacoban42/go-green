@@ -21,6 +21,24 @@ public class ControllerMainPage extends ControllerGeneral {
     public static boolean dialogBoxOn = false;
 
     @FXML
+    JFXButton inf1;
+
+    @FXML
+    JFXButton inf2;
+
+    @FXML
+    JFXButton inf3;
+
+    @FXML
+    JFXButton inf4;
+
+    @FXML
+    JFXButton inf5;
+
+    @FXML
+    JFXButton inf6;
+
+    @FXML
     JFXButton close;
 
     @FXML
@@ -189,7 +207,7 @@ public class ControllerMainPage extends ControllerGeneral {
      * @param event  hovering.
      */
     @FXML
-    public void loadMealDialogMeal(MouseEvent event) {
+    public void loadDialogMeal(MouseEvent event) {
 
         String text = "We calculate the Carbon Dioxide\n"
                 +
@@ -313,6 +331,33 @@ public class ControllerMainPage extends ControllerGeneral {
 
 
 
+    }
+
+    @FXML
+    public  void showLocalProduce(ActionEvent event) throws IOException {
+        changeWindow("local_produce.fxml" );
+    }
+
+    @FXML
+    public void achievementsButtonPressed(ActionEvent event) throws IOException {
+        changeScene("badges.fxml" , anchorPane);
+    }
+
+
+    /**
+     * Show dialog box.
+     * @param event mouse hovering
+     */
+    @FXML
+    public void loadDialogLocal(MouseEvent event) {
+
+        String text = "We calculate the Co2 you save according\n"
+                + "to how much you buy local. You can save\n"
+                + "7% of Co2 is you chose to buy local instead of import.\n\n"
+                + "Please fill it in and then press Submit.";
+        if (!dialogBoxOn) {
+            showDialog(text, "Local Produce", stackLProduce);
+        }
     }
 
 }

@@ -1,6 +1,8 @@
 package server.controller;
 
+import database.entity.SolPanelAction;
 import database.manager.ActionManager;
+import database.manager.SolPanelActionManager;
 import database.manager.UserManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,9 @@ import server.energy.Temperature;
 import server.energy.TemperatureCalculator;
 import server.entity.MealList;
 import server.entity.Score;
+import server.entity.SolarPanels;
 import server.entity.TransportList;
+import server.meal.LocalProduceCalc;
 import server.meal.MealCalculator;
 import server.transportation.TransportationCalculator;
 
@@ -32,6 +36,7 @@ public class Action {
 
     /**
      * Returns all actions from a user.
+     *
      * @return list
      */
     @GetMapping("/manage/actions")
@@ -43,10 +48,11 @@ public class Action {
 
     /**
      * Removes a action done by a user.
+     *
      * @param actionId of action
      * @return new list
      */
-    @RequestMapping(value = {"/manage/delete","manage/remove"})
+    @RequestMapping(value = {"/manage/delete", "manage/remove"})
     public List removeAction(@RequestParam(value = "id") long actionId) {
 
         database.entity.Action action = ActionManager.getAction(actionId);
@@ -57,6 +63,7 @@ public class Action {
 
     /**
      * Parse meal user ate.
+     *
      * @param mealList to check if valid
      * @return true or false
      */
@@ -64,28 +71,53 @@ public class Action {
     public ResponseEntity meal(@RequestBody MealList mealList) {
         ResponseEntity response = new ResponseEntity(HttpStatus.OK);
 
-        int score = (int)MealCalculator.getAmountCo2(mealList);
-        // System.out.println("score: " + score);
-        ActionManager.addAction("meal", getUser(), score);
+        int score = (int) MealCalculator.getAmountCo2(mealList);
+
+        ActionManager.addAction(
+                MealCalculator.isVegetarian(mealList) ? "veggieMeal" : "meal",
+                getUser(), score);
+
+        return response;
+    }
+
+    /**
+     * Parse meal user ate.
+     *
+     * @param mealList to check if valid
+     * @return true or false
+     */
+    @PostMapping("/localProduce")
+    public ResponseEntity localProduce(@RequestBody MealList mealList) {
+        ResponseEntity response = new ResponseEntity(HttpStatus.OK);
+
+        int score = (int) LocalProduceCalc.getAmountCo2(mealList);
+        ActionManager.addAction("localProduce", getUser(), score);
 
         return response;
     }
 
     /**
      * Parse transport user did.
+     *
      * @param transportList list of transport
      * @return OK
      */
     @PostMapping("/transport")
-    public ResponseEntity meal(@RequestBody TransportList transportList) {
+    public ResponseEntity transport(@RequestBody TransportList transportList) {
         int score = (int) TransportationCalculator.getAmountCo2(transportList);
-        ActionManager.addAction("transport", getUser(), score);
+
+        if (transportList.size() == 1 && transportList.get(0).getName().equals("bike")) {
+            ActionManager.addAction("bike", getUser(), score);
+        } else {
+            ActionManager.addAction("transport", getUser(), score);
+        }
 
         return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
      * Parse temperature user did.
+     *
      * @param temperature class
      * @return OK
      */
@@ -98,7 +130,31 @@ public class Action {
     }
 
     /**
+     * Parse amount of solar panels user has.
+     *
+     * @param solarPanels class
+     * @return OK
+     */
+    @PostMapping("/setSolarPanels")
+    public ResponseEntity setSolarPanels(@RequestBody SolarPanels solarPanels) {
+        SolPanelAction solPanelAction = SolPanelActionManager.getActiveSpByUser(getUser());
+        if (solPanelAction != null) {
+            if (solarPanels.getamount() != 0) {
+                solPanelAction.setNumSolarPanels(solarPanels.getamount());
+                SolPanelActionManager.update(solPanelAction);
+            } else {
+                SolPanelActionManager.deleteSp(solPanelAction.getId());
+            }
+        } else {
+            SolPanelActionManager.createSp(getUser(), solarPanels.getamount());
+        }
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    /**
      * Returns score of user to user.
+     *
      * @return score
      */
     @GetMapping("/score")
@@ -111,4 +167,21 @@ public class Action {
         return score;
     }
 
+    /**
+     * Return the number of solar panels a user has.
+     *
+     * @return amount of solar panels
+     */
+    @GetMapping("/solarPanels")
+    @ResponseBody
+    public SolarPanels solarPanels() {
+        SolarPanels solarPanels = new SolarPanels(0);
+
+        SolPanelAction solPanelAction = SolPanelActionManager.getActiveSpByUser(getUser());
+        if (solPanelAction != null) {
+            solarPanels.setamount(solPanelAction.getNumSolarPanels());
+        }
+
+        return solarPanels;
+    }
 }

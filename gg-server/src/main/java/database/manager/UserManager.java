@@ -28,10 +28,11 @@ public class UserManager {
             session.save(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -53,10 +54,11 @@ public class UserManager {
             users = session.createQuery("FROM User").list();
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
             return users;
@@ -76,10 +78,11 @@ public class UserManager {
             session.delete(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -87,7 +90,6 @@ public class UserManager {
 
     /**
      * Mothod to get user by username.
-     *
      * @param username a Sting representingthe username /primarykey of user
      * @return a List containing only the relevant user
      */
@@ -101,10 +103,11 @@ public class UserManager {
             user = (User) session.get(User.class, username);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -130,10 +133,11 @@ public class UserManager {
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -142,9 +146,8 @@ public class UserManager {
 
     /**
      * Method to change users token.
-     *
      * @param username a Sting representing the users username/primary key
-     * @param token    a String representing the users unique token
+     * @param token     a String representing the users unique token
      */
     public static void setToken(String username, String token) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -157,10 +160,11 @@ public class UserManager {
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -168,7 +172,6 @@ public class UserManager {
 
     /**
      * Method to add score to the user in the database.
-     *
      * @param username primary key, String represents users username
      * @param score    an integer representing the score to be added to the total score
      */
@@ -183,8 +186,10 @@ public class UserManager {
             session.update(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
             e.printStackTrace();
         } finally {
@@ -196,7 +201,6 @@ public class UserManager {
 
     /**
      * updates friend field of both parties.
-     *
      * @param user   String representing username of first party
      * @param friend String representing username of second party
      */
@@ -210,8 +214,10 @@ public class UserManager {
             session.get(User.class, friend).setFriend(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
+            try {
                 tx.rollback();
+            } catch (NullPointerException e1) {
+                e1.printStackTrace();
             }
             e.printStackTrace();
         } finally {

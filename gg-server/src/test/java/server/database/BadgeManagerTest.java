@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class BadgeManagerTest {
 
@@ -25,7 +26,7 @@ public class BadgeManagerTest {
         long id = BadgeManager.addBadge("100", "bmt1");
         assertEquals("100",BadgeManager.getBadge(id).getBadgeName());
         BadgeManager.deleteBadge(id);
-        assertEquals(null, BadgeManager.getBadge(id));
+        assertNull(BadgeManager.getBadge(id));
     }
 
     @Test
@@ -36,7 +37,7 @@ public class BadgeManagerTest {
         BadgeManager.addBadge("1", "bmt2");
         List<Badge> badges = BadgeManager.listBadgesUser("bmt1");
         assertEquals(3, badges.size());
-        badges = BadgeManager.badgeList();
+        badges.addAll(BadgeManager.listBadgesUser("bmt2"));
         for (Badge action : badges){
             BadgeManager.deleteBadge(action.getId());
         }

@@ -29,4 +29,19 @@ public class Meal {
     public boolean isVegetarian() {
         return vegetarian;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Meal)) {
+            return false;
+        }
+        Meal meal = (Meal) other;
+        return Double.compare(meal.getCo2(), getCo2()) == 0
+                && isVegetarian() == meal.isVegetarian()
+                && getProduct().equals(meal.getProduct());
+    }
+
 }
