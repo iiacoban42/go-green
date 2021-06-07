@@ -33,9 +33,9 @@ Maven - Dependency Management
 
 ## Authors  
 
-Ioanna Nika
-Eliott Afriat
-Rico van Leeuwen 
-Anoek Winkelman
-Ioana Paula Iacoban 
+Ioanna Nika  
+Eliott Afriat  
+Rico van Leeuwen   
+Anoek Winkelman  
+Ioana Paula Iacoban   
 
